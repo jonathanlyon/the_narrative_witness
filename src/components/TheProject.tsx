@@ -35,7 +35,7 @@ export const TheProject: React.FC = () => {
             </FadeIn>
             <FadeIn delay={0.4}>
               <p className="mt-6 md:mt-8 font-serif text-[1.125rem] leading-[1.8] text-ink-light font-light text-justify">
-                While <em>The Split Frame</em> is a personal memoir, no relinquished person stands in isolation. The project is designed to eventually serve as a quiet depository for collaborative adoptee testimony, redacted artifacts, and shared historical memories.
+                While <em>The Narrative Witness</em> is a personal memoir, no relinquished person stands in isolation. The project is designed to eventually serve as a quiet depository for collaborative adoptee testimony, redacted artifacts, and shared historical memories.
               </p>
             </FadeIn>
             <FadeIn delay={0.5}>

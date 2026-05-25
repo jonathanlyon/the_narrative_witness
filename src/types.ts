@@ -39,7 +39,7 @@ export interface ProjectMilestone {
 export const MANIFESTO_PARAGRAPHS: ManifestoParagraph[] = [
   {
     id: "m-1",
-    text: "We are given a story that begins in our absolute absence. For the relinquished adult, history starts with a blank ledger—a separation presented to the world as a 'clean slate.' In reality, it is a profound somatic and psychological rupture that echoes across decades."
+    text: "We are given a story that begins in our absolute absence. For the relinquished adult, history starts with a blank ledger: a separation presented to the world as a 'clean slate.' In reality, it is a profound somatic and psychological rupture that echoes across decades."
   },
   {
     id: "m-2",
@@ -47,7 +47,7 @@ export const MANIFESTO_PARAGRAPHS: ManifestoParagraph[] = [
   },
   {
     id: "m-3",
-    text: "We believe relinquishment trauma is not a private pathology to be cured in silence. It is an unfinished authorship. The task is not merely to survive the rupture, but to step forward as the central witness of our own lives—to reclaim the archive, gather the fragments of memory, and assert our presence through the practice of Narrative Repair."
+    text: "We believe relinquishment trauma is not a private pathology to be cured in silence. It is an unfinished authorship. The task is not merely to survive the rupture, but to step forward as the central witness of our own lives: to reclaim the archive, gather the fragments of memory, and assert our presence through the practice of Narrative Repair."
   }
 ];
 
@@ -89,7 +89,7 @@ export const EXCERPTS: Excerpt[] = [
     chapter: "Chapter I: The Separation Agreement",
     readTime: "3 min read",
     caption: "On the physical geography of amended identity.",
-    body: "I was born on a grey Tuesday in November, but my legal birth certificate claims I did not come into existence until three weeks later, under a different name, inside a different family ledger. Across that gap of twenty-one days lies a silent territory. In the files of the state welfare board, my entry into the world is marked by thick, waxen lines of black ink—ink designed to shield others from my origin, or perhaps to shield me from myself. To grow up under the shadow of a closed record is to look at a family album and wonder which stranger gave you your ears, and who carried your face before it was reassigned to another's table. You learn early to listen to the spaces between words."
+    body: "I was born on a grey Tuesday in November, but my legal birth certificate claims I did not come into existence until three weeks later, under a different name, inside a different family ledger. Across that gap of twenty-one days lies a silent territory. In the files of the state welfare board, my entry into the world is marked by thick, waxen lines of black ink; ink designed to shield others from my origin, or perhaps to shield me from myself. To grow up under the shadow of a closed record is to look at a family album and wonder which stranger gave you your ears, and who carried your face before it was reassigned to another's table. You learn early to listen to the spaces between words."
   },
   {
     id: "excerpt-2",
@@ -97,7 +97,7 @@ export const EXCERPTS: Excerpt[] = [
     chapter: "Chapter IV: Archival Grief",
     readTime: "4 min read",
     caption: "On requesting original registers from state registries.",
-    body: "When I stood at the counter of the Department of Public Records, the clerk spoke in the low, reverential tones reserved for funeral chapels. She told me that my original, pre-adoption record was legally 'sealed'—locked away in a vault beneath the capital. I was told this was for my own protection, a state-enforced name-theft that treats our biology as a classified secret. We are the only class of citizens whose biological truth is deemed a threat to public order if revealed. The state-issued document in my wallet represents a legal fiction, a second genesis that severed my timeline. But the nervous system does not respect legislative edits. The flesh remembers what the ledger tries to rename."
+    body: "When I stood at the counter of the Department of Public Records, the clerk spoke in the low, reverential tones reserved for funeral chapels. She told me that my original, pre-adoption record was legally 'sealed', locked away in a vault beneath the capital. I was told this was for my own protection, a state-enforced name-theft that treats our biology as a classified secret. We are the only class of citizens whose biological truth is deemed a threat to public order if revealed. The state-issued document in my wallet represents a legal fiction, a second genesis that severed my timeline. But the nervous system does not respect legislative edits. The flesh remembers what the ledger tries to rename."
   },
   {
     id: "excerpt-3",
@@ -137,7 +137,7 @@ export const PROJECT_MILESTONES: ProjectMilestone[] = [
   {
     id: "phase-1",
     phase: "Phase I",
-    title: "The Book: 'The Split Frame'",
+    title: "The Book: 'The Narrative Witness'",
     timeline: "Autumn 2026 Release",
     description: "The core literary manuscript analyzing relinquishment, memory loss, and the philosophical framework of Narrative Repair."
   },

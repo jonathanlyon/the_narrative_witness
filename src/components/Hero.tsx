@@ -40,6 +40,11 @@ export const Hero: React.FC = () => {
         
         {/* Text Area (Col span 7) */}
         <div className="lg:col-span-7 flex flex-col justify-center">
+          {/* Subtle horizontal custom divider above hero text */}
+          <FadeIn delay={0.05}>
+            <div className="w-12 h-[1px] bg-ink/20 mb-6" />
+          </FadeIn>
+
           {/* Metadata tag */}
           <FadeIn delay={0.1}>
             <div className="inline-flex items-center gap-2 mb-6 md:mb-8">
@@ -50,7 +55,7 @@ export const Hero: React.FC = () => {
             </div>
           </FadeIn>
 
-          {/* Large Emotional Headline & Subheadline */}
+          {/* Large Emotional Headline */}
           <FadeIn delay={0.25} duration={1.0}>
             <h1 className="font-serif text-[2.75rem] md:text-[4rem] lg:text-[4.5rem] font-light leading-[1.1] tracking-tight text-ink">
               Before we could speak,
@@ -60,9 +65,10 @@ export const Hero: React.FC = () => {
             </h1>
           </FadeIn>
 
+          {/* Subheadline placed below headline */}
           <FadeIn delay={0.4} duration={0.9}>
             <p className="mt-6 md:mt-8 text-base md:text-lg text-ash font-sans max-w-2xl font-light leading-relaxed">
-              <em>The Split Frame</em> is an independently published, non-linear literary work exploring adoption, relinquishment trauma, identity, and memory. Through intimate essays, reflective poetry, and shared testimonies, this forthcoming book charts a painstaking path toward narrative reclamation.
+              <em>The Narrative Witness</em> is an independently published, non-linear literary work exploring adoption, relinquishment trauma, identity, and memory. Through intimate essays, reflective poetry, and shared testimonies, this forthcoming book charts a painstaking path toward narrative reclamation.
             </p>
           </FadeIn>
 

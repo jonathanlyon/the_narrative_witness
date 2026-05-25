@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowUpRight, CheckCircle, Mail, AlertCircle, Sparkles } from "lucide-react";
+import { ArrowUpRight, CheckCircle, Mail, AlertCircle, Sparkles, BookOpen, Calendar } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./Button";
 import { FadeIn } from "./MotionWrapper";
@@ -48,23 +48,23 @@ export const FinalCTA: React.FC = () => {
 
         <FadeIn delay={0.4}>
           <p className="mt-6 md:mt-8 text-sm md:text-base text-ash font-sans font-light max-w-xl mx-auto leading-relaxed">
-            <em>The Split Frame</em> is independently published to preserve its uncompromising literary voice and build a shared sanctuary for relinquished adults. Join the pre-launch circle below to support the upcoming Kickstarter campaign and become part of our collective record.
+            <em>The Narrative Witness</em> is independently published to preserve its uncompromising literary voice and build a shared sanctuary for relinquished adults. Join the pre-launch circle below to support the upcoming Kickstarter campaign and become part of our collective record.
           </p>
         </FadeIn>
 
         {/* Concise Benefits list */}
         <FadeIn delay={0.45} className="mt-8 mb-10 max-w-lg mx-auto text-left border border-dust/35 bg-paper p-6 md:p-8 flex flex-col gap-4 font-serif text-sm text-ink-light">
-          <div className="flex gap-3">
-            <span className="font-mono text-[10px] text-ash font-medium pt-0.5">I.</span>
-            <p><strong>Early Chapters</strong> — Access three unpublished draft fragments and digital work folios instantly.</p>
+          <div className="flex gap-3.5 items-start">
+            <BookOpen size={15} className="text-ash/70 shrink-0 mt-0.5" />
+            <p><strong>Early Chapters</strong>: Access three unpublished draft fragments and digital work folios instantly.</p>
           </div>
-          <div className="flex gap-3">
-            <span className="font-mono text-[10px] text-ash font-medium pt-0.5">II.</span>
-            <p><strong>First Edition Tiers</strong> — Get priority notifications for signed linen hardback copies and early bird rewards on Kickstarter.</p>
+          <div className="flex gap-3.5 items-start">
+            <Sparkles size={15} className="text-ash/70 shrink-0 mt-0.5" />
+            <p><strong>First Edition Tiers</strong>: Get priority notifications for signed linen hardback copies and early bird rewards on Kickstarter.</p>
           </div>
-          <div className="flex gap-3">
-            <span className="font-mono text-[10px] text-ash font-medium pt-0.5">III.</span>
-            <p><strong>Future Gathering Invites</strong> — Early registration access to our future intimate writing and witness retreat environments.</p>
+          <div className="flex gap-3.5 items-start">
+            <Calendar size={15} className="text-ash/70 shrink-0 mt-0.5" />
+            <p><strong>Future Gathering Invites</strong>: Early registration access to our future intimate writing and witness retreat environments.</p>
           </div>
         </FadeIn>
 
@@ -183,7 +183,7 @@ export const FinalCTA: React.FC = () => {
               {/* Informative text elements */}
               <div className="flex flex-col gap-4 font-serif text-[14px] leading-relaxed text-ash font-light text-justify">
                 <p>
-                  To ensure that <strong>The Split Frame</strong> remains independent and uncompromised by corporate publishing biases, we are financing the initial lithographic hardback printing through a transparent Kickstarter campaign launching in <strong>Autumn 2026</strong>.
+                  To ensure that <strong>The Narrative Witness</strong> remains independent and uncompromised by corporate publishing biases, we are financing the initial lithographic hardback printing through a transparent Kickstarter campaign launching in <strong>Autumn 2026</strong>.
                 </p>
                 <p>
                   Your contribution does not just print ink. It directly sustains work focused on establishing spaces of deep witness. A portion of the proceeds from every book funded will go toward sponsoring future intimate writing retreats and small-scale witness circles, ensuring adult adoptees can gather and write their testimonies in safe, beautiful environments.

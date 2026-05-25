@@ -20,7 +20,7 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-5 flex flex-col justify-between">
             <div>
               <span className="font-serif text-lg md:text-xl font-medium tracking-wider text-ink uppercase">
-                The Split Frame
+                The Narrative Witness
               </span>
               <p className="font-sans text-[13px] font-light leading-relaxed mt-4 max-w-sm">
                 An independently published literary work exploring adoption, relinquishment, identity, and memory. Reclaiming the sovereign voice of the relinquished adult.
@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
                 INTEGRITY &amp; DISCLOSURE
               </span>
               <p className="font-sans text-xs font-light leading-relaxed text-ash/90 text-justify">
-                The Split Frame is a literary and artistic memoir project. While creative writing and collaborative witness are powerful avenues for self-reflection and community support, they do not constitute clinical therapy or psychiatric diagnosis. If you are seeking professional counseling or mental health support, we encourage connecting with qualified, adoption-competent professionals.
+                The Narrative Witness is a literary and artistic memoir project. While creative writing and collaborative witness are powerful avenues for self-reflection and community support, they do not constitute clinical therapy or psychiatric diagnosis. If you are seeking professional counseling or mental health support, we encourage connecting with qualified, adoption-competent professionals.
               </p>
             </div>
           </div>
@@ -78,7 +78,7 @@ export const Footer: React.FC = () => {
         {/* Outer footer details and back to top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-[9px] tracking-widest uppercase">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <span>© 2026 THE SPLIT FRAME. MY REPAIR IS MY RETRIEVAL.</span>
+            <span>© 2026 THE NARRATIVE WITNESS. MY REPAIR IS MY RETRIEVAL.</span>
             <span className="text-ash/45">|</span>
             <span className="text-ash/70 hover:text-ink pointer-events-none">SPDX-LICENSE: APACHE-2.0</span>
           </div>

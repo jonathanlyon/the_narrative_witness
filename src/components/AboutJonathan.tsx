@@ -31,7 +31,7 @@ export const AboutJonathan: React.FC = () => {
                 Jonathan Lyon is a writer, an adoptee, and someone still deeply inside the lived experience of relinquishment. For years, his research and writing have centered on exploring his own closed adoption records and understanding the subtle somatic residue of early separation, name erasure, and inherited familial myths.
               </p>
               <p>
-                Through <em>The Split Frame</em>, Jonathan rejects comforting, simplified resolutions. Instead, he speaks from within the unresolved tension of adoption, prioritizing the quiet, compromised voice of the relinquished individual. His work asserts the sovereign, natural role of the writer to assemble their own archive, construct their own memory, and reclaim authority over their own life.
+                Through <em>The Narrative Witness</em>, Jonathan rejects comforting, simplified resolutions. Instead, he speaks from within the unresolved tension of adoption, prioritizing the quiet, compromised voice of the relinquished individual. His work asserts the sovereign, natural role of the writer to assemble their own archive, construct their own memory, and reclaim authority over their own life.
               </p>
             </FadeIn>
           </div>

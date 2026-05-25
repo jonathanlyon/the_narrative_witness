@@ -22,7 +22,7 @@ export const AboutBook: React.FC = () => {
           </FadeIn>
           <FadeIn delay={0.25}>
             <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink mt-4">
-              Inside 'The Split Frame'
+              Inside 'The Narrative Witness'
             </h2>
           </FadeIn>
           <FadeIn delay={0.35}>
@@ -34,13 +34,13 @@ export const AboutBook: React.FC = () => {
         <StaggerContainer className="flex flex-col gap-10 md:gap-12 max-w-2xl mx-auto text-justify">
           <StaggerItem>
             <p className="font-serif text-[1.125rem] md:text-[1.25rem] leading-[1.8] text-ink-light font-light tracking-wide">
-              We are given a story that begins in our absolute absence. For the relinquished adult, history starts with a blank ledger—a separation presented to the world as a "clean slate." In reality, it is a profound somatic and psychological rupture that echoes across decades.
+              We are given a story that begins in our absolute absence. For the relinquished adult, history starts with a blank ledger: a separation presented to the world as a "clean slate." In reality, it is a profound somatic and psychological rupture that echoes across decades.
             </p>
           </StaggerItem>
           
           <StaggerItem>
             <p className="font-serif text-[1.125rem] md:text-[1.25rem] leading-[1.8] text-ink-light font-light tracking-wide">
-              This book does not obey the clean lines of traditional chronology. It is non-linear, literary, and immersive—unfolding as a sequence of essayistic prose, reflective poetry, and emotionally intimate reflections. It is structured to mirror the fragmented geography of memory itself, refusing comforting platitudes in favor of uncompromising truth.
+              This book does not obey the clean lines of traditional chronology. It is non-linear, literary, and immersive, unfolding as a sequence of essayistic prose, reflective poetry, and emotionally intimate reflections. It is structured to mirror the fragmented geography of memory itself, refusing comforting platitudes in favor of uncompromising truth.
             </p>
           </StaggerItem>
 

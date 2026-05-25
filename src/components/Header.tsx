@@ -5,6 +5,15 @@ import { motion, AnimatePresence } from "motion/react";
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  const menuItems = [
+    { label: "The Book", href: "#book" },
+    { label: "Excerpts", href: "#excerpts" },
+    { label: "Responses", href: "#responses" },
+    { label: "The Project", href: "#project" },
+    { label: "About", href: "#about" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,13 +23,35 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuItems = [
-    { label: "The Book", href: "#book" },
-    { label: "Excerpts", href: "#excerpts" },
-    { label: "Responses", href: "#responses" },
-    { label: "The Project", href: "#project" },
-    { label: "About", href: "#about" },
-  ];
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -60% 0px",
+      threshold: 0,
+    };
+
+    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(`#${entry.target.id}`);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+    menuItems.forEach((item) => {
+      const el = document.querySelector(item.href);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      menuItems.forEach((item) => {
+        const el = document.querySelector(item.href);
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, []);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -49,7 +80,7 @@ export const Header: React.FC = () => {
               onClick={(e) => scrollToSection(e, "#root")}
               className="font-serif text-lg md:text-xl tracking-wider uppercase font-medium hover:opacity-75 transition-opacity duration-300"
             >
-              The Split Frame
+              The Narrative Witness
             </a>
             <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash/80 mt-0.5 max-sm:hidden">
               Adoption, Relinquishment &amp; Literary Testimony
@@ -58,17 +89,29 @@ export const Header: React.FC = () => {
 
           {/* Desktop Nav */}
           <nav id="desktop-nav" className="hidden lg:flex items-center gap-10">
-            {menuItems.map((item) => (
-              <a
-                id={`nav-${item.label.toLowerCase()}`}
-                key={item.label}
-                href={item.href}
-                onClick={(e) => scrollToSection(e, item.href)}
-                className="font-mono text-[10px] uppercase tracking-widest text-ash hover:text-ink hover:italic transition-all duration-300"
-              >
-                {item.label}
-              </a>
-            ))}
+            {menuItems.map((item) => {
+              const isActive = activeSection === item.href;
+              return (
+                <a
+                  id={`nav-${item.label.toLowerCase()}`}
+                  key={item.label}
+                  href={item.href}
+                  onClick={(e) => scrollToSection(e, item.href)}
+                  className={`relative font-mono text-[10px] uppercase tracking-widest pb-1 transition-all duration-300 ${
+                    isActive ? "text-ink font-semibold" : "text-ash hover:text-ink hover:italic"
+                  }`}
+                >
+                  {item.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeSectionUnderline"
+                      className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-ink"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              );
+            })}
             <a
               id="nav-cta"
               href="#signup"
@@ -134,7 +177,7 @@ export const Header: React.FC = () => {
                 Join Pre-Launch
               </a>
               <div className="text-center font-mono text-[9px] text-ash/65 tracking-[0.1em]">
-                THE SPLIT FRAME © 2026. ALL RIGHTS WITNESSED.
+                THE NARRATIVE WITNESS © 2026. ALL RIGHTS WITNESSED.
               </div>
             </div>
           </motion.div>
