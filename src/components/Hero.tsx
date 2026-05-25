@@ -3,9 +3,7 @@ import { ArrowRight, Mail, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./Button";
 import { FadeIn, FadeInSlow } from "./MotionWrapper";
-
-// Import the generated image asset path
-const HERO_IMAGE_URL = "/src/assets/images/archival_paper_monochrome_1779464032575.png";
+import HERO_IMAGE_URL from "../assets/images/archival_paper_monochrome_1779464032575.png";
 
 export const Hero: React.FC = () => {
   const [email, setEmail] = useState("");

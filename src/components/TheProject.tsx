@@ -1,7 +1,6 @@
 import React from "react";
 import { FadeIn, RevealLeft } from "./MotionWrapper";
-
-const BACKGROUND_IMAGE_URL = "/src/assets/images/ink_wash_memory_1779464051298.png";
+import BACKGROUND_IMAGE_URL from "../assets/images/ink_wash_memory_1779464051298.png";
 
 export const TheProject: React.FC = () => {
   return (
