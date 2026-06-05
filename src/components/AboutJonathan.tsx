@@ -33,6 +33,17 @@ export const AboutJonathan: React.FC = () => {
               <p>
                 Through <em>The Narrative Witness</em>, Jonathan rejects comforting, simplified resolutions. Instead, he speaks from within the unresolved tension of adoption, prioritizing the quiet, compromised voice of the relinquished individual. His work asserts the sovereign, natural role of the writer to assemble their own archive, construct their own memory, and reclaim authority over their own life.
               </p>
+              <div className="pt-2">
+                <p>
+                  <strong>A personal note on authority:</strong> I am not a clinician. I am not a therapist. I am not an expert in trauma, or adoption, or anything that arrives with a credential. I am an adoptee who survived the war on self the only way I knew how. Word by word. Sentence by sentence. Making the inexplicable explicable, slowly, until some of it finally held still long enough to be looked at without flinching.
+                </p>
+                <p className="mt-6">
+                  I have not arrived anywhere. I am not standing on the far side of this, reaching back. I still hold contradictions I cannot resolve, grief and gratitude in the same breath, a self assembled on displaced ground. What I have found is not resolution; it is a willingness to let them sit together without demanding they cancel out. 
+                </p>
+                <p className="normal-case font-serif italic text-ash text-sm md:text-base border-l border-dust/60 pl-5 mt-6 py-1 leading-relaxed">
+                  “The closest I have come to healing is not anything I did with the words themselves. It is what happened when I let them go, and adoptees I had never met quietly told me they recognised their own lives inside them. That recognition, given and received, may be the only healing there is. It is certainly the only kind I have learned to trust.”
+                </p>
+              </div>
             </FadeIn>
           </div>
 
@@ -55,8 +66,8 @@ export const AboutJonathan: React.FC = () => {
                   <span className="text-ink">TEMPORAL ADOPTEE WITNESS</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>RELEASE DATE:</span>
-                  <span className="text-ink">2026 KICKSTARTER RELEASE</span>
+                  <span>REGISTRATION:</span>
+                  <span className="text-ink">KICKSTARTER PRE-LAUNCH</span>
                 </div>
               </div>
 

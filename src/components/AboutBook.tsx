@@ -55,7 +55,7 @@ export const AboutBook: React.FC = () => {
         <FadeIn delay={0.5} className="mt-20 md:mt-24 border-t border-dust/40 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between text-ash text-[10px] font-mono tracking-widest uppercase gap-4 max-w-2xl mx-auto">
           <span>CATALOG NO. SF-MEMOIR-2026</span>
           <span className="italic normal-case font-serif text-xs">
-            "To write is to reclaim the central archive."
+            “To write is to reclaim the central archive.”
           </span>
         </FadeIn>
 

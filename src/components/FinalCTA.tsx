@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowUpRight, CheckCircle, Mail, AlertCircle, Sparkles, BookOpen, Calendar } from "lucide-react";
+import { ArrowUpRight, CheckCircle, Mail, AlertCircle, Sparkles, BookOpen, Calendar, Vote } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./Button";
 import { FadeIn } from "./MotionWrapper";
@@ -41,8 +41,7 @@ export const FinalCTA: React.FC = () => {
         {/* Deep Emotional Closing Statement */}
         <FadeIn delay={0.25} duration={1.1}>
           <h2 className="font-serif text-[2.25rem] md:text-[3rem] font-light leading-tight tracking-tight text-ink mt-6 max-w-3xl mx-auto text-center">
-            Help Bring This Book<br className="max-sm:hidden" />
-            Into The World
+            Help Bring This Book<br className="max-sm:hidden" /> Into The World
           </h2>
         </FadeIn>
 
@@ -98,7 +97,7 @@ export const FinalCTA: React.FC = () => {
                     disabled={loading}
                     className="bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
                   >
-                    {loading ? "Joining..." : "Join Circle"}
+                    {loading ? "Registering..." : "Join Circle"}
                   </button>
                 </div>
               </motion.form>
@@ -114,7 +113,8 @@ export const FinalCTA: React.FC = () => {
                   Welcome to the Reader list
                 </span>
                 <p className="text-xs text-ash leading-relaxed max-w-md">
-                  Thank you. Your address <span className="font-mono text-ink text-[11px] underline">{email}</span> is logged. We will notify you when the custom Kickstarter pre-launch page goes active.
+                  Thank you. Your address <span className="font-mono text-ink text-[11px] underline">{email}</span> is logged. 
+                  We will notify you when the custom Kickstarter pre-launch page goes active.
                 </p>
               </motion.div>
             )}

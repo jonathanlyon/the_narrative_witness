@@ -81,11 +81,13 @@ export const Hero: React.FC = () => {
                   initial={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   onSubmit={handleSubscribe}
-                  className="flex flex-col gap-3"
+                  className="flex flex-col gap-4"
                 >
+
                   <label htmlFor="hero-email" className="sr-only">
                     Join the pre-launch reader list
                   </label>
+                  
                   <div className="flex flex-col sm:flex-row border border-dust focus-within:border-ink transition-colors duration-300 bg-paper-dark">
                     <div className="flex items-center pl-4 pr-2 text-ash py-3.5 sm:py-0 w-full">
                       <Mail size={16} className="opacity-60" />
@@ -95,7 +97,7 @@ export const Hero: React.FC = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Join the reader circle (E-mail)"
+                        placeholder="Register your interest (E-mail Address)"
                         className="bg-transparent text-ink border-none focus:outline-none focus:ring-0 text-xs font-mono lowercase tracking-wider ml-3 w-full"
                       />
                     </div>
@@ -105,20 +107,23 @@ export const Hero: React.FC = () => {
                       disabled={loading}
                       className="bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
                     >
-                      {loading ? "Joining..." : "Join"}
+                      {loading ? "Registering..." : "Join"}
                       <ArrowRight size={12} />
                     </button>
                   </div>
+
+                  {/* Version 1 info vs Version 2 Live Community Gauge */}
                   <span className="font-mono text-[9px] text-ash/60 tracking-wider">
                     * Follow our upcoming Kickstarter campaign and receive early chapter drafts.
                   </span>
+
                 </motion.form>
               ) : (
                 <motion.div
                   id="hero-success-state"
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-start gap-3 p-5 border border-dust/45 bg-paper-dark/50"
+                  className="flex flex-col items-start gap-4 p-5 md:p-6 border border-dust/45 bg-paper-dark/50"
                 >
                   <div className="flex items-center gap-2.5 text-ink">
                     <CheckCircle size={16} />
@@ -127,7 +132,8 @@ export const Hero: React.FC = () => {
                     </span>
                   </div>
                   <p className="text-xs text-ash leading-relaxed">
-                    Thank you. We have saved <span className="font-mono text-ink text-[11px] underline">{email}</span> to our reader list. We will send you early drafts and campaign updates shortly.
+                    Thank you. We have saved <span className="font-mono text-ink text-[11px] underline">{email}</span> to our reader list. 
+                    We will send you early drafts and campaign updates shortly.
                   </p>
                 </motion.div>
               )}

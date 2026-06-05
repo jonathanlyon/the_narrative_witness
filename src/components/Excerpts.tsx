@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EXCERPTS } from "../types";
+import { EXCERPTS } from "../data/excerpts";
 import { motion, AnimatePresence } from "motion/react";
 import { Type, AlignLeft, Eye, Clock, Bookmark } from "lucide-react";
 import { FadeIn } from "./MotionWrapper";
@@ -120,12 +120,12 @@ export const Excerpts: React.FC = () => {
                   onClick={() => setActiveIdx(idx)}
                   className={`w-full text-left p-5 border border-dust/40 transition-all duration-350 flex flex-col gap-2 ${
                     active
-                      ? "bg-paper border-ink shadow-[default_rgba(0,0,0,0.01)] translate-x-1.5 animate-pulse"
+                      ? "bg-paper border-ink shadow-[default_rgba(0,0,0,0.01)] translate-x-1.5"
                       : "bg-paper/40 hover:bg-paper/85 hover:border-dust"
                   }`}
                 >
                   <span className="font-mono text-[9px] tracking-widest text-ash uppercase">
-                    {excerpt.chapter}
+                    TAGS: {excerpt.tags.join(" // ")}
                   </span>
                   <h4 className="font-serif text-base text-ink font-light md:group-hover:text-ink">
                     {excerpt.title}
@@ -162,9 +162,9 @@ export const Excerpts: React.FC = () => {
                     readMode === "midnight" ? "border-neutral-800 text-neutral-500" : "border-dust/40 text-ash"
                   }`}>
                     <span className="flex items-center gap-1.5">
-                      <Eye size={11} className="opacity-70" /> MANUSCRIPT PREVIEW
+                      <Eye size={11} className="opacity-70" /> {EXCERPTS[activeIdx].type.toUpperCase()} PREVIEW
                     </span>
-                    <span>{EXCERPTS[activeIdx].chapter}</span>
+                    <span>{EXCERPTS[activeIdx].tags.join(" • ")}</span>
                   </div>
 
                   {/* Title of active excerpt */}
@@ -184,8 +184,8 @@ export const Excerpts: React.FC = () => {
                   )}
 
                   {/* The Document Block Body text */}
-                  <div className="text-justify py-2">
-                    <p className={`font-serif text-justify font-light select-none tracking-wide md:tracking-wider ${fontSizes[fontSize]} mb-6`}>
+                  <div className="py-2">
+                    <p className={`font-serif font-light select-none tracking-wide md:tracking-wider ${fontSizes[fontSize]} mb-6 whitespace-pre-wrap ${EXCERPTS[activeIdx].type === 'Poem' ? 'text-left' : 'text-justify'}`}>
                       {EXCERPTS[activeIdx].body}
                     </p>
                   </div>
@@ -194,7 +194,7 @@ export const Excerpts: React.FC = () => {
                   <div className={`mt-12 pt-6 border-t flex flex-col sm:flex-row items-stretch sm:items-center justify-between text-ash text-[9px] font-mono tracking-widest uppercase gap-4 ${
                     readMode === "midnight" ? "border-neutral-800 text-neutral-500" : "border-dust/40 text-ash"
                   }`}>
-                    <span>SOURCE: THE SPLIT FRAME (DRAFT FOLIO)</span>
+                    <span>SOURCE: THE NARRATIVE WITNESS (DRAFT FOLIO)</span>
                     <span className="flex items-center gap-1.5">
                       © 2026 JONATHAN LYON. ALL RIGHTS RESERVED.
                     </span>
