@@ -17,5 +17,6 @@ Set these in Vercel before inviting readers to sign up:
 
 - `VITE_SUBSCRIBE_ENDPOINT`: a newsletter or form endpoint that accepts `POST` requests with `email`, `source`, `page`, and `submittedAt`.
 - `VITE_KICKSTARTER_PRELAUNCH_URL`: the official Kickstarter pre-launch page URL once it is live.
+- `VITE_META_PIXEL_ID`: optional Meta Pixel ID for ad retargeting and support-registration conversion tracking.
 
 If `VITE_SUBSCRIBE_ENDPOINT` is empty, the signup form stays in preview mode and does not collect real signups.

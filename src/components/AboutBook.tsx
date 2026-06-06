@@ -40,7 +40,13 @@ export const AboutBook: React.FC = () => {
           
           <StaggerItem>
             <p className="font-serif text-[1.125rem] md:text-[1.25rem] leading-[1.8] text-ink-light font-light tracking-wide">
-              This book does not obey the clean lines of traditional chronology. It is non-linear, literary, and immersive, unfolding through essayistic prose, reflective poetry, and emotionally intimate fragments. Its structure mirrors the fragmented geography of memory itself, refusing comforting platitudes in favor of honest witness.
+              The book does not obey the clean lines of traditional chronology. It is non-linear, literary, and immersive, unfolding through essayistic prose, reflective poetry, and emotionally intimate fragments. Its structure mirrors the fragmented geography of memory itself, refusing comforting platitudes in favor of honest witness.
+            </p>
+          </StaggerItem>
+
+          <StaggerItem>
+            <p className="font-serif text-[1.125rem] md:text-[1.25rem] leading-[1.8] text-ink-light font-light tracking-wide">
+              Supporting this pre-launch is not simply asking for updates. It is helping decide whether the manuscript has enough public will behind it to justify the risk of a formal campaign: editing, design, production, contributor care, and a first edition made with the seriousness the subject deserves.
             </p>
           </StaggerItem>
 

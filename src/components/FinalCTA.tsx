@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { ArrowUpRight, CheckCircle, Mail, AlertCircle, Sparkles, BookOpen, Calendar } from "lucide-react";
+import { ArrowUpRight, CheckCircle, Mail, Sparkles, BookOpen, Calendar, Target, Clock3, Route } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "./Button";
 import { FadeIn } from "./MotionWrapper";
 import {
   hasKickstarterPrelaunchUrl,
   kickstarterPrelaunchUrl,
   subscribeReader,
 } from "../lib/signup";
+import { trackKickstarterIntent, trackSupportRegistration } from "../lib/analytics";
 
 export const FinalCTA: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -16,9 +16,6 @@ export const FinalCTA: React.FC = () => {
   const [error, setError] = useState("");
   const [signupConfigured, setSignupConfigured] = useState(true);
   
-  // State for Kickstarter teaser info dialog
-  const [showKickstarterModal, setShowKickstarterModal] = useState(false);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -31,6 +28,9 @@ export const FinalCTA: React.FC = () => {
     try {
       const result = await subscribeReader(email, "final");
       setSignupConfigured(result.configured);
+      if (result.configured) {
+        trackSupportRegistration("final");
+      }
       setSubmitted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
@@ -153,6 +153,7 @@ export const FinalCTA: React.FC = () => {
                     href={kickstarterPrelaunchUrl}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={() => trackKickstarterIntent("final_success")}
                     className="inline-flex items-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-3 px-4 transition-all duration-300 font-medium"
                   >
                     Follow on Kickstarter <ArrowUpRight size={12} />
@@ -163,22 +164,60 @@ export const FinalCTA: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        {/* Kickstarter teaser triggers */}
-        <FadeIn delay={0.5} className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
-          <Button
-            id="btn-kickstarter-teaser"
-            variant="secondary"
-            icon={<ArrowUpRight size={13} />}
-            onClick={() => {
-              if (hasKickstarterPrelaunchUrl) {
-                window.open(kickstarterPrelaunchUrl, "_blank", "noopener,noreferrer");
-                return;
-              }
-              setShowKickstarterModal(true);
-            }}
-          >
-            {hasKickstarterPrelaunchUrl ? "Follow on Kickstarter" : "Why Kickstarter Matters"}
-          </Button>
+        <FadeIn delay={0.5} className="mt-14 max-w-3xl mx-auto text-left">
+          <div className="border border-dust/40 bg-paper p-6 md:p-8">
+            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
+              Why Kickstarter Matters
+            </span>
+            <h3 className="font-serif text-2xl md:text-3xl font-light text-ink mt-4">
+              The campaign has to prove itself early.
+            </h3>
+            <p className="mt-4 text-sm md:text-base leading-relaxed text-ash font-light">
+              Kickstarter is not only a funding mechanism. It is a public test of whether this book has enough people behind it to justify printing, editing, design, production, contributor care, and the wider Narrative Witness work that may follow.
+            </p>
+
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div className="border-t border-dust/50 pt-4">
+                <Target size={16} className="text-ash/80" />
+                <h4 className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink mt-3">
+                  Proof before risk
+                </h4>
+                <p className="mt-2 font-serif text-sm leading-relaxed text-ash">
+                  A support registration tells us the book has moved beyond private hope into visible public intent.
+                </p>
+              </div>
+              <div className="border-t border-dust/50 pt-4">
+                <Clock3 size={16} className="text-ash/80" />
+                <h4 className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink mt-3">
+                  First days matter
+                </h4>
+                <p className="mt-2 font-serif text-sm leading-relaxed text-ash">
+                  Crowdfunding campaigns depend on early momentum. The first wave of support helps decide whether the project feels possible to others.
+                </p>
+              </div>
+              <div className="border-t border-dust/50 pt-4">
+                <Route size={16} className="text-ash/80" />
+                <h4 className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink mt-3">
+                  Two-step signal
+                </h4>
+                <p className="mt-2 font-serif text-sm leading-relaxed text-ash">
+                  Register here first. When the official page opens, follow on Kickstarter too, so both the direct list and the public campaign signal are strong.
+                </p>
+              </div>
+            </div>
+
+            {hasKickstarterPrelaunchUrl && (
+              <a
+                href={kickstarterPrelaunchUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => trackKickstarterIntent("final_visible_section")}
+                className="mt-8 inline-flex items-center justify-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-3 px-5 transition-all duration-300 font-medium"
+              >
+                Follow on Kickstarter <ArrowUpRight size={12} />
+              </a>
+            )}
+          </div>
         </FadeIn>
 
         {/* Footnote of pre-launch funding goals */}
@@ -190,72 +229,6 @@ export const FinalCTA: React.FC = () => {
 
       </div>
 
-      {/* Kickstarter Modern Minimalist Dialog Modal */}
-      <AnimatePresence>
-        {showKickstarterModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            {/* Modal backdrop background */}
-            <motion.div
-              id="kickstarter-modal-backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowKickstarterModal(false)}
-              className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
-            />
-
-            {/* Modal Box */}
-            <motion.div
-              id="kickstarter-modal-body"
-              initial={{ opacity: 0, scale: 0.95, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 15 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-lg bg-paper border border-dust p-8 md:p-10 shadow-2xl paper-grain z-10"
-            >
-              {/* Decorative label */}
-              <div className="flex items-center gap-2 mb-4">
-                <Sparkles size={14} className="text-ash" />
-                <span className="font-mono text-[9px] tracking-[0.2em] text-ash uppercase">
-                  FUNDING MODEL // PRE-LAUNCH STATEMENT
-                </span>
-              </div>
-
-              {/* Modal Core Headers */}
-              <h3 className="font-serif text-2xl text-ink font-light tracking-wide leading-snug">
-                Why Kickstarter?
-              </h3>
-              
-              <div className="w-12 h-[1px] bg-dust mt-4 mb-6" />
-
-              {/* Informative text elements */}
-              <div className="flex flex-col gap-4 font-serif text-[14px] leading-relaxed text-ash font-light text-justify">
-                <p>
-                  Kickstarter gives the project a clear public test: are there enough people willing to fund a careful first edition, or is the work not ready to carry that weight yet?
-                </p>
-                <p>
-                  This site builds a direct list of people who have raised their hands before launch. The official Kickstarter pre-launch page, once live, will add a second public signal and a launch reminder from Kickstarter itself.
-                </p>
-              </div>
-
-              {/* Interactive confirmation */}
-              <div className="mt-8 pt-6 border-t border-dust/35 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-2 text-[10px] font-mono tracking-widest text-ash text-left">
-                  <AlertCircle size={12} />
-                  <span>PRE-LAUNCH PREVIEW STATUS</span>
-                </div>
-                <Button
-                  id="btn-close-kb"
-                  variant="primary"
-                  onClick={() => setShowKickstarterModal(false)}
-                >
-                  Confirm Insight
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };

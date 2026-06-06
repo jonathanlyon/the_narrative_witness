@@ -8,6 +8,7 @@ import {
   kickstarterPrelaunchUrl,
   subscribeReader,
 } from "../lib/signup";
+import { trackKickstarterIntent, trackSupportRegistration } from "../lib/analytics";
 import HERO_IMAGE_URL from "../assets/images/archival_paper_monochrome_1779464032575.png";
 
 export const Hero: React.FC = () => {
@@ -29,6 +30,9 @@ export const Hero: React.FC = () => {
     try {
       const result = await subscribeReader(email, "hero");
       setSignupConfigured(result.configured);
+      if (result.configured) {
+        trackSupportRegistration("hero");
+      }
       setSubmitted(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
@@ -159,6 +163,7 @@ export const Hero: React.FC = () => {
                       href={kickstarterPrelaunchUrl}
                       target="_blank"
                       rel="noreferrer"
+                      onClick={() => trackKickstarterIntent("hero_success")}
                       className="inline-flex items-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-3 px-4 transition-all duration-300 font-medium"
                     >
                       Follow on Kickstarter <ArrowRight size={12} />

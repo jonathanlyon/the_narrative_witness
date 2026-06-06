@@ -67,7 +67,7 @@ export const AboutJonathan: React.FC = () => {
                 </div>
                 <div className="flex justify-between">
                   <span>REGISTRATION:</span>
-                  <span className="text-ink">KICKSTARTER PRE-LAUNCH</span>
+                  <span className="text-ink">SUPPORT VALIDATION</span>
                 </div>
               </div>
 
