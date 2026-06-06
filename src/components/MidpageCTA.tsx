@@ -126,12 +126,12 @@ export const MidpageCTA: React.FC = () => {
                   <div className="flex items-center gap-3">
                     <CheckCircle size={18} aria-hidden="true" />
                     <span className="font-mono text-[10px] uppercase tracking-[0.18em]">
-                      Support registered
+                      Check your email
                     </span>
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-paper/75">
-                    Thank you. Your address is now counted as an early signal of support for the book.
-                    {!signupConfigured && " Email collection still needs to be connected before registrations can be retained."}
+                    We have sent you a confirmation link. Please click it so your support can be counted.
+                    {!signupConfigured && " This local preview has not sent an email."}
                   </p>
                 </motion.div>
               )}

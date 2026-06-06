@@ -151,12 +151,12 @@ export const Hero: React.FC = () => {
                   <div className="flex items-center gap-2.5 text-ink">
                     <CheckCircle size={16} />
                     <span className="font-mono text-xs uppercase tracking-widest font-medium">
-                      Support Registered
+                      Check Your Email
                     </span>
                   </div>
                   <p className="text-xs text-ash leading-relaxed">
-                    Thank you. <span className="font-mono text-ink text-[11px] underline">{email}</span> is now counted as an early signal of support for the book.
-                    {!signupConfigured && " This preview form still needs an email service before it can collect real support registrations."}
+                    We have sent a confirmation link to <span className="font-mono text-ink text-[11px] underline">{email}</span>. Please click it so your support can be counted.
+                    {!signupConfigured && " This local preview has not sent an email."}
                   </p>
                   {hasKickstarterPrelaunchUrl && (
                     <a
