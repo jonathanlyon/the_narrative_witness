@@ -1,27 +1,42 @@
 import React, { useState } from "react";
-import { ArrowUpRight, CheckCircle, Mail, AlertCircle, Sparkles, BookOpen, Calendar, Vote } from "lucide-react";
+import { ArrowUpRight, CheckCircle, Mail, AlertCircle, Sparkles, BookOpen, Calendar } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./Button";
 import { FadeIn } from "./MotionWrapper";
+import {
+  hasKickstarterPrelaunchUrl,
+  kickstarterPrelaunchUrl,
+  subscribeReader,
+} from "../lib/signup";
 
 export const FinalCTA: React.FC = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [signupConfigured, setSignupConfigured] = useState(true);
   
   // State for Kickstarter teaser info dialog
   const [showKickstarterModal, setShowKickstarterModal] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !email.includes("@")) return;
+    setError("");
+    if (!email || !email.includes("@")) {
+      setError("Please enter a valid email address.");
+      return;
+    }
 
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const result = await subscribeReader(email, "final");
+      setSignupConfigured(result.configured);
       setSubmitted(true);
-      localStorage.setItem("newsletter_subbed_bottom_email", email);
-    }, 1100);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -47,7 +62,7 @@ export const FinalCTA: React.FC = () => {
 
         <FadeIn delay={0.4}>
           <p className="mt-6 md:mt-8 text-sm md:text-base text-ash font-sans font-light max-w-xl mx-auto leading-relaxed">
-            <em>The Narrative Witness</em> is independently published to preserve its uncompromising literary voice and build a shared sanctuary for relinquished adults. Join the pre-launch circle below to support the upcoming Kickstarter campaign and become part of our collective record.
+            <em>The Narrative Witness</em> will be independently published to preserve its literary voice and test whether this work has enough reader support to become a beautifully made book. Join the list below and be first to hear when the Kickstarter pre-launch page opens.
           </p>
         </FadeIn>
 
@@ -55,15 +70,15 @@ export const FinalCTA: React.FC = () => {
         <FadeIn delay={0.45} className="mt-8 mb-10 max-w-lg mx-auto text-left border border-dust/35 bg-paper p-6 md:p-8 flex flex-col gap-4 font-serif text-sm text-ink-light">
           <div className="flex gap-3.5 items-start">
             <BookOpen size={15} className="text-ash/70 shrink-0 mt-0.5" />
-            <p><strong>Early Chapters</strong>: Access three unpublished draft fragments and digital work folios instantly.</p>
+            <p><strong>Book updates</strong>: Receive selected fragments, progress notes, and a closer look at the manuscript as it forms.</p>
           </div>
           <div className="flex gap-3.5 items-start">
             <Sparkles size={15} className="text-ash/70 shrink-0 mt-0.5" />
-            <p><strong>First Edition Tiers</strong>: Get priority notifications for signed linen hardback copies and early bird rewards on Kickstarter.</p>
+            <p><strong>Campaign first notice</strong>: Get a direct reminder when the Kickstarter pre-launch and launch pages are ready.</p>
           </div>
           <div className="flex gap-3.5 items-start">
             <Calendar size={15} className="text-ash/70 shrink-0 mt-0.5" />
-            <p><strong>Future Gathering Invites</strong>: Early registration access to our future intimate writing and witness retreat environments.</p>
+            <p><strong>Witness invitations</strong>: Hear about any future interview, writing, or gathering opportunities once they are ethically defined.</p>
           </div>
         </FadeIn>
 
@@ -87,7 +102,7 @@ export const FinalCTA: React.FC = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Join the early readers (E-mail)"
+                      placeholder="Join the pre-launch reader list"
                       className="bg-transparent text-ink border-none focus:outline-none focus:ring-0 text-xs font-mono lowercase tracking-wider ml-3 w-full"
                     />
                   </div>
@@ -97,9 +112,14 @@ export const FinalCTA: React.FC = () => {
                     disabled={loading}
                     className="bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
                   >
-                    {loading ? "Registering..." : "Join Circle"}
+                    {loading ? "Joining..." : "Join List"}
                   </button>
                 </div>
+                {error && (
+                  <span className="font-mono text-[9px] text-ink tracking-wider text-left">
+                    {error}
+                  </span>
+                )}
               </motion.form>
             ) : (
               <motion.div
@@ -113,9 +133,19 @@ export const FinalCTA: React.FC = () => {
                   Welcome to the Reader list
                 </span>
                 <p className="text-xs text-ash leading-relaxed max-w-md">
-                  Thank you. Your address <span className="font-mono text-ink text-[11px] underline">{email}</span> is logged. 
-                  We will notify you when the custom Kickstarter pre-launch page goes active.
+                  Thank you. <span className="font-mono text-ink text-[11px] underline">{email}</span> is on the pre-launch reader list.
+                  {!signupConfigured && " This preview form still needs an email service before it can collect real signups."}
                 </p>
+                {hasKickstarterPrelaunchUrl && (
+                  <a
+                    href={kickstarterPrelaunchUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-3 px-4 transition-all duration-300 font-medium"
+                  >
+                    Follow on Kickstarter <ArrowUpRight size={12} />
+                  </a>
+                )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -127,16 +157,22 @@ export const FinalCTA: React.FC = () => {
             id="btn-kickstarter-teaser"
             variant="secondary"
             icon={<ArrowUpRight size={13} />}
-            onClick={() => setShowKickstarterModal(true)}
+            onClick={() => {
+              if (hasKickstarterPrelaunchUrl) {
+                window.open(kickstarterPrelaunchUrl, "_blank", "noopener,noreferrer");
+                return;
+              }
+              setShowKickstarterModal(true);
+            }}
           >
-            Preview Kickstarter Concept
+            {hasKickstarterPrelaunchUrl ? "Follow on Kickstarter" : "Preview Kickstarter Plan"}
           </Button>
         </FadeIn>
 
         {/* Footnote of pre-launch funding goals */}
         <FadeIn delay={0.6}>
           <div className="mt-16 text-[9px] font-mono tracking-[0.15em] text-ash/60 uppercase">
-            TARGET RELEASE // AUTUMN 2026 · ARCHIVE FILE: SF-BOOK-PRELAUNCH
+            TARGET CAMPAIGN // 2026 · ARCHIVE FILE: BOOK-PRELAUNCH
           </div>
         </FadeIn>
 
@@ -183,10 +219,10 @@ export const FinalCTA: React.FC = () => {
               {/* Informative text elements */}
               <div className="flex flex-col gap-4 font-serif text-[14px] leading-relaxed text-ash font-light text-justify">
                 <p>
-                  To ensure that <strong>The Narrative Witness</strong> remains independent and uncompromised by corporate publishing biases, we are financing the initial lithographic hardback printing through a transparent Kickstarter campaign launching in <strong>Autumn 2026</strong>.
+                  Kickstarter gives the project a clear public test: are there enough readers who want this book in the world to fund a careful first edition?
                 </p>
                 <p>
-                  Your contribution does not just print ink. It directly sustains work focused on establishing spaces of deep witness. A portion of the proceeds from every book funded will go toward sponsoring future intimate writing retreats and small-scale witness circles, ensuring adult adoptees can gather and write their testimonies in safe, beautiful environments.
+                  The independent reader list here lets Jonathan stay in direct contact with the people who have raised their hands. The official Kickstarter pre-launch page, once live, will add a second reminder from Kickstarter itself when the campaign launches.
                 </p>
               </div>
 

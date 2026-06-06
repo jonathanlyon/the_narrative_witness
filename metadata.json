@@ -2,5 +2,5 @@
   "name": "The Narrative Witness",
   "description": "A cinematic literary pre-launch experience for an independently published book exploring adoption, relinquishment, identity, memory, grief, and authorship.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }

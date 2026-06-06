@@ -1,20 +1,21 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# The Narrative Witness
 
-# Run and deploy your AI Studio app
+A literary book pre-launch site for Jonathan Lyon's forthcoming work on adoption, relinquishment, identity, memory, and narrative witness.
 
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/33780e9d-7ef2-45ce-91e1-44152b16ef30
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
+## Local development
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Run the site:
    `npm run dev`
+3. Build for production:
+   `npm run build`
+
+## Launch configuration
+
+Set these in Vercel before inviting readers to sign up:
+
+- `VITE_SUBSCRIBE_ENDPOINT`: a newsletter or form endpoint that accepts `POST` requests with `email`, `source`, `page`, and `submittedAt`.
+- `VITE_KICKSTARTER_PRELAUNCH_URL`: the official Kickstarter pre-launch page URL once it is live.
+
+If `VITE_SUBSCRIBE_ENDPOINT` is empty, the signup form stays in preview mode and does not collect real signups.

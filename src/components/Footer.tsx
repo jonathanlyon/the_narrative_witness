@@ -1,5 +1,5 @@
 import React from "react";
-import { Coffee, ArrowUp } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const handleScrollTop = () => {
@@ -78,9 +78,9 @@ export const Footer: React.FC = () => {
         {/* Outer footer details and back to top */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-[9px] tracking-widest uppercase">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <span>© 2026 THE NARRATIVE WITNESS. MY REPAIR IS MY RETRIEVAL.</span>
+            <span>© 2026 THE NARRATIVE WITNESS.</span>
             <span className="text-ash/45">|</span>
-            <span className="text-ash/70 hover:text-ink pointer-events-none">SPDX-LICENSE: APACHE-2.0</span>
+            <span className="text-ash/70 hover:text-ink pointer-events-none">INDEPENDENT BOOK PRE-LAUNCH</span>
           </div>
 
           <button

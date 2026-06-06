@@ -31,17 +31,17 @@ export const TheProject: React.FC = () => {
               </FadeIn>
               <FadeIn delay={0.25}>
                 <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink mt-4">
-                  The Collaborative Archive
+                  The Witness Thread
                 </h2>
               </FadeIn>
               <FadeIn delay={0.4}>
                 <p className="mt-6 md:mt-8 font-serif text-[1.125rem] leading-[1.8] text-ink-light font-light text-justify">
-                  While <em>The Narrative Witness</em> is a personal memoir, no relinquished person stands in isolation. The project is designed to eventually serve as a quiet depository for collaborative adoptee testimony, redacted artifacts, and shared historical memories.
+                  While the book begins in one life, no relinquished person stands in isolation. A future strand of the project may invite a small number of adoptees to share their stories through close conversation, careful drafting, and full consent over how their testimony is held.
                 </p>
               </FadeIn>
               <FadeIn delay={0.5}>
                 <p className="mt-6 font-serif text-base leading-[1.8] text-ash font-light text-justify">
-                  This is an invitation to step forward as co-witnesses. Over time, curated fragments of collective memory contributed by the wider adoptee community will be bound alongside the core essays, establishing a collaborative testimony built from our shared survival.
+                  This will not be an open submission archive or a chorus of competing styles. If it takes shape, it will be a limited, ethically held witness process where each story is listened into language, then returned to the person whose life it carries.
                 </p>
               </FadeIn>
             </div>
@@ -55,17 +55,17 @@ export const TheProject: React.FC = () => {
               </FadeIn>
               <FadeIn delay={0.35}>
                 <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink mt-4">
-                  Intimate Writing Retreats
+                  Future Writing Spaces
                 </h2>
               </FadeIn>
               <FadeIn delay={0.5}>
                 <p className="mt-6 md:mt-8 font-serif text-[1.125rem] leading-[1.8] text-ink-light font-light text-justify">
-                  Beyond the printed page, the project will manifest in future intimate writing and witness spaces hosted in carefully selected, natural retreat environments.
+                  Beyond the printed page, there is a quieter possibility: intimate writing and witness spaces for relinquished adults, held online or in carefully chosen places where people can begin to gather the fragments of their own story.
                 </p>
               </FadeIn>
               <FadeIn delay={0.6}>
                 <p className="mt-6 font-serif text-base leading-[1.8] text-ash font-light text-justify">
-                  These gatherings are quiet, non-institutional sanctuaries where relinquished adults can sit together, gather fragments of memory, and craft their own narratives in safety. Free from clinical structures, they focus entirely on the soft, heavy beauty of shared authorship.
+                  That aspect is still finding its shape. For now, the centre is the book. The wider project remains an intention: non-clinical, literary, careful, and rooted in the belief that self-authorship can become a form of witness.
                 </p>
               </FadeIn>
             </div>
@@ -75,7 +75,7 @@ export const TheProject: React.FC = () => {
         {/* Marginalia footnote */}
         <FadeIn delay={0.7} className="mt-20 md:mt-24 border-t border-dust/30 pt-8 flex items-center justify-between text-ash text-[9px] font-mono tracking-widest uppercase">
           <span>THE COLLECTIVE RECORD</span>
-          <span>A PRIVATE PRE-KICKSTARTER COMMUNITY</span>
+          <span>BOOK FIRST · WIDER PROJECT EMERGING</span>
         </FadeIn>
       </div>
     </section>

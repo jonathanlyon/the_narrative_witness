@@ -3,25 +3,38 @@ import { ArrowRight, Mail, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "./Button";
 import { FadeIn, FadeInSlow } from "./MotionWrapper";
+import {
+  hasKickstarterPrelaunchUrl,
+  kickstarterPrelaunchUrl,
+  subscribeReader,
+} from "../lib/signup";
 import HERO_IMAGE_URL from "../assets/images/archival_paper_monochrome_1779464032575.png";
 
 export const Hero: React.FC = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [signupConfigured, setSignupConfigured] = useState(true);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !email.includes("@")) return;
+    setError("");
+    if (!email || !email.includes("@")) {
+      setError("Please enter a valid email address.");
+      return;
+    }
 
     setLoading(true);
-    // Simulate API registration
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const result = await subscribeReader(email, "hero");
+      setSignupConfigured(result.configured);
       setSubmitted(true);
-      // Persist locally for demo purpose
-      localStorage.setItem("newsletter_subbed_email", email);
-    }, 1200);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const scrollNext = (id: string) => {
@@ -34,9 +47,9 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center pt-24 md:pt-32 pb-16 overflow-hidden paper-grain"
+      className="relative min-h-screen flex items-start lg:items-center justify-center pt-28 md:pt-32 lg:pt-24 pb-12 overflow-hidden paper-grain"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-14 items-center">
         
         {/* Text Area (Col span 7) */}
         <div className="lg:col-span-7 flex flex-col justify-center">
@@ -50,14 +63,14 @@ export const Hero: React.FC = () => {
             <div className="inline-flex items-center gap-2 mb-6 md:mb-8">
               <span className="w-1.5 h-1.5 bg-ink" />
               <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-ash">
-                Literary Memoir · Kickstarter Pre-Launch
+                Literary Memoir · Independent Book Pre-Launch
               </span>
             </div>
           </FadeIn>
 
           {/* Large Emotional Headline */}
           <FadeIn delay={0.25} duration={1.0}>
-            <h1 className="font-serif text-[2.75rem] md:text-[4rem] lg:text-[4.5rem] font-light leading-[1.1] tracking-tight text-ink">
+            <h1 className="font-serif text-[2.6rem] md:text-[3.65rem] lg:text-[4.05rem] font-light leading-[1.08] tracking-tight text-ink">
               Before we could speak,
               <br />
               our stories were{" "}
@@ -67,13 +80,13 @@ export const Hero: React.FC = () => {
 
           {/* Subheadline placed below headline */}
           <FadeIn delay={0.4} duration={0.9}>
-            <p className="mt-6 md:mt-8 text-base md:text-lg text-ash font-sans max-w-2xl font-light leading-relaxed">
-              <em>The Narrative Witness</em> is an independently published, non-linear literary work exploring adoption, relinquishment trauma, identity, and memory. Through intimate essays, reflective poetry, and shared testimonies, this forthcoming book charts a painstaking path toward narrative reclamation.
+            <p className="mt-5 md:mt-6 text-base md:text-lg text-ash font-sans max-w-2xl font-light leading-relaxed">
+              <em>The Narrative Witness</em> is the working home for a forthcoming literary memoir about adoption, relinquishment, identity, and memory. Join the private reader list for early book updates, selected draft fragments, and first notice when the Kickstarter pre-launch page opens.
             </p>
           </FadeIn>
 
           {/* Interactive Cinematic Subscription / Actions */}
-          <div className="mt-10 md:mt-12 max-w-lg">
+          <div className="mt-8 md:mt-9 max-w-lg">
             <AnimatePresence mode="wait">
               {!submitted ? (
                 <motion.form
@@ -97,7 +110,7 @@ export const Hero: React.FC = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Register your interest (E-mail Address)"
+                        placeholder="Join the pre-launch reader list"
                         className="bg-transparent text-ink border-none focus:outline-none focus:ring-0 text-xs font-mono lowercase tracking-wider ml-3 w-full"
                       />
                     </div>
@@ -107,14 +120,19 @@ export const Hero: React.FC = () => {
                       disabled={loading}
                       className="bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
                     >
-                      {loading ? "Registering..." : "Join"}
+                      {loading ? "Joining..." : "Join"}
                       <ArrowRight size={12} />
                     </button>
                   </div>
 
-                  {/* Version 1 info vs Version 2 Live Community Gauge */}
+                  {error && (
+                    <span className="font-mono text-[9px] text-ink tracking-wider">
+                      {error}
+                    </span>
+                  )}
+
                   <span className="font-mono text-[9px] text-ash/60 tracking-wider">
-                    * Follow our upcoming Kickstarter campaign and receive early chapter drafts.
+                    No spam. Just careful updates as the book and campaign take shape.
                   </span>
 
                 </motion.form>
@@ -128,20 +146,30 @@ export const Hero: React.FC = () => {
                   <div className="flex items-center gap-2.5 text-ink">
                     <CheckCircle size={16} />
                     <span className="font-mono text-xs uppercase tracking-widest font-medium">
-                      Circle Joined
+                      Reader List Joined
                     </span>
                   </div>
                   <p className="text-xs text-ash leading-relaxed">
-                    Thank you. We have saved <span className="font-mono text-ink text-[11px] underline">{email}</span> to our reader list. 
-                    We will send you early drafts and campaign updates shortly.
+                    Thank you. <span className="font-mono text-ink text-[11px] underline">{email}</span> is on the pre-launch reader list.
+                    {!signupConfigured && " This preview form still needs an email service before it can collect real signups."}
                   </p>
+                  {hasKickstarterPrelaunchUrl && (
+                    <a
+                      href={kickstarterPrelaunchUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-3 px-4 transition-all duration-300 font-medium"
+                    >
+                      Follow on Kickstarter <ArrowRight size={12} />
+                    </a>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
 
             {/* Minor CTA link */}
             <FadeIn delay={0.55}>
-              <div className="flex items-center gap-6 mt-8">
+              <div className="hidden sm:flex items-center gap-6 mt-8">
                 <Button
                   id="btn-manifesto-trigger"
                   variant="minimal"
@@ -162,7 +190,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Cinematic Imagery Column (Col span 5) */}
-        <div className="lg:col-span-5 h-[400px] md:h-[500px] lg:h-[620px] relative w-full flex items-center justify-center">
+        <div className="lg:col-span-5 h-[360px] md:h-[460px] lg:h-[520px] relative w-full flex items-center justify-center">
           <FadeInSlow delay={0.3} className="w-full h-[95%] relative border border-dust px-4 py-4 bg-paper-dark shadow-[default_rgba(0,0,0,0.02)]">
             {/* Absolute positioning tags for technical A24 catalog detail */}
             <span className="absolute top-2 left-3 font-mono text-[9px] tracking-widest text-ash/60">
