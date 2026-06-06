@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowUpRight, CheckCircle, Mail, Sparkles, BookOpen, Calendar } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CheckCircle, Mail, Sparkles, BookOpen, Calendar } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { FadeIn } from "./MotionWrapper";
 import {
@@ -113,6 +113,7 @@ export const FinalCTA: React.FC = () => {
                     className="bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
                   >
                     {loading ? "Registering..." : "Register Support"}
+                    <ArrowRight size={12} aria-hidden="true" />
                   </button>
                 </div>
                 {error && (
@@ -120,6 +121,9 @@ export const FinalCTA: React.FC = () => {
                     {error}
                   </span>
                 )}
+                <span className="text-left font-mono text-[9px] tracking-wider text-ash/60">
+                  This gives us a measurable support signal before the formal Kickstarter campaign opens.
+                </span>
               </motion.form>
             ) : (
               <motion.div

@@ -16,11 +16,11 @@ import { AboutJonathan } from "./components/AboutJonathan";
 import { FinalCTA } from "./components/FinalCTA";
 import { KickstarterRationale } from "./components/KickstarterRationale";
 import { Footer } from "./components/Footer";
-import { initMetaPixel } from "./lib/analytics";
+import { initAnalytics } from "./lib/analytics";
 
 export default function App() {
   useEffect(() => {
-    initMetaPixel();
+    void initAnalytics();
   }, []);
 
   return (

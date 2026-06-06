@@ -1,10 +1,16 @@
 import React, { useEffect } from "react";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { motion } from "motion/react";
+import {
+  initAnalytics,
+  trackSupportConfirmation,
+} from "../lib/analytics";
 
 export const ConfirmedSupport: React.FC = () => {
   useEffect(() => {
     document.title = "Support Confirmed | The Narrative Witness";
+    void initAnalytics();
+    trackSupportConfirmation();
   }, []);
 
   return (

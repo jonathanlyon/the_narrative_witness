@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { FadeIn } from "./MotionWrapper";
+import { trackNavigationClicked } from "../lib/analytics";
 import BACKGROUND_IMAGE_URL from "../assets/images/support-signal-pier.webp";
 
 const SUPPORT_POINTS = [
@@ -19,7 +20,12 @@ const SUPPORT_POINTS = [
 ];
 
 export const SupportRationale: React.FC = () => {
-  const scrollTo = (selector: string) => {
+  const scrollTo = (selector: string, label: string) => {
+    trackNavigationClicked({
+      destination: selector,
+      label,
+      placement: "support_rationale",
+    });
     document.querySelector(selector)?.scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -37,8 +43,8 @@ export const SupportRationale: React.FC = () => {
         aria-hidden="true"
         className="absolute inset-0 h-full w-full object-cover object-center grayscale"
       />
-      <div className="absolute inset-0 bg-ink/75" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink/35 via-transparent to-ink/20" />
+      <div className="absolute inset-0 bg-ink/85" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/45 via-ink/10 to-ink/30" />
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-6 md:px-12 lg:grid-cols-12 lg:gap-14 lg:px-16">
         <FadeIn className="lg:col-span-4">
@@ -71,7 +77,7 @@ export const SupportRationale: React.FC = () => {
           <div className="flex flex-wrap gap-x-10 gap-y-4 border-t border-paper/20 pt-7">
             <button
               type="button"
-              onClick={() => scrollTo("#book")}
+              onClick={() => scrollTo("#book", "The Book")}
               className="group inline-flex items-center gap-3 border-b border-paper/35 pb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-paper"
             >
               The Book
@@ -83,7 +89,7 @@ export const SupportRationale: React.FC = () => {
             </button>
             <button
               type="button"
-              onClick={() => scrollTo("#excerpts")}
+              onClick={() => scrollTo("#excerpts", "Read Excerpts")}
               className="group inline-flex items-center gap-3 border-b border-paper/35 pb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-paper"
             >
               Read Excerpts

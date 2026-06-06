@@ -3,13 +3,18 @@ import { READER_COMMENTS, ReaderComment } from "../data/readerComments";
 import { Quote, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { FadeIn } from "./MotionWrapper";
+import { trackResponsesLoadedMore } from "../lib/analytics";
 
 export const ReaderResponses: React.FC = () => {
   const [visibleCount, setVisibleCount] = useState(20);
   const comments = READER_COMMENTS;
 
   const handleLoadMore = () => {
-    setVisibleCount((prev) => Math.min(prev + 10, comments.length));
+    setVisibleCount((prev) => {
+      const nextCount = Math.min(prev + 10, comments.length);
+      trackResponsesLoadedMore(nextCount);
+      return nextCount;
+    });
   };
 
   return (

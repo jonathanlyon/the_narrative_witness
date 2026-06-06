@@ -3,6 +3,7 @@ import { EXCERPTS } from "../data/excerpts";
 import { motion, AnimatePresence } from "motion/react";
 import { Eye, Clock, Bookmark } from "lucide-react";
 import { FadeIn } from "./MotionWrapper";
+import { trackExcerptSelected } from "../lib/analytics";
 
 export const Excerpts: React.FC = () => {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -117,7 +118,15 @@ export const Excerpts: React.FC = () => {
                 <button
                   id={`excerpt-selector-${idx}`}
                   key={excerpt.id}
-                  onClick={() => setActiveIdx(idx)}
+                  onClick={() => {
+                    setActiveIdx(idx);
+                    trackExcerptSelected({
+                      excerptId: excerpt.id,
+                      excerptIndex: idx,
+                      excerptTitle: excerpt.title,
+                      excerptType: excerpt.type,
+                    });
+                  }}
                   className={`w-full text-left p-5 border border-dust/40 transition-all duration-350 ${
                     active
                       ? "bg-paper border-ink shadow-[default_rgba(0,0,0,0.01)] translate-x-1.5"

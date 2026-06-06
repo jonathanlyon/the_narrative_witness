@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { trackNavigationClicked } from "../lib/analytics";
 
 export const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,8 +54,18 @@ export const Header: React.FC = () => {
     };
   }, []);
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const scrollToSection = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    label: string,
+    placement: "desktop_header" | "mobile_menu" | "brand",
+  ) => {
     e.preventDefault();
+    trackNavigationClicked({
+      destination: href,
+      label,
+      placement,
+    });
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -77,7 +88,9 @@ export const Header: React.FC = () => {
             <a
               id="header-logo"
               href="#"
-              onClick={(e) => scrollToSection(e, "#root")}
+              onClick={(e) =>
+                scrollToSection(e, "#root", "The Narrative Witness", "brand")
+              }
               className="font-serif text-lg md:text-xl tracking-wider uppercase font-medium hover:opacity-75 transition-opacity duration-300"
             >
               The Narrative Witness
@@ -96,7 +109,14 @@ export const Header: React.FC = () => {
                   id={`nav-${item.label.toLowerCase()}`}
                   key={item.label}
                   href={item.href}
-                  onClick={(e) => scrollToSection(e, item.href)}
+                  onClick={(e) =>
+                    scrollToSection(
+                      e,
+                      item.href,
+                      item.label,
+                      "desktop_header",
+                    )
+                  }
                   className={`relative font-mono text-[10px] uppercase tracking-widest pb-1 transition-all duration-300 ${
                     isActive ? "text-ink font-semibold" : "text-ash hover:text-ink hover:italic"
                   }`}
@@ -115,7 +135,9 @@ export const Header: React.FC = () => {
             <a
               id="nav-cta"
               href="#signup"
-              onClick={(e) => scrollToSection(e, "#signup")}
+              onClick={(e) =>
+                scrollToSection(e, "#signup", "Support", "desktop_header")
+              }
               className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-ink hover:text-ash hover:italic border-b border-b-ink pb-0.5 transition-all duration-300"
             >
               Support <ArrowUpRight size={10} />
@@ -158,7 +180,14 @@ export const Header: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: idx * 0.05 }}
                     href={item.href}
-                    onClick={(e) => scrollToSection(e, item.href)}
+                    onClick={(e) =>
+                      scrollToSection(
+                        e,
+                        item.href,
+                        item.label,
+                        "mobile_menu",
+                      )
+                    }
                     className="font-serif text-3xl font-light hover:opacity-75 hover:italic tracking-wide text-ink list-none transition-all duration-300"
                   >
                     {item.label}
@@ -171,7 +200,14 @@ export const Header: React.FC = () => {
               <a
                 id="mobile-cta"
                 href="#signup"
-                onClick={(e) => scrollToSection(e, "#signup")}
+                onClick={(e) =>
+                  scrollToSection(
+                    e,
+                    "#signup",
+                    "Register Support",
+                    "mobile_menu",
+                  )
+                }
                 className="w-full text-center py-4 bg-ink text-paper font-mono text-[10px] uppercase tracking-widest"
               >
                 Register Support

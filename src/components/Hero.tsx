@@ -7,7 +7,11 @@ import {
   kickstarterPrelaunchUrl,
   subscribeReader,
 } from "../lib/signup";
-import { trackKickstarterIntent, trackSupportRegistration } from "../lib/analytics";
+import {
+  trackKickstarterIntent,
+  trackNavigationClicked,
+  trackSupportRegistration,
+} from "../lib/analytics";
 import HERO_IMAGE_URL from "../assets/images/archival_paper_monochrome_1779464032575.png";
 
 export const Hero: React.FC = () => {
@@ -52,18 +56,18 @@ export const Hero: React.FC = () => {
       id="hero"
       className="relative min-h-screen flex items-start lg:items-center justify-center pt-28 md:pt-32 lg:pt-24 pb-16 overflow-hidden paper-grain"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-14 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-14 items-start">
         
         {/* Text Area (Col span 7) */}
-        <div className="lg:col-span-7 flex flex-col justify-center">
+        <div className="lg:col-span-7 flex flex-col lg:h-[600px]">
           {/* Subtle horizontal custom divider above hero text */}
-          <FadeIn delay={0.05}>
+          <FadeIn delay={0.05} className="lg:hidden">
             <div className="w-12 h-[1px] bg-ink/20 mb-6" />
           </FadeIn>
 
           {/* Metadata tag */}
           <FadeIn delay={0.1}>
-            <div className="inline-flex items-center gap-2 mb-6 md:mb-8">
+            <div className="inline-flex items-center gap-2 mb-5">
               <span className="w-1.5 h-1.5 bg-ink" />
               <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-ash">
                 Audience Validation · Kickstarter Readiness
@@ -84,13 +88,13 @@ export const Hero: React.FC = () => {
 
           {/* Subheadline placed below headline */}
           <FadeIn delay={0.4} duration={0.9}>
-            <p className="mt-5 md:mt-6 text-base md:text-lg text-ash font-sans max-w-2xl font-light leading-relaxed">
+            <p className="mt-7 md:mt-8 text-base md:text-lg text-ash font-sans max-w-2xl font-light leading-relaxed">
               <em>The Narrative Witness</em> is preparing a Kickstarter campaign for a forthcoming literary memoir on adoption, relinquishment, identity, and memory. Before the campaign can responsibly go live, we need evidence that enough people are willing to stand behind the book.
             </p>
           </FadeIn>
 
           {/* Interactive Cinematic Subscription / Actions */}
-          <div className="mt-7 md:mt-8 max-w-xl">
+          <div className="mt-9 max-w-xl lg:mt-auto">
             <AnimatePresence mode="wait">
               {!submitted ? (
                 <motion.form
@@ -209,7 +213,14 @@ export const Hero: React.FC = () => {
         <button
           type="button"
           aria-label="Continue to what registering support does"
-          onClick={() => scrollNext("#support-rationale")}
+          onClick={() => {
+            trackNavigationClicked({
+              destination: "#support-rationale",
+              label: "Continue",
+              placement: "hero",
+            });
+            scrollNext("#support-rationale");
+          }}
           className="group flex h-12 w-12 items-center justify-center border border-ink/20 bg-paper/75 text-ink backdrop-blur-sm transition-colors hover:border-ink/50 hover:bg-paper"
         >
           <ChevronDown

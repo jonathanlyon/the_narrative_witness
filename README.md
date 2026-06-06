@@ -23,5 +23,12 @@ Optional public configuration:
 - `VITE_SUBSCRIBE_ENDPOINT`: overrides the default same-origin `/api/subscribe` endpoint.
 - `VITE_KICKSTARTER_PRELAUNCH_URL`: the official Kickstarter pre-launch page URL once it is live.
 - `VITE_META_PIXEL_ID`: optional Meta Pixel ID for ad retargeting and support-registration conversion tracking.
+- `VITE_MIXPANEL_TOKEN`: optional override for the public Mixpanel project token.
 
 During local development, an empty `VITE_SUBSCRIBE_ENDPOINT` keeps the form in preview mode. Production uses `/api/subscribe` automatically.
+
+## Analytics
+
+Mixpanel and Meta Pixel are consent-gated and load only after a visitor chooses `Allow analytics`. Tracking runs only on `thenarrativewitness.com` and `www.thenarrativewitness.com`, keeping local and Vercel preview activity out of production reporting.
+
+The Mixpanel tracking plan is documented in [`ANALYTICS_TRACKING_PLAN.md`](./ANALYTICS_TRACKING_PLAN.md).

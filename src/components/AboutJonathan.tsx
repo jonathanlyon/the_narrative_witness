@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { FadeIn, RevealLeft } from "./MotionWrapper";
 import jonathanPortrait from "../assets/images/jonathan-portrait.webp";
+import { trackSubstackVisit } from "../lib/analytics";
 
 export const AboutJonathan: React.FC = () => {
   return (
@@ -49,6 +50,7 @@ export const AboutJonathan: React.FC = () => {
                   href="https://jonathanlyon.substack.com"
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => trackSubstackVisit("about_jonathan")}
                   className="mt-8 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-ink border-b border-ink/35 pb-1 hover:border-ink transition-colors"
                 >
                   Read Jonathan&apos;s essays on Substack
@@ -61,14 +63,23 @@ export const AboutJonathan: React.FC = () => {
           {/* Author portrait (Col span 5) */}
           <div className="order-1 lg:order-2 lg:col-span-5 flex justify-center lg:justify-end">
             <RevealLeft delay={0.3} className="w-full max-w-[410px]">
-              <div className="border border-dust bg-paper-dark p-3">
+              <figure className="relative border border-dust bg-paper-dark px-3 pb-8 pt-8">
+                <span className="absolute left-3 top-2 font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
+                  AUTHOR PORTRAIT // JL-001
+                </span>
+                <span className="absolute bottom-2 left-3 font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
+                  NARRATIVE WITNESS ARCHIVE
+                </span>
+                <span className="absolute bottom-2 right-3 font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
+                  AOTEAROA // 2026
+                </span>
                 <img
                   src={jonathanPortrait}
                   alt="Portrait of Jonathan Lyon"
                   className="aspect-[3/4] w-full object-cover grayscale"
                   loading="lazy"
                 />
-              </div>
+              </figure>
               <div className="mt-4 grid grid-cols-[76px_1fr] gap-5 border border-dust/60 bg-paper-dark p-5">
                 <div className="flex items-center justify-center">
                   <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-dust font-serif text-xl font-light tracking-widest text-ash">
