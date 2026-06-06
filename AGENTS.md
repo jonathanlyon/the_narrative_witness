@@ -2,7 +2,7 @@
 
 ## Analytics Stack
 
-- Mixpanel: direct browser integration loaded from the official Mixpanel CDN.
+- Mixpanel: direct browser integration using the `mixpanel-browser` SDK.
 - Meta Pixel: optional and enabled through `VITE_META_PIXEL_ID`.
 - Consent: required before either analytics service initializes.
 - CDP: none.

@@ -57,7 +57,7 @@ All events also include `page_path`, `page_title`, and `referrer_host`.
 ## Mixpanel Setup
 
 - Platform: React web application
-- Tracking method: direct client-side integration
+- Tracking method: direct client-side integration using `mixpanel-browser`
 - CDP: none
 - Identity: anonymous Mixpanel device identity
 - Project token location: `src/lib/analytics.ts`, overridable with `VITE_MIXPANEL_TOKEN`

@@ -1,42 +1,16 @@
+import type { OverridedMixpanel } from "mixpanel-browser";
+
 declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void;
     _fbq?: unknown;
-    mixpanel?: MixpanelClient;
   }
-}
-
-interface MixpanelClient {
-  init: (
-    token: string,
-    config?: {
-      autocapture?: boolean;
-      debug?: boolean;
-      ignore_dnt?: boolean;
-      persistence?: "localStorage" | "cookie";
-      track_pageview?: boolean;
-    },
-    name?: string,
-  ) => void;
-  opt_out_tracking?: () => void;
-  register?: (properties: Record<string, unknown>) => void;
-  reset?: () => void;
-  track: (eventName: string, properties?: Record<string, unknown>) => void;
-}
-
-interface MixpanelStub extends Array<unknown> {
-  __SV: number;
-  _i: unknown[][];
-  init: MixpanelClient["init"];
-  people?: unknown[];
-  [key: string]: unknown;
 }
 
 export type AnalyticsConsent = "granted" | "denied" | null;
 export type SignupSource = "hero" | "midpage" | "final";
 
 const ANALYTICS_CONSENT_KEY = "narrative_witness_analytics_consent";
-const MIXPANEL_CDN_URL = "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
 const MIXPANEL_TOKEN =
   import.meta.env.VITE_MIXPANEL_TOKEN?.trim() ||
   "a2d4bf4421347c1afc2250024f7876bb";
@@ -55,6 +29,7 @@ const trackedPagePaths = new Set<string>();
 let analyticsInitialized = false;
 let analyticsInitialization: Promise<void> | null = null;
 let metaPixelLoaded = false;
+let mixpanelClient: OverridedMixpanel | null = null;
 
 function isProductionSite() {
   return (
@@ -99,8 +74,10 @@ export function setAnalyticsConsent(consent: Exclude<AnalyticsConsent, null>) {
     window.sessionStorage.removeItem(
       "narrative_witness_confirmation_tracked",
     );
-    window.mixpanel?.opt_out_tracking?.();
-    window.mixpanel?.reset?.();
+    if (analyticsInitialized) {
+      mixpanelClient?.opt_out_tracking();
+      mixpanelClient?.reset();
+    }
     window.fbq?.("consent", "revoke");
   }
 
@@ -147,105 +124,6 @@ function initMetaPixel() {
   metaPixelLoaded = true;
 }
 
-function createQueuedMethod(target: unknown[], methodName: string) {
-  (target as unknown as Record<string, unknown>)[methodName] = (
-    ...args: unknown[]
-  ) => {
-    target.push([methodName, ...args]);
-  };
-}
-
-function createMixpanelStub(): MixpanelClient {
-  const stub = [] as unknown as MixpanelStub;
-  stub._i = [];
-  stub.__SV = 1.2;
-  stub.init = (token, config, name) => {
-    const instance = name
-      ? ((stub[name] = []) as unknown as MixpanelStub)
-      : stub;
-
-    instance.people = instance.people || [];
-
-    [
-      "disable",
-      "time_event",
-      "track",
-      "track_pageview",
-      "track_links",
-      "track_forms",
-      "register",
-      "register_once",
-      "alias",
-      "unregister",
-      "identify",
-      "name_tag",
-      "set_config",
-      "reset",
-      "opt_in_tracking",
-      "opt_out_tracking",
-      "has_opted_in_tracking",
-      "has_opted_out_tracking",
-      "clear_opt_in_out_tracking",
-      "start_batch_senders",
-    ].forEach((methodName) => createQueuedMethod(instance, methodName));
-
-    [
-      "set",
-      "set_once",
-      "unset",
-      "increment",
-      "append",
-      "union",
-      "track_charge",
-      "clear_charges",
-      "delete_user",
-      "remove",
-    ].forEach((methodName) =>
-      createQueuedMethod(instance.people as unknown[], methodName),
-    );
-
-    stub._i.push([token, config, name]);
-  };
-
-  return stub as unknown as MixpanelClient;
-}
-
-function loadMixpanel(config: Parameters<MixpanelClient["init"]>[1]): Promise<void> {
-  if (window.mixpanel?.track) return Promise.resolve();
-
-  return new Promise((resolve, reject) => {
-    const existingScript = document.querySelector<HTMLScriptElement>(
-      `script[src="${MIXPANEL_CDN_URL}"]`,
-    );
-
-    const finishLoading = () => {
-      if (window.mixpanel?.track) {
-        resolve();
-      } else {
-        reject(new Error("Mixpanel did not initialize."));
-      }
-    };
-
-    if (!window.mixpanel) {
-      window.mixpanel = createMixpanelStub();
-      window.mixpanel.init(MIXPANEL_TOKEN, config);
-    }
-
-    if (existingScript) {
-      existingScript.addEventListener("load", finishLoading, { once: true });
-      existingScript.addEventListener("error", reject, { once: true });
-      return;
-    }
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = MIXPANEL_CDN_URL;
-    script.addEventListener("load", finishLoading, { once: true });
-    script.addEventListener("error", reject, { once: true });
-    document.head.appendChild(script);
-  });
-}
-
 export function initAnalytics(): Promise<void> {
   if (
     analyticsInitialized ||
@@ -259,17 +137,17 @@ export function initAnalytics(): Promise<void> {
 
   initMetaPixel();
 
-  const mixpanelConfig = {
-    autocapture: false,
-    debug: false,
-    ignore_dnt: false,
-    persistence: "localStorage" as const,
-    track_pageview: false,
-  };
-
-  analyticsInitialization = loadMixpanel(mixpanelConfig)
-    .then(() => {
-      window.mixpanel?.register?.({
+  analyticsInitialization = import("mixpanel-browser")
+    .then(({ default: mixpanel }) => {
+      mixpanelClient = mixpanel;
+      mixpanelClient.init(MIXPANEL_TOKEN, {
+        autocapture: false,
+        debug: false,
+        ignore_dnt: false,
+        persistence: "localStorage",
+        track_pageview: false,
+      });
+      mixpanelClient.register({
         platform: "web",
         project_name: "the_narrative_witness",
       });
@@ -278,7 +156,7 @@ export function initAnalytics(): Promise<void> {
       trackPageView();
 
       pendingEvents.splice(0).forEach(({ eventName, properties }) => {
-        window.mixpanel?.track(eventName, properties);
+        mixpanelClient?.track(eventName, properties);
       });
     })
     .catch(() => {
@@ -299,8 +177,8 @@ function trackMixpanel(
     ...properties,
   };
 
-  if (analyticsInitialized && window.mixpanel?.track) {
-    window.mixpanel.track(eventName, eventProperties);
+  if (analyticsInitialized && mixpanelClient) {
+    mixpanelClient.track(eventName, eventProperties);
     return;
   }
 
