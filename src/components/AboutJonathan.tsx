@@ -1,5 +1,7 @@
 import React from "react";
+import { ArrowUpRight } from "lucide-react";
 import { FadeIn, RevealLeft } from "./MotionWrapper";
+import jonathanPortrait from "../assets/images/jonathan-portrait.webp";
 
 export const AboutJonathan: React.FC = () => {
   return (
@@ -8,25 +10,25 @@ export const AboutJonathan: React.FC = () => {
       className="relative py-28 md:py-36 bg-paper overflow-hidden paper-grain border-b border-dust/35"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
+
+        <FadeIn delay={0.1}>
+          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
+            05 // THE WRITER
+          </span>
+        </FadeIn>
         
-        {/* Asymmetrical Grid: Left (Poetic/Biographic text), Right (Architectural metadata/monogram) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+        <FadeIn delay={0.25}>
+          <h2 className="font-serif text-3xl md:text-4.5xl font-light tracking-tight text-ink mt-4 md:mt-6">
+            About Jonathan Lyon
+          </h2>
+        </FadeIn>
+
+        {/* Asymmetrical Grid: portrait leads on mobile, prose leads on desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mt-10 md:mt-12">
           
           {/* Biographic Prose (Col span 7) */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
-            <FadeIn delay={0.1}>
-              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
-                05 // THE WRITER
-              </span>
-            </FadeIn>
-            
-            <FadeIn delay={0.25}>
-              <h2 className="font-serif text-3xl md:text-4.5xl font-light tracking-tight text-ink mt-4 md:mt-6">
-                About Jonathan Lyon
-              </h2>
-            </FadeIn>
-
-            <FadeIn delay={0.35} className="flex flex-col gap-6 mt-8 md:mt-10 font-serif text-base md:text-lg text-ink-light font-light leading-relaxed text-justify">
+          <div className="order-2 lg:order-1 lg:col-span-7 flex flex-col justify-center">
+            <FadeIn delay={0.35} className="flex flex-col gap-6 font-serif text-base md:text-lg text-ink-light font-light leading-relaxed text-left md:text-justify">
               <p>
                 Jonathan Lyon is a writer, an adoptee, and someone still deeply inside the lived experience of relinquishment. For years, his research and writing have centered on exploring his own closed adoption records and understanding the subtle somatic residue of early separation, name erasure, and inherited familial myths.
               </p>
@@ -43,45 +45,33 @@ export const AboutJonathan: React.FC = () => {
                 <p className="normal-case font-serif italic text-ash text-sm md:text-base border-l border-dust/60 pl-5 mt-6 py-1 leading-relaxed">
                   “The closest I have come to healing is not anything I did with the words themselves. It is what happened when I let them go, and adoptees I had never met quietly told me they recognised their own lives inside them. That recognition, given and received, may be the only healing there is. It is certainly the only kind I have learned to trust.”
                 </p>
+                <a
+                  href="https://jonathanlyon.substack.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-8 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-ink border-b border-ink/35 pb-1 hover:border-ink transition-colors"
+                >
+                  Read Jonathan&apos;s essays on Substack
+                  <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
               </div>
             </FadeIn>
           </div>
 
-          {/* Minimalist Exhibition Ledger Visual (Col span 5) */}
-          <div className="lg:col-span-5 flex justify-center">
-            <RevealLeft delay={0.3} className="w-full max-w-[400px] border border-dust p-8 bg-paper-dark relative shadow-[default_rgba(0,0,0,0.01)] select-none">
-              
-              {/* Outer classic label tag details */}
-              <div className="flex flex-col gap-6 font-mono text-[9px] tracking-widest text-ash uppercase">
-                <div className="flex justify-between border-b border-dust/35 pb-3">
-                  <span>AUTHOR:</span>
-                  <span className="text-ink">JONATHAN LYON</span>
-                </div>
-                <div className="flex justify-between border-b border-dust/35 pb-3">
-                  <span>DISCIPLINE:</span>
-                  <span className="text-ink">LITERARY NON-FICTION &amp; POETRY</span>
-                </div>
-                <div className="flex justify-between border-b border-dust/35 pb-3">
-                  <span>PERSPECTIVE:</span>
-                  <span className="text-ink">TEMPORAL ADOPTEE WITNESS</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>REGISTRATION:</span>
-                  <span className="text-ink">SUPPORT VALIDATION</span>
-                </div>
+          {/* Author portrait (Col span 5) */}
+          <div className="order-1 lg:order-2 lg:col-span-5 flex justify-center lg:justify-end">
+            <RevealLeft delay={0.3} className="w-full max-w-[410px]">
+              <div className="border border-dust bg-paper-dark p-3">
+                <img
+                  src={jonathanPortrait}
+                  alt="Portrait of Jonathan Lyon"
+                  className="aspect-[3/4] w-full object-cover grayscale"
+                  loading="lazy"
+                />
               </div>
-
-              {/* Centered Monogram Seal in fine ink print */}
-              <div className="my-16 flex items-center justify-center">
-                <div className="w-24 h-24 rounded-full border border-dust/70 flex items-center justify-center font-serif text-3xl font-light tracking-widest text-ash/80 relative">
-                  JL
-                  <div className="absolute inset-1.5 rounded-full border border-dashed border-dust/40" />
-                </div>
-              </div>
-
-              {/* Base print marker */}
-              <div className="text-center font-mono text-[8px] text-ash/50 tracking-[0.2em] uppercase border-t border-dust/30 pt-4">
-                AUTHENTICITY PRESERVED · AUTHOR RECOGNIZED
+              <div className="mt-4 flex items-start justify-between gap-6 border-t border-dust/50 pt-4 font-mono text-[8px] uppercase tracking-[0.18em] text-ash">
+                <span>Jonathan Lyon</span>
+                <span className="text-right">Writer &amp; adoptee<br />Aotearoa New Zealand</span>
               </div>
             </RevealLeft>
           </div>

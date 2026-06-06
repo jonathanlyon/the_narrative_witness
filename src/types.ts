@@ -17,6 +17,7 @@ export interface Excerpt {
   tags: string[];
   type: "Essay" | "Reflection" | "Poem";
   body: string;
+  artwork?: string;
   caption?: string;
   readTime: string;
 }

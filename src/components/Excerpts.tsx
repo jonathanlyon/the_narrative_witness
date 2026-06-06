@@ -118,24 +118,36 @@ export const Excerpts: React.FC = () => {
                   id={`excerpt-selector-${idx}`}
                   key={excerpt.id}
                   onClick={() => setActiveIdx(idx)}
-                  className={`w-full text-left p-5 border border-dust/40 transition-all duration-350 flex flex-col gap-2 ${
+                  className={`w-full text-left p-5 border border-dust/40 transition-all duration-350 ${
                     active
                       ? "bg-paper border-ink shadow-[default_rgba(0,0,0,0.01)] translate-x-1.5"
                       : "bg-paper/40 hover:bg-paper/85 hover:border-dust"
                   }`}
                 >
-                  <span className="font-mono text-[9px] tracking-widest text-ash uppercase">
-                    TAGS: {excerpt.tags.join(" // ")}
-                  </span>
-                  <h4 className="font-serif text-base text-ink font-light md:group-hover:text-ink">
-                    {excerpt.title}
-                  </h4>
-                  <div className="flex items-center gap-4 text-[9px] font-mono text-ash/70 mt-1 uppercase">
+                  <div className="flex items-start gap-4">
+                    {excerpt.artwork && (
+                      <img
+                        src={excerpt.artwork}
+                        alt={`${excerpt.title} artwork`}
+                        className="h-16 w-20 shrink-0 border border-dust/50 object-cover grayscale"
+                        loading="lazy"
+                      />
+                    )}
+                    <div className="min-w-0 flex flex-col gap-2">
+                      <span className="font-mono text-[8px] leading-relaxed tracking-widest text-ash uppercase">
+                        TAGS: {excerpt.tags.join(" // ")}
+                      </span>
+                      <h4 className="font-serif text-base leading-snug text-ink font-light md:group-hover:text-ink">
+                        {excerpt.title}
+                      </h4>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[9px] font-mono text-ash/70 mt-3 uppercase">
                     <span className="flex items-center gap-1">
-                      <Clock size={10} /> {excerpt.readTime}
+                      <Clock size={10} aria-hidden="true" /> {excerpt.readTime}
                     </span>
                     <span className="flex items-center gap-1">
-                      <Bookmark size={10} /> Draft Fragment
+                      <Bookmark size={10} aria-hidden="true" /> Draft Fragment
                     </span>
                   </div>
                 </button>

@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, ArrowUpRight } from "lucide-react";
 
 export const Footer: React.FC = () => {
   const handleScrollTop = () => {
@@ -56,6 +56,17 @@ export const Footer: React.FC = () => {
               <li>
                 <a href="#project" className="hover:text-ink transition-colors duration-200">
                   The Project
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://jonathanlyon.substack.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 hover:text-ink transition-colors duration-200"
+                >
+                  Substack Essays
+                  <ArrowUpRight size={10} aria-hidden="true" />
                 </a>
               </li>
             </ul>
