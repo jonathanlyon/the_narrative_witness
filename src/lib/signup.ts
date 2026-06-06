@@ -4,7 +4,8 @@ export interface SignupResult {
   configured: boolean;
 }
 
-const endpoint = import.meta.env.VITE_SUBSCRIBE_ENDPOINT?.trim();
+const configuredEndpoint = import.meta.env.VITE_SUBSCRIBE_ENDPOINT?.trim();
+const endpoint = configuredEndpoint || (import.meta.env.PROD ? "/api/subscribe" : "");
 
 export const kickstarterPrelaunchUrl =
   import.meta.env.VITE_KICKSTARTER_PRELAUNCH_URL?.trim() || "";
@@ -23,6 +24,7 @@ export async function subscribeReader(email: string, source: SignupSource): Prom
     source,
     page: window.location.href,
     submittedAt: new Date().toISOString(),
+    company: "",
   };
 
   if (!endpoint) {

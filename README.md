@@ -13,10 +13,15 @@ A literary book pre-launch site for Jonathan Lyon's forthcoming work on adoption
 
 ## Launch configuration
 
-Set these in Vercel before inviting readers to sign up:
+Set these server-side environment variables in Vercel before inviting readers to sign up:
 
-- `VITE_SUBSCRIBE_ENDPOINT`: a newsletter or form endpoint that accepts `POST` requests with `email`, `source`, `page`, and `submittedAt`.
+- `KIT_API_KEY`: a Kit V4 API key. Never expose this as a `VITE_` variable.
+- `KIT_FORM_ID`: the Kit form that should receive support registrations.
+
+Optional public configuration:
+
+- `VITE_SUBSCRIBE_ENDPOINT`: overrides the default same-origin `/api/subscribe` endpoint.
 - `VITE_KICKSTARTER_PRELAUNCH_URL`: the official Kickstarter pre-launch page URL once it is live.
 - `VITE_META_PIXEL_ID`: optional Meta Pixel ID for ad retargeting and support-registration conversion tracking.
 
-If `VITE_SUBSCRIBE_ENDPOINT` is empty, the signup form stays in preview mode and does not collect real signups.
+During local development, an empty `VITE_SUBSCRIBE_ENDPOINT` keeps the form in preview mode. Production uses `/api/subscribe` automatically.
