@@ -129,7 +129,7 @@ export const Excerpts: React.FC = () => {
                       <img
                         src={excerpt.thumbnail}
                         alt=""
-                        className="h-16 w-16 shrink-0 border border-dust/50 object-cover grayscale"
+                        className="h-16 w-24 shrink-0 border border-dust/50 object-cover grayscale"
                         loading="lazy"
                       />
                     )}

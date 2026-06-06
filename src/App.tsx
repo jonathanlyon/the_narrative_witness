@@ -6,6 +6,7 @@
 import React, { useEffect } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { SupportRationale } from "./components/SupportRationale";
 import { AboutBook } from "./components/AboutBook";
 import { Excerpts } from "./components/Excerpts";
 import { ReaderResponses } from "./components/ReaderResponses";
@@ -30,6 +31,9 @@ export default function App() {
       <main id="main-content-flow" className="flex-grow">
         {/* Cinematic intro with signup and stacked book visual */}
         <Hero />
+
+        {/* Supporting context moved out of the primary conversion view */}
+        <SupportRationale />
 
         {/* Longform Editorial Essays and about-the-book text */}
         <AboutBook />

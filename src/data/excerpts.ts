@@ -3,6 +3,8 @@ import catalogueArtwork from "../assets/images/the-catalogue-of-nearlys.webp";
 import breathArtwork from "../assets/images/the-breath-we-never-took.webp";
 import catalogueThumbnail from "../assets/images/the-catalogue-of-nearlys-thumbnail.webp";
 import breathThumbnail from "../assets/images/the-breath-we-never-took-thumbnail.webp";
+import apricityArtwork from "../assets/images/apricity-the-quiet-return.webp";
+import apricityThumbnail from "../assets/images/apricity-the-quiet-return-thumbnail.webp";
 
 export const EXCERPTS: Excerpt[] = [
   {
@@ -33,6 +35,8 @@ export const EXCERPTS: Excerpt[] = [
     tags: ["Seasons", "Resilience", "Healing"],
     type: "Poem",
     readTime: "1 min read",
+    artwork: apricityArtwork,
+    thumbnail: apricityThumbnail,
     caption: "A poem on finding small warmth in the cold seasons of memory.",
     body: "There are winters that belong to the earth and winters that belong to us.\n\nThe first arrive with frost and shortened days.\nThe fields forget their colours.\nThe rivers forget their movement.\nEven the sky grows tired of its own grey.\n\nThe second arrive without weather.\nThey come as silence after a decision,\nas the long echo of a door closed somewhere in the past,\nas years spent wandering the cold corridors\nof a question that will not answer."
   }

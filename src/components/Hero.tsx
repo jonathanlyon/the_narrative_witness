@@ -51,7 +51,7 @@ export const Hero: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-start lg:items-center justify-center pt-28 md:pt-32 lg:pt-24 pb-12 overflow-hidden paper-grain"
+      className="relative min-h-screen flex items-start lg:items-center justify-center pt-28 md:pt-32 lg:pt-24 pb-16 overflow-hidden paper-grain"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-14 items-center">
         
@@ -173,49 +173,9 @@ export const Hero: React.FC = () => {
               )}
             </AnimatePresence>
 
-            <FadeIn delay={0.48} duration={0.9}>
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 border-y border-dust/45 max-w-2xl divide-y sm:divide-y-0 sm:divide-x divide-dust/35">
-                <div className="py-4 sm:pr-5">
-                  <span className="block font-mono text-[9px] uppercase tracking-[0.2em] text-ash">
-                    What we need
-                  </span>
-                  <p className="mt-2 font-serif text-[15px] leading-relaxed text-ink-light">
-                    A visible count of people willing to back the book when it launches.
-                  </p>
-                </div>
-                <div className="py-4 sm:px-5">
-                  <span className="block font-mono text-[9px] uppercase tracking-[0.2em] text-ash">
-                    Why it matters
-                  </span>
-                  <p className="mt-2 font-serif text-[15px] leading-relaxed text-ink-light">
-                    The Kickstarter will live or die by early support in the first days.
-                  </p>
-                </div>
-                <div className="py-4 sm:pl-5">
-                  <span className="block font-mono text-[9px] uppercase tracking-[0.2em] text-ash">
-                    What it means
-                  </span>
-                  <p className="mt-2 font-serif text-[15px] leading-relaxed text-ink-light">
-                    Your email is a signal of intent, not a purchase or obligation.
-                  </p>
-                </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.58}>
-              <div className="mt-5 border border-dust/40 bg-paper-dark/45 p-4 md:p-5">
-                <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ash">
-                  Founding support option
-                </span>
-                <p className="mt-2 text-xs md:text-[13px] leading-relaxed text-ash">
-                  We are considering a small paid reservation for people who want to give a stronger signal of intent before Kickstarter. If offered, it will be clearly explained, optional, and separate from any future Kickstarter pledge.
-                </p>
-              </div>
-            </FadeIn>
-
             {/* Minor CTA link */}
             <FadeIn delay={0.55}>
-              <div className="hidden sm:flex items-center gap-6 mt-8">
+              <div className="hidden sm:flex items-center gap-6 mt-9">
                 <Button
                   id="btn-manifesto-trigger"
                   variant="minimal"
@@ -236,8 +196,8 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Cinematic Imagery Column (Col span 5) */}
-        <div className="lg:col-span-5 h-[360px] md:h-[460px] lg:h-[520px] relative w-full flex items-center justify-center">
-          <FadeInSlow delay={0.3} className="w-full h-[95%] relative border border-dust px-4 py-4 bg-paper-dark shadow-[default_rgba(0,0,0,0.02)]">
+        <div className="lg:col-span-5 h-[390px] md:h-[500px] lg:h-[600px] relative w-full flex items-center justify-center">
+          <FadeInSlow delay={0.3} className="w-full h-full relative border border-dust px-4 py-4 bg-paper-dark shadow-[default_rgba(0,0,0,0.02)]">
             {/* Absolute positioning tags for technical A24 catalog detail */}
             <span className="absolute top-2 left-3 font-mono text-[9px] tracking-widest text-ash/60">
               BOOK MANUSCRIPT // S-119
