@@ -11,6 +11,7 @@ export type AnalyticsConsent = "granted" | "denied" | null;
 export type SignupSource = "hero" | "midpage" | "final";
 
 const ANALYTICS_CONSENT_KEY = "narrative_witness_analytics_consent";
+const SIGNUP_ATTRIBUTION_KEY = "narrative_witness_signup_attribution";
 const MIXPANEL_TOKEN =
   import.meta.env.VITE_MIXPANEL_TOKEN?.trim() ||
   "a2d4bf4421347c1afc2250024f7876bb";
@@ -202,6 +203,16 @@ export function trackPageView() {
 }
 
 export function trackSupportRegistration(source: SignupSource) {
+  if (isProductionSite() && getAnalyticsConsent() === "granted") {
+    window.localStorage.setItem(
+      SIGNUP_ATTRIBUTION_KEY,
+      JSON.stringify({
+        formSource: source,
+        submittedAt: new Date().toISOString(),
+      }),
+    );
+  }
+
   trackMixpanel("support_registration_submitted", {
     form_source: source,
     funnel_stage: "submitted",
@@ -222,13 +233,50 @@ export function trackSupportConfirmation() {
   const sessionKey = "narrative_witness_confirmation_tracked";
   if (window.sessionStorage.getItem(sessionKey)) return;
 
+  let formSource = "unknown";
+  let hoursToConfirm: number | undefined;
+  const storedAttribution = window.localStorage.getItem(
+    SIGNUP_ATTRIBUTION_KEY,
+  );
+
+  if (storedAttribution) {
+    try {
+      const attribution = JSON.parse(storedAttribution) as {
+        formSource?: string;
+        submittedAt?: string;
+      };
+
+      formSource = attribution.formSource || formSource;
+      if (attribution.submittedAt) {
+        const submittedAt = new Date(attribution.submittedAt).getTime();
+        if (!Number.isNaN(submittedAt)) {
+          hoursToConfirm = Number(
+            ((Date.now() - submittedAt) / (1000 * 60 * 60)).toFixed(2),
+          );
+        }
+      }
+    } catch {
+      window.localStorage.removeItem(SIGNUP_ATTRIBUTION_KEY);
+    }
+  }
+
   window.sessionStorage.setItem(sessionKey, "true");
   trackMixpanel("support_registration_confirmed", {
+    form_source: formSource,
     funnel_stage: "confirmed",
+    ...(hoursToConfirm === undefined
+      ? {}
+      : { hours_to_confirm: hoursToConfirm }),
     value_moment: true,
   });
 
-  window.fbq?.("trackCustom", "SupportConfirmed");
+  window.fbq?.("trackCustom", "SupportConfirmed", {
+    source: formSource,
+  });
+
+  if (getAnalyticsConsent() === "granted") {
+    window.localStorage.removeItem(SIGNUP_ATTRIBUTION_KEY);
+  }
 }
 
 export function trackExcerptSelected(properties: {

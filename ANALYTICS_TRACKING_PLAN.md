@@ -30,7 +30,7 @@ This comparison is reliable within the same browser. Cross-device confirmation i
 | --- | --- | --- |
 | `page_viewed` | A consented visitor loads a production page | `entry_path`, `page_path`, `page_title`, `referrer_host`, `platform`, `project_name` |
 | `support_registration_submitted` | Kit accepts a signup request | `form_source`, `funnel_stage` |
-| `support_registration_confirmed` | A visitor reaches `/confirmed` after Kit confirmation | `funnel_stage`, `value_moment` |
+| `support_registration_confirmed` | A visitor reaches `/confirmed` after Kit confirmation | `form_source`, `funnel_stage`, `hours_to_confirm`, `value_moment` |
 | `excerpt_selected` | A reader selects an excerpt | `excerpt_id`, `excerpt_index`, `excerpt_title`, `excerpt_type` |
 | `substack_visited` | A reader follows an outbound Substack link | `link_source` |
 | `kickstarter_intent_clicked` | A reader follows a Kickstarter link | `link_source` |
@@ -52,6 +52,7 @@ All events also include `page_path`, `page_title`, and `referrer_host`.
 - Consent is stored in local storage under `narrative_witness_analytics_consent`.
 - Visitors can reopen the choice from `Privacy Choices` in the footer.
 - Email addresses, names, adoption status, health information, and free-text form content are not sent to analytics.
+- A short-lived, non-identifying browser record preserves the signup form source and submission time until confirmation, then deletes itself.
 - Analytics runs only on the canonical production hostnames.
 
 ## Mixpanel Setup
