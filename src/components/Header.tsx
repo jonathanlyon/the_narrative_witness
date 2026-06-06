@@ -118,7 +118,7 @@ export const Header: React.FC = () => {
               onClick={(e) => scrollToSection(e, "#signup")}
               className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-ink hover:text-ash hover:italic border-b border-b-ink pb-0.5 transition-all duration-300"
             >
-              Sign Up <ArrowUpRight size={10} />
+              Support <ArrowUpRight size={10} />
             </a>
           </nav>
 
@@ -174,7 +174,7 @@ export const Header: React.FC = () => {
                 onClick={(e) => scrollToSection(e, "#signup")}
                 className="w-full text-center py-4 bg-ink text-paper font-mono text-[10px] uppercase tracking-widest"
               >
-                Join Pre-Launch
+                Register Support
               </a>
               <div className="text-center font-mono text-[9px] text-ash/65 tracking-[0.1em]">
                 THE NARRATIVE WITNESS © 2026. ALL RIGHTS WITNESSED.

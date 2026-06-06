@@ -63,30 +63,31 @@ export const Hero: React.FC = () => {
             <div className="inline-flex items-center gap-2 mb-6 md:mb-8">
               <span className="w-1.5 h-1.5 bg-ink" />
               <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-ash">
-                Literary Memoir · Independent Book Pre-Launch
+                Audience Validation · Kickstarter Readiness
               </span>
             </div>
           </FadeIn>
 
           {/* Large Emotional Headline */}
           <FadeIn delay={0.25} duration={1.0}>
-            <h1 className="font-serif text-[2.6rem] md:text-[3.65rem] lg:text-[4.05rem] font-light leading-[1.08] tracking-tight text-ink">
-              Before we could speak,
+            <h1 className="font-serif text-[2.55rem] md:text-[3.5rem] lg:text-[3.95rem] font-light leading-[1.08] tracking-tight text-ink">
+              Help prove this book
               <br />
-              our stories were{" "}
-              <span className="italic font-normal">written</span> for us.
+              has enough support
+              <br />
+              to <span className="italic font-normal">launch.</span>
             </h1>
           </FadeIn>
 
           {/* Subheadline placed below headline */}
           <FadeIn delay={0.4} duration={0.9}>
             <p className="mt-5 md:mt-6 text-base md:text-lg text-ash font-sans max-w-2xl font-light leading-relaxed">
-              <em>The Narrative Witness</em> is the working home for a forthcoming literary memoir about adoption, relinquishment, identity, and memory. Join the private reader list for early book updates, selected draft fragments, and first notice when the Kickstarter pre-launch page opens.
+              <em>The Narrative Witness</em> is preparing a Kickstarter campaign for a forthcoming literary memoir on adoption, relinquishment, identity, and memory. Before the campaign can responsibly go live, we need evidence that enough people are willing to stand behind the book.
             </p>
           </FadeIn>
 
           {/* Interactive Cinematic Subscription / Actions */}
-          <div className="mt-8 md:mt-9 max-w-lg">
+          <div className="mt-7 md:mt-8 max-w-xl">
             <AnimatePresence mode="wait">
               {!submitted ? (
                 <motion.form
@@ -98,7 +99,7 @@ export const Hero: React.FC = () => {
                 >
 
                   <label htmlFor="hero-email" className="sr-only">
-                    Join the pre-launch reader list
+                    Register your support for the book launch
                   </label>
                   
                   <div className="flex flex-col sm:flex-row border border-dust focus-within:border-ink transition-colors duration-300 bg-paper-dark">
@@ -110,7 +111,7 @@ export const Hero: React.FC = () => {
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Join the pre-launch reader list"
+                        placeholder="Email address"
                         className="bg-transparent text-ink border-none focus:outline-none focus:ring-0 text-xs font-mono lowercase tracking-wider ml-3 w-full"
                       />
                     </div>
@@ -120,7 +121,7 @@ export const Hero: React.FC = () => {
                       disabled={loading}
                       className="bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
                     >
-                      {loading ? "Joining..." : "Join"}
+                      {loading ? "Registering..." : "Register Support"}
                       <ArrowRight size={12} />
                     </button>
                   </div>
@@ -132,7 +133,7 @@ export const Hero: React.FC = () => {
                   )}
 
                   <span className="font-mono text-[9px] text-ash/60 tracking-wider">
-                    No spam. Just careful updates as the book and campaign take shape.
+                    This gives us a measurable support signal before the formal Kickstarter campaign opens.
                   </span>
 
                 </motion.form>
@@ -146,12 +147,12 @@ export const Hero: React.FC = () => {
                   <div className="flex items-center gap-2.5 text-ink">
                     <CheckCircle size={16} />
                     <span className="font-mono text-xs uppercase tracking-widest font-medium">
-                      Reader List Joined
+                      Support Registered
                     </span>
                   </div>
                   <p className="text-xs text-ash leading-relaxed">
-                    Thank you. <span className="font-mono text-ink text-[11px] underline">{email}</span> is on the pre-launch reader list.
-                    {!signupConfigured && " This preview form still needs an email service before it can collect real signups."}
+                    Thank you. <span className="font-mono text-ink text-[11px] underline">{email}</span> is now counted as an early signal of support for the book.
+                    {!signupConfigured && " This preview form still needs an email service before it can collect real support registrations."}
                   </p>
                   {hasKickstarterPrelaunchUrl && (
                     <a
@@ -166,6 +167,46 @@ export const Hero: React.FC = () => {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            <FadeIn delay={0.48} duration={0.9}>
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 border-y border-dust/45 max-w-2xl divide-y sm:divide-y-0 sm:divide-x divide-dust/35">
+                <div className="py-4 sm:pr-5">
+                  <span className="block font-mono text-[9px] uppercase tracking-[0.2em] text-ash">
+                    What we need
+                  </span>
+                  <p className="mt-2 font-serif text-[15px] leading-relaxed text-ink-light">
+                    A visible count of people willing to back the book when it launches.
+                  </p>
+                </div>
+                <div className="py-4 sm:px-5">
+                  <span className="block font-mono text-[9px] uppercase tracking-[0.2em] text-ash">
+                    Why it matters
+                  </span>
+                  <p className="mt-2 font-serif text-[15px] leading-relaxed text-ink-light">
+                    The Kickstarter will live or die by early support in the first days.
+                  </p>
+                </div>
+                <div className="py-4 sm:pl-5">
+                  <span className="block font-mono text-[9px] uppercase tracking-[0.2em] text-ash">
+                    What it means
+                  </span>
+                  <p className="mt-2 font-serif text-[15px] leading-relaxed text-ink-light">
+                    Your email is a signal of intent, not a purchase or obligation.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.58}>
+              <div className="mt-5 border border-dust/40 bg-paper-dark/45 p-4 md:p-5">
+                <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ash">
+                  Founding support option
+                </span>
+                <p className="mt-2 text-xs md:text-[13px] leading-relaxed text-ash">
+                  We are considering a small paid reservation for people who want to give a stronger signal of intent before Kickstarter. If offered, it will be clearly explained, optional, and separate from any future Kickstarter pledge.
+                </p>
+              </div>
+            </FadeIn>
 
             {/* Minor CTA link */}
             <FadeIn delay={0.55}>

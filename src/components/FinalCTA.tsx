@@ -49,20 +49,20 @@ export const FinalCTA: React.FC = () => {
         {/* Archival metadata tag */}
         <FadeIn delay={0.1}>
           <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
-            06 // THE READER CIRCLE
+            06 // REGISTER SUPPORT
           </span>
         </FadeIn>
 
         {/* Deep Emotional Closing Statement */}
         <FadeIn delay={0.25} duration={1.1}>
           <h2 className="font-serif text-[2.25rem] md:text-[3rem] font-light leading-tight tracking-tight text-ink mt-6 max-w-3xl mx-auto text-center">
-            Help Bring This Book<br className="max-sm:hidden" /> Into The World
+            This Book Needs More<br className="max-sm:hidden" /> Than Admiration
           </h2>
         </FadeIn>
 
         <FadeIn delay={0.4}>
           <p className="mt-6 md:mt-8 text-sm md:text-base text-ash font-sans font-light max-w-xl mx-auto leading-relaxed">
-            <em>The Narrative Witness</em> will be independently published to preserve its literary voice and test whether this work has enough reader support to become a beautifully made book. Join the list below and be first to hear when the Kickstarter pre-launch page opens.
+            It needs a visible body of people willing to say, before the formal Kickstarter campaign begins: yes, this matters, and yes, I want to see it made. Registering your support helps decide whether the campaign is viable enough to launch.
           </p>
         </FadeIn>
 
@@ -70,16 +70,28 @@ export const FinalCTA: React.FC = () => {
         <FadeIn delay={0.45} className="mt-8 mb-10 max-w-lg mx-auto text-left border border-dust/35 bg-paper p-6 md:p-8 flex flex-col gap-4 font-serif text-sm text-ink-light">
           <div className="flex gap-3.5 items-start">
             <BookOpen size={15} className="text-ash/70 shrink-0 mt-0.5" />
-            <p><strong>Book updates</strong>: Receive selected fragments, progress notes, and a closer look at the manuscript as it forms.</p>
+            <p><strong>Register intent</strong>: Your signup becomes part of the early evidence that the book has a real audience.</p>
           </div>
           <div className="flex gap-3.5 items-start">
             <Sparkles size={15} className="text-ash/70 shrink-0 mt-0.5" />
-            <p><strong>Campaign first notice</strong>: Get a direct reminder when the Kickstarter pre-launch and launch pages are ready.</p>
+            <p><strong>Strengthen launch day</strong>: You will be told when the official Kickstarter page is live, when early support matters most.</p>
           </div>
           <div className="flex gap-3.5 items-start">
             <Calendar size={15} className="text-ash/70 shrink-0 mt-0.5" />
-            <p><strong>Witness invitations</strong>: Hear about any future interview, writing, or gathering opportunities once they are ethically defined.</p>
+            <p><strong>Shape what follows</strong>: You may also hear about founding supporter options, witness invitations, and future writing spaces once they are properly defined.</p>
           </div>
+        </FadeIn>
+
+        <FadeIn delay={0.48} className="mb-10 max-w-lg mx-auto text-left border border-ink/15 bg-paper/70 p-6 md:p-7">
+          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ash">
+            Under consideration
+          </span>
+          <h3 className="font-serif text-xl md:text-2xl font-light text-ink mt-3">
+            Founding Supporters
+          </h3>
+          <p className="mt-3 text-sm leading-relaxed text-ash">
+            We may invite a smaller group to make a modest paid reservation before launch. That would be a stronger signal than email alone, but it will only be introduced with clear terms, refund language, and a defined relationship to the Kickstarter campaign.
+          </p>
         </FadeIn>
 
         {/* Form area */}
@@ -102,7 +114,7 @@ export const FinalCTA: React.FC = () => {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Join the pre-launch reader list"
+                      placeholder="Email address"
                       className="bg-transparent text-ink border-none focus:outline-none focus:ring-0 text-xs font-mono lowercase tracking-wider ml-3 w-full"
                     />
                   </div>
@@ -112,7 +124,7 @@ export const FinalCTA: React.FC = () => {
                     disabled={loading}
                     className="bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
                   >
-                    {loading ? "Joining..." : "Join List"}
+                    {loading ? "Registering..." : "Register Support"}
                   </button>
                 </div>
                 {error && (
@@ -130,11 +142,11 @@ export const FinalCTA: React.FC = () => {
               >
                 <CheckCircle size={22} className="text-ink" />
                 <span className="font-mono text-[10px] uppercase tracking-widest font-semibold text-ink">
-                  Welcome to the Reader list
+                  Support Registered
                 </span>
                 <p className="text-xs text-ash leading-relaxed max-w-md">
-                  Thank you. <span className="font-mono text-ink text-[11px] underline">{email}</span> is on the pre-launch reader list.
-                  {!signupConfigured && " This preview form still needs an email service before it can collect real signups."}
+                  Thank you. <span className="font-mono text-ink text-[11px] underline">{email}</span> is now counted as an early signal of support for the book.
+                  {!signupConfigured && " This preview form still needs an email service before it can collect real support registrations."}
                 </p>
                 {hasKickstarterPrelaunchUrl && (
                   <a
@@ -165,7 +177,7 @@ export const FinalCTA: React.FC = () => {
               setShowKickstarterModal(true);
             }}
           >
-            {hasKickstarterPrelaunchUrl ? "Follow on Kickstarter" : "Preview Kickstarter Plan"}
+            {hasKickstarterPrelaunchUrl ? "Follow on Kickstarter" : "Why Kickstarter Matters"}
           </Button>
         </FadeIn>
 
@@ -219,10 +231,10 @@ export const FinalCTA: React.FC = () => {
               {/* Informative text elements */}
               <div className="flex flex-col gap-4 font-serif text-[14px] leading-relaxed text-ash font-light text-justify">
                 <p>
-                  Kickstarter gives the project a clear public test: are there enough readers who want this book in the world to fund a careful first edition?
+                  Kickstarter gives the project a clear public test: are there enough people willing to fund a careful first edition, or is the work not ready to carry that weight yet?
                 </p>
                 <p>
-                  The independent reader list here lets Jonathan stay in direct contact with the people who have raised their hands. The official Kickstarter pre-launch page, once live, will add a second reminder from Kickstarter itself when the campaign launches.
+                  This site builds a direct list of people who have raised their hands before launch. The official Kickstarter pre-launch page, once live, will add a second public signal and a launch reminder from Kickstarter itself.
                 </p>
               </div>
 
