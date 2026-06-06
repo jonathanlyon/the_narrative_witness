@@ -18,6 +18,7 @@ export interface Excerpt {
   type: "Essay" | "Reflection" | "Poem";
   body: string;
   artwork?: string;
+  thumbnail?: string;
   caption?: string;
   readTime: string;
 }

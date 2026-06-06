@@ -69,9 +69,31 @@ export const AboutJonathan: React.FC = () => {
                   loading="lazy"
                 />
               </div>
-              <div className="mt-4 flex items-start justify-between gap-6 border-t border-dust/50 pt-4 font-mono text-[8px] uppercase tracking-[0.18em] text-ash">
-                <span>Jonathan Lyon</span>
-                <span className="text-right">Writer &amp; adoptee<br />Aotearoa New Zealand</span>
+              <div className="mt-4 grid grid-cols-[76px_1fr] gap-5 border border-dust/60 bg-paper-dark p-5">
+                <div className="flex items-center justify-center">
+                  <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-dust font-serif text-xl font-light tracking-widest text-ash">
+                    JL
+                    <div className="absolute inset-1 rounded-full border border-dashed border-dust/70" />
+                  </div>
+                </div>
+                <dl className="min-w-0 font-mono text-[8px] uppercase tracking-[0.14em]">
+                  <div className="grid grid-cols-[74px_1fr] gap-2 border-b border-dust/45 pb-2">
+                    <dt className="text-ash">Author</dt>
+                    <dd className="text-right text-ink">Jonathan Lyon</dd>
+                  </div>
+                  <div className="grid grid-cols-[74px_1fr] gap-2 border-b border-dust/45 py-2">
+                    <dt className="text-ash">Form</dt>
+                    <dd className="text-right text-ink">Literary non-fiction</dd>
+                  </div>
+                  <div className="grid grid-cols-[74px_1fr] gap-2 border-b border-dust/45 py-2">
+                    <dt className="text-ash">Voice</dt>
+                    <dd className="text-right text-ink">Adoptee witness</dd>
+                  </div>
+                  <div className="grid grid-cols-[74px_1fr] gap-2 pt-2">
+                    <dt className="text-ash">Place</dt>
+                    <dd className="text-right text-ink">Aotearoa New Zealand</dd>
+                  </div>
+                </dl>
               </div>
             </RevealLeft>
           </div>

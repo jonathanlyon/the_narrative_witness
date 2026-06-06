@@ -29,8 +29,17 @@ Kickstarter’s own pre-launch support page confirms that followers can click �
 - The hero now asks visitors to register support, not join a reader list.
 - “Why Kickstarter matters” is visible on-page, not hidden in a modal.
 - The form explains that an email is a support signal, not a purchase or obligation.
+- A visual mid-page registration point follows reader responses, where recognition can become a measurable action.
 - The paid reservation idea is framed as “under consideration,” because it should not be offered until payment handling, refund language, tax implications, and Kickstarter relationship are settled.
 - Meta Pixel support is implemented but dormant until `VITE_META_PIXEL_ID` is set.
+
+## Email platform recommendation
+
+Kit is the provisional recommendation. Its free Newsletter Plan currently supports up to 10,000 subscribers and includes one automated sequence, which is sufficient for the core welcome and Kickstarter pre-launch journey. MailerLite remains a capable alternative, but its free plan is now limited to 500 subscribers.
+
+The full proposed cadence, segmentation, website flow, and draft emails are saved in:
+
+`writing/book-prelaunch-email-and-funnel-strategy.md`
 
 ## Suggested funnel
 
@@ -53,7 +62,8 @@ Kickstarter’s own pre-launch support page confirms that followers can click �
 
 ## Decisions still needed
 
-- Email platform: MailerLite, beehiiv, or Kit.
+- Confirm Kit as the email platform and create the account.
+- Authenticate the sending domain and connect the website endpoint.
 - Whether to offer a paid reservation.
 - If yes, amount, refund terms, and what the reservation means.
 - Whether SMS collection is appropriate. It may convert well, but could feel too commercially aggressive for this audience.

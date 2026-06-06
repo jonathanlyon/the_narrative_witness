@@ -9,6 +9,7 @@ import { Hero } from "./components/Hero";
 import { AboutBook } from "./components/AboutBook";
 import { Excerpts } from "./components/Excerpts";
 import { ReaderResponses } from "./components/ReaderResponses";
+import { MidpageCTA } from "./components/MidpageCTA";
 import { TheProject } from "./components/TheProject";
 import { AboutJonathan } from "./components/AboutJonathan";
 import { FinalCTA } from "./components/FinalCTA";
@@ -38,6 +39,9 @@ export default function App() {
 
         {/* Intimate reader feedback comments */}
         <ReaderResponses />
+
+        {/* Visual support invitation after social proof */}
+        <MidpageCTA />
 
         {/* Shared Testimony & Future Retreat environments */}
         <TheProject />

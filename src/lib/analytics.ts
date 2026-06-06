@@ -40,7 +40,7 @@ export function initMetaPixel() {
   metaPixelLoaded = true;
 }
 
-export function trackSupportRegistration(source: "hero" | "final") {
+export function trackSupportRegistration(source: "hero" | "midpage" | "final") {
   window.fbq?.("track", "Lead", {
     content_name: "Book support registration",
     content_category: "Kickstarter pre-launch",

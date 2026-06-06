@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { EXCERPTS } from "../data/excerpts";
 import { motion, AnimatePresence } from "motion/react";
-import { Type, AlignLeft, Eye, Clock, Bookmark } from "lucide-react";
+import { Eye, Clock, Bookmark } from "lucide-react";
 import { FadeIn } from "./MotionWrapper";
 
 export const Excerpts: React.FC = () => {
@@ -125,11 +125,11 @@ export const Excerpts: React.FC = () => {
                   }`}
                 >
                   <div className="flex items-start gap-4">
-                    {excerpt.artwork && (
+                    {excerpt.thumbnail && (
                       <img
-                        src={excerpt.artwork}
-                        alt={`${excerpt.title} artwork`}
-                        className="h-16 w-20 shrink-0 border border-dust/50 object-cover grayscale"
+                        src={excerpt.thumbnail}
+                        alt=""
+                        className="h-16 w-16 shrink-0 border border-dust/50 object-cover grayscale"
                         loading="lazy"
                       />
                     )}
@@ -195,9 +195,21 @@ export const Excerpts: React.FC = () => {
                     </p>
                   )}
 
+                  {EXCERPTS[activeIdx].artwork && (
+                    <figure className={`mb-10 border p-2 ${
+                      readMode === "midnight" ? "border-neutral-700 bg-neutral-900" : "border-dust/60 bg-paper-dark"
+                    }`}>
+                      <img
+                        src={EXCERPTS[activeIdx].artwork}
+                        alt={`${EXCERPTS[activeIdx].title} post artwork`}
+                        className="w-full h-auto grayscale"
+                      />
+                    </figure>
+                  )}
+
                   {/* The Document Block Body text */}
                   <div className="py-2">
-                    <p className={`font-serif font-light select-none tracking-wide md:tracking-wider ${fontSizes[fontSize]} mb-6 whitespace-pre-wrap ${EXCERPTS[activeIdx].type === 'Poem' ? 'text-left' : 'text-justify'}`}>
+                    <p className={`font-serif font-light select-none tracking-wide md:tracking-wider ${fontSizes[fontSize]} mb-6 whitespace-pre-wrap ${EXCERPTS[activeIdx].type === 'Poem' ? 'text-left' : 'text-left md:text-justify'}`}>
                       {EXCERPTS[activeIdx].body}
                     </p>
                   </div>

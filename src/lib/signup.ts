@@ -1,4 +1,4 @@
-export type SignupSource = "hero" | "final";
+export type SignupSource = "hero" | "midpage" | "final";
 
 export interface SignupResult {
   configured: boolean;
