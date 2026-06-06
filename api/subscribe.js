@@ -84,6 +84,7 @@ export default async function handler(request, response) {
   try {
     await kitRequest("/subscribers", apiKey, {
       email_address: normalizedEmail,
+      state: "inactive",
     });
 
     await kitRequest(`/forms/${encodeURIComponent(formId)}/subscribers`, apiKey, {
