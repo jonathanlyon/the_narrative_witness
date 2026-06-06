@@ -21,7 +21,7 @@ function normalizeReferrer(page, source) {
     referrer.searchParams.set("signup_location", source);
     return referrer.toString();
   } catch {
-    return "https://the-narrative-witness.vercel.app/";
+    return "https://www.thenarrativewitness.com/";
   }
 }
 
