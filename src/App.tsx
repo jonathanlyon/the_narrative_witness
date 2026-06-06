@@ -14,6 +14,7 @@ import { MidpageCTA } from "./components/MidpageCTA";
 import { TheProject } from "./components/TheProject";
 import { AboutJonathan } from "./components/AboutJonathan";
 import { FinalCTA } from "./components/FinalCTA";
+import { KickstarterRationale } from "./components/KickstarterRationale";
 import { Footer } from "./components/Footer";
 import { initMetaPixel } from "./lib/analytics";
 
@@ -55,6 +56,9 @@ export default function App() {
 
         {/* Ultimate Emotional CTA form and kickstarter preview */}
         <FinalCTA />
+
+        {/* Kickstarter context given its own editorial section */}
+        <KickstarterRationale />
       </main>
 
       {/* Comprehensive ethical legal footer with trauma caution notes */}

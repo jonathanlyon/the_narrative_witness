@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { ArrowRight, Mail, CheckCircle } from "lucide-react";
+import { ArrowRight, Mail, CheckCircle, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "./Button";
 import { FadeIn, FadeInSlow } from "./MotionWrapper";
 import {
   hasKickstarterPrelaunchUrl,
@@ -173,25 +172,6 @@ export const Hero: React.FC = () => {
               )}
             </AnimatePresence>
 
-            {/* Minor CTA link */}
-            <FadeIn delay={0.55}>
-              <div className="hidden sm:flex items-center gap-6 mt-9">
-                <Button
-                  id="btn-manifesto-trigger"
-                  variant="minimal"
-                  onClick={() => scrollNext("#book")}
-                >
-                  The Book
-                </Button>
-                <Button
-                  id="btn-excerpts-trigger"
-                  variant="minimal"
-                  onClick={() => scrollNext("#excerpts")}
-                >
-                  Read Excerpts
-                </Button>
-              </div>
-            </FadeIn>
           </div>
         </div>
 
@@ -221,6 +201,25 @@ export const Hero: React.FC = () => {
         </div>
 
       </div>
+
+      <FadeIn
+        delay={0.7}
+        className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 md:bottom-6"
+      >
+        <button
+          type="button"
+          aria-label="Continue to what registering support does"
+          onClick={() => scrollNext("#support-rationale")}
+          className="group flex h-12 w-12 items-center justify-center border border-ink/20 bg-paper/75 text-ink backdrop-blur-sm transition-colors hover:border-ink/50 hover:bg-paper"
+        >
+          <ChevronDown
+            size={18}
+            strokeWidth={1.4}
+            className="transition-transform duration-300 group-hover:translate-y-1"
+            aria-hidden="true"
+          />
+        </button>
+      </FadeIn>
     </section>
   );
 };

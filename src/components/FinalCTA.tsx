@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowUpRight, CheckCircle, Mail, Sparkles, BookOpen, Calendar, Target, Clock3, Route } from "lucide-react";
+import { ArrowUpRight, CheckCircle, Mail, Sparkles, BookOpen, Calendar } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { FadeIn } from "./MotionWrapper";
 import {
@@ -78,20 +78,8 @@ export const FinalCTA: React.FC = () => {
           </div>
           <div className="flex gap-3.5 items-start">
             <Calendar size={15} className="text-ash/70 shrink-0 mt-0.5" />
-            <p><strong>Shape what follows</strong>: You may also hear about founding supporter options, witness invitations, and future writing spaces once they are properly defined.</p>
+            <p><strong>Shape what follows</strong>: You may also hear about witness invitations and future writing spaces once they are properly defined.</p>
           </div>
-        </FadeIn>
-
-        <FadeIn delay={0.48} className="mb-10 max-w-lg mx-auto text-left border border-ink/15 bg-paper/70 p-6 md:p-7">
-          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ash">
-            Under consideration
-          </span>
-          <h3 className="font-serif text-xl md:text-2xl font-light text-ink mt-3">
-            Founding Supporters
-          </h3>
-          <p className="mt-3 text-sm leading-relaxed text-ash">
-            We may invite a smaller group to make a modest paid reservation before launch. That would be a stronger signal than email alone, but it will only be introduced with clear terms, refund language, and a defined relationship to the Kickstarter campaign.
-          </p>
         </FadeIn>
 
         {/* Form area */}
@@ -163,62 +151,6 @@ export const FinalCTA: React.FC = () => {
             )}
           </AnimatePresence>
         </div>
-
-        <FadeIn delay={0.5} className="mt-14 max-w-3xl mx-auto text-left">
-          <div className="border border-dust/40 bg-paper p-6 md:p-8">
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
-              Why Kickstarter Matters
-            </span>
-            <h3 className="font-serif text-2xl md:text-3xl font-light text-ink mt-4">
-              The campaign has to prove itself early.
-            </h3>
-            <p className="mt-4 text-sm md:text-base leading-relaxed text-ash font-light">
-              Kickstarter is not only a funding mechanism. It is a public test of whether this book has enough people behind it to justify printing, editing, design, production, contributor care, and the wider Narrative Witness work that may follow.
-            </p>
-
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-5">
-              <div className="border-t border-dust/50 pt-4">
-                <Target size={16} className="text-ash/80" />
-                <h4 className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink mt-3">
-                  Proof before risk
-                </h4>
-                <p className="mt-2 font-serif text-sm leading-relaxed text-ash">
-                  A support registration tells us the book has moved beyond private hope into visible public intent.
-                </p>
-              </div>
-              <div className="border-t border-dust/50 pt-4">
-                <Clock3 size={16} className="text-ash/80" />
-                <h4 className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink mt-3">
-                  First days matter
-                </h4>
-                <p className="mt-2 font-serif text-sm leading-relaxed text-ash">
-                  Crowdfunding campaigns depend on early momentum. The first wave of support helps decide whether the project feels possible to others.
-                </p>
-              </div>
-              <div className="border-t border-dust/50 pt-4">
-                <Route size={16} className="text-ash/80" />
-                <h4 className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink mt-3">
-                  Two-step signal
-                </h4>
-                <p className="mt-2 font-serif text-sm leading-relaxed text-ash">
-                  Register here first. When the official page opens, follow on Kickstarter too, so both the direct list and the public campaign signal are strong.
-                </p>
-              </div>
-            </div>
-
-            {hasKickstarterPrelaunchUrl && (
-              <a
-                href={kickstarterPrelaunchUrl}
-                target="_blank"
-                rel="noreferrer"
-                onClick={() => trackKickstarterIntent("final_visible_section")}
-                className="mt-8 inline-flex items-center justify-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-3 px-5 transition-all duration-300 font-medium"
-              >
-                Follow on Kickstarter <ArrowUpRight size={12} />
-              </a>
-            )}
-          </div>
-        </FadeIn>
 
         {/* Footnote of pre-launch funding goals */}
         <FadeIn delay={0.6}>

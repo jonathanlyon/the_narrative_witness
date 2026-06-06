@@ -1,6 +1,7 @@
 import React from "react";
+import { ArrowRight } from "lucide-react";
 import { FadeIn } from "./MotionWrapper";
-import BACKGROUND_IMAGE_URL from "../assets/images/ink_wash_memory_1779464051298.png";
+import BACKGROUND_IMAGE_URL from "../assets/images/support-signal-pier.webp";
 
 const SUPPORT_POINTS = [
   {
@@ -18,6 +19,13 @@ const SUPPORT_POINTS = [
 ];
 
 export const SupportRationale: React.FC = () => {
+  const scrollTo = (selector: string) => {
+    document.querySelector(selector)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   return (
     <section
       id="support-rationale"
@@ -27,9 +35,10 @@ export const SupportRationale: React.FC = () => {
         src={BACKGROUND_IMAGE_URL}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 h-full w-full object-cover grayscale opacity-20"
+        className="absolute inset-0 h-full w-full object-cover object-center grayscale"
       />
-      <div className="absolute inset-0 bg-ink/80" />
+      <div className="absolute inset-0 bg-ink/75" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/35 via-transparent to-ink/20" />
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-6 md:px-12 lg:grid-cols-12 lg:gap-14 lg:px-16">
         <FadeIn className="lg:col-span-4">
@@ -58,17 +67,32 @@ export const SupportRationale: React.FC = () => {
           ))}
         </div>
 
-        <FadeIn
-          delay={0.34}
-          className="border-t border-paper/20 pt-6 lg:col-start-5 lg:col-span-8"
-        >
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-[11rem_1fr] md:gap-8">
-            <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-paper/50">
-              Founding support option
-            </span>
-            <p className="max-w-3xl text-sm font-light leading-relaxed text-paper/70">
-              We are considering a small paid reservation for people who want to give a stronger signal of intent before Kickstarter. If offered, it will be clearly explained, optional, and separate from any future Kickstarter pledge.
-            </p>
+        <FadeIn delay={0.34} className="lg:col-start-5 lg:col-span-8">
+          <div className="flex flex-wrap gap-x-10 gap-y-4 border-t border-paper/20 pt-7">
+            <button
+              type="button"
+              onClick={() => scrollTo("#book")}
+              className="group inline-flex items-center gap-3 border-b border-paper/35 pb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-paper"
+            >
+              The Book
+              <ArrowRight
+                size={12}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollTo("#excerpts")}
+              className="group inline-flex items-center gap-3 border-b border-paper/35 pb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-paper"
+            >
+              Read Excerpts
+              <ArrowRight
+                size={12}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </button>
           </div>
         </FadeIn>
       </div>
