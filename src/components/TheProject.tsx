@@ -63,7 +63,7 @@ export const TheProject: React.FC = () => {
                 <figure className="mb-10 mt-12 aspect-[2/1] w-full overflow-hidden lg:mt-0">
                   <img
                     src={FUTURE_WRITING_SPACES_DRAWING}
-                    alt="Seven lightly drawn figures gather around a generous field of untouched paper."
+                    alt="Seven lightly drawn figures share a horizontal field of writing, reading, listening, and contemplation."
                     className="h-full w-full object-contain mix-blend-multiply"
                   />
                 </figure>
