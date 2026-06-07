@@ -27,7 +27,7 @@ export const TheProject: React.FC = () => {
             {/* Left Column (Shared Testimony) */}
             <div className="lg:col-span-6 flex flex-col pt-4">
               <FadeIn delay={0.05}>
-                <figure className="mb-10 aspect-[2/1] w-full overflow-hidden">
+                <figure className="mb-10 h-[168px] w-full overflow-hidden md:h-[220px] lg:h-[263px]">
                   <img
                     src={WITNESS_THREAD_DRAWING}
                     alt="A continuous graphite line moves from gathered figures through loosening loops to a solitary writer."
@@ -51,7 +51,7 @@ export const TheProject: React.FC = () => {
                 </p>
               </FadeIn>
               <FadeIn delay={0.5}>
-                <p className="mt-6 font-serif text-base leading-[1.8] text-ash font-light text-justify">
+                <p className="mt-6 font-serif text-[1.125rem] leading-[1.8] text-ink-light font-light text-justify">
                   This will not be an open submission archive or a chorus of competing styles. If it takes shape, it will be a limited, ethically held witness process where each story is listened into language, then returned to the person whose life it carries.
                 </p>
               </FadeIn>
@@ -60,7 +60,7 @@ export const TheProject: React.FC = () => {
             {/* Right Column (The Gatherings) */}
             <div className="lg:col-span-6 flex flex-col pt-4 border-t lg:border-t-0 lg:border-l lg:border-dust/40 lg:pl-16">
               <FadeIn delay={0.15}>
-                <figure className="mb-10 mt-12 aspect-[2/1] w-full overflow-hidden lg:mt-0">
+                <figure className="mb-10 mt-12 h-[168px] w-full overflow-hidden md:h-[220px] lg:mt-0 lg:h-[263px]">
                   <img
                     src={FUTURE_WRITING_SPACES_DRAWING}
                     alt="Seven lightly drawn figures share a horizontal field of writing, reading, listening, and contemplation."
@@ -84,7 +84,7 @@ export const TheProject: React.FC = () => {
                 </p>
               </FadeIn>
               <FadeIn delay={0.6}>
-                <p className="mt-6 font-serif text-base leading-[1.8] text-ash font-light text-justify">
+                <p className="mt-6 font-serif text-[1.125rem] leading-[1.8] text-ink-light font-light text-justify">
                   That aspect is still finding its shape. For now, the centre is the book. The wider project remains an intention: non-clinical, literary, careful, and rooted in the belief that self-authorship can become a form of witness.
                 </p>
               </FadeIn>
