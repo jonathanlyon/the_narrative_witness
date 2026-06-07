@@ -167,5 +167,157 @@ export const READER_COMMENTS: ReaderComment[] = [
     name: "Hope W.",
     comment: "I can't breathe deeply. When I try, my body stops. It becomes so uncomfortable I just can't continue. I thought I just wasn't disciplined enough",
     source: "Reader Circle"
+  },
+  {
+    id: 27,
+    name: "Andrea L.",
+    comment: "Absolutely. I live like a meerkat on top of a mound. A surveilance kat. Even when im asleep 🥺",
+    source: "Facebook",
+    sourceTitle: "The Standing Watch",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3087440034785698/"
+  },
+  {
+    id: 28,
+    name: "Rosemary P.",
+    comment: "Jonathan, I inevitably identify with your words. But today reading this you’ve put into words feelings that I have never been able to articulate fully. I will read and re read this many times. To say I’m grateful for your writing doesn’t convey the thankfulness I feel. Thankyou Thankyou Thankyou x",
+    source: "Facebook",
+    sourceTitle: "The Standing Watch",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3087440034785698/"
+  },
+  {
+    id: 29,
+    name: "Carla H.",
+    comment: "Yes! This right here - beautiful! \"you have, more than once, taken it off just to end the waiting.\" Oh how I understand this one!",
+    source: "Facebook",
+    sourceTitle: "The Standing Watch",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3087440034785698/"
+  },
+  {
+    id: 30,
+    name: "Gilli B.",
+    comment: "Magical",
+    source: "Facebook",
+    sourceTitle: "The Standing Watch",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3087440034785698/"
+  },
+  {
+    id: 31,
+    name: "Julie C.",
+    comment: "Again ... \"wordsmith-ing\" at its best. Thank you. I've tended to run towards any possible threat or potential threat to meet it head on and to deal with it (or be dealt with). The waiting and gut churning fear is terrifying for me. I've learned, in my later years, to stop, look, step aside, breathe and accept. It's taken 60 years.",
+    source: "Facebook",
+    sourceTitle: "The Catalogue of Nearlys",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
+  },
+  {
+    id: 32,
+    name: "Vanessa C.",
+    comment: "Thank You sooo much",
+    source: "Facebook",
+    sourceTitle: "The Catalogue of Nearlys",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
+  },
+  {
+    id: 33,
+    name: "Leonie J.",
+    comment: "Wow! Every time I read one of your posts it feels like you have crawled into my psyche and dissected it and then splattered your findings, the inner workings of me, into a post I didn’t have the courage to write. Your musings touch me at soul level, the only way I can describe your words. I also normally read them in the wee hours of the morning (it’s currently 4.30am) and I’m not sure if that hits me more because my brain has yet to put on one of its many masks it wears throughout the day. Whatever..keep those thoughts coming because they are feeding a part of me I didn’t know was starving",
+    source: "Facebook",
+    sourceTitle: "The Catalogue of Nearlys",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
+  },
+  {
+    id: 34,
+    name: "David C.",
+    comment: "Thank you for eloquently describing what we often feel but have no words. This piece resonants with me in so many ways",
+    source: "Facebook",
+    sourceTitle: "The Catalogue of Nearlys",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
+  },
+  {
+    id: 35,
+    name: "Elizabeth B.",
+    comment: "Bravery not sabotage. I see all ours clearly now. It took me 27 years to limp away from the narcissist I married AND the last four years to fully embrace how my dysfunctional adoptive survival has been playing out in my programmed life patterns. Personal bravery. I’ll never forget the moment my face slap of bravery hit me…sitting around a table with his family thirty seconds into sharing some of my adoption journey when he says, \"hurry up, no one wants to hear a long story from you.\" I would truly love to know if any of you have long term brave people in your lives? I’ve had momentary moments…",
+    source: "Facebook",
+    sourceTitle: "The Catalogue of Nearlys",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
+  },
+  {
+    id: 36,
+    name: "Leslie M.",
+    comment: "Ohhhh yes you know exactly how to explain these complicated experiences and emotions. Thank you, Jonathan Lyon",
+    source: "Facebook",
+    sourceTitle: "The Catalogue of Nearlys",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
+  },
+  {
+    id: 37,
+    name: "Puppyraiser3",
+    comment: "Your writing is absolutely incredible. The way you put your thoughts to paper is mesmerizing. Even more incredible, is knowing there’s someone out there that feels almost exactly the way I do. It’s like you know me so well, while never having met, or had so much as a conversation. It’s nice to not be so alone, but heartbreaking that anyone else felt, or feels, the way I do. I feel like I could’ve written this myself….but, I could never put it into words the way you do. It’s incredible. I’m grateful for you, Jonathon.",
+    source: "Facebook",
+    sourceTitle: "The Catalogue of Nearlys",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
+  },
+  {
+    id: 38,
+    name: "Bonnie B.",
+    comment: "You give words to the unexplainable parts of me. This is beautiful. Thank you.",
+    source: "Facebook",
+    sourceTitle: "The Catalogue of Nearlys",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
+  },
+  {
+    id: 39,
+    name: "Elizabeth Trezise B.",
+    comment: "Your writing is breathtaking and I find myself nodding incessantly while reading. You capture our experience so beautifully. So when are you writing that book??",
+    source: "Facebook",
+    sourceTitle: "The Catalogue of Nearlys",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
+  },
+  {
+    id: 40,
+    name: "Lorri R.",
+    comment: "Thank you for this.",
+    source: "Facebook",
+    sourceTitle: "The Catalogue of Nearlys",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
+  },
+  {
+    id: 41,
+    name: "Lorri R.",
+    comment: "The marketplace for ME is my adult children. It’s too uncomfortable to see my broken parts and try to touch them.",
+    source: "Facebook",
+    sourceTitle: "Being Seen and Unseen",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3080662815463420/"
+  },
+  {
+    id: 42,
+    name: "Marguerite B.",
+    comment: "I really couldn’t tap a reaction to this. I don’t like or love it. I don’t need to tap care because i know it is ultimately futile. I won’t tap shock because I’m past it; laughing is inappropriate, crying is not strong enough and I’m tired of anger. This is an existential issue. I see you have chosen to wrestle with this issue using words. There are no words (certainly not beautiful words) in this process we undergo some call life (others call hel). May all beings find peace.",
+    source: "Facebook",
+    sourceTitle: "Being Seen and Unseen",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3080662815463420/"
+  },
+  {
+    id: 43,
+    name: "Janet R.",
+    comment: "Thank you for putting into words what I can only feel. Being in the presence of others with the same wound is the only place I found understanding. Even then I was told by a fellow adoptee that I seemed fine......so we'll do we learn to hide. I was able to give her an example of when I felt the pain earlier that day and reassured her it happens multiple times daily......you can never be unadopted.",
+    source: "Facebook",
+    sourceTitle: "Being Seen and Unseen",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3080662815463420/"
+  },
+  {
+    id: 44,
+    name: "Rose J.",
+    comment: "I see you...I talk to the wind & the wind calls my name...tena koe e hoa",
+    source: "Facebook",
+    sourceTitle: "Being Seen and Unseen",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3080662815463420/"
+  },
+  {
+    id: 45,
+    name: "Gilli B.",
+    comment: "We can. I can. Tribe members when we are called to gather in unspoken connection. I see you as you see me. With big love",
+    source: "Facebook",
+    sourceTitle: "Being Seen and Unseen",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3080662815463420/"
   }
 ];

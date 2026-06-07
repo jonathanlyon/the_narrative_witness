@@ -72,8 +72,11 @@ export const ReaderRecognition: React.FC = () => {
                 >
                   {/* Quote icon for visual anchors */}
                   <div className="flex justify-between items-center border-b border-dust/20 pb-3">
-                    <span className="font-mono text-[8px] tracking-wider text-ash/50">
-                      REG_NO // L_0{item.id}
+                    <span
+                      className="max-w-[calc(100%-2rem)] truncate font-mono text-[8px] uppercase tracking-wider text-ash/60"
+                      title={item.sourceTitle || item.source || "Reader recognition"}
+                    >
+                      {item.sourceTitle || item.source || "Reader recognition"}
                     </span>
                     <Quote size={11} className="text-ash/45" />
                   </div>
@@ -86,12 +89,9 @@ export const ReaderRecognition: React.FC = () => {
                   </p>
 
                   {/* Signature */}
-                  <div className="flex items-center justify-between pt-2">
+                  <div className="flex items-center pt-2">
                     <span className="font-sans text-[11px] font-medium text-ink">
                       {item.name}
-                    </span>
-                    <span className="font-mono text-[8px] uppercase tracking-widest text-ash/75 bg-dust/20 py-0.5 px-2">
-                      Verified Reader
                     </span>
                   </div>
                 </motion.div>

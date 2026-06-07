@@ -53,7 +53,7 @@ Open `content/reader-recognition.csv` and review the new rows at the bottom.
 - Set `included` to `false` to keep an entry in the archive without showing it.
 - Edit `display_name` if a name needs special handling.
 - Edit `comment` if you are publishing only an appropriate excerpt.
-- Keep `source_title` and `source_url`; the site records them but does not currently display them.
+- Keep `source_title` and `source_url`; the title appears as the card's provenance label and the URL preserves the original thread for later review.
 
 Then run:
 
