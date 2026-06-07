@@ -5,9 +5,25 @@ import { motion, AnimatePresence } from "motion/react";
 import { FadeIn } from "./MotionWrapper";
 import { trackRecognitionLoadedMore } from "../lib/analytics";
 
+const facebookPostId = (comment: ReaderComment) =>
+  comment.sourceUrl?.match(/\/posts\/(\d+)/)?.[1];
+
+const commentsByPostRecency = [...READER_COMMENTS].sort((left, right) => {
+  const leftPostId = facebookPostId(left);
+  const rightPostId = facebookPostId(right);
+
+  if (leftPostId && rightPostId && leftPostId !== rightPostId) {
+    return rightPostId.localeCompare(leftPostId);
+  }
+  if (leftPostId && !rightPostId) return -1;
+  if (!leftPostId && rightPostId) return 1;
+
+  return left.id - right.id;
+});
+
 export const ReaderRecognition: React.FC = () => {
   const [visibleCount, setVisibleCount] = useState(20);
-  const comments = READER_COMMENTS;
+  const comments = commentsByPostRecency;
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => {
