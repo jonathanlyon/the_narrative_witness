@@ -32,3 +32,7 @@ During local development, an empty `VITE_SUBSCRIBE_ENDPOINT` keeps the form in p
 Mixpanel and Meta Pixel are consent-gated and load only after a visitor chooses `Allow analytics`. Tracking runs only on `thenarrativewitness.com` and `www.thenarrativewitness.com`, keeping local and Vercel preview activity out of production reporting.
 
 The Mixpanel tracking plan is documented in [`ANALYTICS_TRACKING_PLAN.md`](./ANALYTICS_TRACKING_PLAN.md).
+
+## Reader Recognition
+
+Testimonials are maintained in `content/reader-recognition.csv`. The periodic Facebook collection and privacy-preserving import workflow is documented in [`docs/recognition-updates.md`](./docs/recognition-updates.md).

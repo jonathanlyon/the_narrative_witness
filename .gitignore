@@ -4,5 +4,6 @@ dist/
 coverage/
 .DS_Store
 *.log
+facebook-comments-*.csv
 .env*
 !.env.example
