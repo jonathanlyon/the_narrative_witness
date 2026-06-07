@@ -48,10 +48,10 @@ export const SupportRationale: React.FC = () => {
 
       <div className="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-6 md:px-12 lg:grid-cols-12 lg:gap-14 lg:px-16">
         <FadeIn className="lg:col-span-4">
-          <span className="font-mono text-[9px] uppercase tracking-[0.26em] text-paper/55">
+          <span className="font-mono text-xs uppercase tracking-[0.26em] text-paper/55">
             The support signal
           </span>
-          <h2 className="mt-4 max-w-sm font-serif text-3xl font-light leading-tight text-paper md:text-4xl">
+          <h2 className="mt-4 max-w-sm font-serif text-2xl font-light leading-tight text-paper md:text-[1.75rem]">
             What registering your support actually does.
           </h2>
         </FadeIn>
@@ -63,7 +63,7 @@ export const SupportRationale: React.FC = () => {
               delay={0.12 + index * 0.08}
               className="py-6 sm:px-6 sm:first:pl-0 sm:last:pr-0"
             >
-              <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-paper/50">
+              <span className="font-mono text-xs uppercase tracking-[0.22em] text-paper/50">
                 {point.label}
               </span>
               <p className="mt-3 font-serif text-lg font-light leading-relaxed text-paper/90">
@@ -78,7 +78,7 @@ export const SupportRationale: React.FC = () => {
             <button
               type="button"
               onClick={() => scrollTo("#book", "The Book")}
-              className="group inline-flex items-center gap-3 border-b border-paper/35 pb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-paper"
+              className="group inline-flex items-center gap-3 border-b border-paper/35 pb-2 font-mono text-xs uppercase tracking-[0.2em] text-paper transition-colors hover:border-paper"
             >
               The Book
               <ArrowRight
@@ -90,7 +90,7 @@ export const SupportRationale: React.FC = () => {
             <button
               type="button"
               onClick={() => scrollTo("#excerpts", "Read Excerpts")}
-              className="group inline-flex items-center gap-3 border-b border-paper/35 pb-2 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-paper"
+              className="group inline-flex items-center gap-3 border-b border-paper/35 pb-2 font-mono text-xs uppercase tracking-[0.2em] text-paper transition-colors hover:border-paper"
             >
               Read Excerpts
               <ArrowRight

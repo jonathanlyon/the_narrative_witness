@@ -13,13 +13,13 @@ export const AboutJonathan: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
 
         <FadeIn delay={0.1}>
-          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-ash">
             05 // THE WRITER
           </span>
         </FadeIn>
         
         <FadeIn delay={0.25}>
-          <h2 className="font-serif text-3xl md:text-4.5xl font-light tracking-tight text-ink mt-4 md:mt-6">
+          <h2 className="font-serif text-2xl md:text-[1.75rem] font-light tracking-normal text-ink mt-4 md:mt-6">
             About Jonathan Lyon
           </h2>
         </FadeIn>
@@ -43,7 +43,7 @@ export const AboutJonathan: React.FC = () => {
                 <p className="mt-6">
                   I have not arrived anywhere. I am not standing on the far side of this, reaching back. I still hold contradictions I cannot resolve, grief and gratitude in the same breath, a self assembled on displaced ground. What I have found is not resolution; it is a willingness to let them sit together without demanding they cancel out. 
                 </p>
-                <p className="normal-case font-serif italic text-ash text-sm md:text-base border-l border-dust/60 pl-5 mt-6 py-1 leading-relaxed">
+                <p className="normal-case font-serif italic text-ash text-base border-l border-dust/60 pl-5 mt-6 py-1 leading-relaxed">
                   “The closest I have come to healing is not anything I did with the words themselves. It is what happened when I let them go, and adoptees I had never met quietly told me they recognised their own lives inside them. That recognition, given and received, may be the only healing there is. It is certainly the only kind I have learned to trust.”
                 </p>
                 <a
@@ -51,7 +51,7 @@ export const AboutJonathan: React.FC = () => {
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => trackSubstackVisit("about_jonathan")}
-                  className="mt-8 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-ink border-b border-ink/35 pb-1 hover:border-ink transition-colors"
+                  className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-ink border-b border-ink/35 pb-1 hover:border-ink transition-colors"
                 >
                   Read Jonathan&apos;s essays on Substack
                   <ArrowUpRight size={13} aria-hidden="true" />
@@ -64,13 +64,13 @@ export const AboutJonathan: React.FC = () => {
           <div className="order-1 lg:order-2 lg:col-span-5 flex justify-center lg:justify-end">
             <RevealLeft delay={0.3} className="w-full max-w-[410px]">
               <figure className="relative border border-dust bg-paper-dark px-3 pb-8 pt-8">
-                <span className="absolute left-3 top-2 font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
+                <span className="absolute left-3 top-2 font-mono text-xs uppercase tracking-[0.18em] text-ash/65">
                   AUTHOR PORTRAIT // JL-001
                 </span>
-                <span className="absolute bottom-2 left-3 font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
+                <span className="absolute bottom-2 left-3 font-mono text-xs uppercase tracking-[0.18em] text-ash/65">
                   NARRATIVE WITNESS ARCHIVE
                 </span>
-                <span className="absolute bottom-2 right-3 font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
+                <span className="absolute bottom-2 right-3 font-mono text-xs uppercase tracking-[0.18em] text-ash/65">
                   AOTEAROA // 2026
                 </span>
                 <img
@@ -87,7 +87,7 @@ export const AboutJonathan: React.FC = () => {
                     <div className="absolute inset-1 rounded-full border border-dashed border-dust/70" />
                   </div>
                 </div>
-                <dl className="min-w-0 font-mono text-[8px] uppercase tracking-[0.14em]">
+                <dl className="min-w-0 font-mono text-xs uppercase tracking-[0.14em]">
                   <div className="grid grid-cols-[74px_1fr] gap-2 border-b border-dust/45 pb-2">
                     <dt className="text-ash">Author</dt>
                     <dd className="text-right text-ink">Jonathan Lyon</dd>

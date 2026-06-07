@@ -55,10 +55,10 @@ export const AnalyticsConsent: React.FC = () => {
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
         <div className="max-w-3xl">
-          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-paper/55">
+          <span className="font-mono text-xs uppercase tracking-[0.22em] text-paper/55">
             Optional analytics
           </span>
-          <p className="mt-2 text-sm font-light leading-relaxed text-paper/75">
+          <p className="mt-2 text-base font-light leading-relaxed text-paper/75">
             With your permission, anonymous usage data helps us understand which writing readers engage with and whether the pre-launch journey is working. Email addresses and sensitive personal information are never sent to analytics services.
           </p>
         </div>
@@ -66,14 +66,14 @@ export const AnalyticsConsent: React.FC = () => {
           <button
             type="button"
             onClick={() => chooseConsent("denied")}
-            className="border border-paper/35 px-5 py-3 font-mono text-[9px] uppercase tracking-[0.18em] text-paper transition-colors hover:border-paper"
+            className="border border-paper/35 px-5 py-3 font-mono text-xs uppercase tracking-[0.18em] text-paper transition-colors hover:border-paper"
           >
             Decline
           </button>
           <button
             type="button"
             onClick={() => chooseConsent("granted")}
-            className="bg-paper px-5 py-3 font-mono text-[9px] uppercase tracking-[0.18em] text-ink transition-colors hover:bg-paper-dark"
+            className="bg-paper px-5 py-3 font-mono text-xs uppercase tracking-[0.18em] text-ink transition-colors hover:bg-paper-dark"
           >
             Allow analytics
           </button>

@@ -35,7 +35,7 @@ This comparison is reliable within the same browser. Cross-device confirmation i
 | `substack_visited` | A reader follows an outbound Substack link | `link_source` |
 | `kickstarter_intent_clicked` | A reader follows a Kickstarter link | `link_source` |
 | `navigation_clicked` | A reader uses tracked site navigation | `destination`, `link_label`, `placement` |
-| `responses_loaded_more` | A reader reveals more reader responses | `visible_response_count` |
+| `recognition_loaded_more` | A reader reveals more reader recognition | `visible_recognition_count` |
 | `analytics_consent_updated` | A visitor grants optional analytics consent | `consent_status` |
 
 All events also include `page_path`, `page_title`, and `referrer_host`.

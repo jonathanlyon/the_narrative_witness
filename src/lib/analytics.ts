@@ -15,7 +15,8 @@ const SIGNUP_ATTRIBUTION_KEY = "narrative_witness_signup_attribution";
 const MIXPANEL_TOKEN =
   import.meta.env.VITE_MIXPANEL_TOKEN?.trim() ||
   "a2d4bf4421347c1afc2250024f7876bb";
-const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID?.trim();
+const META_PIXEL_ID =
+  import.meta.env.VITE_META_PIXEL_ID?.trim() || "2404031020073363";
 const PRODUCTION_HOSTS = new Set([
   "thenarrativewitness.com",
   "www.thenarrativewitness.com",
@@ -311,9 +312,9 @@ export function trackNavigationClicked(properties: {
   });
 }
 
-export function trackResponsesLoadedMore(visibleCount: number) {
-  trackMixpanel("responses_loaded_more", {
-    visible_response_count: visibleCount,
+export function trackRecognitionLoadedMore(visibleCount: number) {
+  trackMixpanel("recognition_loaded_more", {
+    visible_recognition_count: visibleCount,
   });
 }
 

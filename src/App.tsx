@@ -9,7 +9,7 @@ import { Hero } from "./components/Hero";
 import { SupportRationale } from "./components/SupportRationale";
 import { AboutBook } from "./components/AboutBook";
 import { Excerpts } from "./components/Excerpts";
-import { ReaderResponses } from "./components/ReaderResponses";
+import { ReaderRecognition } from "./components/ReaderRecognition";
 import { MidpageCTA } from "./components/MidpageCTA";
 import { TheProject } from "./components/TheProject";
 import { AboutJonathan } from "./components/AboutJonathan";
@@ -42,8 +42,8 @@ export default function App() {
         {/* Reading Excerpts with Midnight and FontSize controls */}
         <Excerpts />
 
-        {/* Intimate reader feedback comments */}
-        <ReaderResponses />
+        {/* Intimate moments of reader recognition */}
+        <ReaderRecognition />
 
         {/* Visual support invitation after social proof */}
         <MidpageCTA />

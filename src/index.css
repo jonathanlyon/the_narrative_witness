@@ -27,7 +27,7 @@
 }
 
 /* Custom noise/paper grain background texture */
-.paper-grain {
+.paper-grain:not(.fixed) {
   position: relative;
 }
 

@@ -25,12 +25,12 @@ export const TheProject: React.FC = () => {
             {/* Left Column (Shared Testimony) */}
             <div className="lg:col-span-6 flex flex-col pt-4">
               <FadeIn delay={0.1}>
-                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-ash">
                   04 // SHARED TESTIMONY
                 </span>
               </FadeIn>
               <FadeIn delay={0.25}>
-                <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink mt-4">
+                <h2 className="font-serif text-2xl md:text-[1.75rem] font-light tracking-normal text-ink mt-4">
                   The Witness Thread
                 </h2>
               </FadeIn>
@@ -49,12 +49,12 @@ export const TheProject: React.FC = () => {
             {/* Right Column (The Gatherings) */}
             <div className="lg:col-span-6 flex flex-col pt-4 border-t lg:border-t-0 lg:border-l lg:border-dust/40 lg:pl-16">
               <FadeIn delay={0.2}>
-                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
+                <span className="font-mono text-xs uppercase tracking-[0.25em] text-ash">
                   05 // THE GATHERINGS
                 </span>
               </FadeIn>
               <FadeIn delay={0.35}>
-                <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink mt-4">
+                <h2 className="font-serif text-2xl md:text-[1.75rem] font-light tracking-normal text-ink mt-4">
                   Future Writing Spaces
                 </h2>
               </FadeIn>
@@ -73,7 +73,7 @@ export const TheProject: React.FC = () => {
           </div>
 
         {/* Marginalia footnote */}
-        <FadeIn delay={0.7} className="mt-20 md:mt-24 border-t border-dust/30 pt-8 flex items-center justify-between text-ash text-[9px] font-mono tracking-widest uppercase">
+        <FadeIn delay={0.7} className="mt-20 md:mt-24 border-t border-dust/30 pt-8 flex items-center justify-between text-ash text-xs font-mono tracking-widest uppercase">
           <span>THE COLLECTIVE RECORD</span>
           <span>BOOK FIRST · WIDER PROJECT EMERGING</span>
         </FadeIn>

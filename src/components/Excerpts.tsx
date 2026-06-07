@@ -36,12 +36,12 @@ export const Excerpts: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 md:mb-16 gap-8">
           <div>
             <FadeIn delay={0.1}>
-              <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
+              <span className="font-mono text-xs uppercase tracking-[0.25em] text-ash">
                 03 // MANUSCRIPT DRAFT
               </span>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <h2 className="font-serif text-3xl md:text-4.5xl font-light tracking-tight text-ink mt-3">
+              <h2 className="font-serif text-2xl md:text-[1.75rem] font-light tracking-normal text-ink mt-3">
                 Selected Excerpts
               </h2>
             </FadeIn>
@@ -51,7 +51,7 @@ export const Excerpts: React.FC = () => {
           <FadeIn delay={0.3} className="flex flex-wrap items-center gap-6 border border-dust/40 bg-paper py-3 px-5 text-ash">
             {/* Reading Mode Selector */}
             <div className="flex items-center gap-2 border-r border-dust/40 pr-5">
-              <span className="font-mono text-[9px] tracking-wider uppercase mr-1">Tonal tone:</span>
+              <span className="font-mono text-xs tracking-wider uppercase mr-1">Tonal tone:</span>
               <button
                 id="btn-mode-paper"
                 aria-label="Paper reading mode"
@@ -72,11 +72,11 @@ export const Excerpts: React.FC = () => {
 
             {/* Font Size Selector */}
             <div className="flex items-center gap-3">
-              <span className="font-mono text-[9px] tracking-wider uppercase mr-1">Scale:</span>
+              <span className="font-mono text-xs tracking-wider uppercase mr-1">Scale:</span>
               <button
                 id="btn-font-sm"
                 onClick={() => setFontSize("sm")}
-                className={`font-mono text-[10px] tracking-widest ${
+                className={`font-mono text-xs tracking-widest ${
                   fontSize === "sm" ? "text-ink underline underline-offset-4" : "text-ash/60 hover:text-ink"
                 }`}
               >
@@ -109,7 +109,7 @@ export const Excerpts: React.FC = () => {
           
           {/* Excerpts Index Navigator (Col span 4) */}
           <div className="lg:col-span-4 flex flex-col gap-3">
-            <span className="font-mono text-[9px] tracking-[0.2em] text-ash/60 uppercase pb-1 mb-2 border-b border-b-dust/40">
+            <span className="font-mono text-xs tracking-[0.2em] text-ash/60 uppercase pb-1 mb-2 border-b border-b-dust/40">
               TABLE OF DRAFTS
             </span>
             {EXCERPTS.map((excerpt, idx) => {
@@ -143,7 +143,7 @@ export const Excerpts: React.FC = () => {
                       />
                     )}
                     <div className="min-w-0 flex flex-col gap-2">
-                      <span className="font-mono text-[8px] leading-relaxed tracking-widest text-ash uppercase">
+                      <span className="font-mono text-xs leading-relaxed tracking-widest text-ash uppercase">
                         TAGS: {excerpt.tags.join(" // ")}
                       </span>
                       <h4 className="font-serif text-base leading-snug text-ink font-light md:group-hover:text-ink">
@@ -151,7 +151,7 @@ export const Excerpts: React.FC = () => {
                       </h4>
                     </div>
                   </div>
-                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[9px] font-mono text-ash/70 mt-3 uppercase">
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-mono text-ash/70 mt-3 uppercase">
                     <span className="flex items-center gap-1">
                       <Clock size={10} aria-hidden="true" /> {excerpt.readTime}
                     </span>
@@ -179,7 +179,7 @@ export const Excerpts: React.FC = () => {
                   className="flex flex-col"
                 >
                   {/* Decorative Archival Marks */}
-                  <div className={`flex justify-between items-center text-[9px] font-mono tracking-[0.2em] uppercase mb-12 border-b pb-4 ${
+                  <div className={`flex justify-between items-center text-xs font-mono tracking-[0.2em] uppercase mb-12 border-b pb-4 ${
                     readMode === "midnight" ? "border-neutral-800 text-neutral-500" : "border-dust/40 text-ash"
                   }`}>
                     <span className="flex items-center gap-1.5">
@@ -189,7 +189,7 @@ export const Excerpts: React.FC = () => {
                   </div>
 
                   {/* Title of active excerpt */}
-                  <h3 className={`font-serif text-2xl md:text-3xl font-light tracking-wide mb-3 ${
+                  <h3 className={`font-serif text-xl md:text-2xl font-light tracking-wide mb-3 ${
                     readMode === "midnight" ? "text-paper" : "text-ink"
                   }`}>
                     {EXCERPTS[activeIdx].title}
@@ -197,7 +197,7 @@ export const Excerpts: React.FC = () => {
 
                   {/* Caption line */}
                   {EXCERPTS[activeIdx].caption && (
-                    <p className={`font-mono text-[10px] uppercase tracking-wider mb-8 italic ${
+                    <p className={`font-mono text-xs uppercase tracking-wider mb-8 italic ${
                       readMode === "midnight" ? "text-neutral-400" : "text-ash"
                     }`}>
                       {EXCERPTS[activeIdx].caption}
@@ -224,7 +224,7 @@ export const Excerpts: React.FC = () => {
                   </div>
 
                   {/* Footnote citation */}
-                  <div className={`mt-12 pt-6 border-t flex flex-col sm:flex-row items-stretch sm:items-center justify-between text-ash text-[9px] font-mono tracking-widest uppercase gap-4 ${
+                  <div className={`mt-12 pt-6 border-t flex flex-col sm:flex-row items-stretch sm:items-center justify-between text-ash text-xs font-mono tracking-widest uppercase gap-4 ${
                     readMode === "midnight" ? "border-neutral-800 text-neutral-500" : "border-dust/40 text-ash"
                   }`}>
                     <span>SOURCE: THE NARRATIVE WITNESS (DRAFT FOLIO)</span>

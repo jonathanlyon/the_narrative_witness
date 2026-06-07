@@ -11,7 +11,7 @@ export const Header: React.FC = () => {
   const menuItems = [
     { label: "The Book", href: "#book" },
     { label: "Excerpts", href: "#excerpts" },
-    { label: "Responses", href: "#responses" },
+    { label: "Recognition", href: "#recognition" },
     { label: "The Project", href: "#project" },
     { label: "About", href: "#about" },
   ];
@@ -23,6 +23,17 @@ export const Header: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const observerOptions = {
@@ -77,7 +88,7 @@ export const Header: React.FC = () => {
     <>
       <header
         id="main-header"
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 border-b ${
+        className={`fixed top-0 left-0 w-full z-[70] transition-all duration-500 border-b ${
           scrolled
             ? "bg-paper/95 backdrop-blur-md py-4 border-dust/40"
             : "bg-transparent py-6 border-transparent"
@@ -95,7 +106,7 @@ export const Header: React.FC = () => {
             >
               The Narrative Witness
             </a>
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash/80 mt-0.5 max-sm:hidden">
+            <span className="font-mono text-xs uppercase tracking-[0.18em] text-ash/80 mt-0.5 max-sm:hidden">
               Adoption, Relinquishment &amp; Literary Testimony
             </span>
           </div>
@@ -117,7 +128,7 @@ export const Header: React.FC = () => {
                       "desktop_header",
                     )
                   }
-                  className={`relative font-mono text-[10px] uppercase tracking-widest pb-1 transition-all duration-300 ${
+                  className={`relative font-mono text-xs uppercase tracking-widest pb-1 transition-all duration-300 ${
                     isActive ? "text-ink font-semibold" : "text-ash hover:text-ink hover:italic"
                   }`}
                 >
@@ -138,7 +149,7 @@ export const Header: React.FC = () => {
               onClick={(e) =>
                 scrollToSection(e, "#signup", "Support", "desktop_header")
               }
-              className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-ink hover:text-ash hover:italic border-b border-b-ink pb-0.5 transition-all duration-300"
+              className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-ink hover:text-ash hover:italic border-b border-b-ink pb-0.5 transition-all duration-300"
             >
               Support <ArrowUpRight size={10} />
             </a>
@@ -149,7 +160,7 @@ export const Header: React.FC = () => {
             id="mobile-menu-toggle"
             aria-label="Toggle menu"
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-ink hover:text-ash transition-colors focus:outline-none"
+            className="relative z-[71] lg:hidden text-ink hover:text-ash transition-colors focus:outline-none"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -165,10 +176,10 @@ export const Header: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 bg-paper z-45 pt-28 px-8 flex flex-col justify-between pb-12 lg:hidden paper-grain"
+            className="fixed inset-0 z-[60] flex h-[100dvh] flex-col justify-between overflow-y-auto bg-paper px-8 pb-10 pt-28 lg:hidden paper-grain"
           >
             <div className="flex flex-col gap-8">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-ash/50 border-b border-dust/40 pb-2">
+              <span className="font-mono text-xs uppercase tracking-widest text-ash/60 border-b border-dust/40 pb-2">
                 INDEX OF WORKS
               </span>
               <nav className="flex flex-col gap-6">
@@ -208,11 +219,11 @@ export const Header: React.FC = () => {
                     "mobile_menu",
                   )
                 }
-                className="w-full text-center py-4 bg-ink text-paper font-mono text-[10px] uppercase tracking-widest"
+                className="w-full text-center py-4 bg-ink text-paper font-mono text-xs uppercase tracking-widest"
               >
                 Register Support
               </a>
-              <div className="text-center font-mono text-[9px] text-ash/65 tracking-[0.1em]">
+              <div className="text-center font-mono text-xs text-ash/65 tracking-[0.1em]">
                 THE NARRATIVE WITNESS © 2026. ALL RIGHTS WITNESSED.
               </div>
             </div>

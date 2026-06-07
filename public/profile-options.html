@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Jonathan Lyon | Profile Concepts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color: #1a1a1a;
+        background: #f4f1ee;
+        font-family: Inter, sans-serif;
+        font-synthesis: none;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body { margin: 0; min-width: 320px; }
+      button, a { font: inherit; }
+      a { color: inherit; }
+
+      .concept-nav {
+        position: fixed;
+        z-index: 20;
+        inset: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem clamp(1rem, 4vw, 3rem);
+        border-bottom: 1px solid rgb(26 26 26 / 14%);
+        background: rgb(244 241 238 / 94%);
+        backdrop-filter: blur(10px);
+      }
+
+      .concept-nav strong {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+
+      .concept-tabs { display: flex; gap: .35rem; }
+      .concept-tabs button {
+        border: 1px solid rgb(26 26 26 / 24%);
+        background: transparent;
+        padding: .65rem .8rem;
+        color: #595652;
+        font-family: "JetBrains Mono", monospace;
+        font-size: .75rem;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+      .concept-tabs button[aria-selected="true"] {
+        background: #1a1a1a;
+        color: #f4f1ee;
+      }
+
+      .concept { display: none; min-height: 100svh; padding-top: 4.8rem; }
+      .concept.active { display: block; }
+
+      .serif { font-family: "Cormorant Garamond", serif; }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+        font-size: .75rem;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      .links { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 2rem; }
+      .links a { padding-bottom: .2rem; border-bottom: 1px solid currentColor; text-decoration: none; }
+
+      .editorial {
+        display: grid;
+        min-height: calc(100svh - 4.8rem);
+        grid-template-columns: minmax(0, 1.05fr) minmax(19rem, .75fr);
+      }
+      .editorial-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(3rem, 8vw, 8rem);
+      }
+      .editorial h1 {
+        max-width: 12ch;
+        margin: 1.5rem 0;
+        font-size: clamp(3rem, 7vw, 6rem);
+        font-weight: 300;
+        line-height: .95;
+      }
+      .editorial p { max-width: 39rem; font-size: 1.05rem; line-height: 1.75; color: #625e59; }
+      .editorial figure { margin: 0; min-height: 44rem; background: #1a1a1a; }
+      .editorial img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+
+      .index-page {
+        max-width: 74rem;
+        min-height: calc(100svh - 4.8rem);
+        margin: auto;
+        padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem);
+      }
+      .index-header {
+        display: grid;
+        grid-template-columns: 12rem 1fr;
+        gap: clamp(2rem, 7vw, 7rem);
+        align-items: start;
+      }
+      .index-header img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: grayscale(1); }
+      .index-page h1 { margin: 0 0 1rem; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 300; }
+      .index-page .intro { max-width: 44rem; font-size: 1.1rem; line-height: 1.75; color: #5f5b56; }
+      .index-list { margin-top: 5rem; border-top: 1px solid #cfc8bf; }
+      .index-row {
+        display: grid;
+        grid-template-columns: 8rem 1fr auto;
+        gap: 2rem;
+        padding: 1.4rem 0;
+        border-bottom: 1px solid #cfc8bf;
+        align-items: baseline;
+      }
+      .index-row span:nth-child(2) { font-family: "Cormorant Garamond", serif; font-size: 1.45rem; }
+
+      .portrait-page {
+        min-height: calc(100svh - 4.8rem);
+        position: relative;
+        display: flex;
+        align-items: end;
+        overflow: hidden;
+        background: #111;
+        color: #f4f1ee;
+      }
+      .portrait-page::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgb(0 0 0 / 78%) 0%, rgb(0 0 0 / 28%) 55%, rgb(0 0 0 / 12%));
+      }
+      .portrait-page img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+      .portrait-copy { position: relative; z-index: 1; max-width: 48rem; padding: clamp(3rem, 8vw, 7rem); }
+      .portrait-copy h1 { margin: 1rem 0 1.5rem; font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 300; line-height: .9; }
+      .portrait-copy p { max-width: 39rem; font-size: 1.05rem; line-height: 1.75; color: rgb(244 241 238 / 76%); }
+
+      @media (max-width: 760px) {
+        .concept-nav { align-items: flex-start; }
+        .concept-nav strong { display: none; }
+        .concept-tabs { width: 100%; }
+        .concept-tabs button { flex: 1; padding-inline: .4rem; }
+        .editorial { grid-template-columns: 1fr; }
+        .editorial-copy { padding-block: 4rem; }
+        .editorial figure { min-height: 60svh; }
+        .index-header { grid-template-columns: 1fr; }
+        .index-header img { width: min(15rem, 70vw); }
+        .index-row { grid-template-columns: 4rem 1fr; }
+        .index-row span:last-child { grid-column: 2; }
+        .portrait-page::after { background: linear-gradient(0deg, rgb(0 0 0 / 88%) 0%, rgb(0 0 0 / 15%) 75%); }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="concept-nav" aria-label="Profile concepts">
+      <strong>Jonathan Lyon</strong>
+      <div class="concept-tabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true" data-concept="editorial">Editorial</button>
+        <button type="button" role="tab" aria-selected="false" data-concept="index">Index</button>
+        <button type="button" role="tab" aria-selected="false" data-concept="portrait">Portrait</button>
+      </div>
+    </nav>
+
+    <main>
+      <section class="concept active" id="editorial">
+        <div class="editorial">
+          <div class="editorial-copy">
+            <span class="mono">Writer · Adoptee · Narrative Witness</span>
+            <h1 class="serif">Jonathan Lyon</h1>
+            <p>I write about adoption, relinquishment, identity, memory, and the difficult work of reclaiming authorship over a life whose first chapter was written by others.</p>
+            <div class="links mono">
+              <a href="https://www.thenarrativewitness.com">The Narrative Witness</a>
+              <a href="https://jonathanlyon.substack.com">Substack</a>
+              <a href="mailto:jonathan@jonathanlyon.com">Email</a>
+            </div>
+          </div>
+          <figure><img src="/jonathan-profile.webp" alt="Portrait of Jonathan Lyon" /></figure>
+        </div>
+      </section>
+
+      <section class="concept" id="index">
+        <div class="index-page">
+          <div class="index-header">
+            <img src="/jonathan-profile.webp" alt="Portrait of Jonathan Lyon" />
+            <div>
+              <span class="mono">Jonathan Lyon · A Working Index</span>
+              <h1 class="serif">Writing from inside the lived experience.</h1>
+              <p class="intro">Jonathan Lyon is a New Zealand writer exploring adoption, relinquishment, identity, memory, and narrative self-authorship through literary non-fiction and poetry.</p>
+              <div class="links mono">
+                <a href="mailto:jonathan@jonathanlyon.com">jonathan@jonathanlyon.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="index-list">
+            <div class="index-row"><span class="mono">01</span><span>The Narrative Witness</span><span class="mono">Book pre-launch</span></div>
+            <div class="index-row"><span class="mono">02</span><span>Narrative Healing</span><span class="mono">Essays and poetry</span></div>
+            <div class="index-row"><span class="mono">03</span><span>Selected photography</span><span class="mono">Visual archive</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="concept" id="portrait">
+        <div class="portrait-page">
+          <img src="/jonathan-profile.webp" alt="Portrait of Jonathan Lyon" />
+          <div class="portrait-copy">
+            <span class="mono">Jonathan Lyon · Literary non-fiction</span>
+            <h1 class="serif">To write is to reclaim the central archive.</h1>
+            <p>Personal writing and literary testimony on adoption, relinquishment, identity, and the sovereign voice of the relinquished adult.</p>
+            <div class="links mono">
+              <a href="https://www.thenarrativewitness.com">Current project</a>
+              <a href="https://jonathanlyon.substack.com">Read the essays</a>
+              <a href="mailto:jonathan@jonathanlyon.com">Contact</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const buttons = document.querySelectorAll("[data-concept]");
+      const concepts = document.querySelectorAll(".concept");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          buttons.forEach((item) => item.setAttribute("aria-selected", "false"));
+          concepts.forEach((concept) => concept.classList.remove("active"));
+          button.setAttribute("aria-selected", "true");
+          document.getElementById(button.dataset.concept).classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -45,19 +45,19 @@ export const MidpageCTA: React.FC = () => {
       <div className="mx-auto grid min-h-[560px] max-w-7xl grid-cols-1 items-center gap-12 px-6 py-20 md:px-12 lg:grid-cols-12 lg:gap-14 lg:px-16">
         <div className="lg:col-span-7">
           <FadeIn delay={0.1}>
-            <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-paper/65">
+            <span className="font-mono text-xs uppercase tracking-[0.28em] text-paper/65">
               Recognition can become evidence
             </span>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <h2 className="mt-5 max-w-xl font-serif text-4xl font-light leading-tight text-paper md:text-5xl">
+            <h2 className="mt-5 max-w-xl font-serif text-2xl font-light leading-tight text-paper md:text-[1.75rem]">
               If this work matters to you, help the book cross from intention into possibility.
             </h2>
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <p className="mt-6 max-w-xl text-sm font-light leading-relaxed text-paper/75 md:text-base">
+            <p className="mt-6 max-w-xl text-base font-light leading-relaxed text-paper/75 md:text-lg">
               Registering your support gives the proposed Kickstarter a measurable audience before the campaign asks the book to survive in public.
             </p>
           </FadeIn>
@@ -92,18 +92,18 @@ export const MidpageCTA: React.FC = () => {
                       id="midpage-submit-btn"
                       type="submit"
                       disabled={loading}
-                      className="flex shrink-0 items-center justify-center gap-2 bg-paper px-6 py-4 font-mono text-[9px] font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:bg-paper-dark"
+                      className="flex shrink-0 items-center justify-center gap-2 bg-paper px-6 py-4 font-mono text-xs font-medium uppercase tracking-[0.2em] text-ink transition-colors hover:bg-paper-dark"
                     >
                       {loading ? "Registering..." : "Register Support"}
                       <ArrowRight size={12} aria-hidden="true" />
                     </button>
                   </div>
                   {error && (
-                    <span className="font-mono text-[9px] tracking-wider text-paper">
+                    <span className="font-mono text-xs tracking-wider text-paper">
                       {error}
                     </span>
                   )}
-                  <span className="font-mono text-[8px] uppercase tracking-[0.16em] text-paper/50">
+                  <span className="font-mono text-xs uppercase tracking-[0.16em] text-paper/50">
                     A signal of intent, not a purchase or obligation.
                   </span>
                 </motion.form>
@@ -116,11 +116,11 @@ export const MidpageCTA: React.FC = () => {
                 >
                   <div className="flex items-center gap-3">
                     <CheckCircle size={18} aria-hidden="true" />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.18em]">
+                    <span className="font-mono text-xs uppercase tracking-[0.18em]">
                       Check your email
                     </span>
                   </div>
-                  <p className="mt-3 text-sm leading-relaxed text-paper/75">
+                  <p className="mt-3 text-base leading-relaxed text-paper/75">
                     We have sent you a confirmation link. Please click it so your support can be counted.
                     {!signupConfigured && " This local preview has not sent an email."}
                   </p>
@@ -132,13 +132,13 @@ export const MidpageCTA: React.FC = () => {
 
         <FadeIn delay={0.25} className="lg:col-span-5">
           <figure className="relative border border-paper/25 bg-ink-light p-3 pt-8 pb-8">
-            <span className="absolute left-3 top-2 font-mono text-[8px] uppercase tracking-[0.2em] text-paper/45">
+            <span className="absolute left-3 top-2 font-mono text-xs uppercase tracking-[0.2em] text-paper/45">
               LANDSCAPE STUDY // M-042
             </span>
-            <span className="absolute bottom-2 left-3 font-mono text-[8px] uppercase tracking-[0.2em] text-paper/45">
+            <span className="absolute bottom-2 left-3 font-mono text-xs uppercase tracking-[0.2em] text-paper/45">
               PHOTOGRAPH // JONATHAN LYON
             </span>
-            <span className="absolute bottom-2 right-3 font-mono text-[8px] uppercase tracking-[0.2em] text-paper/45">
+            <span className="absolute bottom-2 right-3 font-mono text-xs uppercase tracking-[0.2em] text-paper/45">
               WITNESS ARCHIVE // 2026
             </span>
             <div className="relative aspect-[4/3] overflow-hidden border border-paper/15">

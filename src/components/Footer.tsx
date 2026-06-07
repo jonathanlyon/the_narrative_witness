@@ -35,22 +35,22 @@ export const Footer: React.FC = () => {
               <span className="font-serif text-lg md:text-xl font-medium tracking-wider text-paper uppercase">
                 The Narrative Witness
               </span>
-              <p className="font-sans text-[13px] font-light leading-relaxed mt-4 max-w-sm">
+              <p className="font-sans text-base font-light leading-relaxed mt-4 max-w-sm">
                 An independently published literary work exploring adoption, relinquishment, identity, and memory. Reclaiming the sovereign voice of the relinquished adult.
               </p>
             </div>
             
-            <div className="mt-8 font-mono text-[8px] tracking-[0.2em] uppercase text-ash/80">
+            <div className="mt-8 font-mono text-xs tracking-[0.2em] uppercase text-ash/80">
               EST. 2026 KICKSTARTER PRE-LAUNCH
             </div>
           </div>
 
           {/* Core Framework anchors */}
           <div className="md:col-span-3 flex flex-col justify-start gap-4">
-            <span className="font-mono text-[9px] tracking-widest text-paper uppercase font-semibold border-b border-paper/20 pb-2">
+            <span className="font-mono text-xs tracking-widest text-paper uppercase font-semibold border-b border-paper/20 pb-2">
               THE WORK
             </span>
-            <ul className="flex flex-col gap-2.5 font-mono text-[10px] uppercase tracking-wider">
+            <ul className="flex flex-col gap-2.5 font-mono text-xs uppercase tracking-wider">
               <li>
                 <a
                   href="#book"
@@ -83,17 +83,17 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="#responses"
+                  href="#recognition"
                   onClick={() =>
                     trackNavigationClicked({
-                      destination: "#responses",
-                      label: "Reader Responses",
+                      destination: "#recognition",
+                      label: "Recognition",
                       placement: "footer",
                     })
                   }
                   className="hover:text-paper transition-colors duration-200"
                 >
-                  Reader Responses
+                  Recognition
                 </a>
               </li>
               <li>
@@ -129,10 +129,10 @@ export const Footer: React.FC = () => {
           {/* Compassionate Legal Disclaimer */}
           <div className="md:col-span-4 flex flex-col justify-between">
             <div>
-              <span className="font-mono text-[9px] tracking-widest text-paper uppercase font-semibold border-b border-paper/20 pb-2 block mb-3">
+              <span className="font-mono text-xs tracking-widest text-paper uppercase font-semibold border-b border-paper/20 pb-2 block mb-3">
                 INTEGRITY &amp; DISCLOSURE
               </span>
-              <p className="font-sans text-xs font-light leading-relaxed text-paper/60 text-justify">
+              <p className="font-sans text-sm font-light leading-relaxed text-paper/60 text-left md:text-justify">
                 The Narrative Witness is a literary and artistic memoir project. While creative writing and collaborative witness are powerful avenues for self-reflection and community support, they do not constitute clinical therapy or psychiatric diagnosis. If you are seeking professional counseling or mental health support, we encourage connecting with qualified, adoption-competent professionals.
               </p>
             </div>
@@ -141,7 +141,7 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Outer footer details and back to top */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-[9px] tracking-widest uppercase">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-xs tracking-widest uppercase">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <span>© 2026 THE NARRATIVE WITNESS.</span>
             <span className="text-paper/25">|</span>

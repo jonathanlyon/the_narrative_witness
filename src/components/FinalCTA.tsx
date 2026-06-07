@@ -48,26 +48,26 @@ export const FinalCTA: React.FC = () => {
         
         {/* Archival metadata tag */}
         <FadeIn delay={0.1}>
-          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-ash">
             06 // REGISTER SUPPORT
           </span>
         </FadeIn>
 
         {/* Deep Emotional Closing Statement */}
         <FadeIn delay={0.25} duration={1.1}>
-          <h2 className="font-serif text-[2.25rem] md:text-[3rem] font-light leading-tight tracking-tight text-ink mt-6 max-w-3xl mx-auto text-center">
+          <h2 className="font-serif text-2xl md:text-[1.75rem] font-light leading-tight tracking-normal text-ink mt-6 max-w-3xl mx-auto text-center">
             This Book Needs More<br className="max-sm:hidden" /> Than Admiration
           </h2>
         </FadeIn>
 
         <FadeIn delay={0.4}>
-          <p className="mt-6 md:mt-8 text-sm md:text-base text-ash font-sans font-light max-w-xl mx-auto leading-relaxed">
+          <p className="mt-6 md:mt-8 text-base md:text-lg text-ash font-sans font-light max-w-xl mx-auto leading-relaxed">
             It needs a visible body of people willing to say, before the formal Kickstarter campaign begins: yes, this matters, and yes, I want to see it made. Registering your support helps decide whether the campaign is viable enough to launch.
           </p>
         </FadeIn>
 
         {/* Concise Benefits list */}
-        <FadeIn delay={0.45} className="mt-8 mb-10 max-w-lg mx-auto text-left border border-dust/35 bg-paper p-6 md:p-8 flex flex-col gap-4 font-serif text-sm text-ink-light">
+        <FadeIn delay={0.45} className="mt-8 mb-10 max-w-lg mx-auto text-left border border-dust/35 bg-paper p-6 md:p-8 flex flex-col gap-4 font-serif text-base leading-relaxed text-ink-light">
           <div className="flex gap-3.5 items-start">
             <BookOpen size={15} className="text-ash/70 shrink-0 mt-0.5" />
             <p><strong>Register intent</strong>: Your signup becomes part of the early evidence that the book has a real audience.</p>
@@ -103,25 +103,25 @@ export const FinalCTA: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Email address"
-                      className="bg-transparent text-ink border-none focus:outline-none focus:ring-0 text-xs font-mono lowercase tracking-wider ml-3 w-full"
+                      className="bg-transparent text-ink border-none focus:outline-none focus:ring-0 text-sm font-mono lowercase tracking-wider ml-3 w-full"
                     />
                   </div>
                   <button
                     id="final-submit-btn"
                     type="submit"
                     disabled={loading}
-                    className="bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
+                    className="bg-ink hover:bg-ash text-paper uppercase font-mono text-xs tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
                   >
                     {loading ? "Registering..." : "Register Support"}
                     <ArrowRight size={12} aria-hidden="true" />
                   </button>
                 </div>
                 {error && (
-                  <span className="font-mono text-[9px] text-ink tracking-wider text-left">
+                  <span className="font-mono text-xs text-ink tracking-wider text-left">
                     {error}
                   </span>
                 )}
-                <span className="text-left font-mono text-[9px] tracking-wider text-ash/60">
+                <span className="text-left font-mono text-xs tracking-wider text-ash/60">
                   This gives us a measurable support signal before the formal Kickstarter campaign opens.
                 </span>
               </motion.form>
@@ -133,11 +133,11 @@ export const FinalCTA: React.FC = () => {
                 className="p-6 border border-dust/40 bg-paper flex flex-col items-center gap-3"
               >
                 <CheckCircle size={22} className="text-ink" />
-                <span className="font-mono text-[10px] uppercase tracking-widest font-semibold text-ink">
+                <span className="font-mono text-xs uppercase tracking-widest font-semibold text-ink">
                   Check Your Email
                 </span>
-                <p className="text-xs text-ash leading-relaxed max-w-md">
-                  We have sent a confirmation link to <span className="font-mono text-ink text-[11px] underline">{email}</span>. Please click it so your support can be counted.
+                <p className="text-sm text-ash leading-relaxed max-w-md">
+                  We have sent a confirmation link to <span className="font-mono text-ink text-xs underline">{email}</span>. Please click it so your support can be counted.
                   {!signupConfigured && " This local preview has not sent an email."}
                 </p>
                 {hasKickstarterPrelaunchUrl && (
@@ -146,7 +146,7 @@ export const FinalCTA: React.FC = () => {
                     target="_blank"
                     rel="noreferrer"
                     onClick={() => trackKickstarterIntent("final_success")}
-                    className="inline-flex items-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-3 px-4 transition-all duration-300 font-medium"
+                    className="inline-flex items-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-xs tracking-[0.2em] py-3 px-4 transition-all duration-300 font-medium"
                   >
                     Follow on Kickstarter <ArrowUpRight size={12} />
                   </a>
@@ -158,7 +158,7 @@ export const FinalCTA: React.FC = () => {
 
         {/* Footnote of pre-launch funding goals */}
         <FadeIn delay={0.6}>
-          <div className="mt-16 text-[9px] font-mono tracking-[0.15em] text-ash/60 uppercase">
+          <div className="mt-16 text-xs font-mono tracking-[0.15em] text-ash/60 uppercase">
             TARGET CAMPAIGN // 2026 · ARCHIVE FILE: BOOK-PRELAUNCH
           </div>
         </FadeIn>
