@@ -90,9 +90,9 @@ export const Hero: React.FC = () => {
           <FadeIn
             delay={0.4}
             duration={0.9}
-            className="flex flex-1 items-center py-7 md:py-8"
+            className="flex flex-1 items-center py-7 text-left md:py-8"
           >
-            <p className="text-base md:text-lg text-ash font-sans max-w-2xl font-light leading-relaxed">
+            <p className="max-w-2xl text-left font-sans text-base font-light leading-relaxed text-ash md:text-lg">
               <em>The Narrative Witness</em> is preparing a Kickstarter campaign for a forthcoming literary memoir on adoption, relinquishment, identity, and memory. Before the campaign can responsibly go live, we need evidence that enough people are willing to stand behind the book.
             </p>
           </FadeIn>
