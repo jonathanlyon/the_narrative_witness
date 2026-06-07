@@ -1,7 +1,8 @@
 import React from "react";
-import { UsersRound, Waypoints } from "lucide-react";
 import { FadeIn } from "./MotionWrapper";
 import BACKGROUND_IMAGE_URL from "../assets/images/ink_wash_memory_1779464051298.png";
+import WITNESS_THREAD_DRAWING from "../assets/images/witness-thread-drawing.webp";
+import FUTURE_WRITING_SPACES_DRAWING from "../assets/images/future-writing-spaces-drawing.webp";
 
 export const TheProject: React.FC = () => {
   return (
@@ -26,12 +27,13 @@ export const TheProject: React.FC = () => {
             {/* Left Column (Shared Testimony) */}
             <div className="lg:col-span-6 flex flex-col pt-4">
               <FadeIn delay={0.05}>
-                <Waypoints
-                  size={42}
-                  strokeWidth={1}
-                  className="mb-7 text-ash/65"
-                  aria-hidden="true"
-                />
+                <figure className="mb-10 aspect-[2/1] w-full overflow-hidden">
+                  <img
+                    src={WITNESS_THREAD_DRAWING}
+                    alt="A continuous graphite line moves from gathered figures through loosening loops to a solitary writer."
+                    className="h-full w-full object-contain mix-blend-multiply"
+                  />
+                </figure>
               </FadeIn>
               <FadeIn delay={0.1}>
                 <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
@@ -58,12 +60,13 @@ export const TheProject: React.FC = () => {
             {/* Right Column (The Gatherings) */}
             <div className="lg:col-span-6 flex flex-col pt-4 border-t lg:border-t-0 lg:border-l lg:border-dust/40 lg:pl-16">
               <FadeIn delay={0.15}>
-                <UsersRound
-                  size={42}
-                  strokeWidth={1}
-                  className="mb-7 mt-12 text-ash/65 lg:mt-0"
-                  aria-hidden="true"
-                />
+                <figure className="mb-10 mt-12 aspect-[2/1] w-full overflow-hidden lg:mt-0">
+                  <img
+                    src={FUTURE_WRITING_SPACES_DRAWING}
+                    alt="Seven lightly drawn figures gather around a generous field of untouched paper."
+                    className="h-full w-full object-contain mix-blend-multiply"
+                  />
+                </figure>
               </FadeIn>
               <FadeIn delay={0.2}>
                 <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
