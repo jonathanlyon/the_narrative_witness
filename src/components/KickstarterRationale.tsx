@@ -33,14 +33,14 @@ export const KickstarterRationale: React.FC = () => {
     >
       <div className="mx-auto max-w-6xl px-6 md:px-12 lg:px-16">
         <FadeIn>
-          <span className="font-mono text-xs uppercase tracking-[0.25em] text-ash">
+          <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
             Why Kickstarter Matters
           </span>
           <div className="mt-5 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-14">
-            <h2 className="font-serif text-2xl font-light leading-tight text-ink md:text-[1.75rem] lg:col-span-5">
+            <h2 className="font-serif text-3xl font-light leading-tight text-ink md:text-4xl lg:col-span-5">
               The campaign has to prove itself early.
             </h2>
-            <p className="text-base font-light leading-relaxed text-ash md:text-lg lg:col-span-7">
+            <p className="text-sm font-light leading-relaxed text-ash md:text-base lg:col-span-7">
               Kickstarter is not only a funding mechanism. It is a public test of whether this book has enough people behind it to justify printing, editing, design, production, contributor care, and the wider Narrative Witness work that may follow.
             </p>
           </div>
@@ -57,10 +57,10 @@ export const KickstarterRationale: React.FC = () => {
                 className="border-b border-dust/55 py-7 last:border-b-0 md:border-b-0 md:px-7 md:first:pl-0 md:last:pr-0"
               >
                 <Icon size={16} className="text-ash/80" aria-hidden="true" />
-                <h3 className="mt-4 font-mono text-xs uppercase tracking-[0.2em] text-ink">
+                <h3 className="mt-4 font-mono text-[9px] uppercase tracking-[0.2em] text-ink">
                   {reason.title}
                 </h3>
-                <p className="mt-3 font-serif text-base leading-relaxed text-ash">
+                <p className="mt-3 font-serif text-sm leading-relaxed text-ash">
                   {reason.text}
                 </p>
               </FadeIn>
@@ -75,7 +75,7 @@ export const KickstarterRationale: React.FC = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => trackKickstarterIntent("kickstarter_rationale")}
-              className="mt-8 inline-flex items-center justify-center gap-2 bg-ink px-5 py-3 font-mono text-xs font-medium uppercase tracking-[0.2em] text-paper transition-colors hover:bg-ash"
+              className="mt-8 inline-flex items-center justify-center gap-2 bg-ink px-5 py-3 font-mono text-[9px] font-medium uppercase tracking-[0.2em] text-paper transition-colors hover:bg-ash"
             >
               Follow on Kickstarter <ArrowUpRight size={12} aria-hidden="true" />
             </a>

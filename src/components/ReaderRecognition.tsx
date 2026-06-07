@@ -27,17 +27,17 @@ export const ReaderRecognition: React.FC = () => {
         {/* Editorial Index Header */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-20">
           <FadeIn delay={0.1}>
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-ash">
+            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
               02 // READER RECOGNITION
             </span>
           </FadeIn>
           <FadeIn delay={0.18}>
-            <h2 className="font-serif text-2xl md:text-[1.75rem] font-light tracking-normal text-ink mt-4">
+            <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink mt-4">
               Resonance &amp; Recognition
             </h2>
           </FadeIn>
           <FadeIn delay={0.25}>
-            <p className="mt-4 text-base font-sans font-light text-ash max-w-xl mx-auto leading-relaxed">
+            <p className="mt-4 text-xs md:text-sm font-sans font-light text-ash max-w-lg mx-auto">
               Spontaneously collected comments and intimate reflections from early readers of Jonathan's digital draft snippets.
             </p>
           </FadeIn>
@@ -48,8 +48,8 @@ export const ReaderRecognition: React.FC = () => {
 
         {/* Dedicated Bento Box Grid Section */}
         <div className="pb-10 pt-8">
-          {/* Stable grid keeps existing recognition in the same reading order. */}
-          <div className="grid grid-cols-1 items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {/* Masonry columns retain the close bento composition. */}
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 [column-fill:_balance] w-full">
             {comments.slice(0, visibleCount).map((item, idx) => {
               const isLong = item.comment.length > 180;
               
@@ -68,29 +68,29 @@ export const ReaderRecognition: React.FC = () => {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.35, delay: Math.min(idx * 0.03, 0.4) }}
-                  className={`w-full p-6 md:p-8 border flex flex-col gap-5 ${cardTheme} hover:border-ink/55 hover:bg-paper transition-all duration-300`}
+                  className={`break-inside-avoid w-full p-6 md:p-8 border flex flex-col gap-5 ${cardTheme} hover:border-ink/55 hover:bg-paper transition-all duration-300`}
                 >
                   {/* Quote icon for visual anchors */}
                   <div className="flex justify-between items-center border-b border-dust/20 pb-3">
-                    <span className="font-mono text-xs tracking-wider text-ash/60">
+                    <span className="font-mono text-[8px] tracking-wider text-ash/50">
                       REG_NO // L_0{item.id}
                     </span>
                     <Quote size={11} className="text-ash/45" />
                   </div>
 
                   {/* Content text */}
-                  <p className={`font-serif text-base leading-[1.7] text-ink-light ${
-                    isLong ? "text-left md:text-justify" : ""
+                  <p className={`font-serif leading-[1.65] text-ink-light ${
+                    isLong ? "text-sm text-justify" : "text-[15px]"
                   } ${idx % 3 === 2 ? "italic" : "font-light"}`}>
                     “{item.comment}”
                   </p>
 
                   {/* Signature */}
                   <div className="flex items-center justify-between pt-2">
-                    <span className="font-sans text-sm font-medium text-ink">
+                    <span className="font-sans text-[11px] font-medium text-ink">
                       {item.name}
                     </span>
-                    <span className="font-mono text-xs uppercase tracking-wider text-ash/75 bg-dust/20 py-1 px-2">
+                    <span className="font-mono text-[8px] uppercase tracking-widest text-ash/75 bg-dust/20 py-0.5 px-2">
                       Verified Reader
                     </span>
                   </div>
@@ -104,7 +104,7 @@ export const ReaderRecognition: React.FC = () => {
             <div className="flex justify-center mt-12 pt-6 border-t border-dust/20">
               <button
                 onClick={handleLoadMore}
-                className="inline-flex items-center gap-2 font-mono text-xs tracking-widest uppercase text-ink hover:text-ash transition-colors duration-300 py-3 px-6 border border-ink bg-transparent focus:outline-none font-medium hover:border-ash"
+                className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-ink hover:text-ash transition-colors duration-300 py-3 px-6 border border-ink bg-transparent focus:outline-none font-medium hover:border-ash"
               >
                 <span>Load More Recognition</span>
                 <ChevronDown size={11} />
@@ -113,8 +113,8 @@ export const ReaderRecognition: React.FC = () => {
           )}
 
           {/* Footnote decoration */}
-          <div className="mt-16 text-center text-ash/55 font-mono text-xs tracking-[0.16em] uppercase">
-            CONFIDENTIAL ARCHIVAL DATA_SET // THE REPAIR WRITING FELLOWSHIP
+          <div className="mt-16 text-center text-ash/45 font-mono text-[8px] tracking-[0.2em] uppercase">
+            CONFIDENTIAL ARCHIVAL DATA_SET // THE RECOGNISED AND RESONANT
           </div>
 
         </div>

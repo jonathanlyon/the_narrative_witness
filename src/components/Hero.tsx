@@ -69,7 +69,7 @@ export const Hero: React.FC = () => {
           <FadeIn delay={0.1}>
             <div className="inline-flex items-center gap-2 mb-4">
               <span className="w-1.5 h-1.5 bg-ink" />
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-ash">
+              <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-ash">
                 Audience Validation · Kickstarter Readiness
               </span>
             </div>
@@ -77,7 +77,7 @@ export const Hero: React.FC = () => {
 
           {/* Large Emotional Headline */}
           <FadeIn delay={0.25} duration={1.0}>
-            <h1 className="font-serif text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] font-light leading-[1.08] tracking-normal text-ink">
+            <h1 className="font-serif text-[2.55rem] md:text-[3.5rem] lg:text-[3.95rem] font-light leading-[1.08] tracking-tight text-ink">
               Help prove this book
               <br />
               has enough support
@@ -123,27 +123,27 @@ export const Hero: React.FC = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Email address"
-                        className="bg-transparent text-ink border-none focus:outline-none focus:ring-0 text-sm font-mono lowercase tracking-wider ml-3 w-full"
+                        className="bg-transparent text-ink border-none focus:outline-none focus:ring-0 text-xs font-mono lowercase tracking-wider ml-3 w-full"
                       />
                     </div>
                     <button
                       id="hero-submit-btn"
                       type="submit"
                       disabled={loading}
-                      className="bg-ink hover:bg-ash text-paper uppercase font-mono text-xs tracking-[0.16em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
+                      className="bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
                     >
-                      {loading ? "Registering..." : "Register Support"}
+                      {loading ? "Registering..." : "Show Support"}
                       <ArrowRight size={12} />
                     </button>
                   </div>
 
                   {error && (
-                    <span className="font-mono text-xs text-ink tracking-wider">
+                    <span className="font-mono text-[9px] text-ink tracking-wider">
                       {error}
                     </span>
                   )}
 
-                  <span className="font-mono text-xs text-ash/70 tracking-wider leading-relaxed">
+                  <span className="font-mono text-[9px] text-ash/70 tracking-wider leading-relaxed">
                     This gives us a measurable support signal before the formal Kickstarter campaign opens.
                   </span>
 
@@ -161,8 +161,8 @@ export const Hero: React.FC = () => {
                       Check Your Email
                     </span>
                   </div>
-                  <p className="text-sm text-ash leading-relaxed">
-                    We have sent a confirmation link to <span className="font-mono text-ink text-xs underline">{email}</span>. Please click it so your support can be counted.
+                  <p className="text-xs text-ash leading-relaxed">
+                    We have sent a confirmation link to <span className="font-mono text-ink text-[11px] underline">{email}</span>. Please click it so your support can be counted.
                     {!signupConfigured && " This local preview has not sent an email."}
                   </p>
                   {hasKickstarterPrelaunchUrl && (
@@ -171,7 +171,7 @@ export const Hero: React.FC = () => {
                       target="_blank"
                       rel="noreferrer"
                       onClick={() => trackKickstarterIntent("hero_success")}
-                      className="inline-flex items-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-xs tracking-[0.16em] py-3 px-4 transition-all duration-300 font-medium"
+                      className="inline-flex items-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-3 px-4 transition-all duration-300 font-medium"
                     >
                       Follow on Kickstarter <ArrowRight size={12} />
                     </a>
@@ -187,10 +187,10 @@ export const Hero: React.FC = () => {
         <div className="lg:col-span-5 h-[390px] md:h-[500px] lg:h-[600px] relative w-full flex items-center justify-center">
           <FadeInSlow delay={0.3} className="w-full h-full relative border border-dust px-4 py-4 bg-paper-dark shadow-[default_rgba(0,0,0,0.02)]">
             {/* Absolute positioning tags for technical A24 catalog detail */}
-            <span className="absolute top-2 left-3 font-mono text-xs tracking-widest text-ash/60">
+            <span className="absolute top-2 left-3 font-mono text-[9px] tracking-widest text-ash/60">
               BOOK MANUSCRIPT // S-119
             </span>
-            <span className="absolute bottom-2 right-3 font-mono text-xs tracking-widest text-ash/60">
+            <span className="absolute bottom-2 right-3 font-mono text-[9px] tracking-widest text-ash/60">
               PRE-LAUNCH FOLIO // 2026
             </span>
             

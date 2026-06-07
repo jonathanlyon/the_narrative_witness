@@ -26,13 +26,13 @@ export const ConfirmedSupport: React.FC = () => {
         className="relative z-10 mx-auto w-full max-w-2xl border-y border-dust/70 py-14 text-center md:py-20"
       >
         <CheckCircle size={26} className="mx-auto text-ink" aria-hidden="true" />
-        <span className="mt-6 block font-mono text-xs uppercase tracking-[0.26em] text-ash">
+        <span className="mt-6 block font-mono text-[9px] uppercase tracking-[0.26em] text-ash">
           Support Confirmed
         </span>
-        <h1 className="mx-auto mt-5 max-w-xl font-serif text-[2.5rem] font-light leading-tight md:text-[3rem]">
+        <h1 className="mx-auto mt-5 max-w-xl font-serif text-4xl font-light leading-tight md:text-5xl">
           You are now part of the evidence that this book has an audience.
         </h1>
-        <p className="mx-auto mt-7 max-w-lg text-base font-light leading-relaxed text-ash md:text-lg">
+        <p className="mx-auto mt-7 max-w-lg text-sm font-light leading-relaxed text-ash md:text-base">
           Thank you for confirming your address. I will write to you soon with a fuller introduction to the book, why this early support matters, and what happens before the Kickstarter campaign begins.
         </p>
         <p className="mt-6 font-serif text-base italic text-ink-light">
@@ -40,14 +40,14 @@ export const ConfirmedSupport: React.FC = () => {
         </p>
         <a
           href="/"
-          className="mt-10 inline-flex items-center gap-2 border-b border-ink/45 pb-1 font-mono text-xs uppercase tracking-[0.18em] text-ink transition-colors hover:border-ink"
+          className="mt-10 inline-flex items-center gap-2 border-b border-ink/45 pb-1 font-mono text-[9px] uppercase tracking-[0.18em] text-ink transition-colors hover:border-ink"
         >
           Return to The Narrative Witness
           <ArrowRight size={12} aria-hidden="true" />
         </a>
       </motion.section>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-xs uppercase tracking-[0.18em] text-ash/65">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
         Book pre-launch · 2026
       </div>
     </main>

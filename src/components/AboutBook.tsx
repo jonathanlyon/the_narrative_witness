@@ -16,12 +16,12 @@ export const AboutBook: React.FC = () => {
         {/* Editorial Header */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-20">
           <FadeIn delay={0.1}>
-            <span className="font-mono text-xs uppercase tracking-[0.25em] text-ash">
+            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
               01 // THE MANUSCRIPT
             </span>
           </FadeIn>
           <FadeIn delay={0.25}>
-            <h2 className="font-serif text-2xl md:text-[1.75rem] font-light tracking-normal text-ink mt-4">
+            <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink mt-4">
               Inside The Book
             </h2>
           </FadeIn>
@@ -58,7 +58,7 @@ export const AboutBook: React.FC = () => {
         </StaggerContainer>
 
         {/* Marginalia footnote */}
-        <FadeIn delay={0.5} className="mt-20 md:mt-24 border-t border-dust/40 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between text-ash text-xs font-mono tracking-widest uppercase gap-4 max-w-2xl mx-auto">
+        <FadeIn delay={0.5} className="mt-20 md:mt-24 border-t border-dust/40 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between text-ash text-[10px] font-mono tracking-widest uppercase gap-4 max-w-2xl mx-auto">
           <span>CATALOG NO. SF-MEMOIR-2026</span>
           <span className="italic normal-case font-serif text-xs">
             To write is to reclaim the central archive.
