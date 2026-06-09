@@ -5,6 +5,7 @@ export interface ReaderComment {
   id: number;
   name: string;
   comment: string;
+  featured?: boolean;
   date?: string;
   source?: string;
   sourceTitle?: string;

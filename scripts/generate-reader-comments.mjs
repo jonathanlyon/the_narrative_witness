@@ -22,6 +22,9 @@ const outputPath = path.join(
 const isIncluded = (value) =>
   !["false", "no", "0"].includes(String(value).trim().toLowerCase());
 
+const isFeatured = (value) =>
+  ["true", "yes", "1"].includes(String(value).trim().toLowerCase());
+
 export async function generateReaderComments() {
   const rows = parseCsv(await readFile(sourcePath, "utf8"));
   const ids = new Set();
@@ -47,6 +50,7 @@ export async function generateReaderComments() {
         id,
         name: row.display_name.trim(),
         comment: row.comment.trim(),
+        featured: isFeatured(row.featured),
         ...(row.date?.trim() ? { date: row.date.trim() } : {}),
         ...(row.source?.trim() ? { source: row.source.trim() } : {}),
         ...(row.source_title?.trim()
@@ -66,6 +70,10 @@ export async function generateReaderComments() {
       `    comment: ${JSON.stringify(comment.comment)},`
     ];
 
+    if (comment.featured) {
+      lines.push("    featured: true,");
+    }
+
     for (const key of ["date", "source", "sourceTitle", "sourceUrl"]) {
       if (comment[key]) {
         lines.push(`    ${key}: ${JSON.stringify(comment[key])},`);
@@ -83,6 +91,7 @@ export interface ReaderComment {
   id: number;
   name: string;
   comment: string;
+  featured?: boolean;
   date?: string;
   source?: string;
   sourceTitle?: string;
