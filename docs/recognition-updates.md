@@ -53,6 +53,8 @@ Open `content/reader-recognition.csv` and review the new rows at the bottom.
 - Set `included` to `false` to keep an entry in the archive without showing it.
 - Edit `display_name` if a name needs special handling.
 - Edit `comment` if you are publishing only an appropriate excerpt.
+- Set `featured` to `true` only for a deliberately curated recognition.
+- Add a short editorial `feature_title` and faithful `feature_excerpt` for featured entries.
 - Keep `source_title` and `source_url`; the title appears as the card's provenance label and the URL preserves the original thread for later review.
 
 Then run:
@@ -64,3 +66,7 @@ npm run build
 ```
 
 Because these comments can contain intimate personal material, each new batch should receive a human review before it is published.
+
+## Codex skill
+
+The reusable `$adoptology-recognition-collector` skill can perform the Chrome collection, import, anonymisation, review, and verification workflow when comments have matured after a new post.

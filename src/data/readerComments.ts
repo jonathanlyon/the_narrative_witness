@@ -6,6 +6,8 @@ export interface ReaderComment {
   name: string;
   comment: string;
   featured?: boolean;
+  featureTitle?: string;
+  featureExcerpt?: string;
   date?: string;
   source?: string;
   sourceTitle?: string;
@@ -89,6 +91,9 @@ export const READER_COMMENTS: ReaderComment[] = [
     id: 10,
     name: "Rachel T.",
     comment: "It's wild how you put into words so much of what I experience. I've never really considered that my breathing could be linked to being separated at birth and placed somewhere completely foreign. When you think about it, any animal baby taken from its mother is going to be impacted; the body really does keep the score (brilliant book, by the way). The body reacts before the mind catches up. The restricted breathing is a beast: I remember going to the doctor convinced I had asthma... ❤️ Once again, you've captured a lived experience that feels so familiar, yet has never quite been expressed like this. Beautifully done.",
+    featured: true,
+    featureTitle: "The Body Knew First",
+    featureExcerpt: "You've captured a lived experience that feels so familiar, yet has never quite been expressed like this.",
     source: "Facebook",
     sourceTitle: "The Breath We Never Took",
     sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3069421173254251/"
@@ -233,6 +238,9 @@ export const READER_COMMENTS: ReaderComment[] = [
     id: 28,
     name: "Rosemary P.",
     comment: "Jonathan, I inevitably identify with your words. But today reading this you’ve put into words feelings that I have never been able to articulate fully. I will read and re read this many times. To say I’m grateful for your writing doesn’t convey the thankfulness I feel. Thankyou Thankyou Thankyou x",
+    featured: true,
+    featureTitle: "Words for What I Couldn't Say",
+    featureExcerpt: "You've put into words feelings that I have never been able to articulate fully.",
     source: "Facebook",
     sourceTitle: "The Standing Watch",
     sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3087440034785698/"
@@ -273,6 +281,9 @@ export const READER_COMMENTS: ReaderComment[] = [
     id: 33,
     name: "Leonie J.",
     comment: "Wow! Every time I read one of your posts it feels like you have crawled into my psyche and dissected it and then splattered your findings, the inner workings of me, into a post I didn’t have the courage to write. Your musings touch me at soul level, the only way I can describe your words. I also normally read them in the wee hours of the morning (it’s currently 4.30am) and I’m not sure if that hits me more because my brain has yet to put on one of its many masks it wears throughout the day. Whatever..keep those thoughts coming because they are feeding a part of me I didn’t know was starving",
+    featured: true,
+    featureTitle: "The Starving Part",
+    featureExcerpt: "Your words are feeding a part of me I didn't know was starving.",
     source: "Facebook",
     sourceTitle: "The Catalogue of Nearlys",
     sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3084210198442015/"
@@ -353,6 +364,9 @@ export const READER_COMMENTS: ReaderComment[] = [
     id: 43,
     name: "Janet R.",
     comment: "Thank you for putting into words what I can only feel. Being in the presence of others with the same wound is the only place I found understanding. Even then I was told by a fellow adoptee that I seemed fine......so we'll do we learn to hide. I was able to give her an example of when I felt the pain earlier that day and reassured her it happens multiple times daily......you can never be unadopted.",
+    featured: true,
+    featureTitle: "The Wound We Learn to Hide",
+    featureExcerpt: "Thank you for putting into words what I can only feel.",
     source: "Facebook",
     sourceTitle: "Being Seen and Unseen",
     sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3080662815463420/"
@@ -372,5 +386,80 @@ export const READER_COMMENTS: ReaderComment[] = [
     source: "Facebook",
     sourceTitle: "Being Seen and Unseen",
     sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3080662815463420/"
+  },
+  {
+    id: 46,
+    name: "Linda D.",
+    comment: "This is a great examination of the adoptee experience. I describe it as the disparity between the shared narrative of adoption and my lived experience. It set me on a path of sensitization to bullshit and always swimming against the mainstream.",
+    date: "2026-06-09",
+    source: "Facebook",
+    sourceTitle: "Deconstructed Smoke",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3089399391256429/"
+  },
+  {
+    id: 47,
+    name: "Rosemary P.",
+    comment: "Again your words resonate . I read a file from OT in NZ when I received it the other week. And at age 30 upon discovery that my twin sister and I were adopted , I was reassuring everyone , social workers , A parents, Birth Father that we had such a happy childhood. We didn’t really, we had a complicated childhood with an unstable AM where looking back, being loved meant being the good adoptee. I got good at reading the room, watching to see how people react, reading their minds .\nTrying to undo all that now with Somatic work, it’s hard and some days doesn’t seem worth it . But on we go .",
+    date: "2026-06-09",
+    source: "Facebook",
+    sourceTitle: "Deconstructed Smoke",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3089399391256429/"
+  },
+  {
+    id: 48,
+    name: "Leonie J.",
+    comment: "“All the world’s a stage,\nAnd all the men and women merely players;\nThey have their exits and their entrances;\nAnd one man in his time plays many parts” … ahhh William a man before his time! Once again you have crawled into my brain and put my life into words for all to read. Although I use the analogy of ‘masks’ instead of coats. I own and wear many, many masks. \n and have done all my life depending on the situation I find myself in to which one I wear. I used to believe it was part of my ASD/ADHD but only recently have realised that it’s my life’s best survival instincts. It’s all in the knowledge of which mask to wear in which situation and if there is, or ever was a real face under all those masks.\nOnce again I bow down to your words and letters that you have placed on the page.",
+    date: "2026-06-09",
+    source: "Facebook",
+    sourceTitle: "Deconstructed Smoke",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3089399391256429/"
+  },
+  {
+    id: 49,
+    name: "Rachel T.",
+    comment: "Damn, you’re good alright!! Wow! That’s exactly how I have felt my whole life, like an actor and in my home with four birth siblings to my parents (who I love deeply)... an imposter! But you’re right, I knew I was acting, always the fool, the pleaser, the cleaner, the clown, the room softener (that’s a good one) and nobody knew it was part of the debt repayment of being an adoptee. Always bringing the high energy to whanau gatherings to lift the mood and the room, a drink in the hand, seeking attention and reactions so people knew I existed. Thanks again, another gold nugget! Seeing and reading my experiences in words feels….makes me feel heard like I’m not alone. Thank you",
+    featured: true,
+    featureTitle: "Heard, and Not Alone",
+    featureExcerpt: "Seeing and reading my experiences in words makes me feel heard, like I'm not alone.",
+    date: "2026-06-09",
+    source: "Facebook",
+    sourceTitle: "Deconstructed Smoke",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3089399391256429/"
+  },
+  {
+    id: 50,
+    name: "Catherine L.",
+    comment: "A perfect capture of one angle of the dissociated Adoptee childhood. In one sense, isn’t the adopted child the only real thing in the room when the room is full of fake adults?",
+    date: "2026-06-09",
+    source: "Facebook",
+    sourceTitle: "Deconstructed Smoke",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3089399391256429/"
+  },
+  {
+    id: 51,
+    name: "Marguerite B.",
+    comment: "This is why I don’t write lol!",
+    date: "2026-06-09",
+    source: "Facebook",
+    sourceTitle: "Deconstructed Smoke",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3089399391256429/"
+  },
+  {
+    id: 52,
+    name: "Jean S.",
+    comment: "It's difficult to watch the pained expressions from those for whom you performed to realize that I was no longer in on the performance. I always took it as a right to both not be seen (transracial adoption) and the right to be who I am and not what people told me I was.",
+    date: "2026-06-09",
+    source: "Facebook",
+    sourceTitle: "Deconstructed Smoke",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3089399391256429/"
+  },
+  {
+    id: 53,
+    name: "Kathleen M.",
+    comment: "Oui Chef!\nA very raw experience.",
+    date: "2026-06-09",
+    source: "Facebook",
+    sourceTitle: "Deconstructed Smoke",
+    sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3089399391256429/"
   }
 ];

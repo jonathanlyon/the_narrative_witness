@@ -22,7 +22,9 @@ const headers = [
   "source_url",
   "date",
   "included",
-  "featured"
+  "featured",
+  "feature_title",
+  "feature_excerpt"
 ];
 
 export const normalizeComment = (value) =>
@@ -101,7 +103,9 @@ export function mergeRecognitionRows(existing, importedRows) {
       source_url: firstValue(row, ["source_url", "post_url"]),
       date: firstValue(row, ["date"]),
       included: "true",
-      featured: "false"
+      featured: "false",
+      feature_title: "",
+      feature_excerpt: ""
     });
     nextId += 1;
   }

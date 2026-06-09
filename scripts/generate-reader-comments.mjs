@@ -51,6 +51,12 @@ export async function generateReaderComments() {
         name: row.display_name.trim(),
         comment: row.comment.trim(),
         featured: isFeatured(row.featured),
+        ...(row.feature_title?.trim()
+          ? { featureTitle: row.feature_title.trim() }
+          : {}),
+        ...(row.feature_excerpt?.trim()
+          ? { featureExcerpt: row.feature_excerpt.trim() }
+          : {}),
         ...(row.date?.trim() ? { date: row.date.trim() } : {}),
         ...(row.source?.trim() ? { source: row.source.trim() } : {}),
         ...(row.source_title?.trim()
@@ -74,7 +80,14 @@ export async function generateReaderComments() {
       lines.push("    featured: true,");
     }
 
-    for (const key of ["date", "source", "sourceTitle", "sourceUrl"]) {
+    for (const key of [
+      "featureTitle",
+      "featureExcerpt",
+      "date",
+      "source",
+      "sourceTitle",
+      "sourceUrl"
+    ]) {
       if (comment[key]) {
         lines.push(`    ${key}: ${JSON.stringify(comment[key])},`);
       }
@@ -92,6 +105,8 @@ export interface ReaderComment {
   name: string;
   comment: string;
   featured?: boolean;
+  featureTitle?: string;
+  featureExcerpt?: string;
   date?: string;
   source?: string;
   sourceTitle?: string;

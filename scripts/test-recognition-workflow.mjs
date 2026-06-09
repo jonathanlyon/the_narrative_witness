@@ -62,7 +62,10 @@ assert.deepEqual(merge.additions[0], {
   source_title: "The Standing Watch",
   source_url: "https://www.facebook.com/groups/example/posts/123",
   date: "",
-  included: "true"
+  included: "true",
+  featured: "false",
+  feature_title: "",
+  feature_excerpt: ""
 });
 
 console.log("Recognition workflow tests passed.");
