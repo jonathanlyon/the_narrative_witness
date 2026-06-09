@@ -7,3 +7,4 @@ coverage/
 facebook-comments-*.csv
 .env*
 !.env.example
+writing/

@@ -1,0 +1,566 @@
+import React, { useEffect, useMemo, useState } from "react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUp,
+  CheckCircle,
+  Mail,
+  Menu,
+  X,
+} from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { EXCERPTS } from "../data/excerpts";
+import { READER_COMMENTS } from "../data/readerComments";
+import {
+  initAnalytics,
+  trackNavigationClicked,
+  trackSupportRegistration,
+  trackWritingOpened,
+} from "../lib/analytics";
+import { subscribeReader } from "../lib/signup";
+
+const currentWritingId = () => {
+  const segments = window.location.pathname.split("/").filter(Boolean);
+  return segments.at(-1) || "";
+};
+
+const homeLink = (section: string) => `/${section}`;
+
+const WritingHeader: React.FC<{ title: string }> = ({ title }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const links = [
+    { label: "The Book", href: homeLink("#book") },
+    { label: "Writing", href: homeLink("#excerpts") },
+    { label: "Recognition", href: homeLink("#recognition") },
+    { label: "About", href: homeLink("#about") },
+  ];
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [isOpen]);
+
+  return (
+    <>
+      <header className="fixed inset-x-0 top-0 z-[70] border-b border-dust/40 bg-paper/95 py-4 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-12 lg:px-16">
+          <a
+            href="/"
+            className="flex min-w-0 flex-col transition-opacity hover:opacity-70"
+            onClick={() =>
+              trackNavigationClicked({
+                destination: "/",
+                label: "The Narrative Witness",
+                placement: "writing_header",
+              })
+            }
+          >
+            <span className="font-serif text-lg font-medium uppercase tracking-wider text-ink md:text-xl">
+              The Narrative Witness
+            </span>
+            <span className="hidden truncate font-mono text-[8px] uppercase tracking-[0.22em] text-ash sm:block">
+              {title}
+            </span>
+          </a>
+
+          <nav className="hidden items-center gap-9 lg:flex">
+            {links.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="font-mono text-[9px] uppercase tracking-widest text-ash transition-colors hover:text-ink"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#support"
+              className="border-b border-ink pb-1 font-mono text-[9px] uppercase tracking-widest text-ink"
+            >
+              Show Support
+            </a>
+          </nav>
+
+          <button
+            type="button"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((open) => !open)}
+            className="relative z-[72] text-ink lg:hidden"
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            className="fixed inset-0 z-[65] flex h-[100dvh] flex-col justify-between overflow-y-auto bg-paper px-8 pb-10 pt-28 lg:hidden paper-grain"
+          >
+            <nav className="flex flex-col gap-7">
+              <span className="border-b border-dust/40 pb-3 font-mono text-[9px] uppercase tracking-[0.22em] text-ash/60">
+                Continue through the project
+              </span>
+              {links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="font-serif text-3xl font-light text-ink"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+            <a
+              href="#support"
+              onClick={() => setIsOpen(false)}
+              className="bg-ink py-4 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-paper"
+            >
+              Show Support
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+const WritingSupportForm: React.FC<{ title: string }> = ({ title }) => {
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [configured, setConfigured] = useState(true);
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      const result = await subscribeReader(email, "writing");
+      setConfigured(result.configured);
+      if (result.configured) {
+        trackSupportRegistration("writing");
+      }
+      setSubmitted(true);
+    } catch (submissionError) {
+      setError(
+        submissionError instanceof Error
+          ? submissionError.message
+          : "Something went wrong. Please try again.",
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (submitted) {
+    return (
+      <div className="flex max-w-xl flex-col items-start gap-4 border border-paper/20 bg-paper/5 p-6 text-left">
+        <CheckCircle size={22} aria-hidden="true" />
+        <span className="font-mono text-[9px] uppercase tracking-[0.2em]">
+          Check your email
+        </span>
+        <p className="text-sm font-light leading-relaxed text-paper/70">
+          Please click the confirmation link so your support can be counted.
+          {!configured && " This local preview has not sent an email."}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="max-w-xl">
+      <label htmlFor="writing-support-email" className="sr-only">
+        Email address
+      </label>
+      <div className="flex flex-col border border-paper/30 bg-ink-light/50 sm:flex-row">
+        <div className="flex min-w-0 flex-1 items-center px-4 py-4">
+          <Mail size={15} className="shrink-0 text-paper/50" aria-hidden="true" />
+          <input
+            id="writing-support-email"
+            type="email"
+            required
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            placeholder="Email address"
+            className="ml-3 min-w-0 flex-1 bg-transparent font-mono text-xs lowercase tracking-wider text-paper outline-none placeholder:text-paper/40"
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={loading}
+          className="flex shrink-0 items-center justify-center gap-2 bg-paper px-6 py-4 font-mono text-[9px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-paper-dark disabled:opacity-60"
+        >
+          {loading ? "Registering..." : "Show Support"}
+          <ArrowRight size={12} aria-hidden="true" />
+        </button>
+      </div>
+      {error && (
+        <p className="mt-3 font-mono text-[9px] tracking-wider text-paper">
+          {error}
+        </p>
+      )}
+      <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.16em] text-paper/45">
+        A signal of intent, not a purchase or obligation.
+      </p>
+      <input type="hidden" name="writing" value={title} />
+    </form>
+  );
+};
+
+const WritingFooter: React.FC = () => (
+  <footer className="border-t border-paper/15 bg-ink py-14 text-paper/60">
+    <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 md:flex-row md:items-end md:justify-between md:px-12 lg:px-16">
+      <div>
+        <a href="/" className="font-serif text-xl uppercase tracking-wider text-paper">
+          The Narrative Witness
+        </a>
+        <p className="mt-4 max-w-md text-xs font-light leading-relaxed">
+          An independently published literary work exploring adoption,
+          relinquishment, identity, memory, and the return of authorship.
+        </p>
+      </div>
+      <div className="flex flex-wrap items-center gap-6 font-mono text-[9px] uppercase tracking-widest">
+        <a href="/#excerpts" className="transition-colors hover:text-paper">
+          Writing
+        </a>
+        <a href="/#recognition" className="transition-colors hover:text-paper">
+          Recognition
+        </a>
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="inline-flex items-center gap-2 transition-colors hover:text-paper"
+        >
+          Return to top <ArrowUp size={11} aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+  </footer>
+);
+
+export const WritingPage: React.FC = () => {
+  const writing = EXCERPTS.find(
+    (excerpt) =>
+      excerpt.id === currentWritingId() && excerpt.pagePublished,
+  );
+
+  const recognition = useMemo(
+    () =>
+      writing
+        ? writing.recognitionIds
+            .map((id) => READER_COMMENTS.find((comment) => comment.id === id))
+            .filter(
+              (comment): comment is (typeof READER_COMMENTS)[number] =>
+                Boolean(comment),
+            )
+        : [],
+    [writing],
+  );
+
+  const relatedWriting = useMemo(
+    () => EXCERPTS.filter((excerpt) => excerpt.id !== writing?.id).slice(0, 2),
+    [writing],
+  );
+
+  useEffect(() => {
+    void initAnalytics();
+    if (writing) {
+      trackWritingOpened({
+        writingId: writing.id,
+        writingTitle: writing.title,
+        writingType: writing.type,
+      });
+    }
+  }, [writing]);
+
+  if (!writing || !writing.fullBody) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-paper px-6 text-center">
+        <div>
+          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ash">
+            Writing not found
+          </span>
+          <h1 className="mt-5 font-serif text-4xl font-light text-ink">
+            This page has not been published.
+          </h1>
+          <a
+            href="/#excerpts"
+            className="mt-8 inline-flex items-center gap-2 border-b border-ink pb-1 font-mono text-[9px] uppercase tracking-widest"
+          >
+            <ArrowLeft size={11} aria-hidden="true" /> Return to writing
+          </a>
+        </div>
+      </main>
+    );
+  }
+
+  const bodyBlocks = writing.fullBody.split(/\n{2,}/);
+
+  return (
+    <div className="min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper">
+      <WritingHeader title={writing.title} />
+
+      <main>
+        <section className="relative min-h-[44rem] overflow-hidden bg-ink pt-20 text-paper md:min-h-[46rem]">
+          <div className="absolute inset-0 md:left-[48%]">
+            <img
+              src={writing.artwork}
+              alt=""
+              className="h-full w-full object-cover object-center grayscale opacity-60 md:opacity-90"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-ink/35 via-ink/45 to-ink md:bg-gradient-to-r md:from-ink md:via-ink/75 md:to-ink/10" />
+          </div>
+
+          <div className="relative z-10 mx-auto flex min-h-[38rem] max-w-7xl items-end px-6 pb-14 pt-24 md:min-h-[40rem] md:items-center md:px-12 md:pb-10 lg:px-16">
+            <div className="max-w-2xl md:w-[54%]">
+              <a
+                href="/#excerpts"
+                className="inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-paper/60 transition-colors hover:text-paper"
+              >
+                <ArrowLeft size={11} aria-hidden="true" />
+                From The Narrative Witness
+              </a>
+              <p className="mt-12 font-mono text-[9px] uppercase tracking-[0.25em] text-paper/55">
+                {writing.type} // {writing.readTime}
+              </p>
+              <h1 className="mt-5 max-w-xl font-serif text-5xl font-light leading-[0.98] tracking-normal text-paper md:text-6xl lg:text-7xl">
+                {writing.title}
+              </h1>
+              {writing.caption && (
+                <p className="mt-7 max-w-lg font-serif text-xl font-light italic leading-relaxed text-paper/75 md:text-2xl">
+                  {writing.caption}
+                </p>
+              )}
+              <div className="mt-10 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[8px] uppercase tracking-[0.18em] text-paper/50">
+                {writing.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {writing.beforeReading && (
+          <section className="border-b border-dust/45 bg-paper-dark/60 paper-grain">
+            <div className="mx-auto grid max-w-5xl gap-6 px-6 py-14 md:grid-cols-[10rem_1fr] md:px-12 md:py-18">
+              <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ash">
+                Before reading
+              </span>
+              <p className="max-w-2xl text-sm font-light leading-7 text-ash md:text-base">
+                {writing.beforeReading}
+              </p>
+            </div>
+          </section>
+        )}
+
+        <article className="bg-paper paper-grain">
+          <div className="mx-auto max-w-[45rem] px-6 py-20 md:py-28">
+            <div className="mb-16 flex items-center justify-between border-b border-dust/50 pb-5 font-mono text-[8px] uppercase tracking-[0.2em] text-ash/70">
+              <span>Jonathan Lyon</span>
+              <span>Complete {writing.type}</span>
+            </div>
+
+            <div className="writing-prose">
+              {bodyBlocks.map((block, index) => (
+                <p
+                  key={`${writing.id}-${index}`}
+                  className={index === 0 ? "writing-prose-first" : undefined}
+                >
+                  {block}
+                </p>
+              ))}
+            </div>
+
+            <div className="mt-20 border-t border-dust/50 pt-6 font-mono text-[8px] uppercase tracking-[0.18em] text-ash/60">
+              © 2026 Jonathan Lyon. All rights reserved.
+            </div>
+          </div>
+        </article>
+
+        <section className="border-y border-dust/40 bg-paper-dark/55 py-20 paper-grain md:py-28">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid gap-14 md:grid-cols-2 md:gap-0">
+              <div className="md:border-r md:border-dust/55 md:pr-14">
+                <span className="font-mono text-[9px] uppercase tracking-[0.23em] text-ash">
+                  Where this story came from
+                </span>
+                <h2 className="mt-5 font-serif text-3xl font-light leading-tight md:text-4xl">
+                  Listening to the body without making it a verdict.
+                </h2>
+                <p className="mt-7 text-sm font-light leading-7 text-ash md:text-base">
+                  {writing.origin}
+                </p>
+              </div>
+              <div className="md:pl-14">
+                <span className="font-mono text-[9px] uppercase tracking-[0.23em] text-ash">
+                  What it means for me
+                </span>
+                <h2 className="mt-5 font-serif text-3xl font-light leading-tight md:text-4xl">
+                  The body may be witness before it is symptom.
+                </h2>
+                <p className="mt-7 text-sm font-light leading-7 text-ash md:text-base">
+                  {writing.meaning}
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-16 border-t border-dust/55 pt-8">
+              <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ash">
+                Themes held by this piece
+              </span>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {writing.tags.map((tag, index) => (
+                  <span
+                    key={tag}
+                    className="border border-dust/70 px-4 py-2 font-mono text-[8px] uppercase tracking-[0.18em] text-ink-light"
+                  >
+                    {String(index + 1).padStart(2, "0")} // {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {recognition.length > 0 && (
+          <section className="relative overflow-hidden bg-ink py-20 text-paper paper-grain md:py-28">
+            <div className="mx-auto max-w-6xl px-6">
+              <div className="max-w-xl">
+                <span className="font-mono text-[9px] uppercase tracking-[0.23em] text-paper/50">
+                  Reader recognition
+                </span>
+                <h2 className="mt-5 font-serif text-4xl font-light leading-tight md:text-5xl">
+                  The piece returned through other bodies.
+                </h2>
+                <p className="mt-5 text-sm font-light leading-relaxed text-paper/60">
+                  Selected responses from adoptee readers when this reflection
+                  was first shared.
+                </p>
+              </div>
+
+              <div className="mt-14 grid border-y border-paper/15 md:grid-cols-3">
+                {recognition.map((comment, index) => (
+                  <blockquote
+                    key={comment.id}
+                    className={`flex min-h-[19rem] flex-col justify-between py-9 ${
+                      index > 0
+                        ? "border-t border-paper/15 md:border-l md:border-t-0 md:pl-8"
+                        : ""
+                    } ${index < recognition.length - 1 ? "md:pr-8" : ""}`}
+                  >
+                    <p className="font-serif text-xl font-light italic leading-relaxed text-paper/90">
+                      “
+                      {comment.featureExcerpt ||
+                        (comment.comment.length > 240
+                          ? `${comment.comment.slice(0, 237).trim()}…`
+                          : comment.comment)}
+                      ”
+                    </p>
+                    <footer className="mt-8">
+                      <span className="font-sans text-xs font-medium text-paper/65">
+                        {comment.name}
+                      </span>
+                    </footer>
+                  </blockquote>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        <section id="support" className="bg-ink-light py-20 text-paper md:py-28">
+          <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1fr_1.1fr] md:items-end">
+            <div>
+              <span className="font-mono text-[9px] uppercase tracking-[0.23em] text-paper/50">
+                From recognition to possibility
+              </span>
+              <h2 className="mt-5 max-w-lg font-serif text-4xl font-light leading-tight md:text-5xl">
+                If this work matters to you, help the book become visible.
+              </h2>
+            </div>
+            <div>
+              <p className="mb-7 max-w-xl text-sm font-light leading-7 text-paper/65 md:text-base">
+                Registering your support gives the proposed Kickstarter a
+                measurable audience before the campaign asks the book to
+                survive in public.
+              </p>
+              <WritingSupportForm title={writing.title} />
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-paper py-20 paper-grain md:py-28">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="flex flex-col justify-between gap-5 border-b border-dust/50 pb-7 sm:flex-row sm:items-end">
+              <div>
+                <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-ash">
+                  Continue reading
+                </span>
+                <h2 className="mt-4 font-serif text-4xl font-light">
+                  Other writing from the book.
+                </h2>
+              </div>
+              <a
+                href="/#excerpts"
+                className="inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.18em] text-ink"
+              >
+                View all previews <ArrowRight size={11} aria-hidden="true" />
+              </a>
+            </div>
+
+            <div className="grid md:grid-cols-2">
+              {relatedWriting.map((related, index) => (
+                <a
+                  key={related.id}
+                  href={
+                    related.pagePublished
+                      ? `/writing/${related.id}/`
+                      : `/?excerpt=${related.id}#excerpts`
+                  }
+                  className={`group grid min-h-[17rem] grid-cols-[8rem_1fr] items-center gap-7 py-9 transition-colors hover:bg-paper-dark/45 ${
+                    index === 0
+                      ? "border-b border-dust/50 md:border-b-0 md:border-r md:pr-10"
+                      : "md:pl-10"
+                  }`}
+                >
+                  {related.thumbnail && (
+                    <img
+                      src={related.thumbnail}
+                      alt=""
+                      className="aspect-square w-full border border-dust/60 object-cover grayscale"
+                    />
+                  )}
+                  <div>
+                    <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-ash">
+                      {related.type} // {related.readTime}
+                    </span>
+                    <h3 className="mt-4 font-serif text-2xl font-light leading-tight transition-transform group-hover:translate-x-1">
+                      {related.title}
+                    </h3>
+                    <span className="mt-6 inline-flex items-center gap-2 font-mono text-[8px] uppercase tracking-[0.18em] text-ash">
+                      {related.pagePublished ? "Read the piece" : "Read preview"}
+                      <ArrowRight size={10} aria-hidden="true" />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <WritingFooter />
+    </div>
+  );
+};

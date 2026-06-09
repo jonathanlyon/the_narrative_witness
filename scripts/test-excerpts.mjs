@@ -51,6 +51,30 @@ for (const file of files) {
     );
     await readFile(path.join(publicDirectory, excerpt[field]));
   }
+
+  if (excerpt.pagePublished) {
+    for (const field of [
+      "fullBody",
+      "beforeReading",
+      "origin",
+      "meaning",
+      "seoTitle",
+      "seoDescription",
+      "socialImage"
+    ]) {
+      assert.ok(
+        typeof excerpt[field] === "string" && excerpt[field].trim(),
+        `${file} publishes a full page and needs ${field}.`
+      );
+    }
+
+    assert.ok(
+      Array.isArray(excerpt.recognitionIds) &&
+        excerpt.recognitionIds.every(Number.isInteger),
+      `${file} needs numeric recognition IDs.`
+    );
+    await readFile(path.join(publicDirectory, excerpt.socialImage));
+  }
 }
 
 console.log(`Validated ${files.length} CMS-managed excerpts.`);

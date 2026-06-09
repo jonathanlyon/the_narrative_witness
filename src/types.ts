@@ -24,6 +24,15 @@ export interface Excerpt {
   readTime: string;
   order: number;
   published: boolean;
+  pagePublished: boolean;
+  fullBody?: string;
+  beforeReading?: string;
+  origin?: string;
+  meaning?: string;
+  recognitionIds: number[];
+  seoTitle?: string;
+  seoDescription?: string;
+  socialImage?: string;
 }
 
 export interface Testimonial {

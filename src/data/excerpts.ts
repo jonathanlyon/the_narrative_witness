@@ -55,7 +55,20 @@ const normalizeExcerpt = (
       typeof content.order === "number" && Number.isFinite(content.order)
         ? content.order
         : 999,
-    published: content.published !== false
+    published: content.published !== false,
+    pagePublished: content.pagePublished === true,
+    fullBody: content.fullBody?.trim(),
+    beforeReading: content.beforeReading?.trim(),
+    origin: content.origin?.trim(),
+    meaning: content.meaning?.trim(),
+    recognitionIds: Array.isArray(content.recognitionIds)
+      ? content.recognitionIds
+          .map((id) => Number(id))
+          .filter((id) => Number.isInteger(id))
+      : [],
+    seoTitle: content.seoTitle?.trim(),
+    seoDescription: content.seoDescription?.trim(),
+    socialImage: content.socialImage?.trim()
   };
 };
 

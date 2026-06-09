@@ -8,7 +8,7 @@ declare global {
 }
 
 export type AnalyticsConsent = "granted" | "denied" | null;
-export type SignupSource = "hero" | "midpage" | "final";
+export type SignupSource = "hero" | "midpage" | "final" | "writing";
 
 const ANALYTICS_CONSENT_KEY = "narrative_witness_analytics_consent";
 const SIGNUP_ATTRIBUTION_KEY = "narrative_witness_signup_attribution";
@@ -291,6 +291,18 @@ export function trackExcerptSelected(properties: {
     excerpt_index: properties.excerptIndex,
     excerpt_title: properties.excerptTitle,
     excerpt_type: properties.excerptType.toLowerCase(),
+  });
+}
+
+export function trackWritingOpened(properties: {
+  writingId: string;
+  writingTitle: string;
+  writingType: string;
+}) {
+  trackMixpanel("writing_opened", {
+    writing_id: properties.writingId,
+    writing_title: properties.writingTitle,
+    writing_type: properties.writingType.toLowerCase(),
   });
 }
 

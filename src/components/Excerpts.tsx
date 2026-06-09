@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import { EXCERPTS } from "../data/excerpts";
 import { motion, AnimatePresence } from "motion/react";
-import { Eye, Clock, Bookmark } from "lucide-react";
+import { Eye, Clock, Bookmark, ArrowRight } from "lucide-react";
 import { FadeIn } from "./MotionWrapper";
 import { trackExcerptSelected } from "../lib/analytics";
 
+const requestedExcerptIndex = () => {
+  const requestedId = new URLSearchParams(window.location.search).get("excerpt");
+  const index = EXCERPTS.findIndex((excerpt) => excerpt.id === requestedId);
+  return index >= 0 ? index : 0;
+};
+
 export const Excerpts: React.FC = () => {
-  const [activeIdx, setActiveIdx] = useState(0);
+  const [activeIdx, setActiveIdx] = useState(requestedExcerptIndex);
   // Reading mode toggle: "paper" (cream textured light) vs "midnight" (darkroom black)
   const [readMode, setReadMode] = useState<"paper" | "midnight">("paper");
   // Font size adjustment: isSmall, isRegular, isLarge
@@ -234,6 +240,19 @@ export const Excerpts: React.FC = () => {
                         © 2026 JONATHAN LYON. ALL RIGHTS RESERVED.
                       </span>
                     </div>
+                    {EXCERPTS[activeIdx].pagePublished && (
+                      <a
+                        href={`/writing/${EXCERPTS[activeIdx].id}/`}
+                        className={`mt-3 inline-flex w-fit items-center gap-2 border-b pb-1 text-[9px] transition-colors ${
+                          readMode === "midnight"
+                            ? "border-paper/35 text-paper/75 hover:border-paper hover:text-paper"
+                            : "border-ink/30 text-ink hover:border-ink"
+                        }`}
+                      >
+                        Read the full piece
+                        <ArrowRight size={11} aria-hidden="true" />
+                      </a>
+                    )}
                   </div>
                 </motion.article>
               </AnimatePresence>

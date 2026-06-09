@@ -76,6 +76,45 @@ content:
         label: Preview text
         type: text
         required: true
+      - name: pagePublished
+        label: Publish full writing page
+        type: boolean
+        default: false
+        description: Creates a public, indexable page for the complete piece.
+      - name: fullBody
+        label: Full piece
+        type: text
+        description: The complete essay, reflection, or poem. Paragraph breaks are preserved.
+      - name: beforeReading
+        label: Before reading
+        type: text
+        description: A brief orientation that defines the scope of the piece without explaining it away.
+      - name: origin
+        label: Where this story came from
+        type: text
+      - name: meaning
+        label: What it means for me
+        type: text
+      - name: recognitionIds
+        label: Selected recognition IDs
+        type: number
+        list: true
+        description: IDs from the reader recognition archive to show beneath this piece.
+      - name: seoTitle
+        label: Search and sharing title
+        type: string
+        description: Aim for roughly 50 to 60 characters.
+      - name: seoDescription
+        label: Search and sharing description
+        type: text
+        description: Aim for roughly 140 to 160 characters.
+      - name: socialImage
+        label: Social sharing image
+        type: image
+        description: A wide image is best for Facebook, LinkedIn, and other previews.
+        options:
+          extensions: [jpg, jpeg, png, webp]
+          rename: true
       - name: order
         label: Display order
         type: number

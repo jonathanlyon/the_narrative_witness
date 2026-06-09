@@ -68,3 +68,32 @@
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
+
+.writing-prose {
+  color: var(--color-ink-light);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.9;
+  letter-spacing: 0;
+}
+
+.writing-prose p {
+  margin: 0 0 1.65em;
+  white-space: pre-line;
+}
+
+.writing-prose-first::first-letter {
+  float: left;
+  margin: 0.08em 0.09em 0 0;
+  color: var(--color-ink);
+  font-size: 4.2em;
+  font-weight: 400;
+  line-height: 0.78;
+}
+
+@media (min-width: 768px) {
+  .writing-prose {
+    font-size: 1.32rem;
+  }
+}

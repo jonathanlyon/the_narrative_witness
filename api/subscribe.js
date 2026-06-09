@@ -1,5 +1,5 @@
 const KIT_API_URL = "https://api.kit.com/v4";
-const ALLOWED_SOURCES = new Set(["hero", "midpage", "final"]);
+const ALLOWED_SOURCES = new Set(["hero", "midpage", "final", "writing"]);
 
 function isAllowedOrigin(request) {
   const origin = request.headers.origin;
