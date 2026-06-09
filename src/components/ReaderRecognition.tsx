@@ -73,32 +73,8 @@ export const ReaderRecognition: React.FC = () => {
   return (
     <section
       id="recognition"
-      className="relative py-28 md:py-36 bg-paper overflow-hidden paper-grain border-b border-dust/35"
+      className="relative pb-28 md:pb-36 bg-paper overflow-hidden paper-grain border-b border-dust/35"
     >
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        {/* Editorial Index Header */}
-        <div className="flex flex-col items-center text-center mb-16 md:mb-20">
-          <FadeIn delay={0.1}>
-            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
-              02 // READER RECOGNITION
-            </span>
-          </FadeIn>
-          <FadeIn delay={0.18}>
-            <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink mt-4">
-              Resonance &amp; Recognition
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.25}>
-            <p className="mt-4 text-xs md:text-sm font-sans font-light text-ash max-w-lg mx-auto">
-              Spontaneously collected comments and intimate reflections from early readers of Jonathan's digital draft snippets.
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.3}>
-            <div className="w-12 h-[1px] bg-ash/40 mt-6" />
-          </FadeIn>
-        </div>
-      </div>
-
       {featuredComments.length > 0 && (
         <FadeIn delay={0.15}>
           <div
@@ -210,8 +186,30 @@ export const ReaderRecognition: React.FC = () => {
       )}
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
+        {/* Editorial Index Header */}
+        <div className="flex flex-col items-center text-center pt-28 md:pt-36 mb-16 md:mb-20">
+          <FadeIn delay={0.1}>
+            <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">
+              02 // READER RECOGNITION
+            </span>
+          </FadeIn>
+          <FadeIn delay={0.18}>
+            <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink mt-4">
+              Resonance &amp; Recognition
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.25}>
+            <p className="mt-4 text-xs md:text-sm font-sans font-light text-ash max-w-lg mx-auto">
+              Spontaneously collected comments and intimate reflections from early readers of Jonathan's digital draft snippets.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.3}>
+            <div className="w-12 h-[1px] bg-ash/40 mt-6" />
+          </FadeIn>
+        </div>
+
         {/* Dedicated Bento Box Grid Section */}
-        <div className="pb-10 pt-16 md:pt-20">
+        <div className="pb-10">
           {/* Masonry columns retain the close bento composition. */}
           <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6 [column-fill:_balance] w-full">
             {comments.slice(0, visibleCount).map((item, idx) => {
