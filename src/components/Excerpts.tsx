@@ -207,7 +207,10 @@ export const Excerpts: React.FC = () => {
                     }`}>
                       <img
                         src={EXCERPTS[activeIdx].artwork}
-                        alt={`${EXCERPTS[activeIdx].title} post artwork`}
+                        alt={
+                          EXCERPTS[activeIdx].artworkAlt ||
+                          `${EXCERPTS[activeIdx].title} post artwork`
+                        }
                         className="w-full h-auto grayscale"
                       />
                     </figure>

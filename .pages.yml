@@ -1,0 +1,90 @@
+media:
+  input: public/images/excerpts
+  output: /images/excerpts
+
+content:
+  - name: excerpts
+    label: Writing Previews
+    type: collection
+    path: content/excerpts
+    filename:
+      template: "{primary}.json"
+      field: create
+    view:
+      fields: [thumbnail, title, type, order, published]
+      primary: title
+      sort: [order, title]
+      default:
+        sort: order
+        order: asc
+    fields:
+      - name: id
+        label: Stable ID
+        type: string
+        required: true
+        description: A permanent lowercase identifier such as the-standing-watch.
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: type
+        label: Form
+        type: select
+        required: true
+        options:
+          values:
+            - name: Essay
+              label: Essay
+            - name: Reflection
+              label: Reflection
+            - name: Poem
+              label: Poem
+      - name: caption
+        label: Subtitle
+        type: text
+        required: true
+      - name: readTime
+        label: Reading time
+        type: string
+        required: true
+        default: 3 min read
+      - name: tags
+        label: Themes
+        type: string
+        list: true
+        required: true
+      - name: artwork
+        label: Full artwork
+        type: image
+        required: true
+        options:
+          extensions: [jpg, jpeg, png, webp]
+          rename: true
+      - name: artworkAlt
+        label: Artwork description
+        type: text
+        required: true
+      - name: thumbnail
+        label: Navigation thumbnail
+        type: image
+        required: true
+        description: Use a text-free image that remains legible at a small size.
+        options:
+          extensions: [jpg, jpeg, png, webp]
+          rename: true
+      - name: body
+        label: Preview text
+        type: text
+        required: true
+      - name: order
+        label: Display order
+        type: number
+        required: true
+        default: 1
+      - name: published
+        label: Show on website
+        type: boolean
+        default: true
+
+settings:
+  hide: true

@@ -18,9 +18,12 @@ export interface Excerpt {
   type: "Essay" | "Reflection" | "Poem";
   body: string;
   artwork?: string;
+  artworkAlt?: string;
   thumbnail?: string;
   caption?: string;
   readTime: string;
+  order: number;
+  published: boolean;
 }
 
 export interface Testimonial {
