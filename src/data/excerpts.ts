@@ -50,6 +50,7 @@ const normalizeExcerpt = (
     artwork: content.artwork?.trim(),
     artworkAlt: content.artworkAlt?.trim(),
     thumbnail: content.thumbnail?.trim(),
+    thumbnailPosition: content.thumbnailPosition?.trim() || "center",
     body: content.body!.trim(),
     order:
       typeof content.order === "number" && Number.isFinite(content.order)
@@ -59,8 +60,18 @@ const normalizeExcerpt = (
     pagePublished: content.pagePublished === true,
     fullBody: content.fullBody?.trim(),
     beforeReading: content.beforeReading?.trim(),
+    originTitle:
+      content.originTitle?.trim() || "Where this story began to take shape.",
     origin: content.origin?.trim(),
+    meaningTitle:
+      content.meaningTitle?.trim() || "What the piece helped me understand.",
     meaning: content.meaning?.trim(),
+    recognitionTitle:
+      content.recognitionTitle?.trim() ||
+      "The piece returned through other lives.",
+    recognitionIntro:
+      content.recognitionIntro?.trim() ||
+      "Selected responses from readers when this piece was first shared.",
     recognitionIds: Array.isArray(content.recognitionIds)
       ? content.recognitionIds
           .map((id) => Number(id))

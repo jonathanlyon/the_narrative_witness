@@ -306,6 +306,7 @@ export const WritingPage: React.FC = () => {
   }
 
   const bodyBlocks = writing.fullBody.split(/\n{2,}/);
+  let firstProseBlock = true;
 
   return (
     <div className="min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper">
@@ -372,14 +373,47 @@ export const WritingPage: React.FC = () => {
             </div>
 
             <div className="writing-prose">
-              {bodyBlocks.map((block, index) => (
-                <p
-                  key={`${writing.id}-${index}`}
-                  className={index === 0 ? "writing-prose-first" : undefined}
-                >
-                  {block}
-                </p>
-              ))}
+              {bodyBlocks.map((block, index) => {
+                const trimmedBlock = block.trim();
+
+                if (trimmedBlock === "---") {
+                  return (
+                    <div
+                      key={`${writing.id}-${index}`}
+                      className="writing-prose-divider"
+                      aria-hidden="true"
+                    />
+                  );
+                }
+
+                if (trimmedBlock.startsWith(">")) {
+                  return (
+                    <blockquote
+                      key={`${writing.id}-${index}`}
+                      className="writing-prose-quote"
+                    >
+                      {trimmedBlock
+                        .split("\n")
+                        .map((line) => line.replace(/^>\s?/, ""))
+                        .join("\n")}
+                    </blockquote>
+                  );
+                }
+
+                const isFirstProseBlock = firstProseBlock;
+                firstProseBlock = false;
+
+                return (
+                  <p
+                    key={`${writing.id}-${index}`}
+                    className={
+                      isFirstProseBlock ? "writing-prose-first" : undefined
+                    }
+                  >
+                    {block}
+                  </p>
+                );
+              })}
             </div>
 
             <div className="mt-20 border-t border-dust/50 pt-6 font-mono text-[8px] uppercase tracking-[0.18em] text-ash/60">
@@ -396,7 +430,7 @@ export const WritingPage: React.FC = () => {
                   Where this story came from
                 </span>
                 <h2 className="mt-5 font-serif text-3xl font-light leading-tight md:text-4xl">
-                  Listening to the body without making it a verdict.
+                  {writing.originTitle}
                 </h2>
                 <p className="mt-7 text-sm font-light leading-7 text-ash md:text-base">
                   {writing.origin}
@@ -407,7 +441,7 @@ export const WritingPage: React.FC = () => {
                   What it means for me
                 </span>
                 <h2 className="mt-5 font-serif text-3xl font-light leading-tight md:text-4xl">
-                  The body may be witness before it is symptom.
+                  {writing.meaningTitle}
                 </h2>
                 <p className="mt-7 text-sm font-light leading-7 text-ash md:text-base">
                   {writing.meaning}
@@ -441,11 +475,10 @@ export const WritingPage: React.FC = () => {
                   Reader recognition
                 </span>
                 <h2 className="mt-5 font-serif text-4xl font-light leading-tight md:text-5xl">
-                  The piece returned through other bodies.
+                  {writing.recognitionTitle}
                 </h2>
                 <p className="mt-5 text-sm font-light leading-relaxed text-paper/60">
-                  Selected responses from adoptee readers when this reflection
-                  was first shared.
+                  {writing.recognitionIntro}
                 </p>
               </div>
 
@@ -539,6 +572,7 @@ export const WritingPage: React.FC = () => {
                       src={related.thumbnail}
                       alt=""
                       className="aspect-square w-full border border-dust/60 object-cover grayscale"
+                      style={{ objectPosition: related.thumbnailPosition }}
                     />
                   )}
                   <div>

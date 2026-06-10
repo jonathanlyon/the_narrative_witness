@@ -408,7 +408,7 @@ export const READER_COMMENTS: ReaderComment[] = [
   {
     id: 48,
     name: "Leonie J.",
-    comment: "“All the world’s a stage,\nAnd all the men and women merely players;\nThey have their exits and their entrances;\nAnd one man in his time plays many parts” … ahhh William a man before his time! Once again you have crawled into my brain and put my life into words for all to read. Although I use the analogy of ‘masks’ instead of coats. I own and wear many, many masks. \n and have done all my life depending on the situation I find myself in to which one I wear. I used to believe it was part of my ASD/ADHD but only recently have realised that it’s my life’s best survival instincts. It’s all in the knowledge of which mask to wear in which situation and if there is, or ever was a real face under all those masks.\nOnce again I bow down to your words and letters that you have placed on the page.",
+    comment: "“All the world’s a stage,\nAnd all the men and women merely players;\nThey have their exits and their entrances;\nAnd one man in his time plays many parts” … ahhh William a man before his time! Once again you have crawled into my brain and put my life into words for all to read. Although I use the analogy of ‘masks’ instead of coats. I own and wear many, many masks.\n and have done all my life depending on the situation I find myself in to which one I wear. I used to believe it was part of my ASD/ADHD but only recently have realised that it’s my life’s best survival instincts. It’s all in the knowledge of which mask to wear in which situation and if there is, or ever was a real face under all those masks.\nOnce again I bow down to your words and letters that you have placed on the page.",
     date: "2026-06-09",
     source: "Facebook",
     sourceTitle: "Deconstructed Smoke",
@@ -461,5 +461,14 @@ export const READER_COMMENTS: ReaderComment[] = [
     source: "Facebook",
     sourceTitle: "Deconstructed Smoke",
     sourceUrl: "https://www.facebook.com/groups/onhumanadoption/posts/3089399391256429/"
+  },
+  {
+    id: 54,
+    name: "Chare",
+    comment: "Adoption to a baby IS abduction. We have to start framing this adoption experience from our perspective.",
+    date: "2026-05-21",
+    source: "Substack",
+    sourceTitle: "By Another Name",
+    sourceUrl: "https://jonathanlyon.substack.com/p/by-another-name"
   }
 ];

@@ -20,6 +20,7 @@ export interface Excerpt {
   artwork?: string;
   artworkAlt?: string;
   thumbnail?: string;
+  thumbnailPosition?: string;
   caption?: string;
   readTime: string;
   order: number;
@@ -27,8 +28,12 @@ export interface Excerpt {
   pagePublished: boolean;
   fullBody?: string;
   beforeReading?: string;
+  originTitle?: string;
   origin?: string;
+  meaningTitle?: string;
   meaning?: string;
+  recognitionTitle?: string;
+  recognitionIntro?: string;
   recognitionIds: number[];
   seoTitle?: string;
   seoDescription?: string;

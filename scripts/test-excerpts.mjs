@@ -56,8 +56,12 @@ for (const file of files) {
     for (const field of [
       "fullBody",
       "beforeReading",
+      "originTitle",
       "origin",
+      "meaningTitle",
       "meaning",
+      "recognitionTitle",
+      "recognitionIntro",
       "seoTitle",
       "seoDescription",
       "socialImage"

@@ -83,6 +83,26 @@
   white-space: pre-line;
 }
 
+.writing-prose-divider {
+  width: 3.5rem;
+  height: 1px;
+  margin: 3.75rem auto;
+  background: color-mix(in srgb, var(--color-dust) 85%, transparent);
+}
+
+.writing-prose-quote {
+  margin: 3.5rem 0;
+  padding: 1.75rem 0 1.75rem 2rem;
+  border-left: 1px solid color-mix(in srgb, var(--color-ink) 32%, transparent);
+  white-space: pre-line;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.75;
+  color: color-mix(in srgb, var(--color-ink) 78%, transparent);
+}
+
 .writing-prose-first::first-letter {
   float: left;
   margin: 0.08em 0.09em 0 0;

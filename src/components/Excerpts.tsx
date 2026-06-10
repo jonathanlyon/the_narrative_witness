@@ -145,6 +145,7 @@ export const Excerpts: React.FC = () => {
                         src={excerpt.thumbnail}
                         alt=""
                         className="h-16 w-24 shrink-0 border border-dust/50 object-cover grayscale"
+                        style={{ objectPosition: excerpt.thumbnailPosition }}
                         loading="lazy"
                       />
                     )}
