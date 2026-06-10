@@ -2,135 +2,23 @@ import React, { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
-  ArrowUp,
   CheckCircle,
   Mail,
-  Menu,
-  X,
 } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
 import { EXCERPTS } from "../data/excerpts";
 import { READER_COMMENTS } from "../data/readerComments";
 import {
   initAnalytics,
-  trackNavigationClicked,
   trackSupportRegistration,
   trackWritingOpened,
 } from "../lib/analytics";
 import { subscribeReader } from "../lib/signup";
+import { Footer } from "./Footer";
+import { Header } from "./Header";
 
 const currentWritingId = () => {
   const segments = window.location.pathname.split("/").filter(Boolean);
   return segments.at(-1) || "";
-};
-
-const homeLink = (section: string) => `/${section}`;
-
-const WritingHeader: React.FC<{ title: string }> = ({ title }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const links = [
-    { label: "The Book", href: homeLink("#book") },
-    { label: "Writing", href: homeLink("#excerpts") },
-    { label: "Recognition", href: homeLink("#recognition") },
-    { label: "About", href: homeLink("#about") },
-  ];
-
-  useEffect(() => {
-    if (!isOpen) return;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [isOpen]);
-
-  return (
-    <>
-      <header className="fixed inset-x-0 top-0 z-[70] border-b border-dust/40 bg-paper/95 py-4 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 md:px-12 lg:px-16">
-          <a
-            href="/"
-            className="flex min-w-0 flex-col transition-opacity hover:opacity-70"
-            onClick={() =>
-              trackNavigationClicked({
-                destination: "/",
-                label: "The Narrative Witness",
-                placement: "writing_header",
-              })
-            }
-          >
-            <span className="font-serif text-lg font-medium uppercase tracking-wider text-ink md:text-xl">
-              The Narrative Witness
-            </span>
-            <span className="hidden truncate font-mono text-[8px] uppercase tracking-[0.22em] text-ash sm:block">
-              {title}
-            </span>
-          </a>
-
-          <nav className="hidden items-center gap-9 lg:flex">
-            {links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="font-mono text-[9px] uppercase tracking-widest text-ash transition-colors hover:text-ink"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#support"
-              className="border-b border-ink pb-1 font-mono text-[9px] uppercase tracking-widest text-ink"
-            >
-              Show Support
-            </a>
-          </nav>
-
-          <button
-            type="button"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isOpen}
-            onClick={() => setIsOpen((open) => !open)}
-            className="relative z-[72] text-ink lg:hidden"
-          >
-            {isOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </header>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            className="fixed inset-0 z-[65] flex h-[100dvh] flex-col justify-between overflow-y-auto bg-paper px-8 pb-10 pt-28 lg:hidden paper-grain"
-          >
-            <nav className="flex flex-col gap-7">
-              <span className="border-b border-dust/40 pb-3 font-mono text-[9px] uppercase tracking-[0.22em] text-ash/60">
-                Continue through the project
-              </span>
-              {links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="font-serif text-3xl font-light text-ink"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
-            <a
-              href="#support"
-              onClick={() => setIsOpen(false)}
-              className="bg-ink py-4 text-center font-mono text-[9px] uppercase tracking-[0.2em] text-paper"
-            >
-              Show Support
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
 };
 
 const WritingSupportForm: React.FC<{ title: string }> = ({ title }) => {
@@ -218,37 +106,6 @@ const WritingSupportForm: React.FC<{ title: string }> = ({ title }) => {
   );
 };
 
-const WritingFooter: React.FC = () => (
-  <footer className="border-t border-paper/15 bg-ink py-14 text-paper/60">
-    <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 md:flex-row md:items-end md:justify-between md:px-12 lg:px-16">
-      <div>
-        <a href="/" className="font-serif text-xl uppercase tracking-wider text-paper">
-          The Narrative Witness
-        </a>
-        <p className="mt-4 max-w-md text-xs font-light leading-relaxed">
-          An independently published literary work exploring adoption,
-          relinquishment, identity, memory, and the return of authorship.
-        </p>
-      </div>
-      <div className="flex flex-wrap items-center gap-6 font-mono text-[9px] uppercase tracking-widest">
-        <a href="/#excerpts" className="transition-colors hover:text-paper">
-          Writing
-        </a>
-        <a href="/#recognition" className="transition-colors hover:text-paper">
-          Recognition
-        </a>
-        <button
-          type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="inline-flex items-center gap-2 transition-colors hover:text-paper"
-        >
-          Return to top <ArrowUp size={11} aria-hidden="true" />
-        </button>
-      </div>
-    </div>
-  </footer>
-);
-
 export const WritingPage: React.FC = () => {
   const writing = EXCERPTS.find(
     (excerpt) =>
@@ -310,7 +167,7 @@ export const WritingPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper">
-      <WritingHeader title={writing.title} />
+      <Header forceSolid />
 
       <main>
         <section className="relative min-h-[44rem] overflow-hidden bg-ink pt-20 text-paper md:min-h-[46rem]">
@@ -594,7 +451,7 @@ export const WritingPage: React.FC = () => {
         </section>
       </main>
 
-      <WritingFooter />
+      <Footer />
     </div>
   );
 };

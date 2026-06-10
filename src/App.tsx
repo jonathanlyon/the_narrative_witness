@@ -23,6 +23,24 @@ export default function App() {
     void initAnalytics();
   }, []);
 
+  useEffect(() => {
+    if (!window.location.hash) return;
+
+    const scrollToRequestedSection = () => {
+      const target = document.querySelector(window.location.hash);
+      target?.scrollIntoView({ block: "start" });
+    };
+    const frame = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(scrollToRequestedSection);
+    });
+    const fallback = window.setTimeout(scrollToRequestedSection, 180);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(fallback);
+    };
+  }, []);
+
   return (
     <div className="relative min-h-screen bg-paper text-ink font-sans flex flex-col selection:bg-ink selection:text-paper">
       {/* Exquisite Top Navigation Index */}

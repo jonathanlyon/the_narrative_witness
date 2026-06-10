@@ -24,6 +24,10 @@
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
+
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
 }
 
 /* Custom noise/paper grain background texture */

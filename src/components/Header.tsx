@@ -3,17 +3,29 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { trackNavigationClicked } from "../lib/analytics";
 
-export const Header: React.FC = () => {
+export const Header: React.FC<{ forceSolid?: boolean }> = ({
+  forceSolid = false,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
+  const isHomePage = window.location.pathname === "/";
+  const sectionHref = (hash: string) => (isHomePage ? hash : `/${hash}`);
   const menuItems = [
-    { label: "The Book", href: "#book" },
-    { label: "Excerpts", href: "#excerpts" },
-    { label: "Recognition", href: "#recognition" },
-    { label: "The Project", href: "#project" },
-    { label: "About", href: "#about" },
+    { label: "The Book", href: sectionHref("#book"), section: "#book" },
+    { label: "Writing", href: sectionHref("#excerpts"), section: "#excerpts" },
+    {
+      label: "Recognition",
+      href: sectionHref("#recognition"),
+      section: "#recognition",
+    },
+    {
+      label: "The Project",
+      href: sectionHref("#project"),
+      section: "#project",
+    },
+    { label: "About", href: sectionHref("#about"), section: "#about" },
   ];
 
   useEffect(() => {
@@ -53,13 +65,13 @@ export const Header: React.FC = () => {
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
     menuItems.forEach((item) => {
-      const el = document.querySelector(item.href);
+      const el = document.querySelector(item.section);
       if (el) observer.observe(el);
     });
 
     return () => {
       menuItems.forEach((item) => {
-        const el = document.querySelector(item.href);
+        const el = document.querySelector(item.section);
         if (el) observer.unobserve(el);
       });
     };
@@ -71,12 +83,18 @@ export const Header: React.FC = () => {
     label: string,
     placement: "desktop_header" | "mobile_menu" | "brand",
   ) => {
-    e.preventDefault();
     trackNavigationClicked({
       destination: href,
       label,
       placement,
     });
+
+    if (href.startsWith("/")) {
+      setIsOpen(false);
+      return;
+    }
+
+    e.preventDefault();
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -89,8 +107,10 @@ export const Header: React.FC = () => {
       <header
         id="main-header"
         className={`fixed top-0 left-0 w-full z-[70] transition-all duration-500 border-b ${
-          scrolled
-            ? "bg-paper/95 backdrop-blur-md py-4 border-dust/40"
+          forceSolid || scrolled
+            ? `bg-paper/95 backdrop-blur-md border-dust/40 ${
+                scrolled ? "py-4" : "py-6"
+              }`
             : "bg-transparent py-6 border-transparent"
         }`}
       >
@@ -98,9 +118,14 @@ export const Header: React.FC = () => {
           <div className="flex flex-col">
             <a
               id="header-logo"
-              href="#"
+              href={isHomePage ? "#" : "/"}
               onClick={(e) =>
-                scrollToSection(e, "#root", "The Narrative Witness", "brand")
+                scrollToSection(
+                  e,
+                  isHomePage ? "#root" : "/",
+                  "The Narrative Witness",
+                  "brand",
+                )
               }
               className="font-serif text-lg md:text-xl tracking-wider uppercase font-medium hover:opacity-75 transition-opacity duration-300"
             >
@@ -114,7 +139,7 @@ export const Header: React.FC = () => {
           {/* Desktop Nav */}
           <nav id="desktop-nav" className="hidden lg:flex items-center gap-10">
             {menuItems.map((item) => {
-              const isActive = activeSection === item.href;
+              const isActive = activeSection === item.section;
               return (
                 <a
                   id={`nav-${item.label.toLowerCase()}`}
@@ -145,9 +170,14 @@ export const Header: React.FC = () => {
             })}
             <a
               id="nav-cta"
-              href="#signup"
+              href={isHomePage ? "#signup" : "#support"}
               onClick={(e) =>
-                scrollToSection(e, "#signup", "Support", "desktop_header")
+                scrollToSection(
+                  e,
+                  isHomePage ? "#signup" : "#support",
+                  "Support",
+                  "desktop_header",
+                )
               }
               className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-ink hover:text-ash hover:italic border-b border-b-ink pb-0.5 transition-all duration-300"
             >
@@ -210,11 +240,11 @@ export const Header: React.FC = () => {
             <div className="flex flex-col gap-4">
               <a
                 id="mobile-cta"
-                href="#signup"
+                href={isHomePage ? "#signup" : "#support"}
                 onClick={(e) =>
                   scrollToSection(
                     e,
-                    "#signup",
+                    isHomePage ? "#signup" : "#support",
                     "Register Support",
                     "mobile_menu",
                   )

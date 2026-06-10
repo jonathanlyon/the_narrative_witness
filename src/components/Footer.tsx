@@ -6,6 +6,8 @@ import {
 } from "../lib/analytics";
 
 export const Footer: React.FC = () => {
+  const isHomePage = window.location.pathname === "/";
+  const sectionHref = (hash: string) => (isHomePage ? hash : `/${hash}`);
   const handleScrollTop = () => {
     trackNavigationClicked({
       destination: "#root",
@@ -53,7 +55,7 @@ export const Footer: React.FC = () => {
             <ul className="flex flex-col gap-2.5 font-mono text-[10px] uppercase tracking-wider">
               <li>
                 <a
-                  href="#book"
+                  href={sectionHref("#book")}
                   onClick={() =>
                     trackNavigationClicked({
                       destination: "#book",
@@ -68,7 +70,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="#excerpts"
+                  href={sectionHref("#excerpts")}
                   onClick={() =>
                     trackNavigationClicked({
                       destination: "#excerpts",
@@ -83,7 +85,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="#recognition"
+                  href={sectionHref("#recognition")}
                   onClick={() =>
                     trackNavigationClicked({
                       destination: "#recognition",
@@ -98,7 +100,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href="#project"
+                  href={sectionHref("#project")}
                   onClick={() =>
                     trackNavigationClicked({
                       destination: "#project",
