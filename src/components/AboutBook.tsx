@@ -12,7 +12,7 @@ export const AboutBook: React.FC = () => {
       <div className="absolute top-0 right-12 h-full w-[1px] bg-dust/20 max-lg:hidden" />
 
       <div className="max-w-4xl mx-auto px-6 relative z-10">
-        
+
         {/* Editorial Header */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-20">
           <FadeIn delay={0.1}>
@@ -37,7 +37,7 @@ export const AboutBook: React.FC = () => {
               We are given a story that begins in our absolute absence. For the relinquished adult, history starts with a blank ledger: a separation presented to the world as a "clean slate." In reality, it is a profound somatic and psychological rupture that echoes across decades.
             </p>
           </StaggerItem>
-          
+
           <StaggerItem>
             <p className="font-serif text-[1.125rem] md:text-[1.25rem] leading-[1.8] text-ink-light font-light tracking-wide">
               The book does not obey the clean lines of traditional chronology. It is non-linear, literary, and immersive, unfolding through essayistic prose, reflective poetry, and emotionally intimate fragments. Its structure mirrors the fragmented geography of memory itself, refusing comforting platitudes in favor of honest witness.
@@ -59,7 +59,7 @@ export const AboutBook: React.FC = () => {
 
         {/* Marginalia footnote */}
         <FadeIn delay={0.5} className="mt-20 md:mt-24 border-t border-dust/40 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between text-ash text-[10px] font-mono tracking-widest uppercase gap-4 max-w-2xl mx-auto">
-          <span>CATALOG NO. SF-MEMOIR-2026</span>
+          <span>CATALOG NO. SF-TESTIMONY-2026</span>
           <span className="italic normal-case font-serif text-xs">
             To write is to reclaim the central archive.
           </span>

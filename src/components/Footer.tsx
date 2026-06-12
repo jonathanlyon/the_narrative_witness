@@ -27,10 +27,10 @@ export const Footer: React.FC = () => {
       className="relative z-10 border-t border-paper/15 bg-ink py-16 text-paper/65 paper-grain md:py-20"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
-        
+
         {/* Core content grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 pb-12 border-b border-paper/15 items-stretch">
-          
+
           {/* Logo & Slogan Column */}
           <div className="md:col-span-5 flex flex-col justify-between">
             <div>
@@ -41,7 +41,7 @@ export const Footer: React.FC = () => {
                 An independently published literary work exploring adoption, relinquishment, identity, and memory. Reclaiming the sovereign voice of the relinquished adult.
               </p>
             </div>
-            
+
             <div className="mt-8 font-mono text-[8px] tracking-[0.2em] uppercase text-ash/80">
               EST. 2026 KICKSTARTER PRE-LAUNCH
             </div>
@@ -135,7 +135,7 @@ export const Footer: React.FC = () => {
                 INTEGRITY &amp; DISCLOSURE
               </span>
               <p className="font-sans text-xs font-light leading-relaxed text-paper/60 text-left md:text-justify">
-                The Narrative Witness is a literary and artistic memoir project. While creative writing and collaborative witness are powerful avenues for self-reflection and community support, they do not constitute clinical therapy or psychiatric diagnosis. If you are seeking professional counseling or mental health support, we encourage connecting with qualified, adoption-competent professionals.
+                The Narrative Witness is a literary and artistic testimony project. While creative writing and collaborative witness are powerful avenues for self-reflection and community support, they do not constitute clinical therapy or psychiatric diagnosis. If you are seeking professional counseling or mental health support, we encourage connecting with qualified, adoption-competent professionals.
               </p>
             </div>
           </div>
