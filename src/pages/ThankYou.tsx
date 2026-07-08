@@ -66,7 +66,7 @@ export function ThankYouPage() {
               <span className="font-mono text-xs text-ash">02</span>
               <span className="text-sm font-light leading-relaxed text-ink-light">
                 You&rsquo;ll receive occasional progress updates by email. You
-                can opt out of these at any time &mdash; order-related emails
+                can opt out of these at any time; order-related emails
                 will still reach you.
               </span>
             </li>

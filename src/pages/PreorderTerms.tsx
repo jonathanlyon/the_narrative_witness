@@ -58,7 +58,7 @@ export function PreorderTermsPage() {
 
         <p className="mt-10 font-serif text-base font-light italic leading-relaxed text-ink-light md:text-[1.05rem]">
           Thank you for pre-ordering The Narrative Witness. Pre-orders are what
-          make this book possible &mdash; they let it be produced directly,
+          make this book possible; they let it be produced directly,
           funded by the readers who most want it to exist. Please read these
           terms; they&rsquo;re short, and they&rsquo;re written to be fair to
           you.
@@ -92,7 +92,7 @@ export function PreorderTermsPage() {
             <ul className="flex flex-col gap-3 pl-5 list-disc marker:text-ash">
               <li>
                 <strong className="font-normal text-ink">
-                  Reserve &mdash; NZ$10 now.
+                  Reserve: NZ$10 now.
                 </strong>{" "}
                 A deposit that counts toward the NZ$35 price. When the book is
                 ready to ship, we&rsquo;ll email you a secure link to pay the
@@ -101,17 +101,16 @@ export function PreorderTermsPage() {
               </li>
               <li>
                 <strong className="font-normal text-ink">
-                  Founder &mdash; NZ$35 now.
+                  Founder: NZ$35 now.
                 </strong>{" "}
-                Paid in full, with free domestic (New Zealand) shipping.
-                International shipping, if applicable, is added at fulfilment
-                or shown at checkout.
+                Paid in full. Shipping is added at checkout based on your
+                destination, and there is nothing further to pay at fulfilment.
               </li>
             </ul>
             <p>
               If you reserve with a deposit and later decide not to complete
-              your purchase &mdash; or if we don&rsquo;t hear back within 30
-              days of our final reminder to pay the balance &mdash; your
+              your purchase, or if we don&rsquo;t hear back within 30
+              days of our final reminder to pay the balance, your
               reservation is released and your deposit is refunded in full.
             </p>
           </Section>
@@ -141,10 +140,11 @@ export function PreorderTermsPage() {
               relying on an address given far in advance.
             </p>
             <p>
-              Shipping costs are either included (Founder tier, domestic) or
-              added at fulfilment based on your destination. For
-              international orders, any customs duties, taxes, or import fees
-              charged by your country are your responsibility.
+              Shipping is added at checkout for Founder orders, or at
+              fulfilment for Reserve orders, based on your destination. Because
+              the book is printed to order in Australia, every copy is posted
+              from there. For international orders, any customs duties, taxes,
+              or import fees charged by your country are your responsibility.
             </p>
           </Section>
 
@@ -162,8 +162,8 @@ export function PreorderTermsPage() {
           <Section number="6" title="Refunds and cancellations">
             <p>
               The simple version: you can cancel your pre-order and receive a
-              full refund of everything you&rsquo;ve paid &mdash; deposit,
-              balance, or both &mdash; at any time before your copy enters
+              full refund of everything you&rsquo;ve paid (deposit,
+              balance, or both) at any time before your copy enters
               production, for any reason. Just email us at{" "}
               <a
                 href="mailto:orders@thenarrativewitness.com"
@@ -214,7 +214,7 @@ export function PreorderTermsPage() {
               download link when the edition is released; no physical item is
               shipped. Because a digital file can&rsquo;t be returned once
               delivered, change-of-mind refunds may not be available after
-              the file has been sent &mdash; but everything in section 6
+              the file has been sent, but everything in section 6
               applies fully up to that point.
             </p>
           </Section>

@@ -170,10 +170,10 @@ export const BOOK = {
       editionId: "paperback",
       name: "Founder",
       priceLabel: "NZ$35",
-      payNow: "NZ$35 now, paid in full",
-      later: "Nothing more to pay · free NZ shipping",
+      payNow: "NZ$35 now, plus shipping",
+      later: "Nothing more to pay at fulfilment",
       perks: [
-        "Free New Zealand shipping",
+        "The whole purchase brought forward",
         "Signed, numbered first edition",
         "Name in the Founding Witnesses page (opt-in)",
         "Fully refundable before printing",

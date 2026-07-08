@@ -45,16 +45,18 @@ const TIERS = {
     tier: "founder",
     name: "The Narrative Witness: Founder (paid in full)",
     description:
-      "Signed, numbered first-edition paperback, paid in full, with free New Zealand shipping. Ships est. Dec 2026 – Jan 2027. Fully refundable before printing.",
+      "Signed, numbered first-edition paperback, paid in full, plus shipping. Ships est. Dec 2026 – Jan 2027. Fully refundable before printing.",
     amountCents: 3500,
   },
 };
 
-// Flat-rate shipping zones (cents) — used only when FULFILMENT_MODE=print,
-// i.e. Lulu-sandbox testing now and real fulfilment from Dec 2026.
+// Flat-rate shipping zones (cents). Lulu prints in Australia, so even a NZ
+// copy is an international post (live Lulu quote: ~NZ$18 to NZ, more elsewhere).
+// These flat rates are set to comfortably cover that; refine with api/quote.js
+// later if variance eats margin.
 const SHIPPING = {
-  domestic: { amount: 0, label: "New Zealand (free for Founders)" },
-  international: { amount: 2200, label: "International" },
+  domestic: { amount: 1200, label: "New Zealand" },
+  international: { amount: 3200, label: "International" },
 };
 
 const SHIPPING_COUNTRIES = ["NZ", "AU", "US", "GB", "CA", "IE", "DE", "FR", "NL", "SE"];
@@ -99,7 +101,12 @@ export default async function handler(request, response) {
   const qty = Math.min(Math.max(parseInt(quantity, 10) || 1, 1), 5);
 
   const fulfilmentMode = (process.env.FULFILMENT_MODE || "preorder").trim().toLowerCase();
-  const collectShipping = fulfilmentMode === "print";
+
+  // Shipping is collected + charged now for a paid-in-full order (Founder):
+  // that's the copy that ships, and it needs an address for Lulu anyway. A
+  // Reserve deposit ships nothing now — its address, balance, and shipping are
+  // taken later via the fulfilment link (per the pre-order terms).
+  const collectShipping = offer.tier === "founder";
 
   const stripe = new Stripe(secretKey);
   const origin = request.headers.origin || SITE_URL;
@@ -122,8 +129,7 @@ export default async function handler(request, response) {
       ],
       // Lulu will need a phone number at fulfilment; collect it now.
       phone_number_collection: { enabled: true },
-      // Pre-orders don't ship yet — the address is confirmed by email at
-      // fulfilment (per the terms). Print mode collects it for Lulu.
+      // Founder pays shipping now; Reserve settles it at fulfilment.
       ...(collectShipping
         ? {
             shipping_address_collection: { allowed_countries: SHIPPING_COUNTRIES },
