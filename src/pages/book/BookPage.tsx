@@ -44,7 +44,7 @@ export const BookPage: React.FC = () => {
       {/* Quiet persistent header: title + pre-order */}
       <header className="fixed top-0 z-50 w-full bg-paper/80 backdrop-blur-sm border-b border-dust/40">
         <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between gap-4">
-          <a href="#top" className="font-mono text-[0.58rem] uppercase tracking-[0.3em] text-ink truncate hover:text-ash transition-colors">
+          <a href="/" className="font-mono text-[0.58rem] uppercase tracking-[0.3em] text-ink truncate hover:text-ash transition-colors">
             The Narrative Witness <span className="text-ash hidden sm:inline">· First edition</span>
           </a>
           <Button variant="primary" className="!py-2.5 !px-5" onClick={jumpToPreorder}>Pre-order</Button>
@@ -175,21 +175,7 @@ export const BookPage: React.FC = () => {
           <ReadingRoom />
         </section>
 
-        {/* 5 — Themes */}
-        <section className="max-w-3xl mx-auto px-6 py-20 text-center">
-          <FadeIn>
-            <Eyebrow>Themes</Eyebrow>
-            <div className="flex flex-wrap justify-center gap-x-3 gap-y-3 mt-8">
-              {BOOK.themes.map((theme) => (
-                <span key={theme} className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ink-light border border-dust px-3.5 py-2 transition-colors hover:border-ash hover:text-ink">
-                  {theme}
-                </span>
-              ))}
-            </div>
-          </FadeIn>
-        </section>
-
-        {/* 6 — The object + metadata */}
+        {/* 5 — The object + metadata */}
         <section id="object" className="border-t border-dust/60">
           <div className="max-w-3xl mx-auto px-6 py-24 text-center">
             <FadeIn>

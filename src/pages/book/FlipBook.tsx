@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Excerpt } from "../../types";
-import { buildLeaves, Leaf, MarginNote } from "./leaves";
+import { buildLeaves, Leaf, toRoman } from "./leaves";
 import { AudioReading } from "./AudioReading";
 
 /**
@@ -10,9 +10,6 @@ import { AudioReading } from "./AudioReading";
  * exactly as a physical book does. Turned leaves fan to the left of the spine,
  * giving the open-book silhouette. Honors prefers-reduced-motion.
  */
-
-const ROMAN = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi", "xii", "xiii", "xiv", "xv", "xvi", "xvii", "xviii", "xix", "xx"];
-const roman = (n: number) => ROMAN[n - 1] ?? String(n);
 
 export const FlipBook: React.FC<{ excerpt: Excerpt; audioSrc?: string }> = ({ excerpt, audioSrc }) => {
   useFlipStyles();
@@ -98,7 +95,7 @@ export const FlipBook: React.FC<{ excerpt: Excerpt; audioSrc?: string }> = ({ ex
         </button>
         <div className="nw-progress" role="presentation">
           <span className="nw-folio">
-            {roman(turned + 1)} <span className="nw-folio-sep">/</span> {roman(total)}
+            {toRoman(turned + 1)} <span className="nw-folio-sep">/</span> {toRoman(total)}
           </span>
           <div className="nw-progress-track">
             <div className="nw-progress-fill" style={{ width: `${((turned + 1) / total) * 100}%` }} />
@@ -154,14 +151,16 @@ const LeafFace: React.FC<{ leaf: Leaf }> = ({ leaf }) => {
       );
     case "body":
       return (
-        <div className={`nw-page nw-page-body ${leaf.note ? "has-note" : ""}`}>
+        <div className="nw-page nw-page-body">
           <div className="nw-body-text">
             {leaf.paragraphs.map((p, i) => (
               <p key={i} className={i === 0 && leaf.index === 1 ? "nw-first" : ""}>{p}</p>
             ))}
           </div>
-          {leaf.note && <MarginNoteView note={leaf.note} />}
-          <p className="nw-folio-mark">{leaf.index}</p>
+          <div className="nw-page-footer">
+            {leaf.note && <p className="nw-note">{leaf.note}</p>}
+            <p className="nw-folio-mark">{toRoman(leaf.index)}</p>
+          </div>
         </div>
       );
     case "companion":
@@ -178,13 +177,6 @@ const LeafFace: React.FC<{ leaf: Leaf }> = ({ leaf }) => {
       );
   }
 };
-
-const MarginNoteView: React.FC<{ note: MarginNote }> = ({ note }) => (
-  <aside className="nw-margin">
-    <p className="nw-margin-text">{note.text}</p>
-    <p className="nw-margin-name">— {note.name}</p>
-  </aside>
-);
 
 /* --------------------------- scoped styles --------------------------- */
 
@@ -210,15 +202,19 @@ const CSS = `
 .nw-back { transform: rotateY(180deg); background: linear-gradient(to left, #EFEAE1 0%, #F7F4EE 7%, #F7F4EE 100%); }
 .nw-back-grain { position: absolute; inset: 0; opacity: 0.5; background-image: repeating-linear-gradient(0deg, transparent, transparent 22px, rgba(26,26,26,0.02) 23px); }
 
-.nw-page { position: absolute; inset: 0; padding: 8.5% 10% 9%; display: flex; flex-direction: column; color: #17150F; font-family: Georgia, "Times New Roman", serif; }
+.nw-page { position: absolute; inset: 0; padding: 8.5% 10% 7%; display: flex; flex-direction: column; color: #17150F; font-family: Georgia, "Times New Roman", serif; }
 .nw-kicker { font-family: "JetBrains Mono", monospace; font-size: 0.5rem; letter-spacing: 0.3em; text-transform: uppercase; color: #8A8479; margin: 0 0 1.4em; }
-.nw-body-text { font-size: clamp(0.62rem, 1.55vw, 0.82rem); line-height: 1.72; flex: 1; overflow: hidden; }
-.nw-body-text p { margin: 0 0 0.7em; text-align: justify; hyphens: auto; }
-/* Pages carrying a reader note give up their outer margin to the gutter. */
-.nw-page-body.has-note .nw-body-text { width: 64%; }
+/* Type scales with the page so a leaf fills at every viewport. */
+.nw-body-text { font-size: calc(var(--page-w) * 0.0375); line-height: 1.72; flex: 1 1 auto; overflow: hidden; }
+.nw-body-text p { margin: 0 0 0.62em; text-align: justify; hyphens: auto; }
 .nw-body-text p.nw-first::first-letter { float: left; font-size: 3.1em; line-height: 0.72; padding: 0.05em 0.08em 0 0; font-weight: 500; }
 .nw-first { text-align: left !important; }
-.nw-folio-mark { text-align: center; font-family: Georgia, serif; font-size: 0.62rem; color: #9A9488; margin: 0.6em 0 0; }
+
+/* Consistent footer (proportional to the page so capacity matches at every
+   viewport) reserving room for a note under the text on every leaf. */
+.nw-page-footer { flex: none; min-height: calc(var(--page-w) * 0.15); display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: calc(var(--page-w) * 0.015); padding-top: calc(var(--page-w) * 0.02); }
+.nw-note { font-family: "Caveat", "Comic Sans MS", cursive; font-size: calc(var(--page-w) * 0.052); line-height: 1.08; color: #3E5C8A; text-align: center; transform: rotate(-1.3deg); margin: 0; max-width: 100%; }
+.nw-folio-mark { text-align: center; font-family: Georgia, serif; font-size: calc(var(--page-w) * 0.032); color: #9A9488; margin: 0; }
 
 /* Plate */
 .nw-page-plate { justify-content: center; }
@@ -238,12 +234,6 @@ const CSS = `
 /* Companion */
 .nw-companion-title { font-size: clamp(0.92rem, 2.1vw, 1.2rem); font-weight: 500; font-style: italic; margin: 0 0 1.3em; line-height: 1.22; }
 .nw-companion-body { font-size: clamp(0.6rem, 1.45vw, 0.78rem); }
-
-/* Marginalia — handwritten reader recognition, in the outer gutter */
-.nw-margin { position: absolute; right: 6%; top: 24%; width: 30%; transform: rotate(-4deg); }
-.nw-margin-text { font-family: "Caveat", "Comic Sans MS", cursive; font-size: clamp(0.88rem, 2.1vw, 1.12rem); line-height: 1.12; color: #3E5C8A; margin: 0; }
-.nw-margin-name { font-family: "Caveat", cursive; font-size: clamp(0.74rem, 1.7vw, 0.92rem); color: #6B7FA0; text-align: right; margin: 0.35em 0 0; }
-.nw-margin::before { content: ""; position: absolute; left: -10%; top: -6%; width: 1px; height: 112%; background: linear-gradient(to bottom, transparent, #C9C1B4 20%, #C9C1B4 80%, transparent); }
 
 /* Turn zones */
 .nw-zone { position: absolute; top: 0; height: 100%; width: 50%; border: 0; background: transparent; cursor: pointer; z-index: 60; }

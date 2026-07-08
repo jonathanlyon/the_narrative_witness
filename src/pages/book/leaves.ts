@@ -1,27 +1,21 @@
 import { Excerpt } from "../../types";
-import { READER_COMMENTS, ReaderComment } from "../../data/readerComments";
 
 /**
  * Turns an excerpt + its companion material into an ordered run of "leaves"
  * for the flip-book reader, the way the printed book would sequence them:
  *
  *   plate  ->  before reading  ->  the piece (paginated)  ->  where this began
- *          ->  what it means
+ *          ->  why I wrote it
  *
- * Reader-recognition quotes are threaded into the body-page margins as
- * handwritten "this is me" notes.
+ * A few body pages carry a handwritten note in the footer, in the voice of a
+ * reader annotating their own copy (unattributed, private).
  */
 
 export type Leaf =
   | { kind: "plate"; title: string; image?: string; alt?: string; code: string; caption?: string }
   | { kind: "before"; title: string; type: Excerpt["type"]; before: string }
-  | { kind: "body"; index: number; total: number; paragraphs: string[]; note?: MarginNote }
+  | { kind: "body"; index: number; total: number; paragraphs: string[]; note?: string }
   | { kind: "companion"; label: string; title: string; body: string };
-
-export interface MarginNote {
-  name: string;
-  text: string;
-}
 
 // Stable archive-style plate code (mirrors writing-studio/src/lib/book.ts).
 export function plateCode(id: string): string {
@@ -30,7 +24,44 @@ export function plateCode(id: string): string {
   return `${String.fromCharCode(65 + (h % 26))}-${String(h % 1000).padStart(3, "0")}`;
 }
 
-const WORDS_PER_PAGE = 108; // a book-sized leaf that fills the page
+// Lowercase roman numerals for the page folios and the reader's counter.
+export function toRoman(n: number): string {
+  if (n <= 0) return String(n);
+  const map: [number, string][] = [
+    [1000, "m"], [900, "cm"], [500, "d"], [400, "cd"], [100, "c"], [90, "xc"],
+    [50, "l"], [40, "xl"], [10, "x"], [9, "ix"], [5, "v"], [4, "iv"], [1, "i"],
+  ];
+  let out = "";
+  for (const [v, s] of map) while (n >= v) { out += s; n -= v; }
+  return out;
+}
+
+/**
+ * Notes a reader might pencil into their own copy of a book like this: private,
+ * first-person, unattributed. Not testimonials.
+ */
+const READER_NOTES = [
+  "this is me.",
+  "I have never said this out loud.",
+  "I do this too. every time.",
+  "I left before it could leave me.",
+  "all of them. every almost-life is mine.",
+  "I thought it was only me.",
+  "read this at 3am and couldn’t breathe.",
+  "who wrote this from inside my head?",
+  "I felt this long before I had the words.",
+  "the wall is still up. I built it.",
+  "yes. god, yes.",
+  "I never knew it had a name.",
+  "I keep the gallery too.",
+  "this is the sentence I’ve been trying to write.",
+  "put the book down here. came back an hour later.",
+  "mine was never a clean slate either.",
+];
+
+// Around 112 words fills a leaf at the reader's proportional type size
+// without clipping at the smallest viewport.
+const WORDS_PER_PAGE = 112;
 
 function paginate(body: string): string[][] {
   const paragraphs = body
@@ -50,8 +81,9 @@ function paginate(body: string): string[][] {
 
   for (const paragraph of paragraphs) {
     const words = paragraph.split(/\s+/);
-    if (words.length > WORDS_PER_PAGE * 1.5) {
-      // A long paragraph gets split across pages on sentence boundaries.
+    if (words.length > WORDS_PER_PAGE * 1.4) {
+      // A long paragraph is split across pages on sentence boundaries, each
+      // chunk packed close to a full page.
       flush();
       const sentences = paragraph.match(/[^.!?]+[.!?]*\s*/g) ?? [paragraph];
       let chunk = "";
@@ -74,36 +106,18 @@ function paginate(body: string): string[][] {
     count += words.length;
   }
   flush();
-  return pages;
-}
 
-function notesFor(ids: number[]): MarginNote[] {
-  return ids
-    .map((id) => READER_COMMENTS.find((c: ReaderComment) => c.id === id))
-    .filter((c): c is ReaderComment => Boolean(c))
-    .map((c) => ({ name: c.name, text: scribble(c.comment) }));
-}
-
-// A margin note is a scribble, not a paragraph: keep it to a short, whole
-// phrase (a couple of sentences at most) so it sits in the gutter without
-// swamping the page.
-const NOTE_BUDGET = 96;
-function scribble(comment: string): string {
-  const clean = comment.replace(/\s+/g, " ").trim();
-  if (clean.length <= NOTE_BUDGET) return clean;
-  const sentences = clean.match(/[^.!?]+[.!?]*/g) ?? [clean];
-  let out = "";
-  for (const s of sentences) {
-    if (out && (out + s).length > NOTE_BUDGET) break;
-    out += s;
+  // Fold a very short trailing page back into the previous one so the run
+  // doesn't end on a nearly empty leaf.
+  if (pages.length > 1) {
+    const last = pages[pages.length - 1];
+    const lastWords = last.join(" ").split(/\s+/).length;
+    if (lastWords < WORDS_PER_PAGE * 0.28) {
+      pages[pages.length - 2] = pages[pages.length - 2].concat(last);
+      pages.pop();
+    }
   }
-  out = out.trim();
-  // A whole-sentence clip only if it carries some substance; otherwise take a
-  // rich phrase from the top and trail off, so tiny openers like "Wow!" don't
-  // become the entire note.
-  if (out.length >= 24 && out.length <= NOTE_BUDGET) return out;
-  const cut = clean.slice(0, NOTE_BUDGET - 1);
-  return cut.slice(0, cut.lastIndexOf(" ")).trim() + "…";
+  return pages;
 }
 
 export function buildLeaves(excerpt: Excerpt): Leaf[] {
@@ -123,12 +137,17 @@ export function buildLeaves(excerpt: Excerpt): Leaf[] {
   }
 
   const pages = paginate(excerpt.fullBody ?? excerpt.body);
-  const notes = notesFor(excerpt.recognitionIds ?? []);
 
-  // Pin each reader note to an evenly spaced body page (never the first).
-  const noteOnPage = new Map<number, MarginNote>();
-  notes.forEach((note, i) => {
-    const target = Math.round(((i + 1) / (notes.length + 1)) * (pages.length - 1));
+  // Deterministically pick a few reader notes for this excerpt and spread them
+  // across the body pages (never the first).
+  let seed = 0;
+  for (const ch of excerpt.id) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+  const noteCount = Math.min(3, Math.max(0, Math.floor((pages.length - 1) / 3)));
+  const chosen = Array.from({ length: noteCount }, (_, i) => READER_NOTES[(seed + i * 5) % READER_NOTES.length]);
+
+  const noteOnPage = new Map<number, string>();
+  chosen.forEach((note, i) => {
+    const target = Math.round(((i + 1) / (chosen.length + 1)) * (pages.length - 1));
     let page = Math.max(1, target);
     while (noteOnPage.has(page) && page < pages.length - 1) page += 1;
     if (page >= 1 && page < pages.length) noteOnPage.set(page, note);
