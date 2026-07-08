@@ -74,11 +74,13 @@ export function PreorderTermsPage() {
               made; see section 5 about timing.
             </p>
             <p>
-              The first edition is a signed 6&times;9 paperback, printed in
-              premium black and white with photography from the Witness
-              Archive. (If a hardcover or ebook edition is offered, its
-              format and price are shown at the point of sale; these terms
-              apply to it in the same way.)
+              The first edition is a 6&times;9 paperback, printed in premium
+              black and white with photography from the Witness Archive. Every
+              Founding Reader also receives a hand-signed, numbered bookplate,
+              inscribed by the author, to place inside their copy. (If a
+              hardcover or ebook edition is offered, its format and price are
+              shown at the point of sale; these terms apply to it in the same
+              way.)
             </p>
           </Section>
 
@@ -118,8 +120,9 @@ export function PreorderTermsPage() {
           <Section number="3" title="Founding Readers and your name in the book">
             <p>
               Everyone who pre-orders before the first edition goes to print
-              is a Founding Reader and receives a signed, numbered first
-              edition.
+              is a Founding Reader and receives the first edition together with
+              a hand-signed, numbered bookplate, inscribed by the author and
+              unique to their copy, to place inside the book.
             </p>
             <p>
               If you wish, you may also have your name printed in the
@@ -179,8 +182,9 @@ export function PreorderTermsPage() {
                 <strong className="font-normal text-ink">
                   After your copy enters production.
                 </strong>{" "}
-                Each copy is printed on demand and personalised for you
-                (signed, numbered, and where chosen, named). Once we&rsquo;ve
+                Each copy is printed on demand for you and paired with your
+                hand-signed, numbered bookplate (and, where chosen, your name
+                set into the book). Once we&rsquo;ve
                 begun producing your specific copy, we may not be able to
                 offer a change-of-mind refund. We&rsquo;ll always let you know
                 before production of your copy begins, so you have a clear
@@ -273,7 +277,7 @@ export function PreorderTermsPage() {
       </motion.article>
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
-        Signed first edition &middot; 2026
+First edition &middot; 2026
       </div>
     </main>
   );

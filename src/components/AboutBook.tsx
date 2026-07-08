@@ -52,7 +52,7 @@ export const AboutBook: React.FC = () => {
 
           <StaggerItem>
             <p className="font-serif text-[1.125rem] md:text-[1.25rem] leading-[1.8] text-ink-light font-light tracking-wide">
-              The book has grown from published reflections, private reckoning, and conversation with the wider adoptee community. You can read from it now, and reserve the signed first edition below, printed to order and shipped when it is ready so that the copy in your hands is made, quite literally, because you asked for it.
+              The book has grown from published reflections, private reckoning, and conversation with the wider adoptee community. You can read from it now, and reserve the first edition below, printed to order and shipped when it is ready so that the copy in your hands is made, quite literally, because you asked for it.
             </p>
           </StaggerItem>
         </StaggerContainer>

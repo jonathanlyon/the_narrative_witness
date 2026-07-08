@@ -17,7 +17,7 @@ export const MidpageCTA: React.FC = () => {
         <div className="lg:col-span-7">
           <FadeIn delay={0.1}>
             <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-paper/65">
-              The signed first edition
+              The first edition
             </span>
           </FadeIn>
 
@@ -29,7 +29,7 @@ export const MidpageCTA: React.FC = () => {
 
           <FadeIn delay={0.3}>
             <p className="mt-6 max-w-xl text-sm font-light leading-relaxed text-paper/75 md:text-base">
-              Pre-order the signed, numbered first edition now. Reserve your copy from {BOOK.tiers[0].priceLabel}, or
+              Pre-order the first edition now. Reserve your copy from {BOOK.tiers[0].priceLabel}, or
               take the founder edition in full. Printed to order and shipped {BOOK.shipWindow.replace(" (estimated)", "")};
               fully refundable any time before it prints.
             </p>

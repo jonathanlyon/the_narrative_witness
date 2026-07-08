@@ -35,7 +35,7 @@ export const Hero: React.FC = () => {
             <div className="inline-flex items-center gap-2 mb-5">
               <span className="w-1.5 h-1.5 bg-ink" />
               <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-ash">
-                The signed first edition · Pre-order now
+                The first edition · Pre-order now
               </span>
             </div>
           </FadeIn>
@@ -56,7 +56,7 @@ export const Hero: React.FC = () => {
             <p className="max-w-2xl text-left font-sans text-base font-light leading-relaxed text-ash md:text-lg">
               <em>The Narrative Witness</em> is a braided testimony on adoption, relinquishment, identity, and memory:
               personal fragments, essays, and poems held together as one act of witness, written first for the author’s
-              daughters. Pre-order the signed first edition now, printed to order and shipped {BOOK.shipWindow.replace(" (estimated)", "")}.
+              daughters. Pre-order the first edition now, printed to order and shipped {BOOK.shipWindow.replace(" (estimated)", "")}.
             </p>
           </FadeIn>
 
@@ -86,7 +86,7 @@ export const Hero: React.FC = () => {
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[9px] uppercase tracking-[0.18em] text-ash/80">
                 <span>Reserve from {BOOK.tiers[0].priceLabel}</span>
                 <span className="text-dust">·</span>
-                <span>Signed edition {BOOK.tiers[1].priceLabel}</span>
+                <span>Founder edition {BOOK.tiers[1].priceLabel}</span>
                 <span className="text-dust">·</span>
                 <span className="italic normal-case font-serif text-[11px] tracking-normal text-ash">{BOOK.dedication}</span>
               </div>

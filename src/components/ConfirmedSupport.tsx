@@ -33,7 +33,7 @@ export const ConfirmedSupport: React.FC = () => {
           You&rsquo;ll be among the first to hold this book.
         </h1>
         <p className="mx-auto mt-7 max-w-lg text-sm font-light leading-relaxed text-ash md:text-base">
-          Thank you for confirming. I&rsquo;ll write to you as the first edition is finished, and let you know the moment pre-orders reach their final call before the book goes to print. If you&rsquo;d like to reserve your copy now, you can pre-order the signed first edition any time.
+          Thank you for confirming. I&rsquo;ll write to you as the first edition is finished, and let you know the moment pre-orders reach their final call before the book goes to print. If you&rsquo;d like to reserve your copy now, you can pre-order the first edition any time.
         </p>
         <p className="mt-6 font-serif text-base italic text-ink-light">
           Jonathan
@@ -48,7 +48,7 @@ export const ConfirmedSupport: React.FC = () => {
       </motion.section>
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
-        Signed first edition · 2026
+        First edition · 2026
       </div>
     </main>
   );

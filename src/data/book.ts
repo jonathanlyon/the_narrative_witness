@@ -131,7 +131,7 @@ export const BOOK = {
       "6×9″ paperback, perfect-bound, matte laminate",
       "Premium black & white interior on white uncoated stock",
       "Photographic plates from the Witness Archive",
-      "Signed and numbered by the author",
+      "A hand-signed, numbered bookplate, inscribed by the author",
       "Founding Readers named in the book (opt-in)",
     ],
   },
@@ -158,7 +158,7 @@ export const BOOK = {
       later: "NZ$25 balance + shipping when the book is ready",
       perks: [
         "Counts in full toward the NZ$35 price",
-        "Signed, numbered first edition",
+        "Hand-signed, numbered bookplate",
         "Name in the Founding Witnesses page (opt-in)",
         "Fully refundable before printing",
       ],
@@ -174,7 +174,7 @@ export const BOOK = {
       later: "Nothing more to pay at fulfilment",
       perks: [
         "The whole purchase brought forward",
-        "Signed, numbered first edition",
+        "Hand-signed, numbered bookplate",
         "Name in the Founding Witnesses page (opt-in)",
         "Fully refundable before printing",
       ],

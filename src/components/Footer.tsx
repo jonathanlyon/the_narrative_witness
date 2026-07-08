@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
             </div>
 
             <div className="mt-8 font-mono text-[8px] tracking-[0.2em] uppercase text-ash/80">
-              EST. 2026 · SIGNED FIRST EDITION
+              EST. 2026 · FIRST EDITION
             </div>
           </div>
 

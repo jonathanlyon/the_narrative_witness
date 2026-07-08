@@ -90,9 +90,9 @@ export function ThankYouPage() {
         </div>
 
         <p className="mx-auto mt-10 max-w-md text-xs font-light italic leading-relaxed text-ash">
-          Everyone who pre-orders before printing is a signed, numbered
-          Founding Reader, with the option of having their name included on
-          the book&rsquo;s Founding Witnesses page.
+          Everyone who pre-orders before printing is a Founding Reader and
+          receives a hand-signed, numbered bookplate, with the option of having
+          their name included on the book&rsquo;s Founding Witnesses page.
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-6">
@@ -106,7 +106,7 @@ export function ThankYouPage() {
       </motion.section>
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
-        Signed first edition &middot; 2026
+First edition &middot; 2026
       </div>
     </main>
   );

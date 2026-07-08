@@ -73,7 +73,7 @@ export const PreorderTiers: React.FC = () => {
         <p className="font-mono text-[0.6rem] uppercase tracking-[0.35em] text-ash">Pre-order the first edition</p>
         <h2 className="font-serif text-4xl sm:text-5xl font-light mt-5">Become a Founding Reader</h2>
         <p className="max-w-xl mx-auto mt-5 text-ink-light leading-relaxed">
-          Every pre-order placed before the first printing is a signed, numbered first edition, and it directly
+          Every pre-order placed before the first printing comes with a hand-signed, numbered bookplate, and directly
           funds the completion of the book. Ships {BOOK.shipWindow}.
         </p>
       </FadeIn>

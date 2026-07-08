@@ -31,7 +31,7 @@ export const BuyTheBook: React.FC = () => {
             <FadeIn delay={0.3}>
               <p className="mt-6 font-serif text-[1.05rem] leading-[1.8] text-ink-light font-light">
                 A book made with the seriousness the subject deserves: printed to order, so no copy exists until a
-                reader asks for it, and each first edition is signed and numbered by hand.
+                reader asks for it, and every founding reader receives a hand-signed, numbered bookplate to place inside their copy.
               </p>
             </FadeIn>
             <FadeIn delay={0.4}>

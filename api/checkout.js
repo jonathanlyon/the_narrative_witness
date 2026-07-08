@@ -37,7 +37,7 @@ const TIERS = {
     tier: "reserve",
     name: "The Narrative Witness: Reserve (deposit)",
     description:
-      "NZ$10 deposit toward the NZ$35 signed first-edition paperback. Counts in full toward the price; the NZ$25 balance + shipping is invoiced when the book is ready (est. Dec 2026 – Jan 2027). Fully refundable before printing.",
+      "NZ$10 deposit toward the NZ$35 first-edition paperback, with a hand-signed, numbered bookplate. Counts in full toward the price; the NZ$25 balance + shipping is invoiced when the book is ready (est. Dec 2026 – Jan 2027). Fully refundable before printing.",
     amountCents: 1000,
   },
   "paperback:founder": {
@@ -45,7 +45,7 @@ const TIERS = {
     tier: "founder",
     name: "The Narrative Witness: Founder (paid in full)",
     description:
-      "Signed, numbered first-edition paperback, paid in full, plus shipping. Ships est. Dec 2026 – Jan 2027. Fully refundable before printing.",
+      "First-edition paperback with a hand-signed, numbered bookplate, paid in full, plus shipping. Ships est. Dec 2026 – Jan 2027. Fully refundable before printing.",
     amountCents: 3500,
   },
 };
