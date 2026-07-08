@@ -73,8 +73,8 @@ export const PreorderTiers: React.FC = () => {
         <p className="font-mono text-[0.6rem] uppercase tracking-[0.35em] text-ash">Pre-order the first edition</p>
         <h2 className="font-serif text-4xl sm:text-5xl font-light mt-5">Become a Founding Reader</h2>
         <p className="max-w-xl mx-auto mt-5 text-ink-light leading-relaxed">
-          Every pre-order placed before the first printing is a signed, numbered first edition — and directly funds
-          the completion of the book. Ships {BOOK.shipWindow}.
+          Every pre-order placed before the first printing is a signed, numbered first edition, and it directly
+          funds the completion of the book. Ships {BOOK.shipWindow}.
         </p>
       </FadeIn>
 
@@ -94,8 +94,8 @@ export const PreorderTiers: React.FC = () => {
 
       <FadeIn className="max-w-xl mx-auto mt-10 text-center">
         <p className="text-sm text-ash leading-relaxed italic font-serif text-base">
-          Pre-order terms, in one line: full refund available any time before your copy is printed, for any reason —
-          and a full refund if the book can’t be delivered. Deposits count toward the price.
+          Pre-order terms, in one line: full refund available any time before your copy is printed, for any
+          reason, and a full refund if the book can’t be delivered. Deposits count toward the price.
         </p>
         <a
           href="/preorder-terms"

@@ -81,7 +81,7 @@ export const BookPage: React.FC = () => {
                 intimate <span className="text-ash">→</span> expansive <span className="text-ash">→</span> distilled
               </h2>
               <p className="max-w-2xl mx-auto mt-6 text-ink-light leading-relaxed">
-                The personal story doesn’t run start-to-finish — it recurs. Every section moves through the same
+                The personal story doesn’t run start-to-finish; it recurs. Every section moves through the same
                 three registers, a rhythm the reader learns to trust, so three kinds of writing become one voice.
               </p>
             </FadeIn>
@@ -109,7 +109,7 @@ export const BookPage: React.FC = () => {
               Foundational · Relational · Societal · Witness
             </h2>
             <p className="max-w-xl mx-auto mt-6 text-ink-light leading-relaxed">
-              Six sections carry the arc — from the felt origin of relinquishment, outward through family and
+              Six sections carry the arc, from the felt origin of relinquishment, outward through family and
               system, to the act of witness itself. Framed by a prologue and epilogue for Ella and Imogen.
             </p>
           </FadeIn>
@@ -144,7 +144,7 @@ export const BookPage: React.FC = () => {
               <Eyebrow>From the book</Eyebrow>
               <h2 className="font-serif text-4xl sm:text-5xl font-light mt-5">An excerpt, as it will be set</h2>
               <p className="max-w-xl mx-auto mt-6 text-ink-light leading-relaxed">
-                6×9″, premium black &amp; white — the page below is typeset the way the printed book will read.
+                6×9″, premium black &amp; white. The page below is typeset the way the printed book will read.
               </p>
             </FadeIn>
             {featured.map((excerpt) => (

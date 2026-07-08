@@ -38,7 +38,7 @@ export const BOOK = {
   author: "Jonathan Lyon",
   dedication: "for Ella and Imogen",
   thesis:
-    "The Narrative Witness is a testimony — not a chronological memoir, but a record of what relinquishment and adoption feel like from inside a life built on an absence. It braids three registers into one voice: personal fragments in the felt present, essays that widen the story into the shared and the systemic, and poems that distil each movement to its essence. It is written first for the author's daughters, so the record exists for them — and for every reader who has carried a story that was never properly told.",
+    "The Narrative Witness is a testimony: not a chronological memoir, but a record of what relinquishment and adoption feel like from inside a life built on an absence. It braids three registers into one voice. Personal fragments in the felt present, essays that widen the story into the shared and the systemic, and poems that distil each movement to its essence. It is written first for the author's daughters, so the record exists for them, and for every reader who has carried a story that was never properly told.",
 
   /** The braided rhythm — echoes the intimate → expansive → distilled motif in the Studio. */
   rhythm: [
@@ -46,13 +46,13 @@ export const BOOK = {
       register: "intimate",
       label: "A personal fragment",
       description:
-        "Each section opens in the felt register — short, first-person, present-tense. Not “this happened to me” but “this is what it is to carry this.”",
+        "Each section opens in the felt register: short, first-person, present-tense. Not “this happened to me” but “this is what it is to carry this.”",
     },
     {
       register: "expansive",
       label: "Essays & reflections",
       description:
-        "The section widens outward from the personal into the shared, the analytical, the collective — the witness voice, holding the record up for others.",
+        "The section widens outward from the personal into the shared, the analytical, the collective. This is the witness voice, holding the record up for others.",
     },
     {
       register: "distilled",
@@ -68,7 +68,7 @@ export const BOOK = {
       title: "Beginning in Absence",
       movement: "Foundational",
       rationale:
-        "The fact of relinquishment; the felt origin. The book begins where the life did — with an absence that precedes memory and shapes everything after it.",
+        "The fact of relinquishment; the felt origin. The book begins where the life did: with an absence that precedes memory and shapes everything after it.",
       samplePieces: ["The Wall of Blame", "Calling Things by Their Proper Name", "How to Be Alone"],
     },
     {
@@ -76,7 +76,7 @@ export const BOOK = {
       title: "The Manufactured Self",
       movement: "Foundational",
       rationale:
-        "Identity assembled from fragments. What it is to be issued a self — a name, a story, a family — and to spend a life auditing the construction.",
+        "Identity assembled from fragments. What it is to be issued a name, a story, a family, and to spend a life auditing the construction.",
       samplePieces: ["Part I: The Chosen Children", "Oriental, Occidental, Incidental", "Version Control"],
     },
     {
@@ -84,7 +84,7 @@ export const BOOK = {
       title: "The Inheritance of Silence",
       movement: "Relational",
       rationale:
-        "Loss, guilt, shame — the weather systems that silence hands down through a family, and what they do to the body that carries them.",
+        "Loss, guilt, shame: the weather systems that silence hands down through a family, and what they do to the body that carries them.",
       samplePieces: ["Silent Days", "The Breath We Never Took", "The Catalogue of Nearlys"],
     },
     {
@@ -92,7 +92,7 @@ export const BOOK = {
       title: "What Love Asks",
       movement: "Relational",
       rationale:
-        "Attachment, fatherhood, the terror and repair of being loved. The daughters live here — the people the whole record is being held up for.",
+        "Attachment, fatherhood, the terror and repair of being loved. The daughters live here: the people the whole record is being held up for.",
       samplePieces: ["Love While Breathing", "I’m Not Looking for Love", "Apricity, The Quiet Return"],
     },
     {
@@ -100,7 +100,7 @@ export const BOOK = {
       title: "The Machinery",
       movement: "Societal",
       rationale:
-        "Adoption as a system: records, institutions, language, the world that manufactured these lives — and still keeps the files.",
+        "Adoption as a system: records, institutions, language, the world that manufactured these lives, and the offices that still keep the files.",
       samplePieces: ["The Architecture of Identity: Adopting Silence", "We Were Never One Story", "Stillborn Identity"],
     },
     {
@@ -108,7 +108,7 @@ export const BOOK = {
       title: "Holding the Record Up",
       movement: "Witness",
       rationale:
-        "Reckoning; what testimony is for. Not an ending but an act — the record held up so that what was unwitnessed is witnessed at last.",
+        "Reckoning; what testimony is for. Not an ending but an act: the record held up so that what was unwitnessed is witnessed at last.",
       samplePieces: ["Red Smoke", "The Sovereign Witness of the Rupture", "Perhaps This Is Where My Writing Was Leading"],
     },
   ] satisfies BookSection[],
@@ -170,7 +170,7 @@ export const BOOK = {
       editionId: "paperback",
       name: "Founder",
       priceLabel: "NZ$35",
-      payNow: "NZ$35 now — paid in full",
+      payNow: "NZ$35 now, paid in full",
       later: "Nothing more to pay · free NZ shipping",
       perks: [
         "Free New Zealand shipping",

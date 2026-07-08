@@ -21,11 +21,12 @@ const SANDBOX = process.env.LULU_ENV !== "production";
 
 const BASE_URL = SANDBOX ? "https://api.sandbox.lulu.com" : "https://api.lulu.com";
 
-// The token endpoint realm has changed name across Lulu generations. Confirm
-// the exact URL in the Lulu developer dashboard and override via env if needed.
+// The token endpoint realm is "glasstree" on both sandbox and production
+// (verified against the sandbox .well-known config). Override via env if Lulu
+// ever changes it.
 const TOKEN_URL =
   process.env.LULU_TOKEN_URL?.trim() ||
-  `${BASE_URL}/auth/realms/glasswing/protocol/openid-connect/token`;
+  `${BASE_URL}/auth/realms/glasstree/protocol/openid-connect/token`;
 
 let cachedToken = null; // { accessToken, expiresAt }
 

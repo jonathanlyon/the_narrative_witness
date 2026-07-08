@@ -35,7 +35,7 @@ const TIERS = {
   "paperback:reserve": {
     editionId: "paperback",
     tier: "reserve",
-    name: "The Narrative Witness — Reserve (deposit)",
+    name: "The Narrative Witness: Reserve (deposit)",
     description:
       "NZ$10 deposit toward the NZ$35 signed first-edition paperback. Counts in full toward the price; the NZ$25 balance + shipping is invoiced when the book is ready (est. Dec 2026 – Jan 2027). Fully refundable before printing.",
     amountCents: 1000,
@@ -43,7 +43,7 @@ const TIERS = {
   "paperback:founder": {
     editionId: "paperback",
     tier: "founder",
-    name: "The Narrative Witness — Founder (paid in full)",
+    name: "The Narrative Witness: Founder (paid in full)",
     description:
       "Signed, numbered first-edition paperback, paid in full, with free New Zealand shipping. Ships est. Dec 2026 – Jan 2027. Fully refundable before printing.",
     amountCents: 3500,
