@@ -14,7 +14,7 @@ export const Header: React.FC<{ forceSolid?: boolean }> = ({
   const sectionHref = (hash: string) => (isHomePage ? hash : `/${hash}`);
   const menuItems = [
     { label: "The Book", href: sectionHref("#book"), section: "#book" },
-    { label: "Writing", href: sectionHref("#excerpts"), section: "#excerpts" },
+    { label: "Read", href: sectionHref("#excerpts"), section: "#excerpts" },
     {
       label: "Recognition",
       href: sectionHref("#recognition"),
@@ -170,18 +170,13 @@ export const Header: React.FC<{ forceSolid?: boolean }> = ({
             })}
             <a
               id="nav-cta"
-              href={isHomePage ? "#signup" : "#support"}
+              href={sectionHref("#preorder")}
               onClick={(e) =>
-                scrollToSection(
-                  e,
-                  isHomePage ? "#signup" : "#support",
-                  "Support",
-                  "desktop_header",
-                )
+                scrollToSection(e, sectionHref("#preorder"), "Pre-order", "desktop_header")
               }
-              className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-ink hover:text-ash hover:italic border-b border-b-ink pb-0.5 transition-all duration-300"
+              className="inline-flex items-center gap-1.5 bg-ink text-paper hover:bg-ash font-mono text-[10px] uppercase tracking-widest px-4 py-2.5 transition-all duration-300"
             >
-              Support <ArrowUpRight size={10} />
+              Pre-order <ArrowUpRight size={10} />
             </a>
           </nav>
 
@@ -240,18 +235,13 @@ export const Header: React.FC<{ forceSolid?: boolean }> = ({
             <div className="flex flex-col gap-4">
               <a
                 id="mobile-cta"
-                href={isHomePage ? "#signup" : "#support"}
+                href={sectionHref("#preorder")}
                 onClick={(e) =>
-                  scrollToSection(
-                    e,
-                    isHomePage ? "#signup" : "#support",
-                    "Register Support",
-                    "mobile_menu",
-                  )
+                  scrollToSection(e, sectionHref("#preorder"), "Pre-order", "mobile_menu")
                 }
                 className="w-full text-center py-4 bg-ink text-paper font-mono text-[10px] uppercase tracking-widest"
               >
-                Register Support
+                Pre-order the first edition
               </a>
               <div className="text-center font-mono text-[9px] text-ash/65 tracking-[0.1em]">
                 THE NARRATIVE WITNESS © 2026. ALL RIGHTS WITNESSED.

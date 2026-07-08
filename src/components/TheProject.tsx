@@ -47,7 +47,7 @@ export const TheProject: React.FC = () => {
               </FadeIn>
               <FadeIn delay={0.4}>
                 <p className="mt-6 md:mt-8 font-serif text-[1.125rem] leading-[1.8] text-ink-light font-light text-justify">
-                  While the book begins in one life, no relinquished person stands in isolation. If the campaign proves there is enough support, a future strand of the project may invite a small number of adoptees to share their stories through close conversation, careful drafting, and full consent over how their testimony is held.
+                  While the book begins in one life, no relinquished person stands in isolation. As the project grows beyond the first edition, a future strand may invite a small number of adoptees to share their stories through close conversation, careful drafting, and full consent over how their testimony is held.
                 </p>
               </FadeIn>
               <FadeIn delay={0.5}>
@@ -80,7 +80,7 @@ export const TheProject: React.FC = () => {
               </FadeIn>
               <FadeIn delay={0.5}>
                 <p className="mt-6 md:mt-8 font-serif text-[1.125rem] leading-[1.8] text-ink-light font-light text-justify">
-                  Beyond the printed page, there is a quieter possibility: intimate writing and witness spaces for relinquished adults, held online or in carefully chosen places where people can begin to gather the fragments of their own story. That possibility depends on whether the book can first gather enough trust to stand.
+                  Beyond the printed page, there is a quieter possibility: intimate writing and witness spaces for relinquished adults, held online or in carefully chosen places where people can begin to gather the fragments of their own story. It grows outward from the book, in its own time.
                 </p>
               </FadeIn>
               <FadeIn delay={0.6}>
@@ -95,7 +95,7 @@ export const TheProject: React.FC = () => {
         {/* Marginalia footnote */}
         <FadeIn delay={0.7} className="mt-20 md:mt-24 border-t border-dust/30 pt-8 flex items-center justify-between text-ash text-[9px] font-mono tracking-widest uppercase">
           <span>THE COLLECTIVE RECORD</span>
-          <span>BOOK FIRST · WIDER PROJECT EMERGING</span>
+          <span>THE BOOK FIRST · THE WIDER PROJECT TO FOLLOW</span>
         </FadeIn>
       </div>
     </section>

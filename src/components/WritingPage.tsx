@@ -59,7 +59,7 @@ const WritingSupportForm: React.FC<{ title: string }> = ({ title }) => {
           Check your email
         </span>
         <p className="text-sm font-light leading-relaxed text-paper/70">
-          Please click the confirmation link so your support can be counted.
+          Please click the confirmation link to join the list.
           {!configured && " This local preview has not sent an email."}
         </p>
       </div>
@@ -89,7 +89,7 @@ const WritingSupportForm: React.FC<{ title: string }> = ({ title }) => {
           disabled={loading}
           className="flex shrink-0 items-center justify-center gap-2 bg-paper px-6 py-4 font-mono text-[9px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-paper-dark disabled:opacity-60"
         >
-          {loading ? "Registering..." : "Show Support"}
+          {loading ? "Joining..." : "Join the list"}
           <ArrowRight size={12} aria-hidden="true" />
         </button>
       </div>
@@ -99,7 +99,7 @@ const WritingSupportForm: React.FC<{ title: string }> = ({ title }) => {
         </p>
       )}
       <p className="mt-3 font-mono text-[8px] uppercase tracking-[0.16em] text-paper/45">
-        A signal of intent, not a purchase or obligation.
+        Project updates only. Unsubscribe any time.
       </p>
       <input type="hidden" name="writing" value={title} />
     </form>
@@ -373,17 +373,23 @@ export const WritingPage: React.FC = () => {
           <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1fr_1.1fr] md:items-end">
             <div>
               <span className="font-mono text-[9px] uppercase tracking-[0.23em] text-paper/50">
-                From recognition to possibility
+                From this piece to the whole book
               </span>
               <h2 className="mt-5 max-w-lg font-serif text-4xl font-light leading-tight md:text-5xl">
-                If this work matters to you, help the book become visible.
+                If this piece found you, the whole book is waiting.
               </h2>
+              <a
+                href="/#preorder"
+                className="mt-8 inline-flex items-center gap-2 bg-paper px-7 py-4 font-mono text-[10px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-paper-dark"
+              >
+                Pre-order the first edition
+                <ArrowRight size={12} aria-hidden="true" />
+              </a>
             </div>
             <div>
               <p className="mb-7 max-w-xl text-sm font-light leading-7 text-paper/65 md:text-base">
-                Registering your support gives the proposed Kickstarter a
-                measurable audience before the campaign asks the book to
-                survive in public.
+                Not ready yet? Leave your email to follow the book as it&rsquo;s finished, and to hear the moment
+                pre-orders reach their final call before the first edition goes to print.
               </p>
               <WritingSupportForm title={writing.title} />
             </div>

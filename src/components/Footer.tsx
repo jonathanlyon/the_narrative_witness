@@ -43,7 +43,7 @@ export const Footer: React.FC = () => {
             </div>
 
             <div className="mt-8 font-mono text-[8px] tracking-[0.2em] uppercase text-ash/80">
-              EST. 2026 KICKSTARTER PRE-LAUNCH
+              EST. 2026 · SIGNED FIRST EDITION
             </div>
           </div>
 
@@ -147,7 +147,21 @@ export const Footer: React.FC = () => {
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <span>© 2026 THE NARRATIVE WITNESS.</span>
             <span className="text-paper/25">|</span>
-            <span className="text-paper/50 pointer-events-none">INDEPENDENT BOOK PRE-LAUNCH</span>
+            <a
+              href={sectionHref("#preorder")}
+              onClick={() =>
+                trackNavigationClicked({ destination: "#preorder", label: "Pre-order", placement: "footer" })
+              }
+              className="text-paper/60 hover:text-paper transition-colors"
+            >
+              PRE-ORDER
+            </a>
+            <a
+              href="/preorder-terms"
+              className="text-paper/50 hover:text-paper transition-colors"
+            >
+              PRE-ORDER TERMS
+            </a>
             <button
               type="button"
               onClick={openAnalyticsPreferences}

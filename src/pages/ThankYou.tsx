@@ -106,7 +106,7 @@ export function ThankYouPage() {
       </motion.section>
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[8px] uppercase tracking-[0.18em] text-ash/65">
-        Book pre-launch &middot; 2026
+        Signed first edition &middot; 2026
       </div>
     </main>
   );

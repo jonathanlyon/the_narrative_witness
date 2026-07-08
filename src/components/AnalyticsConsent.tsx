@@ -59,7 +59,7 @@ export const AnalyticsConsent: React.FC = () => {
             Optional analytics
           </span>
           <p className="mt-2 text-sm font-light leading-relaxed text-paper/75">
-            With your permission, anonymous usage data helps us understand which writing readers engage with and whether the pre-launch journey is working. Email addresses and sensitive personal information are never sent to analytics services.
+            With your permission, anonymous usage data helps us understand which writing readers engage with and how people find their way to the book. Email addresses and sensitive personal information are never sent to analytics services.
           </p>
         </div>
         <div className="flex shrink-0 flex-col gap-3 sm:flex-row">

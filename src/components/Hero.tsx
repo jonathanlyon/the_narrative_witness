@@ -1,54 +1,20 @@
-import React, { useState } from "react";
-import { ArrowRight, Mail, CheckCircle, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import React from "react";
+import { ArrowRight, ArrowDown, ChevronDown } from "lucide-react";
+import { motion } from "motion/react";
 import { FadeIn, FadeInSlow } from "./MotionWrapper";
-import {
-  hasKickstarterPrelaunchUrl,
-  kickstarterPrelaunchUrl,
-  subscribeReader,
-} from "../lib/signup";
-import {
-  trackKickstarterIntent,
-  trackNavigationClicked,
-  trackSupportRegistration,
-} from "../lib/analytics";
+import { BOOK } from "../data/book";
+import { trackNavigationClicked } from "../lib/analytics";
 import HERO_IMAGE_URL from "../assets/images/archival_paper_monochrome_1779464032575.png";
 
+const scrollTo = (id: string) => {
+  const target = document.querySelector(id);
+  if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
 export const Hero: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [signupConfigured, setSignupConfigured] = useState(true);
-
-  const handleSubscribe = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    if (!email || !email.includes("@")) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const result = await subscribeReader(email, "hero");
-      setSignupConfigured(result.configured);
-      if (result.configured) {
-        trackSupportRegistration("hero");
-      }
-      setSubmitted(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const scrollNext = (id: string) => {
-    const target = document.querySelector(id);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+  const goPreorder = () => {
+    trackNavigationClicked({ destination: "#preorder", label: "Pre-order", placement: "hero" });
+    scrollTo("#preorder");
   };
 
   return (
@@ -57,183 +23,113 @@ export const Hero: React.FC = () => {
       className="relative min-h-screen flex items-start lg:items-center justify-center pt-28 md:pt-32 lg:pt-24 pb-16 overflow-hidden paper-grain"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-14 items-start">
-        
-        {/* Text Area (Col span 7) */}
-        <div className="lg:col-span-7 flex flex-col lg:h-[600px]">
-          {/* Subtle horizontal custom divider above hero text */}
+
+        {/* Text Area */}
+        <div className="lg:col-span-7 flex flex-col lg:min-h-[600px] lg:justify-center">
           <FadeIn delay={0.05} className="lg:hidden">
             <div className="w-12 h-[1px] bg-ink/20 mb-6" />
           </FadeIn>
 
           {/* Metadata tag */}
           <FadeIn delay={0.1}>
-            <div className="inline-flex items-center gap-2 mb-4">
+            <div className="inline-flex items-center gap-2 mb-5">
               <span className="w-1.5 h-1.5 bg-ink" />
               <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-ash">
-                Audience Validation · Kickstarter Readiness
+                The signed first edition · Pre-order now
               </span>
             </div>
           </FadeIn>
 
-          {/* Large Emotional Headline */}
+          {/* Emotional, conceptual headline */}
           <FadeIn delay={0.25} duration={1.0}>
             <h1 className="font-serif text-[2.55rem] md:text-[3.5rem] lg:text-[3.95rem] font-light leading-[1.08] tracking-tight text-ink">
-              Help prove this book
+              A record of what
               <br />
-              has enough support
+              relinquishment feels like
               <br />
-              to <span className="italic font-normal">launch.</span>
+              from <span className="italic font-normal">the inside.</span>
             </h1>
           </FadeIn>
 
-          {/* Subheadline placed below headline */}
-          <FadeIn
-            delay={0.4}
-            duration={0.9}
-            className="flex flex-1 items-center py-7 text-left md:py-8"
-          >
+          {/* Subheadline: the thesis, distilled */}
+          <FadeIn delay={0.4} duration={0.9} className="py-7 text-left md:py-8">
             <p className="max-w-2xl text-left font-sans text-base font-light leading-relaxed text-ash md:text-lg">
-              <em>The Narrative Witness</em> is preparing a Kickstarter campaign for a forthcoming literary testimony on adoption, relinquishment, identity, and memory. Before the campaign can responsibly go live, we need evidence that enough people are willing to stand behind the book.
+              <em>The Narrative Witness</em> is a braided testimony on adoption, relinquishment, identity, and memory:
+              personal fragments, essays, and poems held together as one act of witness, written first for the author’s
+              daughters. Pre-order the signed first edition now, printed to order and shipped {BOOK.shipWindow.replace(" (estimated)", "")}.
             </p>
           </FadeIn>
 
-          {/* Interactive Cinematic Subscription / Actions */}
+          {/* Primary actions */}
           <div className="max-w-xl">
-            <AnimatePresence mode="wait">
-              {!submitted ? (
-                <motion.form
-                  id="hero-subscribe-form"
-                  initial={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  onSubmit={handleSubscribe}
-                  className="flex flex-col gap-4"
-                >
+            <div className="flex flex-col sm:flex-row gap-3.5">
+              <button
+                id="hero-preorder-btn"
+                onClick={goPreorder}
+                className="group inline-flex items-center justify-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[10px] tracking-[0.2em] py-4 px-7 transition-all duration-300 font-medium"
+              >
+                Pre-order the first edition
+                <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
+              <a
+                id="hero-read-link"
+                href="/book"
+                onClick={() => trackNavigationClicked({ destination: "/book", label: "Read from the book", placement: "hero" })}
+                className="group inline-flex items-center justify-center gap-2 border border-ink text-ink hover:bg-ink hover:text-paper uppercase font-mono text-[10px] tracking-[0.2em] py-4 px-7 transition-all duration-300"
+              >
+                Read from the book
+                <ArrowDown size={13} className="transition-transform duration-300 group-hover:translate-y-0.5" />
+              </a>
+            </div>
 
-                  <label htmlFor="hero-email" className="sr-only">
-                    Register your support for the book launch
-                  </label>
-                  
-                  <div className="flex flex-col sm:flex-row border border-dust focus-within:border-ink transition-colors duration-300 bg-paper-dark">
-                    <div className="flex items-center pl-4 pr-2 text-ash py-3.5 sm:py-0 w-full">
-                      <Mail size={16} className="opacity-60" />
-                      <input
-                        id="hero-email"
-                        required
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Email address"
-                        className="bg-transparent text-ink border-none focus:outline-none focus:ring-0 text-xs font-mono lowercase tracking-wider ml-3 w-full"
-                      />
-                    </div>
-                    <button
-                      id="hero-submit-btn"
-                      type="submit"
-                      disabled={loading}
-                      className="bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-4 px-6 transition-all duration-300 font-medium sm:w-auto shrink-0 flex items-center justify-center gap-2"
-                    >
-                      {loading ? "Registering..." : "Show Support"}
-                      <ArrowRight size={12} />
-                    </button>
-                  </div>
-
-                  {error && (
-                    <span className="font-mono text-[9px] text-ink tracking-wider">
-                      {error}
-                    </span>
-                  )}
-
-                  <span className="font-mono text-[9px] text-ash/70 tracking-wider leading-relaxed">
-                    This gives us a measurable support signal before the formal Kickstarter campaign opens.
-                  </span>
-
-                </motion.form>
-              ) : (
-                <motion.div
-                  id="hero-success-state"
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-start gap-4 p-5 md:p-6 border border-dust/45 bg-paper-dark/50"
-                >
-                  <div className="flex items-center gap-2.5 text-ink">
-                    <CheckCircle size={16} />
-                    <span className="font-mono text-xs uppercase tracking-widest font-medium">
-                      Check Your Email
-                    </span>
-                  </div>
-                  <p className="text-xs text-ash leading-relaxed">
-                    We have sent a confirmation link to <span className="font-mono text-ink text-[11px] underline">{email}</span>. Please click it so your support can be counted.
-                    {!signupConfigured && " This local preview has not sent an email."}
-                  </p>
-                  {hasKickstarterPrelaunchUrl && (
-                    <a
-                      href={kickstarterPrelaunchUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={() => trackKickstarterIntent("hero_success")}
-                      className="inline-flex items-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[9px] tracking-[0.2em] py-3 px-4 transition-all duration-300 font-medium"
-                    >
-                      Follow on Kickstarter <ArrowRight size={12} />
-                    </a>
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
-
+            <FadeIn delay={0.6}>
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[9px] uppercase tracking-[0.18em] text-ash/80">
+                <span>Reserve from {BOOK.tiers[0].priceLabel}</span>
+                <span className="text-dust">·</span>
+                <span>Signed edition {BOOK.tiers[1].priceLabel}</span>
+                <span className="text-dust">·</span>
+                <span className="italic normal-case font-serif text-[11px] tracking-normal text-ash">{BOOK.dedication}</span>
+              </div>
+            </FadeIn>
           </div>
         </div>
 
-        {/* Cinematic Imagery Column (Col span 5) */}
+        {/* Archival imagery column */}
         <div className="lg:col-span-5 h-[390px] md:h-[500px] lg:h-[600px] relative w-full flex items-center justify-center">
-          <FadeInSlow delay={0.3} className="w-full h-full relative border border-dust px-4 py-4 bg-paper-dark shadow-[default_rgba(0,0,0,0.02)]">
-            {/* Absolute positioning tags for technical A24 catalog detail */}
+          <FadeInSlow delay={0.3} className="w-full h-full relative border border-dust px-4 py-4 bg-paper-dark">
             <span className="absolute top-2 left-3 font-mono text-[9px] tracking-widest text-ash/60">
-              BOOK MANUSCRIPT // S-119
+              THE FIRST EDITION // 6×9
             </span>
             <span className="absolute bottom-2 right-3 font-mono text-[9px] tracking-widest text-ash/60">
-              PRE-LAUNCH FOLIO // 2026
+              WITNESS ARCHIVE // 2026
             </span>
-            
-            {/* The Image itself with high contrast filtering */}
             <div className="w-full h-full border border-dust/30 overflow-hidden relative group">
               <img
                 src={HERO_IMAGE_URL}
                 alt="Stacked torn sheets representing the layered memories of adoption and relinquishment"
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover grayscale brightness-95 opacity-90 transition-transform duration-1200 group-hover:scale-102"
+                className="w-full h-full object-cover grayscale brightness-95 opacity-90 transition-transform duration-1000 group-hover:scale-[1.02]"
               />
-              {/* Subtle vignette layer overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent pointer-events-none mix-blend-multiply" />
             </div>
           </FadeInSlow>
         </div>
-
       </div>
 
-      <FadeIn
-        delay={0.7}
-        className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 md:bottom-6"
-      >
-        <button
+      <FadeIn delay={0.7} className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 md:bottom-6">
+        <motion.button
           type="button"
-          aria-label="Continue to what registering support does"
+          aria-label="Continue to the book"
           onClick={() => {
-            trackNavigationClicked({
-              destination: "#support-rationale",
-              label: "Continue",
-              placement: "hero",
-            });
-            scrollNext("#support-rationale");
+            trackNavigationClicked({ destination: "#book", label: "Continue", placement: "hero" });
+            scrollTo("#book");
           }}
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
           className="group flex h-12 w-12 items-center justify-center border border-ink/20 bg-paper/75 text-ink backdrop-blur-sm transition-colors hover:border-ink/50 hover:bg-paper"
         >
-          <ChevronDown
-            size={18}
-            strokeWidth={1.4}
-            className="transition-transform duration-300 group-hover:translate-y-1"
-            aria-hidden="true"
-          />
-        </button>
+          <ChevronDown size={18} strokeWidth={1.4} aria-hidden="true" />
+        </motion.button>
       </FadeIn>
     </section>
   );
