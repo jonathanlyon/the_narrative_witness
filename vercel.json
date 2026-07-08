@@ -3,6 +3,18 @@
     {
       "source": "/confirmed",
       "destination": "/index.html"
+    },
+    {
+      "source": "/book",
+      "destination": "/book.html"
+    },
+    {
+      "source": "/thank-you",
+      "destination": "/thank-you.html"
+    },
+    {
+      "source": "/preorder-terms",
+      "destination": "/preorder-terms.html"
     }
   ]
 }
