@@ -183,3 +183,18 @@ export const BOOK = {
     },
   ] satisfies PreorderTier[],
 } as const;
+
+/**
+ * Audio readings, keyed by excerpt id (the filename stem in content/excerpts).
+ * Empty for now: the reader shows a calm "reading is being prepared" state
+ * until a file exists. To add one, drop an audio file in `public/audio/` and
+ * point to it here, e.g.:
+ *
+ *   "the-breath-we-never-took": "/audio/the-breath-we-never-took.mp3"
+ *
+ * The file can be a recording of Jonathan reading, or a natural-voice render.
+ * Nothing else needs to change; the player picks it up automatically.
+ */
+export const READINGS: Record<string, string> = {
+  // "the-breath-we-never-took": "/audio/the-breath-we-never-took.mp3",
+};
