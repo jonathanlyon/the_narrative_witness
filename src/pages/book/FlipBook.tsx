@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Excerpt } from "../../types";
 import { buildLeaves, Leaf, toRoman } from "./leaves";
-import { AudioReading } from "./AudioReading";
 
 /**
  * A 3D page-turning reader. Content lives only on the front of each leaf; the
@@ -11,7 +10,7 @@ import { AudioReading } from "./AudioReading";
  * giving the open-book silhouette. Honors prefers-reduced-motion.
  */
 
-export const FlipBook: React.FC<{ excerpt: Excerpt; audioSrc?: string }> = ({ excerpt, audioSrc }) => {
+export const FlipBook: React.FC<{ excerpt: Excerpt }> = ({ excerpt }) => {
   useFlipStyles();
   const leaves = useMemo(() => buildLeaves(excerpt), [excerpt]);
   const [turned, setTurned] = useState(0); // number of leaves flipped to the left
@@ -105,8 +104,6 @@ export const FlipBook: React.FC<{ excerpt: Excerpt; audioSrc?: string }> = ({ ex
           <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
         </button>
       </div>
-
-      <AudioReading title={excerpt.title} src={audioSrc} />
     </div>
   );
 };
@@ -136,17 +133,14 @@ const LeafFace: React.FC<{ leaf: Leaf }> = ({ leaf }) => {
           {leaf.caption && <p className="nw-plate-caption">{leaf.caption}</p>}
         </div>
       );
-    case "before":
+    case "title":
       return (
         <div className="nw-page nw-page-before">
           <p className="nw-kicker">
             {leaf.type === "Poem" ? "Poem" : leaf.type === "Reflection" ? "Reflection" : "Essay"}
           </p>
           <h4 className="nw-piece-title">{leaf.title}</h4>
-          <div className="nw-before">
-            <p className="nw-before-label">Before reading</p>
-            <p>{leaf.before}</p>
-          </div>
+          <hr className="nw-title-rule" />
         </div>
       );
     case "body":
@@ -224,13 +218,8 @@ const CSS = `
 
 /* Before */
 .nw-page-before { justify-content: center; text-align: center; }
-.nw-piece-title { font-size: clamp(1.05rem, 2.6vw, 1.5rem); font-weight: 500; margin: 0 0 1.6em; line-height: 1.15; }
-.nw-before { border-top: 1px solid #C9C1B4; border-bottom: 1px solid #C9C1B4; padding: 1.3em 0; font-style: italic; font-size: clamp(0.62rem, 1.5vw, 0.8rem); line-height: 1.65; color: #3A362E; }
-.nw-before-label { font-family: "JetBrains Mono", monospace; font-style: normal; font-size: 0.46rem; letter-spacing: 0.3em; text-transform: uppercase; color: #8A8479; margin: 0 0 1em; }
-
-/* Companion */
-.nw-companion-title { font-size: clamp(0.92rem, 2.1vw, 1.2rem); font-weight: 500; font-style: italic; margin: 0 0 1.3em; line-height: 1.22; }
-.nw-companion-body { font-size: clamp(0.6rem, 1.45vw, 0.78rem); }
+.nw-piece-title { font-size: clamp(1.15rem, 2.8vw, 1.65rem); font-weight: 500; margin: 0 0 1.3em; line-height: 1.15; }
+.nw-title-rule { border: none; width: 2.4em; border-top: 1px solid #B8B0A2; margin: 0 auto; }
 
 /* Turn zones */
 .nw-zone { position: absolute; top: 0; height: 100%; width: 50%; border: 0; background: transparent; cursor: pointer; z-index: 60; }

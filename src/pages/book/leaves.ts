@@ -13,7 +13,7 @@ import { Excerpt } from "../../types";
 
 export type Leaf =
   | { kind: "plate"; title: string; image?: string; alt?: string; code: string; caption?: string }
-  | { kind: "before"; title: string; type: Excerpt["type"]; before: string }
+  | { kind: "title"; title: string; type: Excerpt["type"] }
   | { kind: "body"; index: number; total: number; blocks: Block[]; note?: string };
 
 // Stable archive-style plate code (mirrors writing-studio/src/lib/book.ts).
@@ -113,9 +113,9 @@ export function buildLeaves(excerpt: Excerpt): Leaf[] {
     caption: excerpt.caption,
   });
 
-  if (excerpt.beforeReading) {
-    leaves.push({ kind: "before", title: excerpt.title, type: excerpt.type, before: excerpt.beforeReading });
-  }
+  // A title page opens the piece; the "Before reading" note now lives in the
+  // artefacts panel beside the book (ReadingRoom), not inside it.
+  leaves.push({ kind: "title", title: excerpt.title, type: excerpt.type });
 
   const pages = paginate(excerpt.fullBody ?? excerpt.body);
 
