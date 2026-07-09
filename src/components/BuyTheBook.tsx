@@ -1,14 +1,13 @@
 import React from "react";
-import { Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 import { BOOK } from "../data/book";
 import { FadeIn, StaggerContainer, StaggerItem } from "./MotionWrapper";
-import { PreorderTiers } from "../pages/book/PreorderTiers";
+import { trackNavigationClicked } from "../lib/analytics";
 
 /**
- * The conversion heart of the home page: the physical object presented as a
- * selling point, then the pre-order tiers (reused from the book page so the
- * commerce logic lives in one place). The `#preorder` anchor lives on the
- * PreorderTiers section below.
+ * The home page's book section: the physical object presented as a selling
+ * point, then a single call to action into /book#preorder (the one place the
+ * pre-order tiers and checkout live).
  */
 export const BuyTheBook: React.FC = () => {
   return (
@@ -31,7 +30,8 @@ export const BuyTheBook: React.FC = () => {
             <FadeIn delay={0.3}>
               <p className="mt-6 font-serif text-[1.05rem] leading-[1.8] text-ink-light font-light">
                 A book made with the seriousness the subject deserves: printed to order, so no copy exists until a
-                reader asks for it, and every founding reader receives a hand-signed, numbered bookplate to place inside their copy.
+                reader asks for it, and every founding reader receives a hand-signed, numbered bookplate to place
+                inside their copy.
               </p>
             </FadeIn>
             <FadeIn delay={0.4}>
@@ -61,10 +61,37 @@ export const BuyTheBook: React.FC = () => {
           </div>
         </div>
 
-        {/* Pre-order tiers (carries the #preorder anchor + checkout) */}
-        <div className="mt-24 md:mt-28 pt-4">
-          <PreorderTiers />
-        </div>
+        {/* Single call to action into the book page, where the tiers live */}
+        <FadeIn className="mt-20 md:mt-24 text-center">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ash">
+            <span>Reserve from {BOOK.tiers[0].priceLabel}</span>
+            <span className="text-dust">·</span>
+            <span>Founder edition {BOOK.tiers[1].priceLabel}</span>
+          </div>
+          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+            <a
+              href="/book#preorder"
+              onClick={() => trackNavigationClicked({ destination: "/book#preorder", label: "Pre-order", placement: "edition" })}
+              className="group inline-flex items-center justify-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[10px] tracking-[0.2em] py-4 px-7 transition-all duration-300 font-medium"
+            >
+              Pre-order the first edition
+              <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
+            <a
+              href="/book"
+              onClick={() => trackNavigationClicked({ destination: "/book", label: "Read from the book", placement: "edition" })}
+              className="inline-flex items-center justify-center gap-2 border border-ink text-ink hover:bg-ink hover:text-paper uppercase font-mono text-[10px] tracking-[0.2em] py-4 px-7 transition-all duration-300"
+            >
+              Read from the book
+            </a>
+          </div>
+          <a
+            href="/preorder-terms"
+            className="inline-block mt-7 font-mono text-[0.6rem] uppercase tracking-[0.25em] text-ash border-b border-dust pb-1 hover:text-ink transition-colors"
+          >
+            Read the full pre-order terms
+          </a>
+        </FadeIn>
       </div>
     </section>
   );

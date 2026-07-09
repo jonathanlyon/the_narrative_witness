@@ -14,8 +14,7 @@ import { Excerpt } from "../../types";
 export type Leaf =
   | { kind: "plate"; title: string; image?: string; alt?: string; code: string; caption?: string }
   | { kind: "before"; title: string; type: Excerpt["type"]; before: string }
-  | { kind: "body"; index: number; total: number; paragraphs: string[]; note?: string }
-  | { kind: "companion"; label: string; title: string; body: string };
+  | { kind: "body"; index: number; total: number; paragraphs: string[]; note?: string };
 
 // Stable archive-style plate code (mirrors writing-studio/src/lib/book.ts).
 export function plateCode(id: string): string {
@@ -157,22 +156,7 @@ export function buildLeaves(excerpt: Excerpt): Leaf[] {
     leaves.push({ kind: "body", index: index + 1, total: pages.length, paragraphs, note: noteOnPage.get(index) });
   });
 
-  if (excerpt.origin) {
-    leaves.push({
-      kind: "companion",
-      label: "Where this began",
-      title: excerpt.originTitle ?? "Where this story began to take shape.",
-      body: excerpt.origin,
-    });
-  }
-  if (excerpt.meaning) {
-    leaves.push({
-      kind: "companion",
-      label: "Why I wrote it",
-      title: excerpt.meaningTitle ?? "What the piece helped me understand.",
-      body: excerpt.meaning,
-    });
-  }
-
+  // Note: the author's "Where this began" / "Why I wrote it" notes live in a
+  // section beneath the book (ReadingRoom), not as pages inside it.
   return leaves;
 }

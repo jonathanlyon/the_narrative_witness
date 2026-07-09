@@ -31,6 +31,18 @@ export const BookPage: React.FC = () => {
     void initAnalytics();
   }, []);
 
+  // Land on the requested section when arriving with a hash (e.g. /book#preorder).
+  useEffect(() => {
+    if (!window.location.hash) return;
+    const scrollToHash = () => document.querySelector(window.location.hash)?.scrollIntoView({ block: "start" });
+    const frame = window.requestAnimationFrame(() => window.requestAnimationFrame(scrollToHash));
+    const fallback = window.setTimeout(scrollToHash, 220);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(fallback);
+    };
+  }, []);
+
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const titleY = useTransform(scrollYProgress, [0, 1], [0, 120]);
@@ -117,7 +129,7 @@ export const BookPage: React.FC = () => {
             <FadeIn className="text-center">
               <Eyebrow>How the book is built</Eyebrow>
               <h2 className="font-serif text-4xl sm:text-5xl font-light mt-5">
-                intimate <span className="text-ash">→</span> expansive <span className="text-ash">→</span> distilled
+                Intimate <span className="text-ash">·</span> Expansive <span className="text-ash">·</span> Distilled
               </h2>
               <p className="max-w-2xl mx-auto mt-6 text-ink-light leading-relaxed">
                 The personal story doesn’t run start-to-finish; it recurs. Every section moves through the same

@@ -163,18 +163,6 @@ const LeafFace: React.FC<{ leaf: Leaf }> = ({ leaf }) => {
           </div>
         </div>
       );
-    case "companion":
-      return (
-        <div className="nw-page nw-page-companion">
-          <p className="nw-kicker">{leaf.label}</p>
-          <h4 className="nw-companion-title">{leaf.title}</h4>
-          <div className="nw-body-text nw-companion-body">
-            {leaf.body.split(/\n\s*\n/).map((p, i) => (
-              <p key={i}>{p.trim()}</p>
-            ))}
-          </div>
-        </div>
-      );
   }
 };
 

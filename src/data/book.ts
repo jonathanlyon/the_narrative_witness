@@ -44,19 +44,19 @@ export const BOOK = {
   rhythm: [
     {
       register: "intimate",
-      label: "A personal fragment",
+      label: "A Personal Fragment",
       description:
         "Each section opens in the felt register: short, first-person, present-tense. Not “this happened to me” but “this is what it is to carry this.”",
     },
     {
       register: "expansive",
-      label: "Essays & reflections",
+      label: "Essays & Reflections",
       description:
         "The section widens outward from the personal into the shared, the analytical, the collective. This is the witness voice, holding the record up for others.",
     },
     {
       register: "distilled",
-      label: "A closing poem",
+      label: "A Closing Poem",
       description:
         "A coda that distils the section to its essence. The poem is the tuning fork; it resets the reader before the next movement.",
     },

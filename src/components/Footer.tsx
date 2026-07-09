@@ -148,9 +148,9 @@ export const Footer: React.FC = () => {
             <span>© 2026 THE NARRATIVE WITNESS.</span>
             <span className="text-paper/25">|</span>
             <a
-              href={sectionHref("#preorder")}
+              href="/book#preorder"
               onClick={() =>
-                trackNavigationClicked({ destination: "#preorder", label: "Pre-order", placement: "footer" })
+                trackNavigationClicked({ destination: "/book#preorder", label: "Pre-order", placement: "footer" })
               }
               className="text-paper/60 hover:text-paper transition-colors"
             >

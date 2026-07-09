@@ -6,11 +6,6 @@ import { trackNavigationClicked } from "../lib/analytics";
 import backgroundArtwork from "../assets/images/recognition-mountain-reflection.webp";
 
 export const MidpageCTA: React.FC = () => {
-  const goPreorder = () => {
-    trackNavigationClicked({ destination: "#preorder", label: "Pre-order", placement: "midpage" });
-    document.getElementById("preorder")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   return (
     <section id="midpage-preorder" className="relative overflow-hidden border-y border-ink/25 bg-ink">
       <div className="mx-auto grid min-h-[520px] max-w-7xl grid-cols-1 items-center gap-12 px-6 py-20 md:px-12 lg:grid-cols-12 lg:gap-14 lg:px-16">
@@ -37,13 +32,14 @@ export const MidpageCTA: React.FC = () => {
 
           <FadeIn delay={0.4}>
             <div className="mt-8 flex flex-col sm:flex-row gap-3.5">
-              <button
-                onClick={goPreorder}
+              <a
+                href="/book#preorder"
+                onClick={() => trackNavigationClicked({ destination: "/book#preorder", label: "Pre-order", placement: "midpage" })}
                 className="group inline-flex items-center justify-center gap-2 bg-paper hover:bg-paper-dark text-ink uppercase font-mono text-[10px] tracking-[0.2em] py-4 px-7 transition-all duration-300 font-medium"
               >
                 Pre-order now
                 <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
-              </button>
+              </a>
               <a
                 href="/book"
                 onClick={() => trackNavigationClicked({ destination: "/book", label: "Read from the book", placement: "midpage" })}

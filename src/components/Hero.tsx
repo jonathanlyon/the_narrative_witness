@@ -12,11 +12,6 @@ const scrollTo = (id: string) => {
 };
 
 export const Hero: React.FC = () => {
-  const goPreorder = () => {
-    trackNavigationClicked({ destination: "#preorder", label: "Pre-order", placement: "hero" });
-    scrollTo("#preorder");
-  };
-
   return (
     <section
       id="hero"
@@ -63,14 +58,15 @@ export const Hero: React.FC = () => {
           {/* Primary actions */}
           <div className="max-w-xl">
             <div className="flex flex-col sm:flex-row gap-3.5">
-              <button
+              <a
                 id="hero-preorder-btn"
-                onClick={goPreorder}
+                href="/book#preorder"
+                onClick={() => trackNavigationClicked({ destination: "/book#preorder", label: "Pre-order", placement: "hero" })}
                 className="group inline-flex items-center justify-center gap-2 bg-ink hover:bg-ash text-paper uppercase font-mono text-[10px] tracking-[0.2em] py-4 px-7 transition-all duration-300 font-medium"
               >
                 Pre-order the first edition
                 <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
-              </button>
+              </a>
               <a
                 id="hero-read-link"
                 href="/book"

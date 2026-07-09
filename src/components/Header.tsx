@@ -170,9 +170,9 @@ export const Header: React.FC<{ forceSolid?: boolean }> = ({
             })}
             <a
               id="nav-cta"
-              href={sectionHref("#preorder")}
-              onClick={(e) =>
-                scrollToSection(e, sectionHref("#preorder"), "Pre-order", "desktop_header")
+              href="/book#preorder"
+              onClick={() =>
+                trackNavigationClicked({ destination: "/book#preorder", label: "Pre-order", placement: "desktop_header" })
               }
               className="inline-flex items-center gap-1.5 bg-ink text-paper hover:bg-ash font-mono text-[10px] uppercase tracking-widest px-4 py-2.5 transition-all duration-300"
             >
@@ -235,10 +235,11 @@ export const Header: React.FC<{ forceSolid?: boolean }> = ({
             <div className="flex flex-col gap-4">
               <a
                 id="mobile-cta"
-                href={sectionHref("#preorder")}
-                onClick={(e) =>
-                  scrollToSection(e, sectionHref("#preorder"), "Pre-order", "mobile_menu")
-                }
+                href="/book#preorder"
+                onClick={() => {
+                  trackNavigationClicked({ destination: "/book#preorder", label: "Pre-order", placement: "mobile_menu" });
+                  setIsOpen(false);
+                }}
                 className="w-full text-center py-4 bg-ink text-paper font-mono text-[10px] uppercase tracking-widest"
               >
                 Pre-order the first edition

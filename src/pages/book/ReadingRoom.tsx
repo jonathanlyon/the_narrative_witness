@@ -72,6 +72,49 @@ export const ReadingRoom: React.FC = () => {
       <p className="text-center font-mono text-[0.55rem] uppercase tracking-[0.22em] text-ash mt-8">
         Tap the page edges, use the arrows, or swipe to turn
       </p>
+
+      {/* The author's notes, beside the piece rather than buried inside it */}
+      {(excerpt.origin || excerpt.meaning) && (
+        <motion.div
+          key={`notes-${excerpt.id}`}
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.2, 0.7, 0.2, 1] }}
+          className="max-w-4xl mx-auto mt-20 md:mt-24 border-t border-dust/50 pt-14"
+        >
+          <p className="font-mono text-[0.6rem] uppercase tracking-[0.35em] text-ash text-center">
+            In the author’s words
+          </p>
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16 mt-10">
+            {excerpt.origin && (
+              <div className="md:border-r md:border-dust/40 md:pr-14">
+                <p className="font-mono text-[0.55rem] uppercase tracking-[0.3em] text-ash">Where This Began</p>
+                {excerpt.originTitle && (
+                  <h3 className="font-serif text-2xl font-light italic mt-3 leading-snug">{excerpt.originTitle}</h3>
+                )}
+                <div className="mt-5 space-y-4 text-[0.95rem] text-ink-light leading-relaxed">
+                  {excerpt.origin.split(/\n\s*\n/).map((p, i) => (
+                    <p key={i}>{p.trim()}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+            {excerpt.meaning && (
+              <div>
+                <p className="font-mono text-[0.55rem] uppercase tracking-[0.3em] text-ash">Why I Wrote It</p>
+                {excerpt.meaningTitle && (
+                  <h3 className="font-serif text-2xl font-light italic mt-3 leading-snug">{excerpt.meaningTitle}</h3>
+                )}
+                <div className="mt-5 space-y-4 text-[0.95rem] text-ink-light leading-relaxed">
+                  {excerpt.meaning.split(/\n\s*\n/).map((p, i) => (
+                    <p key={i}>{p.trim()}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </motion.div>
+      )}
     </div>
   );
 };
