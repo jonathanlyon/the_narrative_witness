@@ -8,7 +8,7 @@ declare global {
 }
 
 export type AnalyticsConsent = "granted" | "denied" | null;
-export type SignupSource = "hero" | "midpage" | "final" | "writing";
+export type SignupSource = "hero" | "midpage" | "final" | "writing" | "preorder";
 
 const ANALYTICS_CONSENT_KEY = "narrative_witness_analytics_consent";
 const SIGNUP_ATTRIBUTION_KEY = "narrative_witness_signup_attribution";

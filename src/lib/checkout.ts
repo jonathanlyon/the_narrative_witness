@@ -6,6 +6,15 @@
 
 const CHECKOUT_ENDPOINT = "/api/checkout";
 
+/**
+ * Whether real pre-order checkout is open. While false (the default), the
+ * pre-order section shows a "pre-orders open soon" notice and captures email
+ * instead of starting a Stripe payment — so we don't take money we can't yet
+ * fulfil. Flip on by setting VITE_PREORDER_OPEN="true" in the environment
+ * (do this at the same time you switch Stripe to live keys).
+ */
+export const PREORDER_OPEN = import.meta.env.VITE_PREORDER_OPEN === "true";
+
 export async function startCheckout(editionId: string, tier: string): Promise<void> {
   const response = await fetch(CHECKOUT_ENDPOINT, {
     method: "POST",
