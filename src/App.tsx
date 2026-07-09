@@ -7,7 +7,9 @@ import React, { useEffect } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { AboutBook } from "./components/AboutBook";
-import { Excerpts } from "./components/Excerpts";
+// Home reading teasers funnel into /book. To roll back to the old inline
+// interactive excerpts, swap ExcerptTeasers for `Excerpts` here and below.
+import { ExcerptTeasers } from "./components/ExcerptTeasers";
 import { ReaderRecognition } from "./components/ReaderRecognition";
 import { MidpageCTA } from "./components/MidpageCTA";
 import { BuyTheBook } from "./components/BuyTheBook";
@@ -51,8 +53,8 @@ export default function App() {
         {/* What the book is — the braided testimony, conceptually */}
         <AboutBook />
 
-        {/* Read the writing itself */}
-        <Excerpts />
+        {/* Reading teasers → the reading room on /book */}
+        <ExcerptTeasers />
 
         {/* Reader recognition — social proof */}
         <ReaderRecognition />

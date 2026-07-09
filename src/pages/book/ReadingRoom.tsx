@@ -100,8 +100,16 @@ const ArtefactAccordion: React.FC<{ excerpt: Excerpt }> = ({ excerpt }) => {
   );
 };
 
+// A deep link like /book?read=<excerptId> opens that piece (used by the home
+// page teasers).
+function initialExcerptId(): string | undefined {
+  if (typeof window === "undefined") return READABLE[0]?.id;
+  const requested = new URLSearchParams(window.location.search).get("read");
+  return READABLE.find((e) => e.id === requested)?.id ?? READABLE[0]?.id;
+}
+
 export const ReadingRoom: React.FC = () => {
-  const [activeId, setActiveId] = useState(READABLE[0]?.id);
+  const [activeId, setActiveId] = useState(initialExcerptId);
   const excerpt = READABLE.find((e) => e.id === activeId) ?? READABLE[0];
   if (!excerpt) return null;
 
