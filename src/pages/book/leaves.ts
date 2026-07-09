@@ -14,7 +14,7 @@ import { Excerpt } from "../../types";
 export type Leaf =
   | { kind: "plate"; title: string; image?: string; alt?: string; code: string; caption?: string }
   | { kind: "before"; title: string; type: Excerpt["type"]; before: string }
-  | { kind: "body"; index: number; total: number; paragraphs: string[]; note?: string };
+  | { kind: "body"; index: number; total: number; blocks: Block[]; note?: string };
 
 // Stable archive-style plate code (mirrors writing-studio/src/lib/book.ts).
 export function plateCode(id: string): string {
@@ -59,64 +59,46 @@ const READER_NOTES = [
 ];
 
 // Around 112 words fills a leaf at the reader's proportional type size
-// without clipping at the smallest viewport.
-const WORDS_PER_PAGE = 112;
+// without clipping at the smallest viewport (dense, indent-separated type).
+const WORDS_PER_PAGE = 132;
 
-function paginate(body: string): string[][] {
+export interface Block {
+  text: string;
+  /** True when this block continues a paragraph carried over from the previous
+   *  page (rendered flush-left, no indent), the way a real book flows text. */
+  cont: boolean;
+}
+
+/**
+ * Word-fill pagination: every page is packed to the same word count, so pages
+ * fill consistently. Paragraphs flow across page breaks (a carried-over
+ * fragment is flagged `cont` so it renders without a paragraph indent).
+ */
+function paginate(body: string): Block[][] {
   const paragraphs = body
     .split(/\n\s*\n/)
     .map((p) => p.trim())
     .filter(Boolean);
 
-  const pages: string[][] = [];
-  let current: string[] = [];
-  let count = 0;
-
-  const flush = () => {
-    if (current.length) pages.push(current);
-    current = [];
-    count = 0;
-  };
-
-  for (const paragraph of paragraphs) {
-    const words = paragraph.split(/\s+/);
-    if (words.length > WORDS_PER_PAGE * 1.4) {
-      // A long paragraph is split across pages on sentence boundaries, each
-      // chunk packed close to a full page.
-      flush();
-      const sentences = paragraph.match(/[^.!?]+[.!?]*\s*/g) ?? [paragraph];
-      let chunk = "";
-      let chunkWords = 0;
-      for (const sentence of sentences) {
-        const sw = sentence.split(/\s+/).length;
-        if (chunkWords + sw > WORDS_PER_PAGE && chunk) {
-          pages.push([chunk.trim()]);
-          chunk = "";
-          chunkWords = 0;
-        }
-        chunk += sentence;
-        chunkWords += sw;
-      }
-      if (chunk.trim()) pages.push([chunk.trim()]);
-      continue;
-    }
-    if (count + words.length > WORDS_PER_PAGE && current.length) flush();
-    current.push(paragraph);
-    count += words.length;
+  // Flatten to a word stream, marking the first word of each paragraph.
+  const tokens: { w: string; start: boolean }[] = [];
+  for (const p of paragraphs) {
+    const words = p.split(/\s+/);
+    words.forEach((w, i) => tokens.push({ w, start: i === 0 }));
   }
-  flush();
 
-  // Fold a very short trailing page back into the previous one so the run
-  // doesn't end on a nearly empty leaf.
-  if (pages.length > 1) {
-    const last = pages[pages.length - 1];
-    const lastWords = last.join(" ").split(/\s+/).length;
-    if (lastWords < WORDS_PER_PAGE * 0.28) {
-      pages[pages.length - 2] = pages[pages.length - 2].concat(last);
-      pages.pop();
-    }
+  const pages: Block[][] = [];
+  for (let i = 0; i < tokens.length; i += WORDS_PER_PAGE) {
+    const slice = tokens.slice(i, i + WORDS_PER_PAGE);
+    const blocks: { words: string[]; cont: boolean }[] = [];
+    slice.forEach((t, j) => {
+      if (j === 0) blocks.push({ words: [t.w], cont: !t.start }); // first block may carry over
+      else if (t.start) blocks.push({ words: [t.w], cont: false });
+      else blocks[blocks.length - 1].words.push(t.w);
+    });
+    pages.push(blocks.map((b) => ({ text: b.words.join(" "), cont: b.cont })));
   }
-  return pages;
+  return pages.length ? pages : [[]];
 }
 
 export function buildLeaves(excerpt: Excerpt): Leaf[] {
@@ -152,8 +134,8 @@ export function buildLeaves(excerpt: Excerpt): Leaf[] {
     if (page >= 1 && page < pages.length) noteOnPage.set(page, note);
   });
 
-  pages.forEach((paragraphs, index) => {
-    leaves.push({ kind: "body", index: index + 1, total: pages.length, paragraphs, note: noteOnPage.get(index) });
+  pages.forEach((blocks, index) => {
+    leaves.push({ kind: "body", index: index + 1, total: pages.length, blocks, note: noteOnPage.get(index) });
   });
 
   // Note: the author's "Where this began" / "Why I wrote it" notes live in a

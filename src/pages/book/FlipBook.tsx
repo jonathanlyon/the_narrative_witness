@@ -153,8 +153,13 @@ const LeafFace: React.FC<{ leaf: Leaf }> = ({ leaf }) => {
       return (
         <div className="nw-page nw-page-body">
           <div className="nw-body-text">
-            {leaf.paragraphs.map((p, i) => (
-              <p key={i} className={i === 0 && leaf.index === 1 ? "nw-first" : ""}>{p}</p>
+            {leaf.blocks.map((b, i) => (
+              <p
+                key={i}
+                className={`${i === 0 && leaf.index === 1 && !b.cont ? "nw-first" : ""} ${b.cont ? "nw-cont" : ""}`.trim()}
+              >
+                {b.text}
+              </p>
             ))}
           </div>
           <div className="nw-page-footer">
@@ -194,7 +199,11 @@ const CSS = `
 .nw-kicker { font-family: "JetBrains Mono", monospace; font-size: 0.5rem; letter-spacing: 0.3em; text-transform: uppercase; color: #8A8479; margin: 0 0 1.4em; }
 /* Type scales with the page so a leaf fills at every viewport. */
 .nw-body-text { font-size: calc(var(--page-w) * 0.0375); line-height: 1.72; flex: 1 1 auto; overflow: hidden; }
-.nw-body-text p { margin: 0 0 0.62em; text-align: justify; hyphens: auto; }
+/* Book style: paragraphs marked by a first-line indent, no blank line between,
+   so text flows across pages and every leaf fills evenly. */
+.nw-body-text p { margin: 0; text-indent: 1.4em; text-align: justify; hyphens: auto; }
+.nw-body-text p.nw-cont { text-indent: 0; }
+.nw-body-text p.nw-first { text-indent: 0; }
 .nw-body-text p.nw-first::first-letter { float: left; font-size: 3.1em; line-height: 0.72; padding: 0.05em 0.08em 0 0; font-weight: 500; }
 .nw-first { text-align: left !important; }
 
