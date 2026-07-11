@@ -37,6 +37,8 @@ export default defineConfig(() => {
       rollupOptions: {
         input: {
           main: path.resolve(__dirname, 'index.html'),
+          // Companion performance artefact for the book: /certificate.
+          certificate: path.resolve(__dirname, 'certificate.html'),
           // Hidden book pre-order page + its checkout satellites (mvp/book-page).
           book: path.resolve(__dirname, 'book.html'),
           'thank-you': path.resolve(__dirname, 'thank-you.html'),

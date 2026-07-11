@@ -1,0 +1,1606 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Third Certificate | The Narrative Witness</title>
+    <meta
+      name="description"
+      content="A performance in triplicate. Adoption enacts a death, a birth, and a life: one birth record sealed, one certificate issued, and a third the adoptee must author himself. This is that form — witnessed by Ella and Imogen."
+    />
+    <meta name="author" content="Jonathan Lyon" />
+    <meta name="theme-color" content="#2b2c27" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://www.thenarrativewitness.com/certificate" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="The Narrative Witness" />
+    <meta property="og:locale" content="en_NZ" />
+    <meta property="og:url" content="https://www.thenarrativewitness.com/certificate" />
+    <meta property="og:title" content="The Third Certificate — A Life, in Triplicate" />
+    <meta
+      property="og:description"
+      content="One birth record sealed. One certificate issued. A third the adoptee must author himself. A document you can look at, not just read about — and one box left blank for you to sign."
+    />
+    <meta property="og:image" content="https://www.thenarrativewitness.com/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Third Certificate — A Life, in Triplicate" />
+    <meta
+      name="twitter:description"
+      content="One birth record sealed. One certificate issued. A third the adoptee must author himself — and one box left blank for you to sign."
+    />
+    <meta name="twitter:image" content="https://www.thenarrativewitness.com/og-image.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400;1,500&family=VT323&family=Caveat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ============================================================
+         THE THIRD CERTIFICATE
+         A life in triplicate. Three carbonless copies of one set:
+           1 · SEALED   — the death of the original birth record
+           2 · ISSUED   — the amended, legally-true, invented birth
+           3 · UNISSUED — the life certificate no office keeps
+         The third copy breaks the form on purpose.
+         ============================================================ */
+
+      :root {
+        --desk: #2b2c27;
+        --desk-edge: #202019;
+        /* Defaults (overwritten per copy) */
+        --paper: #ece9dd;
+        --ink: #34407e;
+        --ink-soft: rgba(52, 64, 126, 0.62);
+        --ink-faint: rgba(52, 64, 126, 0.34);
+        --rule: rgba(52, 64, 126, 0.28);
+        --seal: #9a3b34;
+        --tab: #cbc7b6;
+        --smudge: 0.4px 0.3px 0.9px rgba(40, 40, 60, 0.25);
+        --field: rgba(52, 64, 126, 0.05);
+      }
+
+      /* --- COPY 1 · SEALED (the death of the record) --- */
+      body[data-copy='sealed'] {
+        --paper: #e7e4d7;
+        --ink: #45516b; /* cold, drained registrar slate */
+        --ink-soft: rgba(69, 81, 107, 0.6);
+        --ink-faint: rgba(69, 81, 107, 0.3);
+        --rule: rgba(69, 81, 107, 0.26);
+        --seal: #97362f;
+        --field: rgba(69, 81, 107, 0.045);
+        --smudge: 0.5px 0.4px 1.2px rgba(50, 55, 72, 0.4);
+      }
+      /* --- COPY 2 · ISSUED (the amended birth) --- */
+      body[data-copy='issued'] {
+        --paper: #f0d2cc;
+        --ink: #33407c; /* full registrar blue on the pink applicant copy */
+        --ink-soft: rgba(51, 64, 124, 0.6);
+        --ink-faint: rgba(51, 64, 124, 0.32);
+        --rule: rgba(51, 64, 124, 0.28);
+        --seal: #7c2f4c;
+        --field: rgba(51, 64, 124, 0.05);
+        --smudge: 0.5px 0.4px 1.1px rgba(60, 40, 70, 0.35);
+      }
+      /* --- COPY 3 · UNISSUED (the life no office keeps) --- */
+      body[data-copy='unissued'] {
+        --paper: #f1e2a3;
+        --ink: #6c6636; /* the printed skeleton is faint, canary-on-canary */
+        --ink-soft: rgba(108, 102, 54, 0.66);
+        --ink-faint: rgba(108, 102, 54, 0.34);
+        --rule: rgba(108, 102, 54, 0.3);
+        --seal: #7a5a2a;
+        --hand: #23201a; /* the ink a human writes over a dead form in */
+        --field: rgba(108, 102, 54, 0.05);
+        --smudge: 0.5px 0.4px 1px rgba(80, 70, 30, 0.3);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: var(--desk);
+        background-image:
+          radial-gradient(
+            circle at 20% 12%,
+            rgba(255, 255, 255, 0.03),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 85% 80%,
+            rgba(0, 0, 0, 0.25),
+            transparent 45%
+          );
+        color: var(--ink);
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        -webkit-font-smoothing: antialiased;
+        padding: clamp(0.75rem, 3vw, 3rem) clamp(0.5rem, 3vw, 3rem)
+          clamp(2rem, 6vw, 5rem);
+        transition: background-color 0.5s ease;
+      }
+
+      /* ---------- top matter ---------- */
+      .stage {
+        max-width: 860px;
+        margin: 0 auto;
+      }
+      .preamble {
+        color: #b9b6a6;
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+        line-height: 1.7;
+        text-align: center;
+        max-width: 620px;
+        margin: 0.5rem auto 1.4rem;
+      }
+      .preamble strong {
+        color: #d8d5c6;
+        font-weight: 500;
+      }
+
+      /* ---------- copy selector (the carbonless stubs) ---------- */
+      .selector {
+        display: flex;
+        gap: 4px;
+        max-width: 640px;
+        margin: 0 auto -1px;
+        padding: 0 0.4rem;
+        position: relative;
+        z-index: 3;
+      }
+      .stub {
+        flex: 1;
+        appearance: none;
+        border: 1px solid rgba(0, 0, 0, 0.35);
+        border-bottom: none;
+        border-radius: 5px 5px 0 0;
+        padding: 0.5rem 0.4rem 0.65rem;
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.62rem;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+        color: #4a4a44;
+        line-height: 1.35;
+        text-align: center;
+        transition:
+          transform 0.18s ease,
+          filter 0.18s ease,
+          box-shadow 0.18s ease;
+        box-shadow: inset 0 -8px 14px -10px rgba(0, 0, 0, 0.5);
+      }
+      .stub .n {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+      .stub .k {
+        display: block;
+        font-size: 0.56rem;
+        opacity: 0.72;
+        font-family: 'IBM Plex Mono', monospace;
+        letter-spacing: 0.04em;
+        margin-top: 2px;
+        text-transform: none;
+      }
+      .stub[data-for='sealed'] {
+        background: #ded9c7;
+      }
+      .stub[data-for='issued'] {
+        background: #e8c3bd;
+      }
+      .stub[data-for='unissued'] {
+        background: #ecdc9a;
+      }
+      .stub[aria-selected='true'] {
+        transform: translateY(-4px);
+        filter: saturate(1.1);
+        box-shadow:
+          0 -6px 12px -8px rgba(0, 0, 0, 0.4),
+          inset 0 -2px 6px -4px rgba(0, 0, 0, 0.25);
+        color: #26261f;
+      }
+      .stub:hover {
+        filter: brightness(1.04);
+      }
+      .stub:focus-visible {
+        outline: 2px solid #f2e3a4;
+        outline-offset: 2px;
+      }
+
+      /* ---------- the form sheet ---------- */
+      .sheet {
+        position: relative;
+        background: var(--paper);
+        color: var(--ink);
+        padding: clamp(1.5rem, 4.2vw, 3.4rem) clamp(1.4rem, 5vw, 4rem);
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.25) inset,
+          0 26px 50px -24px rgba(0, 0, 0, 0.7),
+          0 4px 10px -6px rgba(0, 0, 0, 0.5);
+        transition:
+          background-color 0.5s ease,
+          color 0.5s ease;
+        overflow: hidden;
+      }
+      /* tractor-feed perforations down both margins */
+      .sheet::before,
+      .sheet::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 20px;
+        background-image: radial-gradient(
+          circle at center,
+          var(--desk) 0 3px,
+          transparent 3.5px
+        );
+        background-size: 20px 26px;
+        background-position: center 12px;
+        opacity: 0.9;
+      }
+      .sheet::before {
+        left: 0;
+        border-right: 1px dashed var(--ink-faint);
+      }
+      .sheet::after {
+        right: 0;
+        border-left: 1px dashed var(--ink-faint);
+      }
+      .inner {
+        position: relative;
+        padding: 0 clamp(0.4rem, 2vw, 1.6rem);
+      }
+      /* faint carbon texture */
+      .sheet .inner > * {
+        text-shadow: var(--smudge);
+      }
+
+      /* dog-ear: peel to the next copy */
+      .dogear {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 62px;
+        height: 62px;
+        border: none;
+        cursor: pointer;
+        background: transparent;
+        z-index: 4;
+        padding: 0;
+      }
+      .dogear::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        clip-path: polygon(100% 0, 0 100%, 100% 100%);
+        background: var(--desk);
+        box-shadow: -3px -3px 6px -3px rgba(0, 0, 0, 0.5) inset;
+      }
+      .dogear::after {
+        content: 'next copy \25B8';
+        position: absolute;
+        right: 5px;
+        bottom: 6px;
+        font-size: 0.5rem;
+        letter-spacing: 0.05em;
+        color: #cfc9b4;
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        transform: rotate(-45deg);
+        transform-origin: right bottom;
+        white-space: nowrap;
+      }
+      .dogear:hover::before {
+        clip-path: polygon(100% 0, 0 100%, 100% 100%, 100% 0);
+        width: 74px;
+      }
+
+      /* ---------- letterhead ---------- */
+      .letterhead {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        border-bottom: 2.5px solid var(--ink);
+        padding-bottom: 0.8rem;
+      }
+      .office {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        line-height: 1.5;
+      }
+      .crest {
+        width: 44px;
+        height: 44px;
+        border: 2px solid var(--ink-soft);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: var(--ink-soft);
+        flex: none;
+        margin-bottom: 0.4rem;
+      }
+      .formbox {
+        text-align: right;
+        border: 1.5px solid var(--ink);
+        padding: 0.3rem 0.6rem;
+        font-family: 'Oswald', sans-serif;
+        line-height: 1.25;
+        flex: none;
+      }
+      .formbox .fn {
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      .formbox .fm {
+        font-size: 0.52rem;
+        letter-spacing: 0.1em;
+        color: var(--ink-soft);
+        text-transform: uppercase;
+      }
+      .formbox .serving {
+        font-size: 0.5rem;
+        color: var(--seal);
+        letter-spacing: 0.08em;
+        margin-top: 3px;
+        text-transform: uppercase;
+      }
+
+      h1.title {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.6rem, 5.5vw, 2.9rem);
+        line-height: 1.02;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin: 1.1rem 0 0.15rem;
+      }
+      .subtitle {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 400;
+        font-size: 0.82rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+      .instructions {
+        font-size: 0.66rem;
+        letter-spacing: 0.03em;
+        color: var(--ink-soft);
+        text-transform: uppercase;
+        margin: 0.7rem 0 0;
+        line-height: 1.6;
+      }
+      .rulebar {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.6rem;
+        border-top: 1px solid var(--rule);
+        border-bottom: 1px solid var(--rule);
+        margin: 1rem 0 1.2rem;
+        padding: 0.35rem 0;
+        font-size: 0.56rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        flex-wrap: wrap;
+      }
+
+      /* the spiel paragraph */
+      .spiel {
+        font-size: 0.86rem;
+        line-height: 1.7;
+        color: var(--ink);
+        margin: 0 0 1.4rem;
+        max-width: 60ch;
+      }
+      .spiel em {
+        font-style: italic;
+      }
+
+      /* received / status stamp along the top-right of body */
+      .recvstamp {
+        position: absolute;
+        top: 8.5rem;
+        right: -0.4rem;
+        transform: rotate(6deg);
+        border: 2px solid var(--seal);
+        color: var(--seal);
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.28rem 0.6rem;
+        opacity: 0.82;
+        line-height: 1.3;
+        text-align: center;
+        pointer-events: none;
+      }
+
+      /* ---------- parts / sections ---------- */
+      .part-h {
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 0.74rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.32rem 0.7rem;
+        margin: 1.5rem 0 0;
+      }
+      .part-h .pk {
+        font-size: 0.56rem;
+        opacity: 0.75;
+        font-weight: 400;
+        letter-spacing: 0.1em;
+      }
+      .part-body {
+        border: 1px solid var(--rule);
+        border-top: none;
+        padding: 1rem 1rem 1.2rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.9rem 1.4rem;
+      }
+      .grid.one {
+        grid-template-columns: 1fr;
+      }
+      .fieldset {
+        min-width: 0;
+      }
+      .flabel {
+        font-size: 0.56rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        display: block;
+        margin-bottom: 2px;
+      }
+      .fval {
+        border-bottom: 1px solid var(--ink-soft);
+        min-height: 1.4rem;
+        padding: 1px 2px 3px;
+        font-size: 0.92rem;
+        line-height: 1.35;
+        background: var(--field);
+      }
+      .fval.big {
+        font-size: 1.05rem;
+      }
+      .fhint {
+        font-size: 0.56rem;
+        color: var(--ink-faint);
+        letter-spacing: 0.03em;
+        margin-top: 2px;
+        font-style: italic;
+      }
+      .fval .strike {
+        text-decoration: line-through;
+        text-decoration-thickness: 1px;
+        opacity: 0.6;
+      }
+      .blank {
+        color: var(--ink-faint);
+      }
+
+      /* declaration checkboxes */
+      .decl {
+        display: flex;
+        gap: 0.7rem;
+        align-items: flex-start;
+        margin: 0.7rem 0;
+        font-size: 0.82rem;
+        line-height: 1.55;
+      }
+      .box {
+        flex: none;
+        width: 15px;
+        height: 15px;
+        border: 1.5px solid var(--ink-soft);
+        margin-top: 3px;
+        position: relative;
+        border-radius: 1px;
+      }
+      .box.x::after {
+        content: '\2713';
+        position: absolute;
+        inset: -6px 0 0 1px;
+        font-size: 1.1rem;
+        color: var(--seal);
+        font-family: 'Caveat', cursive;
+      }
+      .decl small {
+        display: block;
+        font-size: 0.62rem;
+        color: var(--ink-soft);
+        font-style: italic;
+        margin-top: 1px;
+      }
+
+      /* handwritten margin note */
+      .marginalia {
+        font-family: 'Caveat', cursive;
+        font-size: 1.5rem;
+        line-height: 1.1;
+        color: var(--seal);
+        transform: rotate(-4deg);
+      }
+      .hand {
+        font-family: 'Caveat', cursive;
+        font-size: 1.5rem;
+        line-height: 1.15;
+      }
+      body[data-copy='unissued'] .hand {
+        color: var(--hand);
+      }
+
+      /* the big diagonal SEAL / status stamp */
+      .bigstamp {
+        position: absolute;
+        left: 50%;
+        top: 46%;
+        transform: translate(-50%, -50%) rotate(-13deg);
+        border: 4px double var(--seal);
+        color: var(--seal);
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.4rem, 5vw, 2.4rem);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.5rem 1.4rem;
+        opacity: 0.28;
+        pointer-events: none;
+        text-align: center;
+        line-height: 1.05;
+        border-radius: 6px;
+        z-index: 2;
+        white-space: nowrap;
+      }
+      .bigstamp small {
+        display: block;
+        font-size: 0.5em;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+      }
+
+      /* office-use / stamping box */
+      .officeuse {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 0;
+        margin-top: 0.4rem;
+      }
+      .stampwell {
+        border: 1.5px dashed var(--ink-soft);
+        min-height: 108px;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 0.8rem;
+        font-size: 0.58rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+        line-height: 1.6;
+        position: relative;
+      }
+      .round-stamp {
+        width: 92px;
+        height: 92px;
+        border: 2.5px solid var(--seal);
+        border-radius: 50%;
+        color: var(--seal);
+        display: grid;
+        place-items: center;
+        text-align: center;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 600;
+        font-size: 0.5rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        line-height: 1.35;
+        transform: rotate(-8deg);
+        padding: 0.4rem;
+        opacity: 0.85;
+      }
+      .submit-note {
+        border: 1.5px solid var(--ink);
+        border-left: none;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: 0.8rem;
+      }
+      .submit-note .big {
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 0.9rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        line-height: 1.2;
+      }
+      .submit-note .sm {
+        font-size: 0.56rem;
+        color: var(--ink-soft);
+        margin-top: 0.4rem;
+        line-height: 1.5;
+      }
+
+      /* --- interactive witness signing (copy 3) --- */
+      .witnesses {
+        margin-top: 0.6rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.4rem;
+      }
+      .sigline {
+        border-bottom: 1.5px solid var(--ink-soft);
+        min-height: 2.4rem;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 3px;
+      }
+      .sigline input {
+        width: 100%;
+        border: none;
+        background: transparent;
+        font-family: 'Caveat', cursive;
+        font-size: 1.75rem;
+        line-height: 1;
+        color: var(--hand, #23201a);
+        padding: 0 2px;
+      }
+      .sigline input::placeholder {
+        color: var(--ink-faint);
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+      .sigline input:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.25);
+      }
+      .sigcap {
+        font-size: 0.56rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        margin-top: 3px;
+      }
+      .issuer-sig {
+        font-family: 'Caveat', cursive;
+        font-size: 2rem;
+        color: var(--hand, #23201a);
+        line-height: 1;
+        transform: rotate(-2deg);
+        display: inline-block;
+      }
+      .witness-part {
+        position: relative;
+      }
+      .witnessed-mark {
+        position: absolute;
+        right: 1rem;
+        top: 0.7rem;
+        transform: rotate(-9deg) scale(0.9);
+        border: 3px solid var(--seal);
+        color: var(--seal);
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.9rem;
+        border-radius: 4px;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s cubic-bezier(0.2, 1.5, 0.4, 1);
+        text-align: center;
+        line-height: 1.15;
+        z-index: 3;
+      }
+      .witnessed-mark small {
+        display: block;
+        font-size: 0.42em;
+        font-weight: 500;
+        letter-spacing: 0.05em;
+      }
+      body.is-witnessed .witnessed-mark {
+        opacity: 0.85;
+        transform: rotate(-9deg) scale(1);
+      }
+
+      /* below-the-line footer material */
+      .belowline {
+        margin-top: 1.6rem;
+        border-top: 1px solid var(--ink);
+        padding-top: 0.5rem;
+        text-align: center;
+        font-size: 0.55rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--ink-faint);
+      }
+      .margin-scrawl {
+        font-family: 'Caveat', cursive;
+        font-size: 1.2rem;
+        color: var(--ink-soft);
+        text-align: center;
+        line-height: 1.35;
+        margin: 0.9rem 0 0;
+        transform: rotate(-0.6deg);
+      }
+
+      /* revision history */
+      .history {
+        margin-top: 1.8rem;
+      }
+      .history h2 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink);
+        border-bottom: 1.5px solid var(--ink);
+        padding-bottom: 0.35rem;
+        margin: 0 0 0.2rem;
+      }
+      table.hist {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.66rem;
+        line-height: 1.4;
+      }
+      table.hist th {
+        text-align: left;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 500;
+        font-size: 0.54rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+        padding: 0.35rem 0.5rem 0.35rem 0;
+        border-bottom: 1px solid var(--rule);
+      }
+      table.hist td {
+        padding: 0.4rem 0.5rem 0.4rem 0;
+        border-bottom: 1px solid var(--rule);
+        vertical-align: top;
+        color: var(--ink);
+      }
+      table.hist td:first-child {
+        white-space: nowrap;
+        color: var(--ink-soft);
+        font-weight: 500;
+        width: 4.5rem;
+      }
+
+      /* colophon under the sheet */
+      .colophon {
+        max-width: 640px;
+        margin: 1.6rem auto 0;
+        color: #a7a496;
+        font-size: 0.68rem;
+        line-height: 1.75;
+        text-align: center;
+        letter-spacing: 0.02em;
+      }
+      .colophon a {
+        color: #ded9c7;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .colophon a:hover {
+        color: #f2e3a4;
+      }
+      .colophon .rule {
+        margin: 0.9rem auto;
+        width: 40px;
+        border-top: 1px solid #55564c;
+      }
+
+      /* the essay tie-back callout */
+      .tieback {
+        max-width: 620px;
+        margin: 1.4rem auto 0;
+        background: rgba(0, 0, 0, 0.18);
+        border: 1px solid #45463d;
+        border-radius: 6px;
+        padding: 1.1rem 1.3rem;
+        text-align: center;
+        color: #cdcabb;
+        font-size: 0.82rem;
+        line-height: 1.65;
+      }
+      .tieback a.btn {
+        display: inline-block;
+        margin-top: 0.7rem;
+        font-family: 'Oswald', sans-serif;
+        font-size: 0.66rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #2b2c27;
+        background: #ecdc9a;
+        padding: 0.5rem 1.1rem;
+        border-radius: 4px;
+        text-decoration: none;
+      }
+      .tieback a.btn:hover {
+        background: #f2e3a4;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      /* only show the active copy's content blocks */
+      .copyblock {
+        display: none;
+      }
+      .copyblock.active {
+        display: block;
+        animation: reink 0.55s ease;
+      }
+      @keyframes reink {
+        from {
+          opacity: 0.15;
+          filter: blur(1.5px);
+        }
+        to {
+          opacity: 1;
+          filter: none;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .officeuse {
+          grid-template-columns: 1fr;
+        }
+        .submit-note {
+          border-left: 1.5px solid var(--ink);
+          border-top: none;
+        }
+        .witnesses {
+          grid-template-columns: 1fr;
+          gap: 1.8rem;
+        }
+        .recvstamp {
+          top: 6.5rem;
+        }
+        .stub .k {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .copyblock.active {
+          animation: none;
+        }
+        .witnessed-mark {
+          transition: opacity 0.2s ease;
+        }
+      }
+    </style>
+  </head>
+
+  <body data-copy="sealed">
+    <div class="stage">
+      <p class="preamble">
+        Adoption is administered in triplicate. One birth record is
+        <strong>sealed</strong>. One certificate is <strong>issued</strong> in
+        its place. And a third — the record of the life actually lived — no
+        office has ever drafted. <strong>Peel through the set.</strong> The last
+        copy is unfinished on purpose.
+      </p>
+
+      <div class="selector" role="tablist" aria-label="Three copies of the set">
+        <button
+          class="stub"
+          role="tab"
+          data-for="sealed"
+          aria-selected="true"
+          aria-controls="sheet"
+        >
+          <span class="n">1</span>
+          SEALED
+          <span class="k">the death</span>
+        </button>
+        <button
+          class="stub"
+          role="tab"
+          data-for="issued"
+          aria-selected="false"
+          aria-controls="sheet"
+        >
+          <span class="n">2</span>
+          ISSUED
+          <span class="k">the birth</span>
+        </button>
+        <button
+          class="stub"
+          role="tab"
+          data-for="unissued"
+          aria-selected="false"
+          aria-controls="sheet"
+        >
+          <span class="n">3</span>
+          UNISSUED
+          <span class="k">the life</span>
+        </button>
+      </div>
+
+      <article class="sheet" id="sheet">
+        <div class="inner">
+          <!-- ============ SHARED LETTERHEAD (re-inks per copy) ============ -->
+          <header class="letterhead">
+            <div>
+              <div class="crest" aria-hidden="true">§</div>
+              <div class="office" id="office">
+                OFFICE OF CIVIL REGISTRATION<br />
+                DIVISION OF THE ADOPTED CHILDREN REGISTER<br />
+                SOMERSET HOUSE ANNEXE · EST. 1837
+              </div>
+            </div>
+            <div class="formbox">
+              <div class="fn" id="formno">FORM ACR/1</div>
+              <div class="fm">CERTIFIED COPY · IN TRIPLICATE</div>
+              <div class="serving" id="serving">COPY 1 OF 3</div>
+            </div>
+          </header>
+
+          <!-- status stamp, top right of body -->
+          <div class="recvstamp" id="recvstamp">
+            SEALED<br />SOMERSET HOUSE<br />MICROFICHE · COLD STEEL
+          </div>
+
+          <!-- ============ COPY 1 · SEALED ============ -->
+          <section class="copyblock active" data-copy-block="sealed">
+            <h1 class="title">Certificate of<br />Extinguishment</h1>
+            <div class="subtitle">Of an original record of birth</div>
+            <p class="instructions">
+              Complete before issuing any replacement · No ceremony is required ·
+              Blue-black ink only
+            </p>
+
+            <div class="rulebar">
+              <span>Copy 1 of 3 — the record's copy</span>
+              <span>Retained, not returned</span>
+            </div>
+
+            <p class="spiel">
+              Pursuant to the Adoption Order, the entry described below is
+              superseded, and its certified copies are withdrawn from ordinary
+              issue. The record is not destroyed. It is <em>sealed</em> — kept
+              where it cannot be reached without a fee, an appointment, and a
+              stranger appointed to sit with you while you read it.
+            </p>
+
+            <div class="part-h">
+              <span class="pk">Part I</span> The record extinguished
+            </div>
+            <div class="part-body">
+              <div class="grid">
+                <div class="fieldset">
+                  <span class="flabel">1 · Name on the sealed entry</span>
+                  <div class="fval big">Jonathan Richard Jordan</div>
+                  <div class="fhint">The first name. The one nobody uses.</div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">2 · Registered</span>
+                  <div class="fval">7 May 1967, 8:50 a.m.</div>
+                  <div class="fhint">Time recorded. It mattered, once.</div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">3 · Place of birth</span>
+                  <div class="fval">20 Union Street, Southport, PR9 0QE</div>
+                  <div class="fhint">
+                    An upstairs room. A two-up two-down. Next to a pub.
+                  </div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">4 · Adjacent entry, same room</span>
+                  <div class="fval">Douglas Howard Jordan — 9:00 a.m.</div>
+                  <div class="fhint">
+                    A twin. Ten minutes younger. Not extinguished.
+                  </div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">5 · Cause of extinguishment</span>
+                  <div class="fval">Adoption. Lawful. Complete.</div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">6 · Time of death of the record</span>
+                  <div class="fval blank">— not recorded —</div>
+                  <div class="fhint">Deaths of records are not timed.</div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">7 · Manner of disposal</span>
+                  <div class="fval">
+                    Sealed. Microfiche. Cold steel cabinet.
+                  </div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">8 · Certified by</span>
+                  <div class="fval">The Registrar General</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="part-h">
+              <span class="pk">Part II</span> The word in the margin
+            </div>
+            <div class="part-body">
+              <div class="grid one">
+                <div class="fieldset">
+                  <span class="flabel"
+                    >Annotation entered by hand at time of sealing</span
+                  >
+                  <div class="fval" style="min-height: 2.4rem">
+                    <span class="marginalia">adopted</span>
+                  </div>
+                  <div class="fhint">
+                    A single hand-scrawled word, forever, in the margin of the
+                    only paper proof of an existence. Hidden. Scrubbed. Denied.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="bigstamp" style="opacity: 0.22">
+              Sealed<small>Withdrawn from ordinary issue</small>
+            </div>
+
+            <p class="margin-scrawl">
+              no one attends the funeral of a certificate.<br />it is the only
+              death without a body, and the only one you outlive.
+            </p>
+          </section>
+
+          <!-- ============ COPY 2 · ISSUED ============ -->
+          <section class="copyblock" data-copy-block="issued">
+            <h1 class="title">Certified Copy<br />of an Entry</h1>
+            <div class="subtitle">Adopted Children Register</div>
+            <p class="instructions">
+              This certificate is valid for all lawful purposes · Schools ·
+              Passports · Weddings · Blue-black ink only
+            </p>
+
+            <div class="rulebar">
+              <span>Copy 2 of 3 — the bearer's copy</span>
+              <span>True in law · Invented in part</span>
+            </div>
+
+            <p class="spiel">
+              This is the document that functions. It will be accepted at every
+              counter for the rest of a life. It is entirely true and, in the
+              places that matter most, entirely invented — and the strangest
+              thing anyone will tell you is that those two facts were never, at
+              any point, in conflict.
+            </p>
+
+            <div class="part-h">
+              <span class="pk">Part I</span> Particulars, as ordered
+            </div>
+            <div class="part-body">
+              <div class="grid">
+                <div class="fieldset">
+                  <span class="flabel">1 · Name</span>
+                  <div class="fval big">
+                    Jonathan
+                    <span class="strike">Richard Jordan</span> Lyon
+                  </div>
+                  <div class="fhint">
+                    The given name kept; the surname replaced by court order.
+                  </div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">2 · Date of birth</span>
+                  <div class="fval big">7 May 1967</div>
+                  <div class="fhint">
+                    The one true thing carried across from the sealed copy.
+                  </div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">3 · Place of birth</span>
+                  <div class="fval blank">— not to be completed —</div>
+                  <div class="fhint">
+                    The amended certificate keeps this box empty. The room is
+                    gone.
+                  </div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">4 · Parents</span>
+                  <div class="fval">As entered by order of the Court</div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">5 · Issued by</span>
+                  <div class="fval">The Registrar General</div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">6 · Fee paid</span>
+                  <div class="fval">Yes. There is always a fee.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="part-h">
+              <span class="pk">Part II</span> Declarations
+            </div>
+            <div class="part-body">
+              <div class="decl">
+                <span class="box x"></span>
+                <span
+                  >I understand this certificate is legally sound.
+                  <small>Its soundness was never the question.</small></span
+                >
+              </div>
+              <div class="decl">
+                <span class="box x"></span>
+                <span
+                  >I understand that <em>true</em> and <em>legal</em> were sold
+                  to me as the same promise.
+                  <small>They are not. This is where I learned it.</small></span
+                >
+              </div>
+              <div class="decl">
+                <span class="box"></span>
+                <span
+                  >I have never seen the sealed copy without applying,
+                  attending, and paying.
+                  <small
+                    >Left unchecked. The application was made only after both
+                    adoptive parents had died.</small
+                  ></span
+                >
+              </div>
+            </div>
+
+            <div class="part-h">
+              <span class="pk">Part III</span> For office use
+            </div>
+            <div class="part-body">
+              <div class="officeuse">
+                <div class="stampwell">
+                  <div class="round-stamp">
+                    Adopted<br />Children<br />Register<br />✶ Registrar
+                    General ✶
+                  </div>
+                </div>
+                <div class="submit-note">
+                  <div>
+                    <div class="big">Certified<br />True Copy</div>
+                    <div class="sm">
+                      True as to the law.<br />Silent as to the rest.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="margin-scrawl">
+              they hand you a truer-looking truth<br />and ask you to play
+              make-believe for the rest of your life.
+            </p>
+          </section>
+
+          <!-- ============ COPY 3 · UNISSUED ============ -->
+          <section class="copyblock" data-copy-block="unissued">
+            <h1 class="title">Certificate of a Life</h1>
+            <div class="subtitle hand" style="font-size: 1.3rem">
+              for the years no office keeps
+            </div>
+            <p class="instructions">
+              Not issued by any registrar · No fee · No appointment · No stranger
+              need be present
+            </p>
+
+            <div class="rulebar">
+              <span>Copy 3 of 3 — kept by no office</span>
+              <span>Authored by the bearer</span>
+            </div>
+
+            <p class="spiel">
+              The State certifies that a person was born, and will certify that
+              he died. It keeps no form for the vast, unwitnessed middle where
+              the living actually happens. For most people, family and memory do
+              that filing, invisibly and unpaid. Denied both, the adoptee is
+              left holding the pen. So here is the missing form. No one drafted
+              it. <em>I am issuing it myself.</em>
+            </p>
+
+            <div class="part-h">
+              <span class="pk">Part I</span> The life certified
+            </div>
+            <div class="part-body">
+              <div class="grid">
+                <div class="fieldset">
+                  <span class="flabel">1 · Bearer</span>
+                  <div class="fval big">Jonathan Lyon</div>
+                  <div class="fhint">The name I answer to. It will do.</div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">2 · Period covered</span>
+                  <div class="fval big">7 May 1967 — ongoing</div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">3 · Evidence of life submitted</span>
+                  <div class="fval">
+                    One book. Braided testimony. Addressed to two readers.
+                  </div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">4 · Filed at</span>
+                  <div class="fval">No office. Kept where it can be found.</div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">5 · Grounds for certification</span>
+                  <div class="fval">It was lived. That is the whole case.</div>
+                </div>
+                <div class="fieldset">
+                  <span class="flabel">6 · Issuing authority</span>
+                  <div class="fval">
+                    <span class="issuer-sig">Jonathan Lyon</span>
+                  </div>
+                  <div class="fhint">
+                    Authored, not stamped. Authorship outranks the seal.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="part-h">
+              <span class="pk">Part II</span> Witnesses
+              <span class="pk"
+                >— the only signatures I have ever wanted on anything</span
+              >
+            </div>
+            <div class="part-body witness-part">
+              <div class="witnessed-mark" id="witnessedMark">
+                Witnessed<small>and therefore, at last, real</small>
+              </div>
+              <p style="font-size: 0.8rem; line-height: 1.6; margin: 0 0 0.4rem">
+                No registrar will countersign a life. Two people can. Sign
+                below.
+              </p>
+              <div class="witnesses">
+                <div>
+                  <div class="sigline">
+                    <input
+                      type="text"
+                      id="w-ella"
+                      autocomplete="off"
+                      spellcheck="false"
+                      placeholder="Ella, sign here"
+                      aria-label="Witness signature, Ella"
+                      maxlength="40"
+                    />
+                  </div>
+                  <div class="sigcap">Witness — Ella</div>
+                </div>
+                <div>
+                  <div class="sigline">
+                    <input
+                      type="text"
+                      id="w-imogen"
+                      autocomplete="off"
+                      spellcheck="false"
+                      placeholder="Imogen, sign here"
+                      aria-label="Witness signature, Imogen"
+                      maxlength="40"
+                    />
+                  </div>
+                  <div class="sigcap">Witness — Imogen</div>
+                </div>
+              </div>
+              <div class="grid one" style="margin-top: 1.1rem">
+                <div class="fieldset">
+                  <span class="flabel">Date of witnessing</span>
+                  <div class="fval blank" id="wdate">— the day you sign —</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="part-h">
+              <span class="pk">Part III</span> For office use
+            </div>
+            <div class="part-body">
+              <div class="officeuse">
+                <div class="stampwell">
+                  No stamp exists for this.<br />Affix nothing.<br /><span
+                    style="color: var(--ink-soft)"
+                    >It counts anyway.</span
+                  >
+                </div>
+                <div class="submit-note">
+                  <div>
+                    <div class="big">Not for<br />Filing</div>
+                    <div class="sm">
+                      There is no drawer<br />cold enough to seal this one.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="margin-scrawl hand" style="color: var(--hand)">
+              somewhere there ought to be an office for this. there isn't.<br />so
+              i built a small one, and left the last box for the two of you.
+            </p>
+          </section>
+
+          <!-- ============ SHARED FOOTER ============ -->
+          <div class="belowline">— do not write below this line —</div>
+
+          <div class="history">
+            <h2>Record of the set — issued in triplicate</h2>
+            <table class="hist">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Entry</th>
+                  <th>On file</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1967</td>
+                  <td>Born, twice, ten minutes apart, in one upstairs room.</td>
+                  <td>Only one of us kept the name.</td>
+                </tr>
+                <tr>
+                  <td>1967</td>
+                  <td>Original birth entry registered — Jonathan Richard Jordan.</td>
+                  <td>True. Complete. Brief.</td>
+                </tr>
+                <tr>
+                  <td>c.1970</td>
+                  <td>Adoption Order. Original entry sealed; new certificate issued.</td>
+                  <td>New name. Same date. Empty birthplace box.</td>
+                </tr>
+                <tr>
+                  <td>—</td>
+                  <td>Both adoptive parents die.</td>
+                  <td>The seal becomes, for the first time, reachable.</td>
+                </tr>
+                <tr>
+                  <td>—</td>
+                  <td>
+                    Sealed copy recovered from Somerset House — counsellor first,
+                    then a fee, then a folder of notes and a doctor's report.
+                  </td>
+                  <td>
+                    All since lost in the fog, the moving, the continent after
+                    continent.
+                  </td>
+                </tr>
+                <tr>
+                  <td>2026</td>
+                  <td>
+                    Certificate of a Life authored and filed nowhere.
+                  </td>
+                  <td>Witnessed by Ella and Imogen. Window 4 unaffected.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <button
+            class="dogear"
+            id="dogear"
+            aria-label="Peel to the next copy"
+            title="Peel to the next copy"
+          ></button>
+        </div>
+      </article>
+
+      <div class="tieback">
+        This is the companion artefact to an essay from the book. The essay reads
+        the paperwork; this page is the paperwork — three certificates, side by
+        side, with the last box left blank. Not because I don't know what goes
+        there. Because I want you to be the ones who fill it in.
+        <br />
+        <a class="btn" href="https://www.thenarrativewitness.com/book"
+          >Read from the book</a
+        >
+      </div>
+
+      <div class="colophon">
+        <div class="rule"></div>
+        <strong style="color: #cdcabb; font-weight: 500"
+          >The Third Certificate</strong
+        >
+        — a performance in triplicate, from
+        <a href="https://www.thenarrativewitness.com">The Narrative Witness</a>
+        by Jonathan Lyon.
+        <br />
+        Original & sealed records: General Register Office and the Adopted
+        Children Register, United Kingdom. Names, times and place are the
+        author's own.
+        <div class="rule"></div>
+        No stamp was harmed. The canary copy retains you.
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        'use strict';
+        var STORAGE = 'tnw-life-cert-v1';
+        var body = document.body;
+        var order = ['sealed', 'issued', 'unissued'];
+
+        var stamps = {
+          sealed: 'SEALED<br />SOMERSET HOUSE<br />MICROFICHE · COLD STEEL',
+          issued: 'ISSUED<br />ADOPTED CHILDREN<br />REGISTER · VALID',
+          unissued: 'UNISSUED<br />NO OFFICE<br />KEEPS THIS COPY',
+        };
+        var formno = { sealed: 'FORM ACR/1', issued: 'FORM ACR/2', unissued: 'FORM —/3' };
+        var serving = { sealed: 'COPY 1 OF 3', issued: 'COPY 2 OF 3', unissued: 'COPY 3 OF 3' };
+        var offices = {
+          sealed:
+            'OFFICE OF CIVIL REGISTRATION<br />DIVISION OF THE ADOPTED CHILDREN REGISTER<br />SOMERSET HOUSE ANNEXE · EST. 1837',
+          issued:
+            'OFFICE OF CIVIL REGISTRATION<br />DIVISION OF THE ADOPTED CHILDREN REGISTER<br />ON BEHALF OF THE REGISTRAR GENERAL',
+          unissued:
+            '<span class="strike">OFFICE OF CIVIL REGISTRATION</span><br /><span class="hand" style="font-size:1.25rem;line-height:1">issued by the bearer,<br />at his own desk, unpaid</span>',
+        };
+
+        var stubs = Array.prototype.slice.call(document.querySelectorAll('.stub'));
+        var blocks = Array.prototype.slice.call(document.querySelectorAll('.copyblock'));
+        var recv = document.getElementById('recvstamp');
+        var officeEl = document.getElementById('office');
+        var formEl = document.getElementById('formno');
+        var servEl = document.getElementById('serving');
+
+        function show(copy) {
+          if (order.indexOf(copy) === -1) copy = 'sealed';
+          body.setAttribute('data-copy', copy);
+          recv.innerHTML = stamps[copy];
+          officeEl.innerHTML = offices[copy];
+          formEl.textContent = formno[copy];
+          servEl.textContent = serving[copy];
+          stubs.forEach(function (s) {
+            s.setAttribute('aria-selected', s.dataset.for === copy ? 'true' : 'false');
+          });
+          blocks.forEach(function (b) {
+            var on = b.getAttribute('data-copy-block') === copy;
+            b.classList.toggle('active', on);
+          });
+        }
+
+        stubs.forEach(function (s) {
+          s.addEventListener('click', function () {
+            show(s.dataset.for);
+          });
+        });
+
+        // dog-ear peels to the next copy in sequence
+        document.getElementById('dogear').addEventListener('click', function () {
+          var cur = body.getAttribute('data-copy');
+          var next = order[(order.indexOf(cur) + 1) % order.length];
+          show(next);
+          document.querySelector('.selector').scrollIntoView({ block: 'nearest' });
+        });
+
+        // arrow-key navigation across the tablist
+        document.querySelector('.selector').addEventListener('keydown', function (e) {
+          if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+          var cur = body.getAttribute('data-copy');
+          var i = order.indexOf(cur);
+          var next = e.key === 'ArrowRight' ? (i + 1) % 3 : (i + 2) % 3;
+          show(order[next]);
+          document.querySelector('.stub[aria-selected="true"]').focus();
+          e.preventDefault();
+        });
+
+        // --- interactive witnessing on copy 3, persisted for the reader ---
+        var ella = document.getElementById('w-ella');
+        var imogen = document.getElementById('w-imogen');
+        var wdate = document.getElementById('wdate');
+        var mark = document.getElementById('witnessedMark');
+
+        function load() {
+          try {
+            var raw = localStorage.getItem(STORAGE);
+            if (!raw) return;
+            var d = JSON.parse(raw);
+            if (d.ella) ella.value = d.ella;
+            if (d.imogen) imogen.value = d.imogen;
+            if (d.date) wdate.textContent = d.date;
+          } catch (err) {
+            /* private mode / disabled storage — the page still works */
+          }
+        }
+
+        function refresh(saveDate) {
+          var both = ella.value.trim() && imogen.value.trim();
+          body.classList.toggle('is-witnessed', !!both);
+          if (both && saveDate && wdate.textContent.indexOf('—') !== -1) {
+            var now = new Date();
+            wdate.textContent = now.toLocaleDateString('en-GB', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            });
+            wdate.classList.remove('blank');
+          }
+          persist();
+        }
+
+        function persist() {
+          try {
+            localStorage.setItem(
+              STORAGE,
+              JSON.stringify({
+                ella: ella.value.trim(),
+                imogen: imogen.value.trim(),
+                date: wdate.textContent.indexOf('—') === -1 ? wdate.textContent : '',
+              })
+            );
+          } catch (err) {
+            /* ignore */
+          }
+        }
+
+        [ella, imogen].forEach(function (inp) {
+          inp.addEventListener('input', function () {
+            refresh(true);
+          });
+        });
+
+        load();
+        refresh(false);
+        show('sealed');
+      })();
+    </script>
+  </body>
+</html>

@@ -9,6 +9,10 @@
       "destination": "/book.html"
     },
     {
+      "source": "/certificate",
+      "destination": "/certificate.html"
+    },
+    {
       "source": "/thank-you",
       "destination": "/thank-you.html"
     },
