@@ -78,12 +78,12 @@ const ArtefactAccordion: React.FC<{ excerpt: Excerpt }> = ({ excerpt }) => {
                 >
                   <div className="px-6 pb-7">
                     {it.title && (
-                      <h3 className="font-serif text-base font-light italic leading-snug text-ink">{it.title}</h3>
+                      <h3 className="font-serif text-xl font-light italic leading-snug">{it.title}</h3>
                     )}
                     <div
-                      className={`space-y-3.5 text-[0.92rem] leading-relaxed text-ink-light ${
+                      className={`space-y-3.5 font-serif text-[0.98rem] leading-relaxed text-ink-light ${
                         it.title ? "mt-3" : ""
-                      } ${it.italicBody ? "font-serif italic" : ""}`}
+                      } ${it.italicBody ? "italic" : ""}`}
                     >
                       {it.body.split(/\n\s*\n/).map((p, j) => (
                         <p key={j}>{p.trim()}</p>
