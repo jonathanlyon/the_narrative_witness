@@ -1,209 +1,141 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { ChevronDown, ArrowUpRight } from "lucide-react";
-import { Excerpt } from "../../types";
+import React from "react";
+import { ArrowUpRight } from "lucide-react";
 import { EXCERPTS } from "../../data/excerpts";
-import { READINGS } from "../../data/book";
-import { FlipBook } from "./FlipBook";
-import { AudioReading } from "./AudioReading";
-import { FadeIn } from "../../components/MotionWrapper";
+import { FadeIn, StaggerContainer, StaggerItem } from "../../components/MotionWrapper";
+import { trackNavigationClicked } from "../../lib/analytics";
 
 /**
- * The Reading Room: pick a piece, read it in the flip-book (left), and find its
- * artefacts gathered beside it (right) — the note before reading, and the
- * author's account of where it began and why he wrote it — with a reading of
- * the piece below. Everything about one piece lives in one coherent section.
+ * The Reading Room: the pieces from the book we give away in full, laid out as
+ * a vertical stack of catalogue cards. Each card opens the piece on its own
+ * page (/writing/<id>/), so the writing is deep-linkable, shareable, and read
+ * where it is meant to be read — not trapped inside a gimmick.
  */
 
-const READABLE = EXCERPTS.filter((e) => (e.fullBody ?? e.body)?.trim());
+const CARDS = EXCERPTS.filter(
+  (e) => e.pagePublished && (e.fullBody ?? e.body)?.trim()
+);
 
-interface Artefact {
-  id: string;
-  label: string;
-  title?: string;
-  body: string;
-  italicBody?: boolean;
+/** A stable, archival-looking accession number derived from the piece id. */
+function accession(id: string): string {
+  let h = 0;
+  for (let i = 0; i < id.length; i += 1) h = (h * 31 + id.charCodeAt(i)) >>> 0;
+  return `2026 · ${((h % 9000) + 1000).toString()}`;
 }
 
-function artefactsFor(e: Excerpt): Artefact[] {
-  const list: (Artefact | null)[] = [
-    e.beforeReading ? { id: "before", label: "Before Reading", body: e.beforeReading, italicBody: true } : null,
-    e.origin ? { id: "origin", label: "Where This Began", title: e.originTitle, body: e.origin } : null,
-    e.meaning ? { id: "meaning", label: "Why I Wrote It", title: e.meaningTitle, body: e.meaning } : null,
-  ];
-  return list.filter((x): x is Artefact => Boolean(x));
+function precis(body: string): string {
+  const clean = body.replace(/\s+/g, " ").trim();
+  if (clean.length <= 220) return clean;
+  const cut = clean.slice(0, 216);
+  const end = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("? "), cut.lastIndexOf("! "));
+  return end > 120 ? cut.slice(0, end + 1) : `${cut.slice(0, cut.lastIndexOf(" ")).trim()}…`;
 }
 
-const ArtefactAccordion: React.FC<{ excerpt: Excerpt }> = ({ excerpt }) => {
-  const items = artefactsFor(excerpt);
-  const [open, setOpen] = useState(0);
-  useEffect(() => setOpen(0), [excerpt.id]);
-  if (!items.length && !excerpt.companionUrl) return null;
+const FieldLabel: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <span className="font-mono text-[0.5rem] uppercase tracking-[0.24em] text-ash">{children}</span>
+);
 
+const LibraryCard: React.FC<{ excerpt: (typeof CARDS)[number] }> = ({ excerpt: e }) => {
+  const href = `/writing/${e.id}/`;
+  const acc = accession(e.id);
   return (
-    <div className="border border-dust/60 bg-paper/50">
-      <p className="font-mono text-[0.55rem] uppercase tracking-[0.32em] text-ash px-6 pt-6 pb-1">
-        Alongside the piece
-      </p>
-      {items.map((it, i) => {
-        const isOpen = open === i;
-        return (
-          <div key={it.id} className="border-t border-dust/55 first:border-t-0 first:mt-4">
-            <button
-              onClick={() => setOpen(isOpen ? -1 : i)}
-              aria-expanded={isOpen}
-              className="group flex w-full items-center justify-between gap-3 px-6 py-4 text-left"
-            >
-              <span
-                className={`font-mono text-[0.6rem] uppercase tracking-[0.22em] transition-colors ${
-                  isOpen ? "text-ink" : "text-ash group-hover:text-ink-light"
-                }`}
-              >
-                {it.label}
-              </span>
-              <ChevronDown
-                size={14}
-                strokeWidth={1.5}
-                className={`shrink-0 text-ash transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-              />
-            </button>
-            <AnimatePresence initial={false}>
-              {isOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.32, ease: [0.2, 0.7, 0.2, 1] }}
-                  className="overflow-hidden"
-                >
-                  <div className="px-6 pb-7">
-                    {it.title && (
-                      <h3 className="font-serif text-xl font-light italic leading-snug">{it.title}</h3>
-                    )}
-                    <div
-                      className={`space-y-3.5 font-serif text-[0.98rem] leading-relaxed text-ink-light ${
-                        it.title ? "mt-3" : ""
-                      } ${it.italicBody ? "italic" : ""}`}
-                    >
-                      {it.body.split(/\n\s*\n/).map((p, j) => (
-                        <p key={j}>{p.trim()}</p>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+    <a
+      href={href}
+      onClick={() =>
+        trackNavigationClicked({ destination: href, label: e.title, placement: "reading_room_card" })
+      }
+      className="group block border border-dust bg-paper transition-colors duration-300 hover:border-ash focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+    >
+      <div className="grid md:grid-cols-[15rem_1fr]">
+        {/* The plate: a tipped-in photograph, catalogued */}
+        {e.thumbnail && (
+          <div className="relative overflow-hidden border-b border-dust/60 bg-paper-deep/40 md:border-b-0 md:border-r">
+            <img
+              src={e.thumbnail}
+              alt={e.artworkAlt ?? ""}
+              loading="lazy"
+              style={{ objectPosition: e.thumbnailPosition || "center" }}
+              className="h-56 w-full object-cover opacity-95 grayscale transition-transform duration-[1200ms] group-hover:scale-[1.03] md:h-full"
+            />
+            <span className="absolute left-3 top-3 bg-paper/85 px-2 py-1 font-mono text-[0.5rem] uppercase tracking-[0.2em] text-ink backdrop-blur-sm">
+              N° {acc}
+            </span>
           </div>
-        );
-      })}
-      {excerpt.companionUrl && (
-        <a
-          href={excerpt.companionUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center justify-between gap-3 border-t border-dust/55 bg-paper-dark/40 px-6 py-4 no-underline first:border-t-0 first:mt-4"
-        >
-          <span className="font-mono text-[0.6rem] uppercase tracking-[0.22em] text-ash transition-colors group-hover:text-ink">
-            {excerpt.companionLabel ?? "See the artefact"}
-          </span>
-          <ArrowUpRight
-            size={14}
-            strokeWidth={1.5}
-            className="shrink-0 text-ash transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
-          />
-        </a>
-      )}
-    </div>
+        )}
+
+        {/* The catalogue record */}
+        <div className="flex flex-col p-7 md:p-9">
+          <div className="flex items-baseline justify-between gap-4 border-b border-dust/55 pb-4">
+            <FieldLabel>{e.movement ? `Section · ${e.movement}` : e.type}</FieldLabel>
+            <FieldLabel>{e.type}</FieldLabel>
+          </div>
+
+          <h3 className="mt-5 font-serif text-[1.8rem] font-light leading-[1.1] tracking-tight text-ink md:text-4xl">
+            {e.title}
+          </h3>
+
+          {e.caption && (
+            <p className="mt-3 font-serif text-lg font-light italic leading-snug text-ink-light">
+              {e.caption}
+            </p>
+          )}
+
+          <p className="mt-4 max-w-2xl font-serif text-[1.02rem] leading-relaxed text-ink-light">
+            {precis(e.body)}
+          </p>
+
+          <div className="mt-6">
+            <FieldLabel>Filed under</FieldLabel>
+            <div className="mt-2.5 flex flex-wrap items-center gap-2">
+              {e.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="border border-dust/70 px-3 py-1 font-mono text-[0.5rem] uppercase tracking-[0.16em] text-ink-light"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 flex items-center justify-between border-t border-dust/55 pt-5">
+            <span className="font-mono text-[0.5rem] uppercase tracking-[0.24em] text-ash">
+              {e.readTime}
+            </span>
+            <span className="inline-flex items-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-ink">
+              Read the piece
+              <ArrowUpRight
+                size={12}
+                className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </span>
+          </div>
+        </div>
+      </div>
+    </a>
   );
 };
 
-// A deep link like /book?read=<excerptId> opens that piece (used by the home
-// page teasers).
-function initialExcerptId(): string | undefined {
-  if (typeof window === "undefined") return READABLE[0]?.id;
-  const requested = new URLSearchParams(window.location.search).get("read");
-  return READABLE.find((e) => e.id === requested)?.id ?? READABLE[0]?.id;
-}
-
 export const ReadingRoom: React.FC = () => {
-  const [activeId, setActiveId] = useState(initialExcerptId);
-  const excerpt = READABLE.find((e) => e.id === activeId) ?? READABLE[0];
-  if (!excerpt) return null;
+  if (!CARDS.length) return null;
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6">
-      <FadeIn className="text-center mb-10">
+    <div className="mx-auto max-w-4xl px-4 sm:px-6">
+      <FadeIn className="mb-12 text-center md:mb-16">
         <p className="font-mono text-[0.6rem] uppercase tracking-[0.35em] text-ash">The reading room</p>
-        <h2 className="font-serif text-4xl sm:text-5xl font-light mt-5">Turn the pages</h2>
-        <p className="max-w-xl mx-auto mt-5 text-ink-light leading-relaxed">
-          Read a piece the way the book sets it, its plate and readers’ own words in the margin, with everything
-          around the piece gathered beside it: the note before reading, where it began, why it was written, and a
-          reading in the author’s voice.
+        <h2 className="mt-5 font-serif text-4xl font-light sm:text-5xl">Pieces you can keep</h2>
+        <p className="mx-auto mt-5 max-w-xl leading-relaxed text-ink-light">
+          A handful of pieces from the book, given in full. Each opens on its own page: yours to read now, to
+          return to, or to send to someone who will recognise themselves in it.
         </p>
       </FadeIn>
 
-      {/* Piece selector */}
-      {READABLE.length > 1 && (
-        <FadeIn className="flex flex-wrap justify-center gap-x-2 gap-y-3 mb-12">
-          {READABLE.map((e) => {
-            const on = e.id === excerpt.id;
-            return (
-              <button
-                key={e.id}
-                onClick={() => setActiveId(e.id)}
-                className={`relative px-4 py-2.5 font-mono text-[0.58rem] uppercase tracking-[0.18em] transition-colors ${
-                  on ? "text-ink" : "text-ash hover:text-ink-light"
-                }`}
-                aria-pressed={on}
-              >
-                {on && (
-                  <motion.span
-                    layoutId="reading-tab"
-                    className="absolute inset-0 border border-ink/25 bg-paper-dark/50"
-                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                  />
-                )}
-                <span className="relative">{e.title}</span>
-              </button>
-            );
-          })}
-        </FadeIn>
-      )}
-
-      {/* Book on the left, its artefacts on the right */}
-      <div className="grid lg:grid-cols-[3fr_2fr] gap-12 lg:gap-16 items-start">
-        <div className="min-w-0">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={excerpt.id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.5, ease: [0.2, 0.7, 0.2, 1] }}
-            >
-              <FlipBook excerpt={excerpt} />
-            </motion.div>
-          </AnimatePresence>
-          <p className="text-center font-mono text-[0.55rem] uppercase tracking-[0.22em] text-ash mt-8">
-            Tap the page edges, use the arrows, or swipe to turn
-          </p>
-        </div>
-
-        <motion.div
-          key={`art-${excerpt.id}`}
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: [0.2, 0.7, 0.2, 1] }}
-          className="min-w-0 lg:pt-2"
-        >
-          <ArtefactAccordion excerpt={excerpt} />
-        </motion.div>
-      </div>
-
-      {/* A reading of the piece, tying the section together */}
-      <div className="mt-14 flex justify-center">
-        <AudioReading title={excerpt.title} src={READINGS[excerpt.id]} />
-      </div>
+      <StaggerContainer className="space-y-7 md:space-y-9">
+        {CARDS.map((e) => (
+          <StaggerItem key={e.id}>
+            <LibraryCard excerpt={e} />
+          </StaggerItem>
+        ))}
+      </StaggerContainer>
     </div>
   );
 };

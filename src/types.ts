@@ -40,6 +40,8 @@ export interface Excerpt {
   socialImage?: string;
   companionUrl?: string;
   companionLabel?: string;
+  /** The book movement this piece sits within (Foundational / Relational / …). */
+  movement?: string;
 }
 
 export interface Testimonial {

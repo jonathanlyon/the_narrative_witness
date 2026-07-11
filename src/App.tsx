@@ -7,9 +7,10 @@ import React, { useEffect } from "react";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { AboutBook } from "./components/AboutBook";
-// Home reading teasers funnel into /book. To roll back to the old inline
-// interactive excerpts, swap ExcerptTeasers for `Excerpts` here and below.
-import { ExcerptTeasers } from "./components/ExcerptTeasers";
+// Home "from the book" hint funnels into the reading room on /book, where each
+// piece opens on its own page. Earlier versions used <ExcerptTeasers /> (a card
+// grid) and <Excerpts /> (inline interactive) — both remain for rollback.
+import { FromTheBook } from "./components/FromTheBook";
 import { ReaderRecognition } from "./components/ReaderRecognition";
 import { MidpageCTA } from "./components/MidpageCTA";
 import { BuyTheBook } from "./components/BuyTheBook";
@@ -53,8 +54,8 @@ export default function App() {
         {/* What the book is — the braided testimony, conceptually */}
         <AboutBook />
 
-        {/* Reading teasers → the reading room on /book */}
-        <ExcerptTeasers />
+        {/* A hinted reveal of the book → the reading room on /book */}
+        <FromTheBook />
 
         {/* Reader recognition — social proof */}
         <ReaderRecognition />

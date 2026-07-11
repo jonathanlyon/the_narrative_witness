@@ -81,7 +81,8 @@ const normalizeExcerpt = (
     seoDescription: content.seoDescription?.trim(),
     socialImage: content.socialImage?.trim(),
     companionUrl: content.companionUrl?.trim(),
-    companionLabel: content.companionLabel?.trim()
+    companionLabel: content.companionLabel?.trim(),
+    movement: content.movement?.trim()
   };
 };
 

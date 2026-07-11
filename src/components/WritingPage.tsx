@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import {
   ArrowLeft,
   ArrowRight,
+  ArrowUpRight,
   CheckCircle,
   Mail,
 } from "lucide-react";
@@ -278,6 +279,30 @@ export const WritingPage: React.FC = () => {
             </div>
           </div>
         </article>
+
+        {writing.companionUrl && (
+          <section className="border-y border-dust/45 bg-ink py-16 text-paper paper-grain md:py-20">
+            <div className="mx-auto max-w-3xl px-6 md:px-12">
+              <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-paper/55">
+                A companion artefact
+              </span>
+              <div className="mt-5 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                <p className="max-w-md font-serif text-2xl font-light leading-snug text-paper md:text-[1.75rem]">
+                  {writing.companionLabel ?? "See the companion artefact"}
+                </p>
+                <a
+                  href={writing.companionUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex shrink-0 items-center gap-2 self-start border border-paper/40 px-6 py-3 font-mono text-[0.62rem] uppercase tracking-[0.2em] text-paper transition-colors hover:bg-paper hover:text-ink"
+                >
+                  Open it
+                  <ArrowUpRight size={13} aria-hidden="true" />
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="border-y border-dust/40 bg-paper-dark/55 py-20 paper-grain md:py-28">
           <div className="mx-auto max-w-6xl px-6">
