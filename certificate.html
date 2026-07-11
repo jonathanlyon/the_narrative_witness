@@ -148,6 +148,17 @@
       }
 
       /* ---------- copy selector (the carbonless stubs) ---------- */
+      /* Full-width sticky bar so the tabs ride along as the form scrolls.
+         Desk-coloured, so at rest it is invisible against the desk and only
+         its soft shadow appears once it floats over the paper. */
+      .selector-bar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: var(--desk);
+        padding-top: clamp(0.5rem, 2vw, 0.95rem);
+        box-shadow: 0 9px 15px -11px rgba(0, 0, 0, 0.65);
+      }
       .selector {
         display: flex;
         gap: 4px;
@@ -943,7 +954,8 @@
         copy is unfinished on purpose.
       </p>
 
-      <div class="selector" role="tablist" aria-label="Three copies of the set">
+      <div class="selector-bar">
+        <div class="selector" role="tablist" aria-label="Three copies of the set">
         <button
           class="stub"
           role="tab"
@@ -977,6 +989,7 @@
           UNISSUED
           <span class="k">the life</span>
         </button>
+        </div>
       </div>
 
       <article class="sheet" id="sheet">
@@ -1522,9 +1535,26 @@
           });
         }
 
+        // Bring the head of the active copy up just under the sticky tabs.
+        function scrollToCopyTop() {
+          var sheet = document.getElementById('sheet');
+          var bar = document.querySelector('.selector-bar');
+          if (!sheet) return;
+          var y =
+            sheet.getBoundingClientRect().top +
+            window.pageYOffset -
+            (bar ? bar.offsetHeight : 0) -
+            6;
+          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
+        }
+
         stubs.forEach(function (s) {
           s.addEventListener('click', function () {
             show(s.dataset.for);
+            // Only reposition if the reader has scrolled into the form, so a
+            // tap at the top does not jump the page around.
+            if (window.pageYOffset > 8) scrollToCopyTop();
           });
         });
 
@@ -1533,7 +1563,7 @@
           var cur = body.getAttribute('data-copy');
           var next = order[(order.indexOf(cur) + 1) % order.length];
           show(next);
-          document.querySelector('.selector').scrollIntoView({ block: 'nearest' });
+          scrollToCopyTop();
         });
 
         // arrow-key navigation across the tablist
