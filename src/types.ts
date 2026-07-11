@@ -38,6 +38,8 @@ export interface Excerpt {
   seoTitle?: string;
   seoDescription?: string;
   socialImage?: string;
+  companionUrl?: string;
+  companionLabel?: string;
 }
 
 export interface Testimonial {

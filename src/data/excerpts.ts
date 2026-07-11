@@ -79,7 +79,9 @@ const normalizeExcerpt = (
       : [],
     seoTitle: content.seoTitle?.trim(),
     seoDescription: content.seoDescription?.trim(),
-    socialImage: content.socialImage?.trim()
+    socialImage: content.socialImage?.trim(),
+    companionUrl: content.companionUrl?.trim(),
+    companionLabel: content.companionLabel?.trim()
   };
 };
 

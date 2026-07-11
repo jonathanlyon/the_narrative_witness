@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowUpRight } from "lucide-react";
 import { Excerpt } from "../../types";
 import { EXCERPTS } from "../../data/excerpts";
 import { READINGS } from "../../data/book";
@@ -38,7 +38,7 @@ const ArtefactAccordion: React.FC<{ excerpt: Excerpt }> = ({ excerpt }) => {
   const items = artefactsFor(excerpt);
   const [open, setOpen] = useState(0);
   useEffect(() => setOpen(0), [excerpt.id]);
-  if (!items.length) return null;
+  if (!items.length && !excerpt.companionUrl) return null;
 
   return (
     <div className="border border-dust/60 bg-paper/50">
@@ -78,7 +78,7 @@ const ArtefactAccordion: React.FC<{ excerpt: Excerpt }> = ({ excerpt }) => {
                 >
                   <div className="px-6 pb-7">
                     {it.title && (
-                      <h3 className="font-serif text-xl font-light italic leading-snug">{it.title}</h3>
+                      <h3 className="font-serif text-base font-light italic leading-snug text-ink">{it.title}</h3>
                     )}
                     <div
                       className={`space-y-3.5 text-[0.92rem] leading-relaxed text-ink-light ${
@@ -96,6 +96,23 @@ const ArtefactAccordion: React.FC<{ excerpt: Excerpt }> = ({ excerpt }) => {
           </div>
         );
       })}
+      {excerpt.companionUrl && (
+        <a
+          href={excerpt.companionUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-center justify-between gap-3 border-t border-dust/55 bg-paper-dark/40 px-6 py-4 no-underline first:border-t-0 first:mt-4"
+        >
+          <span className="font-mono text-[0.6rem] uppercase tracking-[0.22em] text-ash transition-colors group-hover:text-ink">
+            {excerpt.companionLabel ?? "See the artefact"}
+          </span>
+          <ArrowUpRight
+            size={14}
+            strokeWidth={1.5}
+            className="shrink-0 text-ash transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
+          />
+        </a>
+      )}
     </div>
   );
 };
