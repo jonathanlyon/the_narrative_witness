@@ -274,6 +274,51 @@ export const WritingPage: React.FC = () => {
               })}
             </div>
 
+            {writing.recordCard && (
+              <aside className="mt-16 border border-ink/25 bg-paper-dark/45 shadow-[0_1px_0_rgba(255,255,255,0.4)_inset]">
+                <div className="flex items-center justify-between gap-4 border-b border-ink/25 px-6 py-3 md:px-8">
+                  <span className="font-mono text-[0.5rem] uppercase tracking-[0.24em] text-ash">
+                    Summary record
+                  </span>
+                  {writing.recordCard.reference && (
+                    <span className="font-mono text-[0.5rem] uppercase tracking-[0.24em] text-ash">
+                      {writing.recordCard.reference}
+                    </span>
+                  )}
+                </div>
+                <div className="px-6 py-8 md:px-8">
+                  <h2 className="font-serif text-2xl font-light uppercase tracking-[0.06em] text-ink md:text-3xl">
+                    {writing.recordCard.title}
+                  </h2>
+                  {writing.recordCard.kicker && (
+                    <p className="mt-2 font-serif text-base font-light italic leading-snug text-ink-light">
+                      {writing.recordCard.kicker}
+                    </p>
+                  )}
+                  <dl className="mt-7">
+                    {writing.recordCard.fields.map((field) => (
+                      <div
+                        key={field.label}
+                        className="grid grid-cols-1 gap-0.5 border-t border-dust/60 py-3 sm:grid-cols-[10.5rem_1fr] sm:gap-5"
+                      >
+                        <dt className="font-mono text-[0.55rem] uppercase tracking-[0.18em] text-ash sm:pt-1.5">
+                          {field.label}
+                        </dt>
+                        <dd className="font-serif text-[1.05rem] leading-snug text-ink-light">
+                          {field.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                  {writing.recordCard.footer && (
+                    <p className="mt-7 border-t border-ink/20 pt-5 font-mono text-[0.58rem] uppercase leading-relaxed tracking-[0.16em] text-ash">
+                      {writing.recordCard.footer}
+                    </p>
+                  )}
+                </div>
+              </aside>
+            )}
+
             <div className="mt-20 border-t border-dust/50 pt-6 font-mono text-[8px] uppercase tracking-[0.18em] text-ash/60">
               © 2026 Jonathan Lyon. All rights reserved.
             </div>

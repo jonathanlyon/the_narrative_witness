@@ -42,6 +42,21 @@ export interface Excerpt {
   companionLabel?: string;
   /** The book movement this piece sits within (Foundational / Relational / …). */
   movement?: string;
+  /** An optional summary "filing card" rendered at the foot of the piece. */
+  recordCard?: RecordCard;
+}
+
+export interface RecordCardField {
+  label: string;
+  value: string;
+}
+
+export interface RecordCard {
+  reference?: string;
+  kicker?: string;
+  title: string;
+  fields: RecordCardField[];
+  footer?: string;
 }
 
 export interface Testimonial {

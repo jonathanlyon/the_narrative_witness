@@ -82,7 +82,13 @@ const normalizeExcerpt = (
     socialImage: content.socialImage?.trim(),
     companionUrl: content.companionUrl?.trim(),
     companionLabel: content.companionLabel?.trim(),
-    movement: content.movement?.trim()
+    movement: content.movement?.trim(),
+    recordCard:
+      content.recordCard &&
+      typeof content.recordCard.title === "string" &&
+      Array.isArray(content.recordCard.fields)
+        ? content.recordCard
+        : undefined
   };
 };
 
