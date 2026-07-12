@@ -128,10 +128,7 @@ export const BookPage: React.FC = () => {
           <div className="max-w-4xl mx-auto px-6 py-24">
             <FadeIn className="text-center">
               <Eyebrow>How the book is built</Eyebrow>
-              <h2 className="font-serif text-4xl sm:text-5xl font-light mt-5">
-                Intimate <span className="text-ash">·</span> Expansive <span className="text-ash">·</span> Distilled
-              </h2>
-              <p className="max-w-2xl mx-auto mt-6 text-ink-light leading-relaxed">
+              <p className="max-w-2xl mx-auto mt-7 text-ink-light leading-relaxed">
                 The personal story doesn’t run start-to-finish; it recurs. Every section moves through the same
                 three registers, a rhythm the reader learns to trust, so three kinds of writing become one voice.
               </p>
@@ -156,8 +153,13 @@ export const BookPage: React.FC = () => {
         <section id="sections" className="max-w-3xl mx-auto px-6 py-24">
           <FadeIn className="text-center">
             <Eyebrow>Movements &amp; sections</Eyebrow>
-            <h2 className="font-serif text-4xl sm:text-5xl font-light mt-5">
-              Foundational · Relational · Societal · Witness
+            <h2 className="mt-5 font-serif text-[2rem] font-light leading-[1.16] text-balance sm:text-5xl">
+              <span className="block">
+                Foundational <span className="text-ash">·</span> Relational
+              </span>
+              <span className="block">
+                Societal <span className="text-ash">·</span> Witness
+              </span>
             </h2>
             <p className="max-w-xl mx-auto mt-6 text-ink-light leading-relaxed">
               Six sections carry the arc, from the felt origin of relinquishment, outward through family and
