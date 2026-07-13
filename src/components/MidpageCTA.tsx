@@ -30,7 +30,7 @@ export const MidpageCTA: React.FC = () => {
               <span className={`transition-opacity duration-300 ${pricing.ready ? "opacity-100" : "opacity-0"}`}>
                 {pricing.labels.paperback}
               </span>
-              , or the signed, numbered hardback from{" "}
+              , or the hardcover edition from{" "}
               <span className={`transition-opacity duration-300 ${pricing.ready ? "opacity-100" : "opacity-0"}`}>
                 {pricing.labels.hardback}
               </span>

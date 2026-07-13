@@ -48,11 +48,11 @@ const SKUS = {
   },
   hardback: {
     sku: "hardback",
-    name: "The Narrative Witness — Hardback (signed, numbered first edition)",
+    name: "The Narrative Witness — Hardback (hardcover first edition)",
     priceEnv: "STRIPE_PRICE_HARDBACK",
-    fallbackName: "The Narrative Witness: Hardback (signed, numbered first edition)",
+    fallbackName: "The Narrative Witness: Hardback (hardcover first edition)",
     fallbackDescription:
-      "Pre-order the signed, numbered first-edition hardback with a hand-signed, numbered bookplate. Paid in full; shipping invoiced separately before dispatch. Full refund any time before we go to print.",
+      "Pre-order the first-edition hardcover with a hand-signed, numbered bookplate. Paid in full; shipping invoiced separately before dispatch. Full refund any time before we go to print.",
     fallbackAmountCents: 3999,
   },
 };

@@ -46,9 +46,9 @@ const CATALOGUE = [
   {
     sku: "hardback",
     lookupKey: "preorder_hardback",
-    name: "The Narrative Witness — Hardback (signed, numbered first edition)",
+    name: "The Narrative Witness — Hardback (hardcover first edition)",
     description:
-      "Pre-order: signed, numbered first-edition hardback, with a hand-signed, numbered bookplate. Paid in full; shipping invoiced separately before dispatch. Full refund any time before we go to print.",
+      "Pre-order: the first edition in a hardcover binding, with a hand-signed, numbered bookplate. Paid in full; shipping invoiced separately before dispatch. Full refund any time before we go to print.",
     amounts: { usd: 3999, nzd: 6499, aud: 5999, gbp: 3299, cad: 5499 },
   },
 ];

@@ -130,7 +130,7 @@ export const BOOK = {
   object: {
     headline: "A signed, numbered first edition",
     spec: [
-      "6×9″ paperback, perfect-bound, matte laminate",
+      "6×9″ first edition, in paperback or hardcover",
       "Premium black & white interior on white uncoated stock",
       "Photographic plates from the Witness Archive",
       "A hand-signed, numbered bookplate, inscribed by the author",
@@ -174,11 +174,11 @@ export const BOOK = {
     {
       id: "hardback",
       name: "Hardback",
-      cachet: "Signed, numbered first edition",
+      cachet: "Hardcover edition",
       priceLabel: "US$39.99",
       priceNote: "Paid in full. Shipping invoiced separately.",
       perks: [
-        "Signed, numbered first-edition hardback",
+        "First-edition 6×9 hardcover, premium black & white interior",
         "Hand-signed, numbered bookplate to place inside",
         "Name in the Founding Witnesses page (opt-in)",
         "Full refund any time before we go to print",

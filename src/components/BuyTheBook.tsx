@@ -75,7 +75,7 @@ export const BuyTheBook: React.FC = () => {
             </span>
             <span className="text-dust">·</span>
             <span>
-              Signed hardback{" "}
+              Hardback{" "}
               <span className={`transition-opacity duration-300 ${pricing.ready ? "opacity-100" : "opacity-0"}`}>
                 {pricing.labels.hardback}
               </span>

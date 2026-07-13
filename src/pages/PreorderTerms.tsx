@@ -74,12 +74,12 @@ export function PreorderTermsPage() {
               made; see section 5 about timing.
             </p>
             <p>
-              The first edition is offered in two formats: a 6&times;9
-              paperback, and a signed, numbered first-edition hardback, both
-              printed in premium black and white with photography from the
-              Witness Archive. Every Founding Reader also receives a
-              hand-signed, numbered bookplate, inscribed by the author, to
-              place inside their copy. (An ebook is not part of this pre-order.
+              The first edition is offered in two bindings of the same book: a
+              6&times;9 paperback and a 6&times;9 hardcover, both printed in
+              premium black and white with photography from the Witness
+              Archive. Every Founding Reader, whichever binding they choose,
+              also receives a hand-signed, numbered bookplate, inscribed by the
+              author, to place inside their copy. (An ebook is not part of this pre-order.
               If a digital edition is offered later, its format and price are
               shown at the point of sale, and these terms apply to it in the
               same way.)
@@ -109,8 +109,8 @@ export function PreorderTermsPage() {
                 <strong className="font-normal text-ink">
                   Hardback: US$39.99.
                 </strong>{" "}
-                A signed, numbered first-edition hardback, with a hand-signed,
-                numbered bookplate.
+                The same first edition in a 6&times;9 hardcover binding, with
+                the same hand-signed, numbered bookplate.
               </li>
             </ul>
             <p>
