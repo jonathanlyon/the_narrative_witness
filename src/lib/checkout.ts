@@ -15,11 +15,11 @@ const CHECKOUT_ENDPOINT = "/api/checkout";
  */
 export const PREORDER_OPEN = import.meta.env.VITE_PREORDER_OPEN === "true";
 
-export async function startCheckout(editionId: string, tier: string): Promise<void> {
+export async function startCheckout(sku: string): Promise<void> {
   const response = await fetch(CHECKOUT_ENDPOINT, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ editionId, tier }),
+    body: JSON.stringify({ sku }),
   });
 
   const result = (await response.json().catch(() => ({}))) as {

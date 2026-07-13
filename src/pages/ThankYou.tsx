@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { motion } from "motion/react";
 import { Button } from "../components/Button";
+import { trackPreorderConfirmed } from "../lib/analytics";
 
 export function ThankYouPage() {
   const [orderReference, setOrderReference] = useState<string | null>(null);
@@ -14,6 +15,8 @@ export function ThankYouPage() {
       const sessionId = params.get("session_id");
       if (sessionId && sessionId.length > 0) {
         setOrderReference(sessionId.slice(-8));
+        // Funnel completion: only a real Stripe redirect carries a session id.
+        trackPreorderConfirmed();
       }
     } catch {
       // no-op: absence of a query param is a normal, expected state
@@ -81,9 +84,9 @@ export function ThankYouPage() {
             <li className="flex gap-4">
               <span className="font-mono text-xs text-ash">04</span>
               <span className="text-sm font-light leading-relaxed text-ink-light">
-                Reserve-tier readers will receive a secure link to pay the
-                remaining NZ$25 balance plus shipping when the book is ready.
-                Nothing further is charged until then.
+                Shipping was not charged today. It is calculated and invoiced
+                separately before your book is dispatched. Nothing further is
+                charged until then.
               </span>
             </li>
           </ol>

@@ -80,9 +80,9 @@ export const Hero: React.FC = () => {
 
             <FadeIn delay={0.6}>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[9px] uppercase tracking-[0.18em] text-ash/80">
-                <span>Reserve from {BOOK.tiers[0].priceLabel}</span>
+                <span>Paperback {BOOK.skus[0].priceLabel}</span>
                 <span className="text-dust">·</span>
-                <span>Founder edition {BOOK.tiers[1].priceLabel}</span>
+                <span>Hardback {BOOK.skus[1].priceLabel}</span>
                 <span className="text-dust">·</span>
                 <span className="italic normal-case font-serif text-[11px] tracking-normal text-ash">{BOOK.dedication}</span>
               </div>

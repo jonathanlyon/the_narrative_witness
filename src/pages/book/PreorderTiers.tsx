@@ -1,38 +1,44 @@
 import React, { useRef, useState } from "react";
-import { Check, ArrowRight, Mail, CheckCircle, Bell } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
-import { BOOK, PreorderTier } from "../../data/book";
+import { Check, ArrowRight, Mail, CheckCircle, Bell, Truck, ShieldCheck } from "lucide-react";
+import { BOOK, PreorderSku } from "../../data/book";
 import { Button } from "../../components/Button";
 import { FadeIn, StaggerContainer, StaggerItem } from "../../components/MotionWrapper";
 import { startCheckout, PREORDER_OPEN } from "../../lib/checkout";
 import { subscribeReader } from "../../lib/signup";
-import { trackSupportRegistration } from "../../lib/analytics";
+import {
+  trackSupportRegistration,
+  trackPreorderTierSelected,
+  trackCheckoutStarted,
+} from "../../lib/analytics";
 
-const TierCard: React.FC<{
-  tier: PreorderTier;
+const SkuCard: React.FC<{
+  sku: PreorderSku;
   busy: string | null;
-  onSelect: (tier: PreorderTier) => void;
-}> = ({ tier, busy, onSelect }) => (
+  onSelect: (sku: PreorderSku) => void;
+}> = ({ sku, busy, onSelect }) => (
   <div
+    data-clarity-region={`preorder-card-${sku.id}`}
     className={`flex flex-col border p-8 sm:p-10 ${
-      tier.featured ? "border-ink bg-paper-dark/60" : "border-ink/25 bg-transparent"
+      sku.featured ? "border-ink bg-paper-dark/60" : "border-ink/25 bg-transparent"
     }`}
   >
     <div className="flex items-baseline justify-between gap-4">
-      <p className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-ash">{tier.name}</p>
-      {tier.featured && (
-        <p className="font-mono text-[0.55rem] uppercase tracking-[0.25em] border border-ink/40 px-2 py-1">
-          Recommended
+      <p className="font-mono text-[0.6rem] uppercase tracking-[0.3em] text-ash">{sku.name}</p>
+      {sku.cachet && (
+        <p className="font-mono text-[0.55rem] uppercase tracking-[0.22em] border border-ink/40 px-2 py-1 text-center leading-tight">
+          {sku.cachet}
         </p>
       )}
     </div>
 
-    <p className="font-serif text-5xl font-light mt-6">{tier.priceLabel}</p>
-    <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ash mt-3">{tier.payNow}</p>
-    <p className="text-sm text-ink-light mt-1.5 italic font-serif text-base">{tier.later}</p>
+    <p className="font-serif text-5xl font-light mt-6">{sku.priceLabel}</p>
+    <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ash mt-3">{sku.priceNote}</p>
+    <p className="text-sm text-ink-light mt-1.5 italic font-serif">
+      Shown in USD. Your local price is applied automatically at checkout.
+    </p>
 
     <ul className="mt-8 space-y-3 flex-grow">
-      {tier.perks.map((perk) => (
+      {sku.perks.map((perk) => (
         <li key={perk} className="flex items-start gap-3 text-sm text-ink-light">
           <Check className="w-3.5 h-3.5 mt-0.5 shrink-0 text-ash" strokeWidth={1.5} />
           <span>{perk}</span>
@@ -42,14 +48,42 @@ const TierCard: React.FC<{
 
     <div className="mt-10">
       <Button
-        variant={tier.featured ? "primary" : "secondary"}
+        variant={sku.featured ? "primary" : "secondary"}
         fullWidth
         disabled={busy !== null}
-        onClick={() => onSelect(tier)}
+        onClick={() => onSelect(sku)}
+        id={`preorder-cta-${sku.id}`}
+        className="preorder-checkout-button"
         icon={<ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />}
       >
-        {busy === tier.id ? "One moment…" : PREORDER_OPEN ? tier.cta : "Notify me when open"}
+        {busy === sku.id ? "One moment…" : PREORDER_OPEN ? sku.cta : "Notify me when open"}
       </Button>
+    </div>
+  </div>
+);
+
+/** The two policy notices required on /book: shipping and refunds. */
+const PolicyNotices: React.FC = () => (
+  <div className="max-w-3xl mx-auto mt-8 grid gap-3 sm:grid-cols-2">
+    <div
+      data-clarity-region="shipping-notice"
+      className="flex items-start gap-3 border border-ink/20 bg-paper-dark/40 px-5 py-4 text-left"
+    >
+      <Truck className="w-4 h-4 mt-0.5 shrink-0 text-ash" strokeWidth={1.5} />
+      <p className="text-sm text-ink-light leading-relaxed">
+        <strong className="font-normal text-ink">Shipping is not charged today.</strong>{" "}
+        It is calculated and invoiced separately prior to book dispatch.
+      </p>
+    </div>
+    <div
+      data-clarity-region="refund-notice"
+      className="flex items-start gap-3 border border-ink/20 bg-paper-dark/40 px-5 py-4 text-left"
+    >
+      <ShieldCheck className="w-4 h-4 mt-0.5 shrink-0 text-ash" strokeWidth={1.5} />
+      <p className="text-sm text-ink-light leading-relaxed">
+        <strong className="font-normal text-ink">Full refund any time before we go to print.</strong>{" "}
+        For any reason, and a full refund if the book can’t be delivered.
+      </p>
     </div>
   </div>
 );
@@ -141,16 +175,18 @@ export const PreorderTiers: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const notifyRef = useRef<HTMLInputElement>(null);
 
-  const select = async (tier: PreorderTier) => {
+  const select = async (sku: PreorderSku) => {
+    trackPreorderTierSelected(sku.id);
     if (!PREORDER_OPEN) {
       notifyRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       notifyRef.current?.focus({ preventScroll: true });
       return;
     }
-    setBusy(tier.id);
+    setBusy(sku.id);
     setError(null);
     try {
-      await startCheckout(tier.editionId, tier.id);
+      trackCheckoutStarted(sku.id);
+      await startCheckout(sku.id);
       // On success the browser navigates to Stripe; nothing more to do here.
     } catch (checkoutError) {
       setError(checkoutError instanceof Error ? checkoutError.message : "Could not start checkout. Please try again.");
@@ -164,20 +200,22 @@ export const PreorderTiers: React.FC = () => {
         <p className="font-mono text-[0.6rem] uppercase tracking-[0.35em] text-ash">Pre-order the first edition</p>
         <h2 className="font-serif text-4xl sm:text-5xl font-light mt-5">Become a Founding Reader</h2>
         <p className="max-w-xl mx-auto mt-5 text-ink-light leading-relaxed">
-          Every pre-order placed before the first printing comes with a hand-signed, numbered bookplate, and directly
-          funds the completion of the book. Ships {BOOK.shipWindow}.
+          Choose your format. Every pre-order placed before the first printing comes with a hand-signed, numbered
+          bookplate, and directly funds the completion of the book. Ships {BOOK.shipWindow}.
         </p>
       </FadeIn>
 
       {!PREORDER_OPEN && <NotifyForm inputRef={notifyRef} />}
 
       <StaggerContainer className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto mt-12">
-        {BOOK.tiers.map((tier) => (
-          <StaggerItem key={tier.id}>
-            <TierCard tier={tier} busy={busy} onSelect={select} />
+        {BOOK.skus.map((sku) => (
+          <StaggerItem key={sku.id}>
+            <SkuCard sku={sku} busy={busy} onSelect={select} />
           </StaggerItem>
         ))}
       </StaggerContainer>
+
+      <PolicyNotices />
 
       {error && (
         <p role="alert" className="text-center mt-6 text-sm text-ink border border-ink/30 bg-paper-dark inline-block px-4 py-2 mx-auto block max-w-md">
@@ -186,9 +224,9 @@ export const PreorderTiers: React.FC = () => {
       )}
 
       <FadeIn className="max-w-xl mx-auto mt-10 text-center">
-        <p className="text-sm text-ash leading-relaxed italic font-serif text-base">
-          Pre-order terms, in one line: full refund available any time before your copy is printed, for any
-          reason, and a full refund if the book can’t be delivered. Deposits count toward the price.
+        <p className="text-sm text-ash leading-relaxed italic font-serif">
+          Pre-order terms, in one line: a full refund is available any time before we go to print, for any reason,
+          and a full refund if the book can’t be delivered.
         </p>
         <a
           href="/preorder-terms"

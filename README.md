@@ -22,16 +22,16 @@ Optional public configuration:
 
 - `VITE_SUBSCRIBE_ENDPOINT`: overrides the default same-origin `/api/subscribe` endpoint.
 - `VITE_KICKSTARTER_PRELAUNCH_URL`: the official Kickstarter pre-launch page URL once it is live.
-- `VITE_META_PIXEL_ID`: optional Meta Pixel ID for ad retargeting and support-registration conversion tracking.
-- `VITE_MIXPANEL_TOKEN`: optional override for the public Mixpanel project token.
+- `VITE_META_PIXEL_ID`: optional Meta Pixel ID for ad retargeting and pre-order conversion tracking.
+- `VITE_CLARITY_PROJECT_ID`: Microsoft Clarity project id for session replay, heatmaps, and the pre-order funnel. If unset, Clarity does not load.
 
 During local development, an empty `VITE_SUBSCRIBE_ENDPOINT` keeps the form in preview mode. Production uses `/api/subscribe` automatically.
 
 ## Analytics
 
-Mixpanel and Meta Pixel are consent-gated and load only after a visitor chooses `Allow analytics`. Tracking runs only on `thenarrativewitness.com` and `www.thenarrativewitness.com`, keeping local and Vercel preview activity out of production reporting.
+Microsoft Clarity and Meta Pixel are consent-gated and load only after a visitor chooses `Allow analytics`. Tracking runs only on `thenarrativewitness.com` and `www.thenarrativewitness.com`, keeping local and Vercel preview activity out of production reporting. Payment analytics live in the Stripe Dashboard.
 
-The Mixpanel tracking plan is documented in [`ANALYTICS_TRACKING_PLAN.md`](./ANALYTICS_TRACKING_PLAN.md).
+The tracking plan (Clarity events + the pre-order funnel) is documented in [`ANALYTICS_TRACKING_PLAN.md`](./ANALYTICS_TRACKING_PLAN.md).
 
 ## Reader Recognition
 

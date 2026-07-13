@@ -1,4 +1,4 @@
-import type { OverridedMixpanel } from "mixpanel-browser";
+import Clarity from "@microsoft/clarity";
 
 declare global {
   interface Window {
@@ -12,9 +12,10 @@ export type SignupSource = "hero" | "midpage" | "final" | "writing" | "preorder"
 
 const ANALYTICS_CONSENT_KEY = "narrative_witness_analytics_consent";
 const SIGNUP_ATTRIBUTION_KEY = "narrative_witness_signup_attribution";
-const MIXPANEL_TOKEN =
-  import.meta.env.VITE_MIXPANEL_TOKEN?.trim() ||
-  "a2d4bf4421347c1afc2250024f7876bb";
+// Microsoft Clarity project id. Set VITE_CLARITY_PROJECT_ID in the environment
+// (Vercel Production). Without it, Clarity simply never initialises — the same
+// safe no-op the site had when analytics consent was withheld.
+const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID?.trim() || "";
 const META_PIXEL_ID =
   import.meta.env.VITE_META_PIXEL_ID?.trim() || "2404031020073363";
 const PRODUCTION_HOSTS = new Set([
@@ -31,7 +32,6 @@ const trackedPagePaths = new Set<string>();
 let analyticsInitialized = false;
 let analyticsInitialization: Promise<void> | null = null;
 let metaPixelLoaded = false;
-let mixpanelClient: OverridedMixpanel | null = null;
 
 function isProductionSite() {
   return (
@@ -64,7 +64,7 @@ export function setAnalyticsConsent(consent: Exclude<AnalyticsConsent, null>) {
 
   if (consent === "granted") {
     void initAnalytics().then(() => {
-      trackMixpanel("analytics_consent_updated", {
+      trackEvent("analytics_consent_updated", {
         consent_status: "granted",
       });
       if (window.location.pathname.replace(/\/+$/, "") === "/confirmed") {
@@ -77,8 +77,8 @@ export function setAnalyticsConsent(consent: Exclude<AnalyticsConsent, null>) {
       "narrative_witness_confirmation_tracked",
     );
     if (analyticsInitialized) {
-      mixpanelClient?.opt_out_tracking();
-      mixpanelClient?.reset();
+      // Tell Clarity consent was withdrawn; it stops collecting for this user.
+      Clarity.consent(false);
     }
     window.fbq?.("consent", "revoke");
   }
@@ -139,39 +139,48 @@ export function initAnalytics(): Promise<void> {
 
   initMetaPixel();
 
-  analyticsInitialization = import("mixpanel-browser")
-    .then(({ default: mixpanel }) => {
-      mixpanelClient = mixpanel;
-      mixpanelClient.init(MIXPANEL_TOKEN, {
-        autocapture: false,
-        debug: false,
-        ignore_dnt: false,
-        persistence: "localStorage",
-        track_pageview: false,
-      });
-      mixpanelClient.register({
-        platform: "web",
-        project_name: "the_narrative_witness",
-      });
+  analyticsInitialization = new Promise<void>((resolve) => {
+    if (CLARITY_PROJECT_ID) {
+      Clarity.init(CLARITY_PROJECT_ID);
+      // Consent has been explicitly granted through the site's own banner, so
+      // signal it to Clarity too (keeps its cookie behaviour consent-aware).
+      Clarity.consent(true);
+      // Base session tags — the equivalent of the old registered super props,
+      // and useful dimensions to slice Clarity recordings/funnels by.
+      Clarity.setTag("platform", "web");
+      Clarity.setTag("project_name", "the_narrative_witness");
+    }
 
-      analyticsInitialized = true;
-      trackPageView();
+    analyticsInitialized = true;
+    trackPageView();
 
-      pendingEvents.splice(0).forEach(({ eventName, properties }) => {
-        mixpanelClient?.track(eventName, properties);
-      });
-    })
-    .catch(() => {
-      analyticsInitialization = null;
+    pendingEvents.splice(0).forEach(({ eventName, properties }) => {
+      emitToClarity(eventName, properties);
     });
+
+    resolve();
+  });
 
   return analyticsInitialization;
 }
 
-function trackMixpanel(
-  eventName: string,
-  properties?: Record<string, unknown>,
-) {
+/**
+ * Clarity has two primitives: `event(name)` marks a custom event (usable as a
+ * funnel step or smart-event trigger) and `setTag(key, value)` attaches a
+ * filterable dimension to the session. We map every tracked action onto both:
+ * the event name for the funnel, the properties as tags for segmentation.
+ */
+function emitToClarity(eventName: string, properties?: Record<string, unknown>) {
+  if (!CLARITY_PROJECT_ID) return;
+  Clarity.event(eventName);
+  if (!properties) return;
+  for (const [key, value] of Object.entries(properties)) {
+    if (value === undefined || value === null) continue;
+    Clarity.setTag(key, String(value));
+  }
+}
+
+function trackEvent(eventName: string, properties?: Record<string, unknown>) {
   if (!isProductionSite() || getAnalyticsConsent() === "denied") return;
 
   const eventProperties = {
@@ -179,8 +188,8 @@ function trackMixpanel(
     ...properties,
   };
 
-  if (analyticsInitialized && mixpanelClient) {
-    mixpanelClient.track(eventName, eventProperties);
+  if (analyticsInitialized) {
+    emitToClarity(eventName, eventProperties);
     return;
   }
 
@@ -198,7 +207,7 @@ export function trackPageView() {
   if (trackedPagePaths.has(pagePath)) return;
 
   trackedPagePaths.add(pagePath);
-  trackMixpanel("page_viewed", {
+  trackEvent("page_viewed", {
     entry_path: pagePath,
   });
 }
@@ -214,14 +223,14 @@ export function trackSupportRegistration(source: SignupSource) {
     );
   }
 
-  trackMixpanel("support_registration_submitted", {
+  trackEvent("support_registration_submitted", {
     form_source: source,
     funnel_stage: "submitted",
   });
 
   window.fbq?.("track", "Lead", {
     content_name: "Book support registration",
-    content_category: "Kickstarter pre-launch",
+    content_category: "Pre-order",
     source,
   });
 
@@ -262,7 +271,7 @@ export function trackSupportConfirmation() {
   }
 
   window.sessionStorage.setItem(sessionKey, "true");
-  trackMixpanel("support_registration_confirmed", {
+  trackEvent("support_registration_confirmed", {
     form_source: formSource,
     funnel_stage: "confirmed",
     ...(hoursToConfirm === undefined
@@ -286,7 +295,7 @@ export function trackExcerptSelected(properties: {
   excerptTitle: string;
   excerptType: string;
 }) {
-  trackMixpanel("excerpt_selected", {
+  trackEvent("excerpt_selected", {
     excerpt_id: properties.excerptId,
     excerpt_index: properties.excerptIndex,
     excerpt_title: properties.excerptTitle,
@@ -299,7 +308,7 @@ export function trackWritingOpened(properties: {
   writingTitle: string;
   writingType: string;
 }) {
-  trackMixpanel("writing_opened", {
+  trackEvent("writing_opened", {
     writing_id: properties.writingId,
     writing_title: properties.writingTitle,
     writing_type: properties.writingType.toLowerCase(),
@@ -307,7 +316,7 @@ export function trackWritingOpened(properties: {
 }
 
 export function trackSubstackVisit(source: string) {
-  trackMixpanel("substack_visited", {
+  trackEvent("substack_visited", {
     link_source: source,
   });
 }
@@ -317,7 +326,7 @@ export function trackNavigationClicked(properties: {
   label: string;
   placement: string;
 }) {
-  trackMixpanel("navigation_clicked", {
+  trackEvent("navigation_clicked", {
     destination: properties.destination,
     link_label: properties.label,
     placement: properties.placement,
@@ -325,17 +334,48 @@ export function trackNavigationClicked(properties: {
 }
 
 export function trackRecognitionLoadedMore(visibleCount: number) {
-  trackMixpanel("recognition_loaded_more", {
+  trackEvent("recognition_loaded_more", {
     visible_recognition_count: visibleCount,
   });
 }
 
-export function trackKickstarterIntent(source: string) {
-  trackMixpanel("kickstarter_intent_clicked", {
-    link_source: source,
+/* --------------------------- pre-order funnel --------------------------- */
+// Three named steps that let Clarity build the /book -> checkout -> success
+// funnel from custom events. Stripe still owns all financial reporting; these
+// are only for the on-site conversion funnel and session-replay segmentation.
+
+export function trackPreorderTierSelected(sku: string) {
+  trackEvent("preorder_tier_selected", {
+    funnel_stage: "tier_selected",
+    sku,
+  });
+}
+
+export function trackCheckoutStarted(sku: string) {
+  trackEvent("checkout_started", {
+    funnel_stage: "checkout_started",
+    sku,
   });
 
-  window.fbq?.("trackCustom", "KickstarterIntent", {
-    source,
+  window.fbq?.("track", "InitiateCheckout", {
+    content_name: "Book pre-order",
+    content_ids: [sku],
+  });
+}
+
+export function trackPreorderConfirmed(sku?: string) {
+  const sessionKey = "narrative_witness_preorder_confirmed_tracked";
+  if (window.sessionStorage.getItem(sessionKey)) return;
+  window.sessionStorage.setItem(sessionKey, "true");
+
+  trackEvent("preorder_confirmed", {
+    funnel_stage: "confirmed",
+    value_moment: true,
+    ...(sku ? { sku } : {}),
+  });
+
+  window.fbq?.("track", "Purchase", {
+    content_name: "Book pre-order",
+    ...(sku ? { content_ids: [sku] } : {}),
   });
 }

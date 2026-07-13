@@ -33,15 +33,22 @@ export const config = { api: { bodyParser: false } };
 
 const KIT_API_URL = "https://api.kit.com/v4";
 
-// Server-trusted print spec per edition. The pod_package_id is the STANDARD
-// 6×9 B&W paperback SKU — fine for sandbox validation. Swap in the premium
-// B&W SKU from Lulu's pricing calculator before real fulfilment (Dec 2026).
+// Server-trusted print spec per format. The pod_package_id values are STANDARD
+// 6×9 B&W SKUs — fine for sandbox validation. Swap in the premium B&W paperback
+// and the hardback SKUs from Lulu's pricing calculator before real fulfilment
+// (Dec 2026). Print mode is not used until then; preorder mode never prints.
 const PRINT_SPEC = {
   paperback: {
     title: "The Narrative Witness",
     podPackageId: process.env.LULU_POD_PACKAGE_ID?.trim() || "0600X0900BWSTDPB060UW444MXX",
     interiorUrl: process.env.PAPERBACK_INTERIOR_URL?.trim(),
     coverUrl: process.env.PAPERBACK_COVER_URL?.trim(),
+  },
+  hardback: {
+    title: "The Narrative Witness",
+    podPackageId: process.env.HARDBACK_POD_PACKAGE_ID?.trim() || "0600X0900BWSTDCW060UW444MXX",
+    interiorUrl: process.env.HARDBACK_INTERIOR_URL?.trim() || process.env.PAPERBACK_INTERIOR_URL?.trim(),
+    coverUrl: process.env.HARDBACK_COVER_URL?.trim() || process.env.PAPERBACK_COVER_URL?.trim(),
   },
 };
 
@@ -137,8 +144,8 @@ export default async function handler(request, response) {
   }
 
   const session = event.data.object;
-  const editionId = session.metadata?.editionId ?? "";
-  const tier = session.metadata?.tier ?? "";
+  const sku = session.metadata?.sku ?? session.metadata?.editionId ?? "";
+  const editionId = sku; // print-spec lookup is keyed by format
   const quantity = parseInt(session.metadata?.quantity, 10) || 1;
   const email = session.customer_details?.email ?? "";
   const fulfilmentMode = (process.env.FULFILMENT_MODE || "preorder").trim().toLowerCase();
@@ -150,8 +157,7 @@ export default async function handler(request, response) {
       JSON.stringify({
         session: session.id,
         email,
-        editionId,
-        tier,
+        sku,
         quantity,
         amountTotal: session.amount_total,
         currency: session.currency,
@@ -160,9 +166,11 @@ export default async function handler(request, response) {
       })
   );
 
+  // Every pre-order is a full payment now (no deposits). Tag by format so the
+  // Founding Witnesses / fulfilment lists can split paperback vs hardback.
   await tagBuyerInKit(
     email,
-    ["founding-reader", tier === "founder" ? "preorder-paid" : "preorder-deposit", `edition-${editionId || "paperback"}`]
+    ["founding-reader", "preorder-paid", `edition-${sku || "paperback"}`]
   );
 
   if (fulfilmentMode !== "print") {
@@ -172,12 +180,6 @@ export default async function handler(request, response) {
   }
 
   /* ------------------------- print mode from here ------------------------ */
-
-  if (tier === "reserve") {
-    // A deposit is not a full payment; the balance checkout at fulfilment is
-    // what prints. Never print from a deposit, even in print mode.
-    return response.status(200).json({ received: true, fulfilment: "print", skipped: "deposit_only" });
-  }
 
   const spec = PRINT_SPEC[editionId];
   if (!spec) {

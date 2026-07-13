@@ -12,7 +12,7 @@
  *   KIT_API_KEY                        (optional; Kit tagging is non-fatal)
  *
  * Usage:
- *   node scripts/store-test.mjs checkout reserve|founder
+ *   node scripts/store-test.mjs checkout paperback|hardback
  *       -> creates a real Stripe test Checkout Session, prints its URL.
  *          Pay it in a browser with 4242 4242 4242 4242, then:
  *
@@ -72,14 +72,14 @@ globalThis.fetch = (input, init) => {
   return realFetch(input, init);
 };
 
-async function runCheckout(tier) {
+async function runCheckout(sku) {
   const { default: handler } = await import("../api/checkout.js");
   const { res, state } = mockResponse();
   await handler(
     {
       method: "POST",
       headers: { host: "localhost:3000", origin: "http://localhost:3000" },
-      body: { editionId: "paperback", tier },
+      body: { sku },
     },
     res
   );
@@ -87,7 +87,7 @@ async function runCheckout(tier) {
     console.error("FAIL checkout:", state.statusCode, state.body);
     process.exit(1);
   }
-  console.log(`OK checkout session created (tier=${tier}, FULFILMENT_MODE=${process.env.FULFILMENT_MODE}).`);
+  console.log(`OK checkout session created (sku=${sku}, FULFILMENT_MODE=${process.env.FULFILMENT_MODE}).`);
   console.log("\nPay it with 4242 4242 4242 4242 (any future expiry / any CVC):\n");
   console.log(state.body.url + "\n");
 }
@@ -106,7 +106,7 @@ async function runWebhook(sessionId, mode) {
     process.exit(1);
   }
   console.log(
-    `Replaying REAL paid session ${sessionId} (tier=${session.metadata?.tier}, ` +
+    `Replaying REAL paid session ${sessionId} (sku=${session.metadata?.sku}, ` +
       `amount=${session.amount_total} ${session.currency}) with FULFILMENT_MODE=${mode}\n`
   );
 
@@ -155,14 +155,6 @@ async function runWebhook(sessionId, mode) {
     }
     console.log("\nPASS (preorder): order recorded + tagged, NO Lulu call made.");
   } else {
-    if (session.metadata?.tier === "reserve") {
-      if (state.body?.skipped !== "deposit_only") {
-        console.error("FAIL: a deposit must never print, even in print mode.");
-        process.exit(1);
-      }
-      console.log("\nPASS (print, reserve): deposit correctly refused to print.");
-      return;
-    }
     if (!state.body?.printJobId) {
       console.error("FAIL: print mode did not create a Lulu print job (see error above).");
       process.exit(1);
@@ -180,22 +172,22 @@ async function runWebhook(sessionId, mode) {
 /**
  * No-credentials self-test: replays FAKE (locally signed) sessions through the
  * real webhook handler and asserts the mode switch behaves. Proves signature
- * verification, the preorder/print branch, and the deposit-never-prints guard
- * without Stripe or Lulu keys. (The real sandbox proof is the `webhook`
- * command above, once keys exist.)
+ * verification and the preorder/print branch for both formats without Stripe
+ * or Lulu keys. (The real sandbox proof is the `webhook` command above, once
+ * keys exist.)
  */
 async function runSelfTest() {
   process.env.STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY || "sk_test_dummy_local";
   const stripe = new Stripe("sk_test_dummy_local");
   const { default: handler } = await import("../api/stripe-webhook.js");
 
-  const fakeSession = (tier) => ({
-    id: `cs_test_fake_${tier}_${Date.now()}`,
+  const fakeSession = (sku) => ({
+    id: `cs_test_fake_${sku}_${Date.now()}`,
     object: "checkout.session",
     payment_status: "paid",
-    amount_total: tier === "founder" ? 3500 : 1000,
-    currency: "nzd",
-    metadata: { editionId: "paperback", tier, quantity: "1" },
+    amount_total: sku === "hardback" ? 3999 : 2699,
+    currency: "usd",
+    metadata: { sku, editionId: sku, quantity: "1" },
     customer_details: {
       email: "selftest@example.com",
       name: "Self Test",
@@ -205,13 +197,13 @@ async function runSelfTest() {
     shipping_details: null,
   });
 
-  const replay = async (tier, mode) => {
+  const replay = async (sku, mode) => {
     process.env.FULFILMENT_MODE = mode;
     const payload = JSON.stringify({
       id: `evt_selftest_${Date.now()}`,
       object: "event",
       type: "checkout.session.completed",
-      data: { object: fakeSession(tier) },
+      data: { object: fakeSession(sku) },
     });
     const signature = stripe.webhooks.generateTestHeaderString({
       payload,
@@ -249,34 +241,25 @@ async function runSelfTest() {
     assert(state.statusCode === 400, "webhook rejects an invalid Stripe signature (400)");
   }
 
-  // 2. preorder mode: recorded + tagged, NO Lulu contact, for both tiers.
-  for (const tier of ["reserve", "founder"]) {
-    const { state, luluCalls } = await replay(tier, "preorder");
+  // 2. preorder mode: recorded + tagged, NO Lulu contact, for both formats.
+  for (const sku of ["paperback", "hardback"]) {
+    const { state, luluCalls } = await replay(sku, "preorder");
     assert(
       state.statusCode === 200 && state.body?.fulfilment === "preorder" && luluCalls.length === 0,
-      `preorder mode (${tier}): 200, fulfilment=preorder, zero Lulu calls`
+      `preorder mode (${sku}): 200, fulfilment=preorder, zero Lulu calls`
     );
   }
 
-  // 3. print mode: a deposit must never print.
-  {
-    const { state, luluCalls } = await replay("reserve", "print");
-    assert(
-      state.statusCode === 200 && state.body?.skipped === "deposit_only" && luluCalls.length === 0,
-      "print mode (reserve deposit): refused to print, zero Lulu calls"
-    );
-  }
-
-  // 4. print mode (founder): attempts the Lulu chain. Without PDFs/creds it
+  // 3. print mode (paperback): attempts the Lulu chain. Without PDFs/creds it
   //    must degrade to a logged 200 (paid > retry storm); with them it prints.
   {
-    const { state } = await replay("founder", "print");
+    const { state } = await replay("paperback", "print");
     const outcome = state.body?.printJobId
       ? `Lulu sandbox job ${state.body.printJobId} created`
       : `degraded gracefully (${state.body?.error})`;
     assert(
       state.statusCode === 200 && (state.body?.printJobId || ["missing_pdf", "print_failed"].includes(state.body?.error)),
-      `print mode (founder): enters print path and returns 200 — ${outcome}`
+      `print mode (paperback): enters print path and returns 200 — ${outcome}`
     );
   }
 
@@ -296,13 +279,13 @@ async function runLuluStatus(jobId) {
 }
 
 try {
-  if (command === "checkout") await runCheckout(args[0] === "founder" ? "founder" : "reserve");
+  if (command === "checkout") await runCheckout(args[0] === "hardback" ? "hardback" : "paperback");
   else if (command === "webhook") await runWebhook(args[0], args[1] === "print" ? "print" : "preorder");
   else if (command === "lulu-status") await runLuluStatus(args[0]);
   else if (command === "selftest") await runSelfTest();
   else {
     console.log("Usage: node scripts/store-test.mjs selftest                       (no keys needed)");
-    console.log("       node scripts/store-test.mjs checkout reserve|founder");
+    console.log("       node scripts/store-test.mjs checkout paperback|hardback");
     console.log("       node scripts/store-test.mjs webhook <cs_test_...> preorder|print");
     console.log("       node scripts/store-test.mjs lulu-status <print_job_id>");
     process.exit(1);

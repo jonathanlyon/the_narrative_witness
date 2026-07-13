@@ -52,7 +52,7 @@ export function PreorderTermsPage() {
             The Narrative Witness
           </h1>
           <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-ash/80">
-            Last updated: 8 July 2026
+            Last updated: 13 July 2026
           </p>
         </div>
 
@@ -74,46 +74,53 @@ export function PreorderTermsPage() {
               made; see section 5 about timing.
             </p>
             <p>
-              The first edition is a 6&times;9 paperback, printed in premium
-              black and white with photography from the Witness Archive. Every
-              Founding Reader also receives a hand-signed, numbered bookplate,
-              inscribed by the author, to place inside their copy. (If a
-              hardcover or ebook edition is offered, its format and price are
-              shown at the point of sale; these terms apply to it in the same
-              way.)
+              The first edition is offered in two formats: a 6&times;9
+              paperback, and a signed, numbered first-edition hardback, both
+              printed in premium black and white with photography from the
+              Witness Archive. Every Founding Reader also receives a
+              hand-signed, numbered bookplate, inscribed by the author, to
+              place inside their copy. (An ebook is not part of this pre-order.
+              If a digital edition is offered later, its format and price are
+              shown at the point of sale, and these terms apply to it in the
+              same way.)
             </p>
           </Section>
 
           <Section number="2" title="Pricing and payment">
             <p>
-              Prices are in New Zealand dollars (NZD). Payments are processed
-              securely by Stripe; your card details are handled by Stripe and
-              are never stored by us.
+              Prices are shown in US dollars (USD) as the base price. At
+              checkout, your price is localised to your region automatically:
+              buyers in New Zealand, Australia, the United Kingdom, and Canada
+              see a fixed local price, and everyone else sees the USD price
+              converted to their currency at the day&rsquo;s exchange rate.
+              Payments are processed securely by Stripe; your card details are
+              handled by Stripe and are never stored by us.
             </p>
-            <p>There are two ways to pre-order the paperback:</p>
+            <p>There are two formats to pre-order, each paid in full:</p>
             <ul className="flex flex-col gap-3 pl-5 list-disc marker:text-ash">
               <li>
                 <strong className="font-normal text-ink">
-                  Reserve: NZ$10 now.
+                  Paperback: US$26.99.
                 </strong>{" "}
-                A deposit that counts toward the NZ$35 price. When the book is
-                ready to ship, we&rsquo;ll email you a secure link to pay the
-                remaining NZ$25 balance plus shipping, and your copy will
-                then be produced and sent.
+                The first-edition 6&times;9 paperback, premium black and white
+                interior, with a hand-signed, numbered bookplate.
               </li>
               <li>
                 <strong className="font-normal text-ink">
-                  Founder: NZ$35 now.
+                  Hardback: US$39.99.
                 </strong>{" "}
-                Paid in full. Shipping is added at checkout based on your
-                destination, and there is nothing further to pay at fulfilment.
+                A signed, numbered first-edition hardback, with a hand-signed,
+                numbered bookplate.
               </li>
             </ul>
             <p>
-              If you reserve with a deposit and later decide not to complete
-              your purchase, or if we don&rsquo;t hear back within 30
-              days of our final reminder to pay the balance, your
-              reservation is released and your deposit is refunded in full.
+              <strong className="font-normal text-ink">
+                Shipping is not charged today.
+              </strong>{" "}
+              It is calculated and invoiced separately before your book is
+              dispatched, based on your destination. There are no deposits and
+              no part-payments: your pre-order is paid in full now, and shipping
+              is the only thing invoiced later.
             </p>
           </Section>
 
@@ -143,11 +150,12 @@ export function PreorderTermsPage() {
               relying on an address given far in advance.
             </p>
             <p>
-              Shipping is added at checkout for Founder orders, or at
-              fulfilment for Reserve orders, based on your destination. Because
-              the book is printed to order in Australia, every copy is posted
-              from there. For international orders, any customs duties, taxes,
-              or import fees charged by your country are your responsibility.
+              Shipping is not charged at checkout. It is calculated and
+              invoiced separately before dispatch, based on your destination.
+              Because the book is printed to order in Australia, every copy is
+              posted from there. For international orders, any customs duties,
+              taxes, or import fees charged by your country are your
+              responsibility.
             </p>
           </Section>
 
@@ -165,9 +173,8 @@ export function PreorderTermsPage() {
           <Section number="6" title="Refunds and cancellations">
             <p>
               The simple version: you can cancel your pre-order and receive a
-              full refund of everything you&rsquo;ve paid (deposit,
-              balance, or both) at any time before your copy enters
-              production, for any reason. Just email us at{" "}
+              full refund of everything you&rsquo;ve paid, at any time before we
+              go to print, for any reason. Just email us at{" "}
               <a
                 href="mailto:orders@thenarrativewitness.com"
                 className="border-b border-ink/40 text-ink transition-colors hover:border-ink"

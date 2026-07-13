@@ -19,14 +19,16 @@ export interface BookSection {
   samplePieces: string[];
 }
 
-export interface PreorderTier {
-  id: "reserve" | "founder";
-  editionId: "paperback";
+export interface PreorderSku {
+  /** The format is the SKU; it maps 1:1 to a Stripe Price (see api/checkout.js). */
+  id: "paperback" | "hardback";
   name: string;
-  /** Display only — api/checkout.js holds the authoritative amount. */
+  /** Display only — the buyer's localized price is set by Stripe at checkout. */
   priceLabel: string;
-  payNow: string;
-  later: string;
+  /** Small line under the price, e.g. paid-in-full framing. */
+  priceNote: string;
+  /** Premium marketing cachet, rendered as a badge (hardback only). */
+  cachet?: string;
   perks: string[];
   cta: string;
   featured: boolean;
@@ -148,40 +150,43 @@ export const BOOK = {
 
   shipWindow: "December 2026 – January 2027 (estimated)",
 
-  tiers: [
+  /**
+   * Two full-payment pre-order formats. Prices shown here are the USD base;
+   * Stripe localizes them at checkout (fixed charm prices for NZ/AU/UK/CA,
+   * live-rate conversion for the rest of the world). Shipping is not charged
+   * now; it is invoiced separately before dispatch.
+   */
+  skus: [
     {
-      id: "reserve",
-      editionId: "paperback",
-      name: "Reserve",
-      priceLabel: "NZ$10",
-      payNow: "NZ$10 deposit now",
-      later: "NZ$25 balance + shipping when the book is ready",
+      id: "paperback",
+      name: "Paperback",
+      priceLabel: "US$26.99",
+      priceNote: "Paid in full. Shipping invoiced separately.",
       perks: [
-        "Counts in full toward the NZ$35 price",
-        "Hand-signed, numbered bookplate",
+        "First-edition 6×9 paperback, premium black & white interior",
+        "Hand-signed, numbered bookplate to place inside",
         "Name in the Founding Witnesses page (opt-in)",
-        "Fully refundable before printing",
+        "Full refund any time before we go to print",
       ],
-      cta: "Reserve for NZ$10",
+      cta: "Pre-order the paperback",
       featured: false,
     },
     {
-      id: "founder",
-      editionId: "paperback",
-      name: "Founder",
-      priceLabel: "NZ$35",
-      payNow: "NZ$35 now, plus shipping",
-      later: "Nothing more to pay at fulfilment",
+      id: "hardback",
+      name: "Hardback",
+      cachet: "Signed, numbered first edition",
+      priceLabel: "US$39.99",
+      priceNote: "Paid in full. Shipping invoiced separately.",
       perks: [
-        "The whole purchase brought forward",
-        "Hand-signed, numbered bookplate",
+        "Signed, numbered first-edition hardback",
+        "Hand-signed, numbered bookplate to place inside",
         "Name in the Founding Witnesses page (opt-in)",
-        "Fully refundable before printing",
+        "Full refund any time before we go to print",
       ],
-      cta: "Pre-order for NZ$35",
+      cta: "Pre-order the hardback",
       featured: true,
     },
-  ] satisfies PreorderTier[],
+  ] satisfies PreorderSku[],
 } as const;
 
 /**

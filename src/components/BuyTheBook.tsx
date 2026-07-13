@@ -54,8 +54,9 @@ export const BuyTheBook: React.FC = () => {
             </StaggerContainer>
             <FadeIn delay={0.5}>
               <p className="mt-10 font-serif italic text-ink-light/90 leading-relaxed border-l border-dust/60 pl-5">
-                Ships {BOOK.shipWindow}. A full refund is available any time before your copy is printed, for any
-                reason, and a full refund if the book can’t be delivered.
+                Ships {BOOK.shipWindow}. Shipping is not charged today; it is invoiced separately before dispatch. A
+                full refund is available any time before we go to print, for any reason, and a full refund if the
+                book can’t be delivered.
               </p>
             </FadeIn>
           </div>
@@ -64,9 +65,9 @@ export const BuyTheBook: React.FC = () => {
         {/* Single call to action into the book page, where the tiers live */}
         <FadeIn className="mt-20 md:mt-24 text-center">
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ash">
-            <span>Reserve from {BOOK.tiers[0].priceLabel}</span>
+            <span>Paperback {BOOK.skus[0].priceLabel}</span>
             <span className="text-dust">·</span>
-            <span>Founder edition {BOOK.tiers[1].priceLabel}</span>
+            <span>Signed hardback {BOOK.skus[1].priceLabel}</span>
           </div>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
             <a
