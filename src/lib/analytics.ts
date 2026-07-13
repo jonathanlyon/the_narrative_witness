@@ -22,6 +22,12 @@ const PRODUCTION_HOSTS = new Set([
   "thenarrativewitness.com",
   "www.thenarrativewitness.com",
 ]);
+// Testing override. When VITE_ANALYTICS_FORCE="true", analytics also runs on
+// non-production hosts (e.g. *.vercel.app previews) so Clarity and the funnel
+// can be verified off the live domain — point the Preview build at a throwaway
+// Clarity project. NEVER set this on Production; Production stays host-gated so
+// preview/local traffic can't pollute real reporting.
+const FORCE_ANALYTICS = import.meta.env.VITE_ANALYTICS_FORCE === "true";
 
 const pendingEvents: Array<{
   eventName: string;
@@ -34,10 +40,9 @@ let analyticsInitialization: Promise<void> | null = null;
 let metaPixelLoaded = false;
 
 function isProductionSite() {
-  return (
-    typeof window !== "undefined" &&
-    PRODUCTION_HOSTS.has(window.location.hostname)
-  );
+  if (typeof window === "undefined") return false;
+  if (FORCE_ANALYTICS) return true;
+  return PRODUCTION_HOSTS.has(window.location.hostname);
 }
 
 function getPageProperties() {
