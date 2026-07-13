@@ -8,18 +8,8 @@ import { FadeIn, FadeInSlow, StaggerContainer, StaggerItem } from "../../compone
 import { initAnalytics } from "../../lib/analytics";
 import { ReadingRoom } from "./ReadingRoom";
 import { PreorderTiers } from "./PreorderTiers";
-import { SectionRail, RailItem } from "./SectionRail";
 
 const ROMAN = ["I", "II", "III", "IV", "V", "VI"];
-
-const RAIL: RailItem[] = [
-  { id: "top", label: "The book" },
-  { id: "build", label: "How it’s built" },
-  { id: "sections", label: "Movements" },
-  { id: "read", label: "Reading room" },
-  { id: "object", label: "The object" },
-  { id: "preorder", label: "Pre-order" },
-];
 
 const Eyebrow: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <p className="font-mono text-[0.6rem] uppercase tracking-[0.35em] text-ash">{children}</p>
@@ -52,9 +42,8 @@ export const BookPage: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-paper text-ink font-sans selection:bg-ink selection:text-paper">
-      {/* Global site header (same as every page) + the book's own section rail */}
+      {/* Global site header (same as every page) */}
       <Header />
-      <SectionRail items={RAIL} />
 
       <main>
         {/* 1 — Hero */}
@@ -189,7 +178,7 @@ export const BookPage: React.FC = () => {
               <Eyebrow>The object</Eyebrow>
               <h2 className="font-serif text-4xl sm:text-5xl font-light mt-5">{BOOK.object.headline}</h2>
             </FadeIn>
-            <StaggerContainer className="max-w-md mx-auto mt-12 text-left">
+            <StaggerContainer className="max-w-md mx-auto mt-12 text-center">
               {BOOK.object.spec.map((line) => (
                 <StaggerItem key={line}>
                   <p className="border-t border-dust/70 py-4 text-sm text-ink-light last:border-b">{line}</p>

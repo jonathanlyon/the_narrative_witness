@@ -52,6 +52,9 @@ export function primaryNav(path = currentPath()): NavItem[] {
   });
 
   return [
+    // Home scrolls to the top on the home page, navigates to "/" elsewhere.
+    // anchor is left undefined so it never drives the active-section underline.
+    { label: "Home", href: isHomePath(path) ? "#root" : "/" },
     item("The Book", bookSection("#top", path)),
     item("Read", bookSection("#read", path)),
     item("Recognition", homeSection("#recognition", path)),
