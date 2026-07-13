@@ -67,9 +67,19 @@ export const BuyTheBook: React.FC = () => {
         {/* Single call to action into the book page, where the tiers live */}
         <FadeIn className="mt-20 md:mt-24 text-center">
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ash">
-            <span>Paperback {pricing.labels.paperback}</span>
+            <span>
+              Paperback{" "}
+              <span className={`transition-opacity duration-300 ${pricing.ready ? "opacity-100" : "opacity-0"}`}>
+                {pricing.labels.paperback}
+              </span>
+            </span>
             <span className="text-dust">·</span>
-            <span>Signed hardback {pricing.labels.hardback}</span>
+            <span>
+              Signed hardback{" "}
+              <span className={`transition-opacity duration-300 ${pricing.ready ? "opacity-100" : "opacity-0"}`}>
+                {pricing.labels.hardback}
+              </span>
+            </span>
           </div>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
             <a

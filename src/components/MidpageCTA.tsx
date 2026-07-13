@@ -26,8 +26,15 @@ export const MidpageCTA: React.FC = () => {
 
           <FadeIn delay={0.3}>
             <p className="mt-6 max-w-xl text-sm font-light leading-relaxed text-paper/75 md:text-base">
-              Pre-order the first edition now. Paperback from {pricing.labels.paperback}, or the signed,
-              numbered hardback from {pricing.labels.hardback}. Printed to order and shipped {BOOK.shipWindow.replace(" (estimated)", "")};
+              Pre-order the first edition now. Paperback from{" "}
+              <span className={`transition-opacity duration-300 ${pricing.ready ? "opacity-100" : "opacity-0"}`}>
+                {pricing.labels.paperback}
+              </span>
+              , or the signed, numbered hardback from{" "}
+              <span className={`transition-opacity duration-300 ${pricing.ready ? "opacity-100" : "opacity-0"}`}>
+                {pricing.labels.hardback}
+              </span>
+              . Printed to order and shipped {BOOK.shipWindow.replace(" (estimated)", "")};
               a full refund is available any time before we go to print.
             </p>
           </FadeIn>

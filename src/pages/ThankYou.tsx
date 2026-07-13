@@ -25,9 +25,13 @@ export function ThankYouPage() {
 
   return (
     <main className="relative flex min-h-screen items-center overflow-hidden bg-paper px-6 py-20 text-ink paper-grain">
-      <div className="absolute left-6 top-6 font-serif text-lg font-medium uppercase tracking-wider md:left-12 md:top-10 md:text-xl">
+      <a
+        href="/"
+        aria-label="The Narrative Witness — return home"
+        className="absolute left-6 top-6 font-serif text-lg font-medium uppercase tracking-wider text-ink transition-colors hover:text-ash md:left-12 md:top-10 md:text-xl"
+      >
         The Narrative Witness
-      </div>
+      </a>
 
       <motion.section
         initial={{ opacity: 0, y: 18 }}

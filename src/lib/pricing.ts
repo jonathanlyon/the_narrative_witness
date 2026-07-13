@@ -81,23 +81,36 @@ function fetchCountry(): Promise<string | null> {
   return countryPromise;
 }
 
+export interface PricingState extends ResolvedPricing {
+  /**
+   * False until geo has resolved. Consumers should keep the price hidden (but
+   * hold its space) while false, so the number appears once, already correct,
+   * with no USD-to-local flash. The resolved labels default to USD, so they can
+   * still be rendered invisibly to reserve the right width/height.
+   */
+  ready: boolean;
+}
+
 /**
- * Resolves the visitor's local pricing. Starts on the USD base (with the
- * conversion note) and updates once geo resolves — so a NZ visitor briefly
- * sees the USD base, then NZ$44.99. If /api/geo is unavailable it stays on USD.
+ * Resolves the visitor's local pricing. Reports `ready: false` until geo
+ * resolves, then the correct local price with `ready: true`. If /api/geo is
+ * unavailable it settles on USD (still `ready: true`).
  */
-export function usePricing(): ResolvedPricing {
-  const [country, setCountry] = useState<string | null>(null);
+export function usePricing(): PricingState {
+  const [state, setState] = useState<{ country: string | null; ready: boolean }>({
+    country: null,
+    ready: false,
+  });
 
   useEffect(() => {
     let alive = true;
     fetchCountry().then((resolved) => {
-      if (alive) setCountry(resolved);
+      if (alive) setState({ country: resolved, ready: true });
     });
     return () => {
       alive = false;
     };
   }, []);
 
-  return resolveLocalPrices(country);
+  return { ...resolveLocalPrices(state.country), ready: state.ready };
 }

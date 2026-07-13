@@ -17,8 +17,9 @@ const SkuCard: React.FC<{
   busy: string | null;
   priceLabel: string;
   note: string;
+  ready: boolean;
   onSelect: (sku: PreorderSku) => void;
-}> = ({ sku, busy, priceLabel, note, onSelect }) => (
+}> = ({ sku, busy, priceLabel, note, ready, onSelect }) => (
   <div
     data-clarity-region={`preorder-card-${sku.id}`}
     className={`flex flex-col border p-8 sm:p-10 ${
@@ -34,9 +35,21 @@ const SkuCard: React.FC<{
       )}
     </div>
 
-    <p className="font-serif text-5xl font-light mt-6">{priceLabel}</p>
+    <p
+      className={`font-serif text-5xl font-light mt-6 transition-opacity duration-300 ${
+        ready ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      {priceLabel}
+    </p>
     <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ash mt-3">{sku.priceNote}</p>
-    <p className="text-sm text-ink-light mt-1.5 italic font-serif">{note}</p>
+    <p
+      className={`text-sm text-ink-light mt-1.5 italic font-serif transition-opacity duration-300 ${
+        ready ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      {note}
+    </p>
 
     <ul className="mt-8 space-y-3 flex-grow">
       {sku.perks.map((perk) => (
@@ -218,6 +231,7 @@ export const PreorderTiers: React.FC = () => {
               busy={busy}
               priceLabel={pricing.labels[sku.id]}
               note={note}
+              ready={pricing.ready}
               onSelect={select}
             />
           </StaggerItem>
