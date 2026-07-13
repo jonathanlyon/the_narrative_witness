@@ -165,6 +165,35 @@ export const WritingPage: React.FC = () => {
 
   const bodyBlocks = writing.fullBody.split(/\n{2,}/);
   let firstProseBlock = true;
+  // A small pre-order call-out, dropped in at a movement break near the middle
+  // of longer pieces (only when there are at least two section dividers). It
+  // replaces that divider so the break isn't doubled up.
+  const dividerIndexes = bodyBlocks.reduce<number[]>(
+    (acc, block, i) => (block.trim() === "---" ? [...acc, i] : acc),
+    [],
+  );
+  const midCalloutIndex =
+    dividerIndexes.length >= 2
+      ? dividerIndexes[Math.floor(dividerIndexes.length / 2)]
+      : -1;
+  const midCallout = (
+    <aside className="my-12 border border-dust/70 bg-paper-dark/55 px-6 py-7 text-left sm:px-8">
+      <div className="font-mono text-[9px] uppercase tracking-[0.22em] text-ash">
+        Like what you&rsquo;re reading?
+      </div>
+      <div className="mt-3 font-serif text-lg font-light leading-snug text-ink md:text-xl">
+        This is one piece of a braided testimony. The whole book is being made
+        now, and the first edition is open for pre-order.
+      </div>
+      <a
+        href="/#preorder"
+        className="mt-5 inline-flex items-center gap-1.5 border-b border-ink pb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-ink transition-colors hover:border-ash hover:text-ash"
+      >
+        Pre-order the first edition
+        <ArrowUpRight size={11} aria-hidden="true" />
+      </a>
+    </aside>
+  );
 
   return (
     <div className="min-h-screen bg-paper text-ink selection:bg-ink selection:text-paper">
@@ -235,6 +264,13 @@ export const WritingPage: React.FC = () => {
                 const trimmedBlock = block.trim();
 
                 if (trimmedBlock === "---") {
+                  if (index === midCalloutIndex) {
+                    return (
+                      <React.Fragment key={`${writing.id}-${index}`}>
+                        {midCallout}
+                      </React.Fragment>
+                    );
+                  }
                   return (
                     <div
                       key={`${writing.id}-${index}`}
@@ -440,28 +476,33 @@ export const WritingPage: React.FC = () => {
         )}
 
         <section id="support" className="bg-ink-light py-20 text-paper md:py-28">
-          <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1fr_1.1fr] md:items-end">
-            <div>
-              <span className="font-mono text-[9px] uppercase tracking-[0.23em] text-paper/50">
-                From this piece to the whole book
-              </span>
-              <h2 className="mt-5 max-w-lg font-serif text-4xl font-light leading-tight md:text-5xl">
-                If this piece found you, the whole book is waiting.
-              </h2>
-              <a
-                href="/#preorder"
-                className="mt-8 inline-flex items-center gap-2 bg-paper px-7 py-4 font-mono text-[10px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-paper-dark"
-              >
-                Pre-order the first edition
-                <ArrowRight size={12} aria-hidden="true" />
-              </a>
-            </div>
-            <div>
-              <p className="mb-7 max-w-xl text-sm font-light leading-7 text-paper/65 md:text-base">
-                Not ready yet? Leave your email to follow the book as it&rsquo;s finished, and to hear the moment
+          <div className="mx-auto max-w-3xl px-6 text-center">
+            <span className="font-mono text-[9px] uppercase tracking-[0.23em] text-paper/50">
+              From this piece to the whole book
+            </span>
+            <h2 className="mx-auto mt-5 max-w-2xl font-serif text-4xl font-light leading-tight md:text-5xl">
+              If this piece found you, the whole book is waiting.
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-sm font-light leading-7 text-paper/65 md:text-base">
+              The Narrative Witness is a braided testimony on adoption, relinquishment, and the repair of a life told
+              in fragments. Reserve a hand-signed, numbered copy of the first edition.
+            </p>
+            <a
+              href="/#preorder"
+              className="mt-9 inline-flex items-center gap-2 bg-paper px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-paper-dark"
+            >
+              Pre-order the first edition
+              <ArrowRight size={13} aria-hidden="true" />
+            </a>
+
+            <div className="mx-auto mt-12 max-w-md border-t border-paper/15 pt-8">
+              <p className="text-xs font-light leading-6 text-paper/50">
+                Not ready to pre-order? Follow the book as it&rsquo;s finished, and I&rsquo;ll tell you the moment
                 pre-orders reach their final call before the first edition goes to print.
               </p>
-              <WritingSupportForm title={writing.title} />
+              <div className="mt-5 flex justify-center">
+                <WritingSupportForm title={writing.title} />
+              </div>
             </div>
           </div>
         </section>
