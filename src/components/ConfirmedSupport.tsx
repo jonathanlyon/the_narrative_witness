@@ -39,7 +39,7 @@ export const ConfirmedSupport: React.FC = () => {
           Jonathan
         </p>
         <a
-          href="/#preorder"
+          href="/book#preorder"
           className="mt-10 inline-flex items-center gap-2 border-b border-ink/45 pb-1 font-mono text-[9px] uppercase tracking-[0.18em] text-ink transition-colors hover:border-ink"
         >
           Pre-order the first edition

@@ -186,7 +186,7 @@ export const WritingPage: React.FC = () => {
         now, and the first edition is open for pre-order.
       </div>
       <a
-        href="/#preorder"
+        href="/book#preorder"
         className="mt-5 inline-flex items-center gap-1.5 border-b border-ink pb-1 font-mono text-[10px] uppercase tracking-[0.18em] text-ink transition-colors hover:border-ash hover:text-ash"
       >
         Pre-order the first edition
@@ -488,7 +488,7 @@ export const WritingPage: React.FC = () => {
               in fragments. Reserve a hand-signed, numbered copy of the first edition.
             </p>
             <a
-              href="/#preorder"
+              href="/book#preorder"
               className="mt-9 inline-flex items-center gap-2 bg-paper px-8 py-4 font-mono text-[11px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-paper-dark"
             >
               Pre-order the first edition
