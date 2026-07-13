@@ -875,6 +875,48 @@
       .tieback a.btn:hover {
         background: #f2e3a4;
       }
+      .tieback-actions {
+        display: flex;
+        gap: 0.6rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 0.9rem;
+      }
+      .tieback-actions a.btn {
+        margin-top: 0;
+      }
+      .tieback a.btn.btn-ghost {
+        color: #ecdc9a;
+        background: transparent;
+        border: 1px solid rgba(236, 220, 154, 0.5);
+      }
+      .tieback a.btn.btn-ghost:hover {
+        background: rgba(236, 220, 154, 0.12);
+        border-color: #f2e3a4;
+      }
+
+      /* Evident link back to the essay for anyone who finds the artefact first. */
+      .essaylink {
+        text-align: center;
+        margin: -0.3rem auto 1.5rem;
+        font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #8f8c81;
+        line-height: 1.6;
+      }
+      .essaylink a {
+        color: #ecdc9a;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-color: rgba(236, 220, 154, 0.55);
+        white-space: nowrap;
+      }
+      .essaylink a:hover {
+        color: #f2e3a4;
+        text-decoration-color: #f2e3a4;
+      }
 
       .sr-only {
         position: absolute;
@@ -952,6 +994,14 @@
         its place. And a third, the record of the life actually lived, no
         office has ever drafted. <strong>Peel through the set.</strong> The last
         copy is unfinished on purpose.
+      </p>
+
+      <p class="essaylink">
+        Companion to the essay
+        <a
+          href="https://www.thenarrativewitness.com/writing/the-third-certificate/"
+          >The Third Certificate &#8599;</a
+        >
       </p>
 
       <div class="selector-bar">
@@ -1466,10 +1516,18 @@
         the paperwork; this page is the paperwork: three certificates, side by
         side, with the last box left blank. Not because I don't know what goes
         there. Because I want you to be the ones who fill it in.
-        <br />
-        <a class="btn" href="https://www.thenarrativewitness.com/book"
-          >Read from the book</a
-        >
+        <div class="tieback-actions">
+          <a
+            class="btn"
+            href="https://www.thenarrativewitness.com/writing/the-third-certificate/"
+            >Read the essay</a
+          >
+          <a
+            class="btn btn-ghost"
+            href="https://www.thenarrativewitness.com/book"
+            >Explore the book</a
+          >
+        </div>
       </div>
 
       <div class="colophon">
