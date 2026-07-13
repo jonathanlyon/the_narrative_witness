@@ -50,8 +50,8 @@ export const MidpageCTA: React.FC = () => {
                 <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
-                href="/book"
-                onClick={() => trackNavigationClicked({ destination: "/book", label: "Read from the book", placement: "midpage" })}
+                href="/book#read"
+                onClick={() => trackNavigationClicked({ destination: "/book#read", label: "Read from the book", placement: "midpage" })}
                 className="inline-flex items-center justify-center gap-2 border border-paper/50 text-paper hover:bg-paper hover:text-ink uppercase font-mono text-[10px] tracking-[0.2em] py-4 px-7 transition-all duration-300"
               >
                 Read from the book

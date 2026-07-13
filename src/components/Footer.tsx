@@ -4,10 +4,10 @@ import {
   trackNavigationClicked,
   trackSubstackVisit,
 } from "../lib/analytics";
+import { bookSection, homeSection } from "../lib/nav";
 
 export const Footer: React.FC = () => {
-  const isHomePage = window.location.pathname === "/";
-  const sectionHref = (hash: string) => (isHomePage ? hash : `/${hash}`);
+  const sectionHref = homeSection;
   const handleScrollTop = () => {
     trackNavigationClicked({
       destination: "#root",
@@ -55,10 +55,10 @@ export const Footer: React.FC = () => {
             <ul className="flex flex-col gap-2.5 font-mono text-[10px] uppercase tracking-wider">
               <li>
                 <a
-                  href={sectionHref("#book")}
+                  href={bookSection("#top")}
                   onClick={() =>
                     trackNavigationClicked({
-                      destination: "#book",
+                      destination: "/book",
                       label: "The Book",
                       placement: "footer",
                     })
@@ -70,17 +70,17 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a
-                  href={sectionHref("#excerpts")}
+                  href={bookSection("#read")}
                   onClick={() =>
                     trackNavigationClicked({
-                      destination: "#excerpts",
-                      label: "Read Excerpts",
+                      destination: "/book#read",
+                      label: "Read from the book",
                       placement: "footer",
                     })
                   }
                   className="hover:text-paper transition-colors duration-200"
                 >
-                  Read Excerpts
+                  Read from the book
                 </a>
               </li>
               <li>

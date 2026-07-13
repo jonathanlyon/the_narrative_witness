@@ -3,6 +3,7 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { BOOK } from "../../data/book";
 import { Button } from "../../components/Button";
+import { Header } from "../../components/Header";
 import { FadeIn, FadeInSlow, StaggerContainer, StaggerItem } from "../../components/MotionWrapper";
 import { initAnalytics } from "../../lib/analytics";
 import { ReadingRoom } from "./ReadingRoom";
@@ -51,17 +52,9 @@ export const BookPage: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-paper text-ink font-sans selection:bg-ink selection:text-paper">
+      {/* Global site header (same as every page) + the book's own section rail */}
+      <Header />
       <SectionRail items={RAIL} />
-
-      {/* Quiet persistent header: title + pre-order */}
-      <header className="fixed top-0 z-50 w-full bg-paper/80 backdrop-blur-sm border-b border-dust/40">
-        <div className="max-w-5xl mx-auto px-6 py-3.5 flex items-center justify-between gap-4">
-          <a href="/" className="font-mono text-[0.58rem] uppercase tracking-[0.3em] text-ink truncate hover:text-ash transition-colors">
-            The Narrative Witness <span className="text-ash hidden sm:inline">· First edition</span>
-          </a>
-          <Button variant="primary" className="!py-2.5 !px-5" onClick={jumpToPreorder}>Pre-order</Button>
-        </div>
-      </header>
 
       <main>
         {/* 1 — Hero */}

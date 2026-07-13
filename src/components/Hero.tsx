@@ -71,8 +71,8 @@ export const Hero: React.FC = () => {
               </a>
               <a
                 id="hero-read-link"
-                href="/book"
-                onClick={() => trackNavigationClicked({ destination: "/book", label: "Read from the book", placement: "hero" })}
+                href="/book#read"
+                onClick={() => trackNavigationClicked({ destination: "/book#read", label: "Read from the book", placement: "hero" })}
                 className="group inline-flex items-center justify-center gap-2 border border-ink text-ink hover:bg-ink hover:text-paper uppercase font-mono text-[10px] tracking-[0.2em] py-4 px-7 transition-all duration-300"
               >
                 Read from the book

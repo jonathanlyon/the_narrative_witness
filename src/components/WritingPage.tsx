@@ -153,7 +153,7 @@ export const WritingPage: React.FC = () => {
             This page has not been published.
           </h1>
           <a
-            href="/#excerpts"
+            href="/book#read"
             className="mt-8 inline-flex items-center gap-2 border-b border-ink pb-1 font-mono text-[9px] uppercase tracking-widest"
           >
             <ArrowLeft size={11} aria-hidden="true" /> Return to writing
@@ -213,7 +213,7 @@ export const WritingPage: React.FC = () => {
           <div className="relative z-10 mx-auto flex min-h-[38rem] max-w-7xl items-end px-6 pb-14 pt-24 md:min-h-[40rem] md:items-center md:px-12 md:pb-10 lg:px-16">
             <div className="max-w-2xl md:w-[54%]">
               <a
-                href="/#excerpts"
+                href="/book#read"
                 className="inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.2em] text-paper/60 transition-colors hover:text-paper"
               >
                 <ArrowLeft size={11} aria-hidden="true" />
@@ -519,7 +519,7 @@ export const WritingPage: React.FC = () => {
                 </h2>
               </div>
               <a
-                href="/#excerpts"
+                href="/book#read"
                 className="inline-flex items-center gap-2 font-mono text-[9px] uppercase tracking-[0.18em] text-ink"
               >
                 View all previews <ArrowRight size={11} aria-hidden="true" />

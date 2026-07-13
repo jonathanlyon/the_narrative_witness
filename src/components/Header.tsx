@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { trackNavigationClicked } from "../lib/analytics";
+import { primaryNav, preorderHref, isHomePath } from "../lib/nav";
 
 export const Header: React.FC<{ forceSolid?: boolean }> = ({
   forceSolid = false,
@@ -10,23 +11,9 @@ export const Header: React.FC<{ forceSolid?: boolean }> = ({
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  const isHomePage = window.location.pathname === "/";
-  const sectionHref = (hash: string) => (isHomePage ? hash : `/${hash}`);
-  const menuItems = [
-    { label: "The Book", href: sectionHref("#book"), section: "#book" },
-    { label: "Read", href: sectionHref("#excerpts"), section: "#excerpts" },
-    {
-      label: "Recognition",
-      href: sectionHref("#recognition"),
-      section: "#recognition",
-    },
-    {
-      label: "The Project",
-      href: sectionHref("#project"),
-      section: "#project",
-    },
-    { label: "About", href: sectionHref("#about"), section: "#about" },
-  ];
+  const isHomePage = isHomePath();
+  const menuItems = primaryNav();
+  const ctaHref = preorderHref();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,14 +51,18 @@ export const Header: React.FC<{ forceSolid?: boolean }> = ({
 
     const observer = new IntersectionObserver(handleIntersection, observerOptions);
 
+    // Only observe sections that live on the current page (same-page anchors);
+    // cross-page items (e.g. "The Book" from home) have no anchor to watch.
     menuItems.forEach((item) => {
-      const el = document.querySelector(item.section);
+      if (!item.anchor) return;
+      const el = document.querySelector(item.anchor);
       if (el) observer.observe(el);
     });
 
     return () => {
       menuItems.forEach((item) => {
-        const el = document.querySelector(item.section);
+        if (!item.anchor) return;
+        const el = document.querySelector(item.anchor);
         if (el) observer.unobserve(el);
       });
     };
@@ -139,7 +130,7 @@ export const Header: React.FC<{ forceSolid?: boolean }> = ({
           {/* Desktop Nav */}
           <nav id="desktop-nav" className="hidden lg:flex items-center gap-10">
             {menuItems.map((item) => {
-              const isActive = activeSection === item.section;
+              const isActive = Boolean(item.anchor) && activeSection === item.anchor;
               return (
                 <a
                   id={`nav-${item.label.toLowerCase()}`}
@@ -170,10 +161,8 @@ export const Header: React.FC<{ forceSolid?: boolean }> = ({
             })}
             <a
               id="nav-cta"
-              href="/book#preorder"
-              onClick={() =>
-                trackNavigationClicked({ destination: "/book#preorder", label: "Pre-order", placement: "desktop_header" })
-              }
+              href={ctaHref}
+              onClick={(e) => scrollToSection(e, ctaHref, "Pre-order", "desktop_header")}
               className="inline-flex items-center gap-1.5 bg-ink text-paper hover:bg-ash font-mono text-[10px] uppercase tracking-widest px-4 py-2.5 transition-all duration-300"
             >
               Pre-order <ArrowUpRight size={10} />
@@ -235,11 +224,8 @@ export const Header: React.FC<{ forceSolid?: boolean }> = ({
             <div className="flex flex-col gap-4">
               <a
                 id="mobile-cta"
-                href="/book#preorder"
-                onClick={() => {
-                  trackNavigationClicked({ destination: "/book#preorder", label: "Pre-order", placement: "mobile_menu" });
-                  setIsOpen(false);
-                }}
+                href={ctaHref}
+                onClick={(e) => scrollToSection(e, ctaHref, "Pre-order", "mobile_menu")}
                 className="w-full text-center py-4 bg-ink text-paper font-mono text-[10px] uppercase tracking-widest"
               >
                 Pre-order the first edition
