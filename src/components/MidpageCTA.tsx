@@ -3,9 +3,11 @@ import { ArrowRight } from "lucide-react";
 import { FadeIn } from "./MotionWrapper";
 import { BOOK } from "../data/book";
 import { trackNavigationClicked } from "../lib/analytics";
+import { usePricing } from "../lib/pricing";
 import backgroundArtwork from "../assets/images/recognition-mountain-reflection.webp";
 
 export const MidpageCTA: React.FC = () => {
+  const pricing = usePricing();
   return (
     <section id="midpage-preorder" className="relative overflow-hidden border-y border-ink/25 bg-ink">
       <div className="mx-auto grid min-h-[520px] max-w-7xl grid-cols-1 items-center gap-12 px-6 py-20 md:px-12 lg:grid-cols-12 lg:gap-14 lg:px-16">
@@ -24,8 +26,8 @@ export const MidpageCTA: React.FC = () => {
 
           <FadeIn delay={0.3}>
             <p className="mt-6 max-w-xl text-sm font-light leading-relaxed text-paper/75 md:text-base">
-              Pre-order the first edition now. Paperback from {BOOK.skus[0].priceLabel}, or the signed,
-              numbered hardback from {BOOK.skus[1].priceLabel}. Printed to order and shipped {BOOK.shipWindow.replace(" (estimated)", "")};
+              Pre-order the first edition now. Paperback from {pricing.labels.paperback}, or the signed,
+              numbered hardback from {pricing.labels.hardback}. Printed to order and shipped {BOOK.shipWindow.replace(" (estimated)", "")};
               a full refund is available any time before we go to print.
             </p>
           </FadeIn>

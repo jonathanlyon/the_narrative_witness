@@ -3,6 +3,7 @@ import { Check, ArrowRight } from "lucide-react";
 import { BOOK } from "../data/book";
 import { FadeIn, StaggerContainer, StaggerItem } from "./MotionWrapper";
 import { trackNavigationClicked } from "../lib/analytics";
+import { usePricing } from "../lib/pricing";
 
 /**
  * The home page's book section: the physical object presented as a selling
@@ -10,6 +11,7 @@ import { trackNavigationClicked } from "../lib/analytics";
  * pre-order tiers and checkout live).
  */
 export const BuyTheBook: React.FC = () => {
+  const pricing = usePricing();
   return (
     <section
       id="edition"
@@ -65,9 +67,9 @@ export const BuyTheBook: React.FC = () => {
         {/* Single call to action into the book page, where the tiers live */}
         <FadeIn className="mt-20 md:mt-24 text-center">
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ash">
-            <span>Paperback {BOOK.skus[0].priceLabel}</span>
+            <span>Paperback {pricing.labels.paperback}</span>
             <span className="text-dust">·</span>
-            <span>Signed hardback {BOOK.skus[1].priceLabel}</span>
+            <span>Signed hardback {pricing.labels.hardback}</span>
           </div>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3.5">
             <a

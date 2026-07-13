@@ -5,6 +5,7 @@ import { Button } from "../../components/Button";
 import { FadeIn, StaggerContainer, StaggerItem } from "../../components/MotionWrapper";
 import { startCheckout, PREORDER_OPEN } from "../../lib/checkout";
 import { subscribeReader } from "../../lib/signup";
+import { usePricing, currencyNote } from "../../lib/pricing";
 import {
   trackSupportRegistration,
   trackPreorderTierSelected,
@@ -14,8 +15,10 @@ import {
 const SkuCard: React.FC<{
   sku: PreorderSku;
   busy: string | null;
+  priceLabel: string;
+  note: string;
   onSelect: (sku: PreorderSku) => void;
-}> = ({ sku, busy, onSelect }) => (
+}> = ({ sku, busy, priceLabel, note, onSelect }) => (
   <div
     data-clarity-region={`preorder-card-${sku.id}`}
     className={`flex flex-col border p-8 sm:p-10 ${
@@ -31,11 +34,9 @@ const SkuCard: React.FC<{
       )}
     </div>
 
-    <p className="font-serif text-5xl font-light mt-6">{sku.priceLabel}</p>
+    <p className="font-serif text-5xl font-light mt-6">{priceLabel}</p>
     <p className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-ash mt-3">{sku.priceNote}</p>
-    <p className="text-sm text-ink-light mt-1.5 italic font-serif">
-      Shown in USD. Your local price is applied automatically at checkout.
-    </p>
+    <p className="text-sm text-ink-light mt-1.5 italic font-serif">{note}</p>
 
     <ul className="mt-8 space-y-3 flex-grow">
       {sku.perks.map((perk) => (
@@ -174,6 +175,8 @@ export const PreorderTiers: React.FC = () => {
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const notifyRef = useRef<HTMLInputElement>(null);
+  const pricing = usePricing();
+  const note = currencyNote(pricing);
 
   const select = async (sku: PreorderSku) => {
     trackPreorderTierSelected(sku.id);
@@ -210,7 +213,13 @@ export const PreorderTiers: React.FC = () => {
       <StaggerContainer className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto mt-12">
         {BOOK.skus.map((sku) => (
           <StaggerItem key={sku.id}>
-            <SkuCard sku={sku} busy={busy} onSelect={select} />
+            <SkuCard
+              sku={sku}
+              busy={busy}
+              priceLabel={pricing.labels[sku.id]}
+              note={note}
+              onSelect={select}
+            />
           </StaggerItem>
         ))}
       </StaggerContainer>

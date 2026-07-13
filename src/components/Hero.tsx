@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { FadeIn, FadeInSlow } from "./MotionWrapper";
 import { BOOK } from "../data/book";
 import { trackNavigationClicked } from "../lib/analytics";
+import { usePricing } from "../lib/pricing";
 import HERO_IMAGE_URL from "../assets/images/archival_paper_monochrome_1779464032575.png";
 
 const scrollTo = (id: string) => {
@@ -12,6 +13,7 @@ const scrollTo = (id: string) => {
 };
 
 export const Hero: React.FC = () => {
+  const pricing = usePricing();
   return (
     <section
       id="hero"
@@ -80,9 +82,9 @@ export const Hero: React.FC = () => {
 
             <FadeIn delay={0.6}>
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[9px] uppercase tracking-[0.18em] text-ash/80">
-                <span>Paperback {BOOK.skus[0].priceLabel}</span>
+                <span>Paperback {pricing.labels.paperback}</span>
                 <span className="text-dust">·</span>
-                <span>Hardback {BOOK.skus[1].priceLabel}</span>
+                <span>Hardback {pricing.labels.hardback}</span>
                 <span className="text-dust">·</span>
                 <span className="italic normal-case font-serif text-[11px] tracking-normal text-ash">{BOOK.dedication}</span>
               </div>
