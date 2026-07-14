@@ -18,8 +18,8 @@ export const AboutBook: React.FC = () => {
           <FadeIn className="lg:sticky lg:top-28 flex flex-col items-center lg:items-start">
             <img
               src="/book-cover.png"
-              alt="We the Unkept, the first edition"
-              className="w-full max-w-[300px] border border-dust/40 shadow-[0_40px_80px_-25px_rgba(26,26,26,0.55)]"
+              alt="We the Unkept, the first edition, front and back"
+              className="w-full mix-blend-multiply"
             />
             <p className="mt-6 font-mono text-[9px] uppercase tracking-[0.22em] text-ash text-center lg:text-left">
               Paperback &amp; hardcover · 6×9 · first edition
