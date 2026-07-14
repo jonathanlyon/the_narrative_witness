@@ -59,7 +59,7 @@ export const BookPage: React.FC = () => {
           />
           <motion.div style={{ y: titleY, opacity: titleOpacity }} className="relative max-w-3xl mx-auto px-6 text-center pt-24 pb-10">
             <FadeIn>
-              <Eyebrow>A braided testimony · six sections · four movements</Eyebrow>
+              <Eyebrow>A Narrative Witness book</Eyebrow>
             </FadeIn>
             <motion.h1
               initial={{ opacity: 0, y: 24, letterSpacing: "0.06em" }}
@@ -67,8 +67,11 @@ export const BookPage: React.FC = () => {
               transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
               className="font-serif text-[3.4rem] leading-[0.98] sm:text-8xl font-light mt-8"
             >
-              The Narrative<br />Witness
+              {BOOK.bookTitle}
             </motion.h1>
+            <FadeIn delay={0.35}>
+              <p className="font-serif italic text-lg sm:text-xl text-ink-light mt-6 max-w-xl mx-auto">{BOOK.bookSubtitle}</p>
+            </FadeIn>
             <FadeIn delay={0.5}>
               <div className="flex items-center justify-center gap-4 mt-7">
                 <span className="h-px w-10 bg-dust" />
@@ -77,7 +80,7 @@ export const BookPage: React.FC = () => {
               </div>
             </FadeIn>
             <FadeIn delay={0.7}>
-              <p className="text-ink-light leading-loose mt-9 text-left sm:text-center max-w-2xl mx-auto">{BOOK.thesis}</p>
+              <p className="text-ink-light leading-loose mt-9 text-left sm:text-center max-w-2xl mx-auto">{BOOK.blurb[0]}</p>
             </FadeIn>
             <FadeIn delay={0.9}>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-11">
@@ -103,6 +106,27 @@ export const BookPage: React.FC = () => {
           >
             Ships {BOOK.shipWindow}
           </motion.div>
+        </section>
+
+        {/* The book, in brief — the back-cover statement */}
+        <section id="statement" className="border-y border-dust/60 bg-paper-dark/40">
+          <div className="max-w-2xl mx-auto px-6 py-24">
+            <FadeIn className="text-center">
+              <Eyebrow>The book</Eyebrow>
+            </FadeIn>
+            <div className="mt-10 space-y-6">
+              {BOOK.blurb.slice(1, -1).map((para) => (
+                <FadeIn key={para}>
+                  <p className="font-serif text-lg sm:text-xl leading-relaxed text-ink-light">{para}</p>
+                </FadeIn>
+              ))}
+            </div>
+            <FadeIn>
+              <p className="mt-10 text-center font-serif text-2xl sm:text-3xl font-light italic text-ink">
+                {BOOK.blurb[BOOK.blurb.length - 1]}
+              </p>
+            </FadeIn>
+          </div>
         </section>
 
         {/* 2 — How the book is built */}

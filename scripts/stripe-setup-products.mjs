@@ -38,7 +38,7 @@ const CATALOGUE = [
   {
     sku: "paperback",
     lookupKey: "preorder_paperback",
-    name: "The Narrative Witness — Paperback (first edition)",
+    name: "We the Unkept: Paperback (first edition)",
     description:
       "Pre-order: first-edition 6×9 paperback, premium black & white interior, with a hand-signed, numbered bookplate. Paid in full; shipping invoiced separately before dispatch. Full refund any time before we go to print.",
     amounts: { usd: 2699, nzd: 4499, aud: 3999, gbp: 2199, cad: 3699 },
@@ -46,7 +46,7 @@ const CATALOGUE = [
   {
     sku: "hardback",
     lookupKey: "preorder_hardback",
-    name: "The Narrative Witness — Hardback (hardcover first edition)",
+    name: "We the Unkept: Hardback (hardcover first edition)",
     description:
       "Pre-order: the first edition in a hardcover binding, with a hand-signed, numbered bookplate. Paid in full; shipping invoiced separately before dispatch. Full refund any time before we go to print.",
     amounts: { usd: 3999, nzd: 6499, aud: 5999, gbp: 3299, cad: 5499 },

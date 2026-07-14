@@ -24,8 +24,11 @@ export const BuyTheBook: React.FC = () => {
             <FadeIn delay={0.1}>
               <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-ash">02 // THE FIRST EDITION</span>
             </FadeIn>
+            <FadeIn delay={0.15}>
+              <p className="font-serif text-2xl md:text-3xl italic text-ink mt-3 leading-tight">{BOOK.bookTitle}</p>
+            </FadeIn>
             <FadeIn delay={0.2}>
-              <h2 className="font-serif text-3xl md:text-4xl font-light tracking-tight text-ink mt-4 leading-tight">
+              <h2 className="font-serif text-xl md:text-2xl font-light tracking-tight text-ink-light mt-2 leading-tight">
                 {BOOK.object.headline}
               </h2>
             </FadeIn>

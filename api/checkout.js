@@ -38,19 +38,19 @@ const SITE_URL = "https://www.thenarrativewitness.com";
 const SKUS = {
   paperback: {
     sku: "paperback",
-    name: "The Narrative Witness — Paperback (first edition)",
+    name: "We the Unkept: Paperback (first edition)",
     priceEnv: "STRIPE_PRICE_PAPERBACK",
     // Fallback only, if the Price id env is unset (no charm prices then).
-    fallbackName: "The Narrative Witness: Paperback (first edition)",
+    fallbackName: "We the Unkept: Paperback (first edition)",
     fallbackDescription:
       "Pre-order the first-edition paperback with a hand-signed, numbered bookplate. Paid in full; shipping invoiced separately before dispatch. Full refund any time before we go to print.",
     fallbackAmountCents: 2699,
   },
   hardback: {
     sku: "hardback",
-    name: "The Narrative Witness — Hardback (hardcover first edition)",
+    name: "We the Unkept: Hardback (hardcover first edition)",
     priceEnv: "STRIPE_PRICE_HARDBACK",
-    fallbackName: "The Narrative Witness: Hardback (hardcover first edition)",
+    fallbackName: "We the Unkept: Hardback (hardcover first edition)",
     fallbackDescription:
       "Pre-order the first-edition hardcover with a hand-signed, numbered bookplate. Paid in full; shipping invoiced separately before dispatch. Full refund any time before we go to print.",
     fallbackAmountCents: 3999,

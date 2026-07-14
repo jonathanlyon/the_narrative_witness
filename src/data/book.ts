@@ -39,6 +39,23 @@ export const BOOK = {
   subtitle: "Adoption, relinquishment, and the repair of a life told in fragments",
   author: "Jonathan Lyon",
   dedication: "for Ella and Imogen",
+
+  /**
+   * The book's own title, distinct from the wider Narrative Witness project
+   * (the practice, the circles, the gatherings). The project is the vessel;
+   * this book is born of it.
+   */
+  bookTitle: "We the Unkept",
+  bookSubtitle:
+    "A testimony of adoption, erasure, and the record the state never issued",
+  /** Back-cover statement, rendered on /book beneath the title. */
+  blurb: [
+    "Adoption is not a Hallmark movie. It is not a solution to trauma. Too often it is the trauma, issued with paperwork and a new name.",
+    "Some of us were signed away. Some were taken, sold, or quietly written into other families. The words we are handed for this, relinquishment, placement, a fresh start, were chosen to keep the peace, not the truth. This book keeps a different word.",
+    "To be unkept is to be the promise no one honoured. Not kept safe. Not kept whole. Not kept, in the one record that mattered, as we were born. And unkeptness is not a single event. It is a life lived at the edges: the last considered, the never picked, the overlooked, the unbelonged. Not kept once, and then kept out ever after.",
+    "We the Unkept is a testimony in three registers: fragments in the felt present, essays that open the private wound into the system that made it, and poems for what argument cannot hold. It is written first for the author’s daughters, so the record exists for them, and for everyone issued a story that was changed before they could speak.",
+    "We were not kept. So we are keeping the record ourselves.",
+  ],
   thesis:
     "The Narrative Witness is a testimony: not a chronological memoir, but a record of what relinquishment and adoption feel like from inside a life built on an absence. It braids three registers into one voice. Personal fragments in the felt present, essays that widen the story into the shared and the systemic, and poems that distil each movement to its essence. It is written first for the author's daughters, so the record exists for them, and for every reader who has carried a story that was never properly told.",
 
