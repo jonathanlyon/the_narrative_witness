@@ -54,16 +54,6 @@ export default function App() {
         {/* What the book is — the braided testimony, conceptually */}
         <AboutBook />
 
-        {/* The object in the world — a quiet full-bleed lifestyle band */}
-        <section aria-label="The first-edition hardback" className="w-full">
-          <img
-            src="/book_on_wooden_coffee_table.jpeg"
-            alt="The We the Unkept first-edition hardback resting on a coffee table in morning light"
-            className="w-full h-[55vh] md:h-[72vh] object-cover"
-            loading="lazy"
-          />
-        </section>
-
         {/* A hinted reveal of the book → the reading room on /book */}
         <FromTheBook />
 

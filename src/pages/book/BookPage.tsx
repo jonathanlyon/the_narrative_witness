@@ -108,24 +108,35 @@ export const BookPage: React.FC = () => {
           </motion.div>
         </section>
 
-        {/* The book, in brief — the back-cover statement */}
+        {/* The book, in brief — the back-cover statement, beside the cover */}
         <section id="statement" className="border-y border-dust/60 bg-paper-dark/40">
-          <div className="max-w-2xl mx-auto px-6 py-24">
-            <FadeIn className="text-center">
-              <Eyebrow>The book</Eyebrow>
-            </FadeIn>
-            <div className="mt-10 space-y-6">
-              {BOOK.blurb.slice(1, -1).map((para) => (
-                <FadeIn key={para}>
-                  <p className="font-serif text-lg sm:text-xl leading-relaxed text-ink-light">{para}</p>
+          <div className="max-w-6xl mx-auto px-6 py-24">
+            <div className="grid lg:grid-cols-2 gap-14 lg:gap-16 xl:gap-20 items-start">
+              <FadeIn className="lg:sticky lg:top-28">
+                <img
+                  src="/book-cover.png"
+                  alt="We the Unkept, the first edition, front and back"
+                  className="w-full mix-blend-multiply"
+                />
+              </FadeIn>
+              <div>
+                <FadeIn>
+                  <Eyebrow>The book</Eyebrow>
                 </FadeIn>
-              ))}
+                <div className="mt-8 space-y-6">
+                  {BOOK.blurb.slice(1, -1).map((para) => (
+                    <FadeIn key={para}>
+                      <p className="font-serif text-lg sm:text-xl leading-relaxed text-ink-light">{para}</p>
+                    </FadeIn>
+                  ))}
+                </div>
+                <FadeIn>
+                  <p className="mt-10 font-serif text-2xl sm:text-3xl font-light italic text-ink">
+                    {BOOK.blurb[BOOK.blurb.length - 1]}
+                  </p>
+                </FadeIn>
+              </div>
             </div>
-            <FadeIn>
-              <p className="mt-10 text-center font-serif text-2xl sm:text-3xl font-light italic text-ink">
-                {BOOK.blurb[BOOK.blurb.length - 1]}
-              </p>
-            </FadeIn>
           </div>
         </section>
 
