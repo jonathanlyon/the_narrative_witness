@@ -18,14 +18,6 @@ export const BuyTheBook: React.FC = () => {
       className="relative py-28 md:py-36 bg-paper-dark border-y border-dust/35 overflow-hidden paper-grain"
     >
       <div className="max-w-5xl mx-auto px-6 relative z-10">
-        <FadeIn className="mb-16 flex justify-center">
-          <img
-            src="/book-cover.png"
-            alt="We the Unkept, the first edition"
-            className="w-44 sm:w-52 border border-dust/40 shadow-[0_30px_70px_-20px_rgba(26,26,26,0.55)]"
-          />
-        </FadeIn>
-
         {/* The object */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 items-start">
           <div className="lg:col-span-5">
