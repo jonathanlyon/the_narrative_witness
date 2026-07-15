@@ -192,7 +192,6 @@ export const BookPage: React.FC = () => {
                     <h3 className="font-serif text-2xl sm:text-3xl font-light">{section.title}</h3>
                     <p className="font-mono text-[0.55rem] uppercase tracking-[0.3em] text-ash mt-2 sm:hidden">{section.movement}</p>
                     <p className="text-sm text-ink-light leading-relaxed mt-3 max-w-xl">{section.rationale}</p>
-                    <p className="font-serif italic text-ink-light/90 mt-3 text-[0.95rem]">{section.samplePieces.join("  ·  ")}</p>
                   </div>
                   <p className="hidden sm:block font-mono text-[0.55rem] uppercase tracking-[0.3em] text-ash text-right pt-2.5">{section.movement}</p>
                 </div>
