@@ -310,50 +310,78 @@ export const WritingPage: React.FC = () => {
               })}
             </div>
 
-            {writing.recordCard && (
-              <aside className="mt-16 border border-ink/25 bg-paper-dark/45 shadow-[0_1px_0_rgba(255,255,255,0.4)_inset]">
-                <div className="flex items-center justify-between gap-4 border-b border-ink/25 px-6 py-3 md:px-8">
-                  <span className="font-mono text-[0.5rem] uppercase tracking-[0.24em] text-ash">
-                    Summary record
-                  </span>
-                  {writing.recordCard.reference && (
+            {writing.recordCard && (() => {
+              const card = writing.recordCard;
+              const cardInner = (
+                <>
+                  <div className="flex items-center justify-between gap-4 border-b border-ink/25 px-6 py-3 md:px-8">
                     <span className="font-mono text-[0.5rem] uppercase tracking-[0.24em] text-ash">
-                      {writing.recordCard.reference}
+                      Summary record
                     </span>
-                  )}
-                </div>
-                <div className="px-6 py-8 md:px-8">
-                  <h2 className="font-serif text-2xl font-light uppercase tracking-[0.06em] text-ink md:text-3xl">
-                    {writing.recordCard.title}
-                  </h2>
-                  {writing.recordCard.kicker && (
-                    <p className="mt-2 font-serif text-base font-light italic leading-snug text-ink-light">
-                      {writing.recordCard.kicker}
-                    </p>
-                  )}
-                  <dl className="mt-7">
-                    {writing.recordCard.fields.map((field) => (
-                      <div
-                        key={field.label}
-                        className="grid grid-cols-1 gap-0.5 border-t border-dust/60 py-3 sm:grid-cols-[10.5rem_1fr] sm:gap-5"
-                      >
-                        <dt className="font-mono text-[0.55rem] uppercase tracking-[0.18em] text-ash sm:pt-1.5">
-                          {field.label}
-                        </dt>
-                        <dd className="font-serif text-[1.05rem] leading-snug text-ink-light">
-                          {field.value}
-                        </dd>
+                    {card.reference && (
+                      <span className="font-mono text-[0.5rem] uppercase tracking-[0.24em] text-ash">
+                        {card.reference}
+                      </span>
+                    )}
+                  </div>
+                  <div className="px-6 py-8 md:px-8">
+                    <h2 className="font-serif text-2xl font-light uppercase tracking-[0.06em] text-ink md:text-3xl">
+                      {card.title}
+                    </h2>
+                    {card.kicker && (
+                      <p className="mt-2 font-serif text-base font-light italic leading-snug text-ink-light">
+                        {card.kicker}
+                      </p>
+                    )}
+                    <dl className="mt-7">
+                      {card.fields.map((field) => (
+                        <div
+                          key={field.label}
+                          className="grid grid-cols-1 gap-0.5 border-t border-dust/60 py-3 sm:grid-cols-[10.5rem_1fr] sm:gap-5"
+                        >
+                          <dt className="font-mono text-[0.55rem] uppercase tracking-[0.18em] text-ash sm:pt-1.5">
+                            {field.label}
+                          </dt>
+                          <dd className="font-serif text-[1.05rem] leading-snug text-ink-light">
+                            {field.value}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                    {card.footer && (
+                      <p className="mt-7 border-t border-ink/20 pt-5 font-mono text-[0.58rem] uppercase leading-relaxed tracking-[0.16em] text-ash">
+                        {card.footer}
+                      </p>
+                    )}
+                    {card.href && (
+                      <div className="mt-7 flex justify-end">
+                        {/* Visual CTA only — the parent <a> is the real link (no nested anchors). */}
+                        <span className="inline-flex items-center gap-1.5 bg-ink px-4 py-2.5 font-mono text-[10px] uppercase tracking-widest text-paper transition-all duration-300 group-hover:bg-ash">
+                          Open certificate
+                          <ArrowUpRight size={10} aria-hidden="true" />
+                        </span>
                       </div>
-                    ))}
-                  </dl>
-                  {writing.recordCard.footer && (
-                    <p className="mt-7 border-t border-ink/20 pt-5 font-mono text-[0.58rem] uppercase leading-relaxed tracking-[0.16em] text-ash">
-                      {writing.recordCard.footer}
-                    </p>
-                  )}
-                </div>
-              </aside>
-            )}
+                    )}
+                  </div>
+                </>
+              );
+              const cardClassName =
+                "mt-16 block border border-ink/25 bg-paper-dark/45 shadow-[0_1px_0_rgba(255,255,255,0.4)_inset] text-inherit no-underline";
+
+              if (card.href) {
+                return (
+                  <a
+                    href={card.href}
+                    className={`${cardClassName} group cursor-pointer transition-colors hover:border-ink/50 hover:bg-paper-dark/70 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink`}
+                    aria-label={`${card.title} — open the interactive certificate`}
+                  >
+                    {cardInner}
+                  </a>
+                );
+              }
+
+              return <aside className={cardClassName}>{cardInner}</aside>;
+            })()}
 
             <div className="mt-20 border-t border-dust/50 pt-6 font-mono text-[8px] uppercase tracking-[0.18em] text-ash/60">
               © 2026 Jonathan Lyon. All rights reserved.

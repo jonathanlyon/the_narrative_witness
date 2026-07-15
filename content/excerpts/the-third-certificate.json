@@ -14,7 +14,7 @@
   "artworkAlt": "A government triplicate form on a dark desk, headed Certificate of Extinguishment, with a red SEALED stamp",
   "thumbnail": "/images/excerpts/the-third-certificate-thumbnail.jpg",
   "thumbnailPosition": "top",
-  "companionUrl": "/certificate",
+  "companionUrl": "/certificate#unissued",
   "companionLabel": "See the certificate itself",
   "body": "Somerset House will not simply hand you your own beginning.\n\nFirst there is a room. First there is a stranger: a counsellor the law insists must sit across from me before I am permitted to read the sentence that says I was born. She is kind. She has done this before. That is somehow the worst of it, that there is a procedure for this, a chair worn smooth by other people arriving to be told, gently, on the record, that they exist.\n\nThen there is a fee. There is always a fee. You pay, in the end, to be introduced to yourself.",
   "pagePublished": true,
@@ -33,6 +33,7 @@
     "reference": "Copy 3 of 3 · unissued",
     "kicker": "Filed nowhere. In triplicate. Retain no copy but this one.",
     "title": "Certificate of a Life",
+    "href": "/certificate#unissued",
     "fields": [
       {
         "label": "Bearer",

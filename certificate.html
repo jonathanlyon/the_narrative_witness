@@ -1577,7 +1577,8 @@
         var formEl = document.getElementById('formno');
         var servEl = document.getElementById('serving');
 
-        function show(copy) {
+        function show(copy, opts) {
+          opts = opts || {};
           if (order.indexOf(copy) === -1) copy = 'sealed';
           body.setAttribute('data-copy', copy);
           recv.innerHTML = stamps[copy];
@@ -1591,6 +1592,38 @@
             var on = b.getAttribute('data-copy-block') === copy;
             b.classList.toggle('active', on);
           });
+          // Keep the URL shareable (e.g. /certificate#unissued from the essay).
+          if (opts.syncHash !== false) {
+            var nextHash = '#' + copy;
+            if (location.hash !== nextHash) {
+              if (history.replaceState) {
+                history.replaceState(null, '', nextHash);
+              } else {
+                location.hash = copy;
+              }
+            }
+          }
+        }
+
+        /** Resolve deep link: #unissued, #3, ?copy=unissued, ?tab=3, etc. */
+        function copyFromLocation() {
+          var raw =
+            (location.hash || '').replace(/^#/, '') ||
+            new URLSearchParams(location.search).get('copy') ||
+            new URLSearchParams(location.search).get('tab') ||
+            '';
+          raw = String(raw).toLowerCase().trim();
+          if (raw === '1' || raw === 'sealed' || raw === 'death') return 'sealed';
+          if (raw === '2' || raw === 'issued' || raw === 'birth') return 'issued';
+          if (
+            raw === '3' ||
+            raw === 'unissued' ||
+            raw === 'life' ||
+            raw === 'unissued-life'
+          ) {
+            return 'unissued';
+          }
+          return 'sealed';
         }
 
         // Bring the head of the active copy up just under the sticky tabs.
@@ -1692,7 +1725,20 @@
 
         load();
         refresh(false);
-        show('sealed');
+
+        var initial = copyFromLocation();
+        show(initial, { syncHash: !!location.hash || !!new URLSearchParams(location.search).get('copy') || !!new URLSearchParams(location.search).get('tab') });
+        // Deep-linked visitors (e.g. from the essay card) land on the form, not the preamble.
+        if (initial !== 'sealed' || location.hash) {
+          window.requestAnimationFrame(function () {
+            scrollToCopyTop();
+          });
+        }
+
+        window.addEventListener('hashchange', function () {
+          show(copyFromLocation(), { syncHash: false });
+          scrollToCopyTop();
+        });
       })();
     </script>
   </body>

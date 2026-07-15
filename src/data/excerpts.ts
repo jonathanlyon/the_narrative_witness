@@ -87,7 +87,10 @@ const normalizeExcerpt = (
       content.recordCard &&
       typeof content.recordCard.title === "string" &&
       Array.isArray(content.recordCard.fields)
-        ? content.recordCard
+        ? {
+            ...content.recordCard,
+            href: content.recordCard.href?.trim() || undefined,
+          }
         : undefined
   };
 };

@@ -57,6 +57,8 @@ export interface RecordCard {
   title: string;
   fields: RecordCardField[];
   footer?: string;
+  /** Optional link target — when set, the whole card is clickable. */
+  href?: string;
 }
 
 export interface Testimonial {
