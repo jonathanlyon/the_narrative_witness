@@ -51,7 +51,7 @@ export const Hero: React.FC = () => {
           {/* Subheadline: the thesis, distilled */}
           <FadeIn delay={0.4} duration={0.9} className="py-7 text-left md:py-8">
             <p className="max-w-2xl text-left font-sans text-base font-light leading-relaxed text-ash md:text-lg">
-              <em>We the Unkept</em> is a braided testimony on adoption, relinquishment, identity, and memory:
+              <em className="font-semibold">We the Unkept</em> is a braided testimony on adoption, relinquishment, identity, and memory:
               personal fragments, essays, and poems held together as one act of witness, written first for the author’s
               daughters. It is the first book from The Narrative Witness. Pre-order the first edition now, printed to
               order and shipped {BOOK.shipWindow.replace(" (estimated)", "")}.

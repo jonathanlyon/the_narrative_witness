@@ -43,6 +43,7 @@ const normalizeExcerpt = (
   return {
     id: content.id!.trim(),
     title: content.title!.trim(),
+    subtitle: content.subtitle?.trim(),
     type: content.type,
     caption: content.caption?.trim(),
     readTime: content.readTime!.trim(),

@@ -14,6 +14,8 @@ export interface FrameworkPillar {
 export interface Excerpt {
   id: string;
   title: string;
+  /** Optional line under the title on the full writing page. */
+  subtitle?: string;
   tags: string[];
   type: "Essay" | "Reflection" | "Poem";
   body: string;

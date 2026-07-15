@@ -225,8 +225,19 @@ export const WritingPage: React.FC = () => {
               <h1 className="mt-5 max-w-xl font-serif text-5xl font-light leading-[0.98] tracking-normal text-paper md:text-6xl lg:text-7xl">
                 {writing.title}
               </h1>
+              {writing.subtitle && (
+                <p className="mt-7 max-w-lg font-serif text-xl font-light italic leading-relaxed text-paper/80 md:text-2xl">
+                  {writing.subtitle}
+                </p>
+              )}
               {writing.caption && (
-                <p className="mt-7 max-w-lg font-serif text-xl font-light italic leading-relaxed text-paper/75 md:text-2xl">
+                <p
+                  className={
+                    writing.subtitle
+                      ? "mt-5 max-w-lg font-serif text-base font-light leading-relaxed text-paper/60 md:text-lg"
+                      : "mt-7 max-w-lg font-serif text-xl font-light italic leading-relaxed text-paper/75 md:text-2xl"
+                  }
+                >
                   {writing.caption}
                 </p>
               )}
