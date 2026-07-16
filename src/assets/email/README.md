@@ -12,7 +12,9 @@ Do **not** point the signature at Vite-hashed paths like `/assets/witness-thread
 
 ## Image treatment
 
-The mark is **not a logo**. It is a horizontal pen stroke that opens into a line drawing of a writer. It is set to **100% of the signature column** (`max-width: 520px`) so the stroke reads at full column width on desktop and scales down fluidly on mobile.
+The mark is **not a logo**. It is a horizontal pen stroke that opens into a line drawing of a writer. It spans the **full signature column** (520px wide).
+
+The PNG in `public/images/email/` is **tightly cropped** and resized to **520×121**. The source art sat on a tall empty canvas; without cropping, Apple Mail “Actual Size” reserved a huge blank band under the stroke. Always re-export from the cropped file if you replace the art.
 
 ## Install in Apple Mail
 
