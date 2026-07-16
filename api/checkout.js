@@ -124,6 +124,9 @@ export default async function handler(request, response) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: [lineItem],
+      // Always create a Stripe Customer so email/phone land on a durable
+      // Customer object (useful for fulfilment, refunds, and later invoices).
+      customer_creation: "always",
       // Localize price to the buyer's country: fixed charm prices for the
       // currencies we set on the Price, live-rate conversion for the rest.
       adaptive_pricing: { enabled: true },
