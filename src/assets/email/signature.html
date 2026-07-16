@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jonathan Lyon — email signature</title>
+    <!--
+      Narrative Witness · Apple Mail / multi-client signature
+      - Stable hosted image (not a Vite-hashed /assets/ URL)
+      - Full-width pen-stroke drawing across the signature column
+      - Nested tables + inline CSS for Outlook/Gmail/Apple Mail
+      - Fluid width: shrinks on narrow screens; art stays 100% of the column
+
+      Install (Apple Mail):
+      1. Deploy so https://www.thenarrativewitness.com/images/email/witness-thread-drawing.png is live
+      2. Open this file in Safari → select all → copy
+      3. Mail → Settings → Signatures → paste into a signature
+      4. Uncheck “Always match my default message font” if Mail rewrites type
+    -->
+  </head>
+  <body style="margin:0;padding:0;background:#ffffff;">
+    <!-- Outer wrap: some clients inherit body width; table constrains the column -->
+    <table
+      role="presentation"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      width="100%"
+      style="
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #3b3835;
+      "
+    >
+      <tr>
+        <td align="left" style="padding: 0;">
+          <!-- Signature column: full-width art + identity. Max 520px ≈ readable email column -->
+          <table
+            role="presentation"
+            cellpadding="0"
+            cellspacing="0"
+            border="0"
+            width="520"
+            style="
+              border-collapse: collapse;
+              mso-table-lspace: 0pt;
+              mso-table-rspace: 0pt;
+              width: 100%;
+              max-width: 520px;
+            "
+          >
+            <!-- Full-width pen stroke → writer drawing (not a logo; must span the column) -->
+            <tr>
+              <td align="left" style="padding: 0 0 16px 0; line-height: 0; font-size: 0;">
+                <a
+                  href="https://www.thenarrativewitness.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="text-decoration: none; border: 0; display: block;"
+                >
+                  <!--
+                    width attribute for Outlook; style width:100% + max-width for fluid clients.
+                    Aspect 2:1 (1400×700). PNG for broad client support.
+                  -->
+                  <img
+                    src="https://www.thenarrativewitness.com/images/email/witness-thread-drawing.png"
+                    alt="The Narrative Witness — pen stroke into a drawing of a writer at work"
+                    width="520"
+                    height="260"
+                    style="
+                      display: block;
+                      border: 0;
+                      outline: none;
+                      text-decoration: none;
+                      width: 100%;
+                      max-width: 520px;
+                      height: auto;
+                      -ms-interpolation-mode: bicubic;
+                    "
+                  />
+                </a>
+              </td>
+            </tr>
+
+            <!-- Identity + contact: stacked for mobile; still elegant on desktop -->
+            <tr>
+              <td align="left" style="padding: 0; font-family: Georgia, 'Times New Roman', Times, serif;">
+                <table
+                  role="presentation"
+                  cellpadding="0"
+                  cellspacing="0"
+                  border="0"
+                  width="100%"
+                  style="border-collapse: collapse; width: 100%;"
+                >
+                  <tr>
+                    <!-- Name / book -->
+                    <td
+                      valign="top"
+                      width="48%"
+                      style="
+                        padding: 0 18px 12px 0;
+                        border-right: 1px solid #d8d3ce;
+                        font-family: Georgia, 'Times New Roman', Times, serif;
+                        vertical-align: top;
+                      "
+                    >
+                      <p
+                        style="
+                          margin: 0;
+                          padding: 0;
+                          font-size: 22px;
+                          line-height: 1.2;
+                          color: #2f2c29;
+                          font-family: Georgia, 'Times New Roman', Times, serif;
+                        "
+                      >
+                        Jonathan Lyon
+                      </p>
+                      <p
+                        style="
+                          margin: 10px 0 0 0;
+                          padding: 0;
+                          font-size: 12px;
+                          line-height: 1.35;
+                          color: #7b746d;
+                          font-style: italic;
+                          font-family: Georgia, 'Times New Roman', Times, serif;
+                        "
+                      >
+                        Author of
+                      </p>
+                      <p
+                        style="
+                          margin: 2px 0 0 0;
+                          padding: 0;
+                          font-size: 15px;
+                          line-height: 1.3;
+                          color: #3b3835;
+                          font-style: italic;
+                          font-family: Georgia, 'Times New Roman', Times, serif;
+                        "
+                      >
+                        We the Unkept
+                      </p>
+                      <p
+                        style="
+                          margin: 14px 0 0 0;
+                          padding: 0;
+                          font-size: 10px;
+                          line-height: 1.4;
+                          letter-spacing: 0.14em;
+                          text-transform: uppercase;
+                          color: #8b837b;
+                          font-family: Georgia, 'Times New Roman', Times, serif;
+                          font-style: normal;
+                        "
+                      >
+                        The Narrative Witness
+                      </p>
+                    </td>
+
+                    <!-- Contact -->
+                    <td
+                      valign="top"
+                      width="52%"
+                      style="
+                        padding: 0 0 12px 18px;
+                        font-family: Georgia, 'Times New Roman', Times, serif;
+                        vertical-align: top;
+                        font-size: 13px;
+                        line-height: 1.55;
+                        color: #3b3835;
+                      "
+                    >
+                      <p style="margin: 0 0 6px 0; padding: 0; font-size: 13px; line-height: 1.45;">
+                        <a
+                          href="mailto:jonathan@thenarrativewitness.com"
+                          style="color: #3b3835; text-decoration: none;"
+                          >jonathan@thenarrativewitness.com</a
+                        >
+                      </p>
+                      <p style="margin: 0 0 6px 0; padding: 0; font-size: 13px; line-height: 1.45;">
+                        <a href="tel:+64266000006" style="color: #3b3835; text-decoration: none;"
+                          >(+64) 026 600 0006</a
+                        >
+                      </p>
+                      <p style="margin: 0; padding: 0; font-size: 13px; line-height: 1.45;">
+                        <a
+                          href="https://www.thenarrativewitness.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style="color: #3b3835; text-decoration: none;"
+                          >www.thenarrativewitness.com</a
+                        >
+                      </p>
+                      <p
+                        style="
+                          margin: 16px 0 0 0;
+                          padding: 0;
+                          font-size: 12px;
+                          line-height: 1.4;
+                          color: #8b837b;
+                          font-style: italic;
+                          font-family: Georgia, 'Times New Roman', Times, serif;
+                        "
+                      >
+                        Writing from a cabin in rural New Zealand.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+
+    <!--
+      Plain-text fallback (paste separately if a client strips HTML):
+
+      Jonathan Lyon
+      Author of We the Unkept
+      The Narrative Witness
+      jonathan@thenarrativewitness.com
+      (+64) 026 600 0006
+      www.thenarrativewitness.com
+      Writing from a cabin in rural New Zealand.
+    -->
+  </body>
+</html>
