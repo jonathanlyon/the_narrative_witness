@@ -29,6 +29,8 @@ The PNG in `public/images/email/` is **tightly cropped** and resized to **520×1
 ## Design notes
 
 - Nested tables + inline styles only (no external CSS, no JS, no webfonts).
-- Two-column identity/contact under the full-width art (no `white-space: nowrap`).
-- On very narrow clients the art still spans the column; text may sit tight side-by-side rather than reflow via media queries (Gmail often strips those).
-- Prefer re-testing after any change to the PNG in `public/images/email/`.
+- **Single-column** identity + contact under the art. Apple Mail expands
+  multi-column signature tables to the full compose width (visible when you
+  highlight: contact cell stretches edge-to-edge). Single column avoids that.
+- A `spacer-520.png` (520×1) locks width when Mail ignores table attributes.
+- Prefer re-testing after any change to files in `public/images/email/`.

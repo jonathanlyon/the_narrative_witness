@@ -5,17 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Jonathan Lyon — email signature</title>
     <!--
-      Narrative Witness · Apple Mail / multi-client signature
+      Narrative Witness · Apple Mail signature (single-column)
 
-      The pen-stroke drawing is full width of the signature column (520px),
-      tightly cropped and resized so Mail "Actual Size" does not blow up empty canvas.
+      Apple Mail expands multi-column signature tables to the full compose
+      width (highlight test: contact column stretched edge-to-edge). A single
+      520px column avoids that. A 520×1 spacer image further locks width.
 
-      Install (Apple Mail):
-      1. Deploy so this loads: https://www.thenarrativewitness.com/images/email/witness-thread-drawing.png
-      2. Open this file in Safari → select the signature block only → Copy
-      3. Mail → Settings → Signatures → paste
-      4. In compose, set Image Size to "Actual Size" or "Large" after re-paste if needed
-      5. Uncheck “Always match my default message font” if Mail rewrites type
+      Install:
+      1. Deploy so these load:
+         https://www.thenarrativewitness.com/images/email/witness-thread-drawing.png?v=2
+         https://www.thenarrativewitness.com/images/email/spacer-520.png
+      2. Open this file in Safari
+      3. Select from the drawing through the cabin line → Copy
+      4. Mail → Settings → Signatures → delete ALL old signature content → Paste
+      5. Uncheck “Always match my default message font”
+      6. Quit Mail completely (Cmd+Q) and reopen, then new compose
     -->
   </head>
   <body style="margin:0;padding:0;background:#ffffff;">
@@ -24,195 +28,233 @@
       cellpadding="0"
       cellspacing="0"
       border="0"
-      width="100%"
+      width="520"
+      align="left"
       style="
         border-collapse: collapse;
         mso-table-lspace: 0pt;
         mso-table-rspace: 0pt;
+        width: 520px;
         font-family: Georgia, 'Times New Roman', Times, serif;
         font-size: 14px;
-        line-height: 1.45;
+        line-height: 1.4;
         color: #3b3835;
       "
     >
+      <!-- Force width even when Mail ignores table width attributes -->
       <tr>
-        <td align="left" style="padding: 0;">
+        <td style="padding: 0; line-height: 0; font-size: 0; height: 1px;">
+          <img
+            src="https://www.thenarrativewitness.com/images/email/spacer-520.png"
+            alt=""
+            width="520"
+            height="1"
+            style="display: block; width: 520px; height: 1px; border: 0; outline: none;"
+          />
+        </td>
+      </tr>
+
+      <!-- Full-width pen stroke (column = 520px) -->
+      <tr>
+        <td
+          align="left"
+          style="padding: 0 0 14px 0; line-height: 0; font-size: 0; mso-line-height-rule: exactly;"
+        >
+          <a
+            href="https://www.thenarrativewitness.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="text-decoration: none; border: 0; display: block; line-height: 0;"
+          >
+            <img
+              src="https://www.thenarrativewitness.com/images/email/witness-thread-drawing.png?v=2"
+              alt="The Narrative Witness — pen stroke into a drawing of a writer at work"
+              width="520"
+              height="121"
+              style="
+                display: block;
+                border: 0;
+                outline: none;
+                text-decoration: none;
+                width: 520px;
+                height: 121px;
+                -ms-interpolation-mode: bicubic;
+              "
+            />
+          </a>
+        </td>
+      </tr>
+
+      <!-- Identity -->
+      <tr>
+        <td
+          align="left"
+          style="
+            padding: 0 0 12px 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            vertical-align: top;
+          "
+        >
+          <p
+            style="
+              margin: 0;
+              padding: 0;
+              font-size: 18px;
+              line-height: 22px;
+              mso-line-height-rule: exactly;
+              color: #2f2c29;
+              font-family: Georgia, 'Times New Roman', Times, serif;
+            "
+          >
+            Jonathan Lyon
+          </p>
+          <p
+            style="
+              margin: 8px 0 0 0;
+              padding: 0;
+              font-size: 12px;
+              line-height: 16px;
+              mso-line-height-rule: exactly;
+              color: #7b746d;
+              font-style: italic;
+              font-family: Georgia, 'Times New Roman', Times, serif;
+            "
+          >
+            Author of
+          </p>
+          <p
+            style="
+              margin: 2px 0 0 0;
+              padding: 0;
+              font-size: 15px;
+              line-height: 20px;
+              mso-line-height-rule: exactly;
+              color: #3b3835;
+              font-style: italic;
+              font-family: Georgia, 'Times New Roman', Times, serif;
+            "
+          >
+            We the Unkept
+          </p>
+          <p
+            style="
+              margin: 10px 0 0 0;
+              padding: 0;
+              font-size: 10px;
+              line-height: 14px;
+              mso-line-height-rule: exactly;
+              letter-spacing: 0.12em;
+              text-transform: uppercase;
+              color: #8b837b;
+              font-family: Georgia, 'Times New Roman', Times, serif;
+            "
+          >
+            The Narrative Witness
+          </p>
+        </td>
+      </tr>
+
+      <!-- Rule -->
+      <tr>
+        <td style="padding: 0 0 12px 0; line-height: 0; font-size: 0;">
           <table
             role="presentation"
             cellpadding="0"
             cellspacing="0"
             border="0"
             width="520"
-            style="
-              border-collapse: collapse;
-              mso-table-lspace: 0pt;
-              mso-table-rspace: 0pt;
-              width: 100%;
-              max-width: 520px;
-            "
+            style="border-collapse: collapse; width: 520px;"
           >
-            <!-- Full-width pen stroke → writer (column width, no empty canvas) -->
             <tr>
               <td
-                align="left"
-                style="padding: 0 0 12px 0; line-height: 0; font-size: 0; mso-line-height-rule: exactly;"
+                style="
+                  border-top: 1px solid #d8d3ce;
+                  font-size: 0;
+                  line-height: 0;
+                  height: 1px;
+                  mso-line-height-rule: exactly;
+                "
               >
-                <a
-                  href="https://www.thenarrativewitness.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style="text-decoration: none; border: 0; display: block; line-height: 0;"
-                >
-                  <!-- Intrinsic file is 520×121; attributes match so "Actual Size" stays correct -->
-                  <img
-                    src="https://www.thenarrativewitness.com/images/email/witness-thread-drawing.png?v=2"
-                    alt="The Narrative Witness — pen stroke into a drawing of a writer at work"
-                    width="520"
-                    height="121"
-                    style="
-                      display: block;
-                      border: 0;
-                      outline: none;
-                      text-decoration: none;
-                      width: 520px;
-                      max-width: 100%;
-                      height: auto;
-                      -ms-interpolation-mode: bicubic;
-                    "
-                  />
-                </a>
-              </td>
-            </tr>
-
-            <!-- Identity + contact under the drawing -->
-            <tr>
-              <td align="left" style="padding: 0; font-family: Georgia, 'Times New Roman', Times, serif;">
-                <table
-                  role="presentation"
-                  cellpadding="0"
-                  cellspacing="0"
-                  border="0"
-                  width="100%"
-                  style="border-collapse: collapse; width: 100%;"
-                >
-                  <tr>
-                    <td
-                      valign="top"
-                      width="48%"
-                      style="
-                        padding: 4px 18px 4px 0;
-                        border-right: 1px solid #d8d3ce;
-                        font-family: Georgia, 'Times New Roman', Times, serif;
-                        vertical-align: top;
-                      "
-                    >
-                      <p
-                        style="
-                          margin: 0;
-                          padding: 0;
-                          font-size: 20px;
-                          line-height: 1.2;
-                          color: #2f2c29;
-                          font-family: Georgia, 'Times New Roman', Times, serif;
-                        "
-                      >
-                        Jonathan Lyon
-                      </p>
-                      <p
-                        style="
-                          margin: 8px 0 0 0;
-                          padding: 0;
-                          font-size: 12px;
-                          line-height: 1.3;
-                          color: #7b746d;
-                          font-style: italic;
-                          font-family: Georgia, 'Times New Roman', Times, serif;
-                        "
-                      >
-                        Author of
-                      </p>
-                      <p
-                        style="
-                          margin: 2px 0 0 0;
-                          padding: 0;
-                          font-size: 15px;
-                          line-height: 1.25;
-                          color: #3b3835;
-                          font-style: italic;
-                          font-family: Georgia, 'Times New Roman', Times, serif;
-                        "
-                      >
-                        We the Unkept
-                      </p>
-                      <p
-                        style="
-                          margin: 12px 0 0 0;
-                          padding: 0;
-                          font-size: 10px;
-                          line-height: 1.35;
-                          letter-spacing: 0.14em;
-                          text-transform: uppercase;
-                          color: #8b837b;
-                          font-family: Georgia, 'Times New Roman', Times, serif;
-                          font-style: normal;
-                        "
-                      >
-                        The Narrative Witness
-                      </p>
-                    </td>
-
-                    <td
-                      valign="top"
-                      width="52%"
-                      style="
-                        padding: 4px 0 4px 18px;
-                        font-family: Georgia, 'Times New Roman', Times, serif;
-                        vertical-align: top;
-                        font-size: 13px;
-                        line-height: 1.5;
-                        color: #3b3835;
-                      "
-                    >
-                      <p style="margin: 0 0 5px 0; padding: 0; font-size: 13px; line-height: 1.4;">
-                        <a
-                          href="mailto:jonathan@thenarrativewitness.com"
-                          style="color: #3b3835; text-decoration: none;"
-                          >jonathan@thenarrativewitness.com</a
-                        >
-                      </p>
-                      <p style="margin: 0 0 5px 0; padding: 0; font-size: 13px; line-height: 1.4;">
-                        <a href="tel:+64266000006" style="color: #3b3835; text-decoration: none;"
-                          >(+64) 026 600 0006</a
-                        >
-                      </p>
-                      <p style="margin: 0; padding: 0; font-size: 13px; line-height: 1.4;">
-                        <a
-                          href="https://www.thenarrativewitness.com"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style="color: #3b3835; text-decoration: none;"
-                          >www.thenarrativewitness.com</a
-                        >
-                      </p>
-                      <p
-                        style="
-                          margin: 12px 0 0 0;
-                          padding: 0;
-                          font-size: 12px;
-                          line-height: 1.35;
-                          color: #8b837b;
-                          font-style: italic;
-                          font-family: Georgia, 'Times New Roman', Times, serif;
-                        "
-                      >
-                        Writing from a cabin in rural New Zealand.
-                      </p>
-                    </td>
-                  </tr>
-                </table>
+                &nbsp;
               </td>
             </tr>
           </table>
+        </td>
+      </tr>
+
+      <!-- Contact -->
+      <tr>
+        <td
+          align="left"
+          style="
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: #3b3835;
+            vertical-align: top;
+          "
+        >
+          <p
+            style="
+              margin: 0;
+              padding: 0;
+              font-size: 13px;
+              line-height: 20px;
+              mso-line-height-rule: exactly;
+              font-family: Georgia, 'Times New Roman', Times, serif;
+            "
+          >
+            <a
+              href="mailto:jonathan@thenarrativewitness.com"
+              style="color: #3b3835; text-decoration: none;"
+              >jonathan@thenarrativewitness.com</a
+            >
+          </p>
+          <p
+            style="
+              margin: 0;
+              padding: 0;
+              font-size: 13px;
+              line-height: 20px;
+              mso-line-height-rule: exactly;
+              font-family: Georgia, 'Times New Roman', Times, serif;
+            "
+          >
+            <a href="tel:+64266000006" style="color: #3b3835; text-decoration: none;"
+              >(+64) 026 600 0006</a
+            >
+          </p>
+          <p
+            style="
+              margin: 0;
+              padding: 0;
+              font-size: 13px;
+              line-height: 20px;
+              mso-line-height-rule: exactly;
+              font-family: Georgia, 'Times New Roman', Times, serif;
+            "
+          >
+            <a
+              href="https://www.thenarrativewitness.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color: #3b3835; text-decoration: none;"
+              >www.thenarrativewitness.com</a
+            >
+          </p>
+          <p
+            style="
+              margin: 10px 0 0 0;
+              padding: 0;
+              font-size: 12px;
+              line-height: 16px;
+              mso-line-height-rule: exactly;
+              color: #8b837b;
+              font-style: italic;
+              font-family: Georgia, 'Times New Roman', Times, serif;
+            "
+          >
+            Writing from a cabin in rural New Zealand.
+          </p>
         </td>
       </tr>
     </table>
