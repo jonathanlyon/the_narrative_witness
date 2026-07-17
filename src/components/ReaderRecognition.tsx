@@ -200,7 +200,7 @@ export const ReaderRecognition: React.FC = () => {
           </FadeIn>
           <FadeIn delay={0.25}>
             <p className="mt-4 text-xs md:text-sm font-sans font-light text-ash max-w-lg mx-auto">
-              Spontaneously collected comments and intimate reflections from early readers of Jonathan's digital draft snippets.
+              Spontaneously collected comments and intimate reflections from early readers of Jonathan's writing.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
