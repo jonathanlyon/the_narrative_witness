@@ -111,7 +111,7 @@ export const BOOK = {
       title: "What Love Asks",
       movement: "Relational",
       rationale:
-        "Attachment, fatherhood, the terror and repair of being loved. The daughters live here: the people the whole record is being held up for.",
+        "Attachment, fatherhood, the terror and repair of being loved. My daughters live here: the people the whole record is being held up for.",
       samplePieces: ["Love While Breathing", "I’m Not Looking for Love", "Apricity, The Quiet Return"],
     },
     {
