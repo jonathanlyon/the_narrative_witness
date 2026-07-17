@@ -5,31 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Jonathan Lyon — email signature</title>
     <!--
-      Narrative Witness · Apple Mail signature (single-column)
+      Narrative Witness · email signature
 
-      Apple Mail expands multi-column signature tables to the full compose
-      width (highlight test: contact column stretched edge-to-edge). A single
-      520px column avoids that. A 520×1 spacer image further locks width.
+      One table, one column, no align="left" on sibling tables (that floated
+      blocks side-by-side in Safari and scrambled Mail).
 
       Install:
-      1. Deploy so these load:
-         https://www.thenarrativewitness.com/images/email/witness-thread-drawing.png?v=2
-         https://www.thenarrativewitness.com/images/email/spacer-520.png
-      2. Open this file in Safari
+      1. Open this file in Safari and hard-refresh (Cmd+Shift+R)
+      2. You should see: drawing on TOP, then name, rule, contact — all stacked left
       3. Select from the drawing through the cabin line → Copy
-      4. Mail → Settings → Signatures → delete ALL old signature content → Paste
+      4. Mail → Settings → Signatures → Cmd+A → Delete → Paste
       5. Uncheck “Always match my default message font”
-      6. Quit Mail completely (Cmd+Q) and reopen, then new compose
+      6. Quit Mail (Cmd+Q), reopen, new message
     -->
   </head>
-  <body style="margin:0;padding:0;background:#ffffff;">
+  <body style="margin: 0; padding: 16px; background: #ffffff;">
     <table
       role="presentation"
       cellpadding="0"
       cellspacing="0"
       border="0"
       width="520"
-      align="left"
       style="
         border-collapse: collapse;
         mso-table-lspace: 0pt;
@@ -41,41 +37,39 @@
         color: #3b3835;
       "
     >
-      <!-- Force width even when Mail ignores table width attributes -->
+      <!-- Width lock -->
       <tr>
         <td style="padding: 0; line-height: 0; font-size: 0; height: 1px;">
           <img
             src="https://www.thenarrativewitness.com/images/email/spacer-520.png"
-            alt=""
             width="520"
             height="1"
-            style="display: block; width: 520px; height: 1px; border: 0; outline: none;"
+            alt=""
+            border="0"
+            style="display: block; width: 520px; height: 1px; border: 0;"
           />
         </td>
       </tr>
 
-      <!-- Full-width pen stroke (column = 520px) -->
+      <!-- Drawing -->
       <tr>
-        <td
-          align="left"
-          style="padding: 0 0 14px 0; line-height: 0; font-size: 0; mso-line-height-rule: exactly;"
-        >
+        <td style="padding: 0 0 16px 0; line-height: 0; font-size: 0;">
           <a
             href="https://www.thenarrativewitness.com"
             target="_blank"
             rel="noopener noreferrer"
-            style="text-decoration: none; border: 0; display: block; line-height: 0;"
+            style="text-decoration: none; border: 0;"
           >
             <img
-              src="https://www.thenarrativewitness.com/images/email/witness-thread-drawing.png?v=2"
+              src="https://www.thenarrativewitness.com/images/email/witness-thread-drawing.png?v=3"
               alt="The Narrative Witness — pen stroke into a drawing of a writer at work"
               width="520"
               height="121"
+              border="0"
               style="
                 display: block;
                 border: 0;
                 outline: none;
-                text-decoration: none;
                 width: 520px;
                 height: 121px;
                 -ms-interpolation-mode: bicubic;
@@ -85,14 +79,13 @@
         </td>
       </tr>
 
-      <!-- Identity -->
+      <!-- Name / book -->
       <tr>
         <td
-          align="left"
           style="
             padding: 0 0 12px 0;
             font-family: Georgia, 'Times New Roman', Times, serif;
-            vertical-align: top;
+            color: #3b3835;
           "
         >
           <p
@@ -185,12 +178,10 @@
       <!-- Contact -->
       <tr>
         <td
-          align="left"
           style="
             padding: 0;
             font-family: Georgia, 'Times New Roman', Times, serif;
             color: #3b3835;
-            vertical-align: top;
           "
         >
           <p
@@ -258,14 +249,5 @@
         </td>
       </tr>
     </table>
-
-    <!--
-      Plain-text fallback:
-
-      Jonathan Lyon · Author of We the Unkept · The Narrative Witness
-      jonathan@thenarrativewitness.com · (+64) 026 600 0006
-      www.thenarrativewitness.com
-      Writing from a cabin in rural New Zealand.
-    -->
   </body>
 </html>
