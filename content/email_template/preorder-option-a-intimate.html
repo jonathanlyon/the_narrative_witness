@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Option A — Intimate letter | We the Unkept pre-sale</title>
+  <!--
+    OPTION A — Intimate literary letter
+    Tone: personal, quiet, first-person. Fits long-time readers and Substack/FB community.
+
+    Subject line options:
+      1. Pre-orders are open for We the Unkept
+      2. A book for my daughters — and a record for anyone unkept
+      3. The book is open for pre-order
+
+    Preview text:
+      A signed first edition, reserved before print. Paperback or hardback.
+
+    How to use in Kit:
+      1. Open this file in a browser to preview.
+      2. Preferred: set content/email_template/tnw_email.html as your HTML layout,
+         then create a Broadcast → paste everything inside
+        into the editor
+         (HTML / source mode).
+      3. Or: create a one-off custom HTML template and paste the full <style>+body
+         block from this file, keeping {{ unsubscribe_url }} and {{ address }}.
+
+    Images (hosted on the live site — do not use Vite-hashed /assets/ paths):
+      https://www.thenarrativewitness.com/images/email/witness-thread-drawing-light.png
+      https://www.thenarrativewitness.com/book-cover.png
+    Note: the light mark is white strokes on transparent — sit it on a dark strip.
+  -->
+  <style>
+    body { margin: 0; padding: 0; background: #eae7e2; }
+    .message-content {
+      max-width: 600px;
+      margin: 30px auto;
+      font-family: Georgia, "Times New Roman", Times, serif;
+      background: #f4f1ee;
+      padding: 0 0 24px;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    .message-content img { max-width: 100%; height: auto; display: block; border: 0; }
+    .hero-mark {
+      background: #1a1a1a;
+      padding: 28px 24px 24px;
+      margin: 0 0 28px 0;
+    }
+    .body-pad {
+      padding: 0 28px;
+    }
+    h1, h2, h3 { color: #1a1a1a; font-weight: normal; line-height: 1.25em; margin: 0 0 0.55em 0; }
+    h1 { font-size: 28px; letter-spacing: -0.01em; }
+    p, li, div { font-size: 17px; line-height: 1.65em; color: #333333; font-family: Georgia, "Times New Roman", Times, serif; }
+    p { margin: 0 0 1em 0; }
+    a { color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #d1c9be; }
+    .label {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #a39e97;
+      margin: 0 0 14px 0;
+    }
+    .label-ink {
+      color: #6e6a64;
+    }
+    .button {
+      border: none !important;
+      background: #1a1a1a;
+      color: #f4f1ee !important;
+      padding: 14px 22px;
+      display: inline-block;
+      margin: 8px 0 4px;
+      font-family: Helvetica, Arial, sans-serif !important;
+      font-size: 11px !important;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none !important;
+      border-bottom: none !important;
+    }
+    .button-secondary {
+      border: 1px solid #1a1a1a !important;
+      background: transparent;
+      color: #1a1a1a !important;
+      padding: 13px 20px;
+      display: inline-block;
+      margin: 8px 8px 4px 0;
+      font-family: Helvetica, Arial, sans-serif !important;
+      font-size: 11px !important;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none !important;
+    }
+    blockquote {
+      border-left: 3px solid #d1c9be;
+      margin: 22px 0;
+      padding: 2px 0 2px 20px;
+      font-size: 18px;
+      line-height: 1.55em;
+      font-style: italic;
+      color: #3b3835;
+    }
+    .rule { border: 0; border-top: 1px solid #d1c9be; margin: 28px 0; }
+    .meta {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #6e6a64;
+      line-height: 1.5em;
+    }
+    .footer {
+      border-top: 1px solid #d1c9be;
+      padding: 22px 28px 8px;
+      font-family: Helvetica, Arial, sans-serif;
+      color: #8b837b;
+      font-size: 12px;
+      line-height: 1.5em;
+    }
+    .footer a { color: #6e6a64; border-bottom: none; font-family: Helvetica, Arial, sans-serif; font-size: 12px; }
+  </style>
+</head>
+<body>
+<!--[if mso]>
+<center><table><tr><td width="580">
+<![endif]-->
+<div class="message-content">
+
+<!-- KIT PASTE: START -->
+
+<div class="hero-mark" style="background:#1a1a1a;padding:28px 24px 24px;margin:0 0 28px 0;">
+  <p class="label" style="color:#a39e97;margin:0 0 16px 0;">The Narrative Witness · Pre-order open</p>
+  <a href="https://www.thenarrativewitness.com/book#preorder" style="border:0;display:block;margin:0;">
+    <img
+      src="https://www.thenarrativewitness.com/images/email/witness-thread-drawing-light.png"
+      width="544"
+      alt="Pen stroke opening into a line drawing of a writer at work"
+      style="width:100%;max-width:544px;height:auto;display:block;border:0;"
+    />
+  </a>
+</div>
+
+<div class="body-pad" style="padding:0 28px;">
+
+<h1>The book is ready to be reserved.</h1>
+
+<p>Dear {{ first_name | default: "reader" }},</p>
+
+<p>
+  For a long time this work lived as fragments — essays, poems, and posts shared
+  where people who know this wound already gather. Today those fragments have a
+  spine, a title, and a first edition you can reserve before anything goes to print.
+</p>
+
+<p style="font-size:20px;line-height:1.45em;color:#1a1a1a;font-style:italic;margin:1.2em 0 1em;">
+  We the Unkept
+</p>
+
+<p>
+  A testimony of adoption, erasure, and the record the state never issued.
+  Written first for my daughters, Ella and Imogen — so the record exists for them —
+  and for everyone issued a story that was changed before they could speak.
+</p>
+
+<blockquote>
+  We were not kept. So we are keeping the record ourselves.
+</blockquote>
+
+<p>
+  Pre-ordering is not a crowdfunding pledge. It is a paid reservation for a
+  signed, numbered first edition — paperback or hardback — with a hand-signed
+  bookplate and, if you wish, your name among the Founding Witnesses.
+</p>
+
+<p class="meta" style="margin:1.4em 0 1.6em;">
+  Paperback from US$26.99 · Hardback from US$39.99<br />
+  Paid in full · Shipping invoiced before dispatch · Ships Dec 2026 – Jan 2027<br />
+  Full refund any time before we go to print
+</p>
+
+<p style="margin-bottom:8px;">
+  <a class="button" href="https://www.thenarrativewitness.com/book#preorder">Pre-order the first edition</a>
+</p>
+<p style="margin-bottom:1.6em;">
+  <a class="button-secondary" href="https://www.thenarrativewitness.com/book#read">Read from the book</a>
+</p>
+
+<hr class="rule" />
+
+<p>
+  If you have been reading along — thank you. Your attention is part of how this
+  book became possible. Reserving a copy is the next way to help it exist as an
+  object in the world, not only as a screen.
+</p>
+
+<p>
+  With gratitude,<br />
+  Jonathan Lyon
+</p>
+
+<p class="meta" style="margin-top:1.5em;">
+  <a href="https://www.thenarrativewitness.com/book" style="border-bottom:1px solid #d1c9be;">thenarrativewitness.com/book</a>
+  ·
+  <a href="https://www.thenarrativewitness.com/preorder-terms" style="border-bottom:1px solid #d1c9be;">Pre-order terms</a>
+</p>
+
+</div>
+<!-- /body-pad -->
+
+<!-- KIT PASTE: END -->
+
+<!--
+  When using the branded layout shell (tnw_email.html), omit the footer below —
+  Kit injects it from the layout. Keep it only if this file is a standalone
+  custom HTML template.
+-->
+<div class="footer">
+  <a href="{{ unsubscribe_url }}">Unsubscribe</a>
+  &nbsp;|&nbsp;
+  <a href="{{ subscriber_preferences_url }}">Update your profile</a>
+  &nbsp;|&nbsp;
+  {{ address }}
+</div>
+</div>
+<!--[if mso]>
+</td></tr></table></center>
+<![endif]-->
+</body>
+</html>
