@@ -34,8 +34,8 @@ Use only paths under `https://www.thenarrativewitness.com/…`:
 
 ### Header (all three pre-order options)
 
-- `…/images/email/email_header-1200.jpg` — **primary email header** (seascape + thread mark + title, ~70KB)
-- `…/images/email/email_header.png` — full-resolution source (large; prefer the 1200 JPG in mail)
+- `…/images/email/email_header-1200.jpg` — **primary email header** (seascape + thread mark + title, ~70KB, deployed)
+- `public/images/email/email_header.png` — full-resolution source (kept local; too large for git/deploy — regenerate the 1200 JPG if you replace it)
 
 ### Supporting images used in the templates
 
