@@ -32,14 +32,29 @@ Open any `preorder-option-*.html` in a browser for a full preview.
 
 Use only paths under `https://www.thenarrativewitness.com/…`:
 
-- `…/images/email/witness-thread-drawing-light.png` — pen-stroke mark (**white** strokes on transparent; place on a dark `#1A1A1A` strip)
-- `…/images/email/witness-thread-drawing-charcoal.png` — same mark in charcoal (use on paper/light backgrounds if you drop the dark strip)
-- `…/images/email/witness-thread-drawing.png` — older solid-white-background export (signature fallback)
-- `…/book-cover.png` — cover  
-- `…/book_on_wooden_coffee_table.jpeg` — object photo  
-- Prefer **PNG/JPEG** over WebP in email (Outlook)
+### Header (all three pre-order options)
 
-All three pre-order options use the **light** mark on an ink header band so the white line art reads clearly.
+- `…/images/email/email_header-1200.jpg` — **primary email header** (seascape + thread mark + title, ~70KB)
+- `…/images/email/email_header.png` — full-resolution source (large; prefer the 1200 JPG in mail)
+
+### Supporting images used in the templates
+
+| File | Used in |
+|------|---------|
+| `…/images/email/jonathan-portrait.jpg` | Option A (sign-off) |
+| `…/images/email/ink-wash-memory.jpg` | Option B |
+| `…/images/email/support-signal-pier.jpg` | Option B |
+| `…/images/email/recognition-mountain.jpg` | Option C |
+| `…/images/excerpts/life-between-papers.jpg` | Option C |
+
+### Available marks (not used as the pre-order header)
+
+- `…/images/email/witness-thread-drawing-light.png` — white strokes (needs dark ground)
+- `…/images/email/witness-thread-drawing-charcoal.png` — charcoal strokes (paper ground)
+- `…/images/email/witness-thread-drawing.png` — older signature export
+
+**Do not use** book-cover or coffee-table lifestyle shots in these pre-order emails.  
+Prefer **PNG/JPEG** over WebP in email (Outlook).
 
 ---
 

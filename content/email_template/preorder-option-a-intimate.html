@@ -6,7 +6,8 @@
   <title>Option A — Intimate letter | We the Unkept pre-sale</title>
   <!--
     OPTION A — Intimate literary letter
-    Tone: personal, quiet, first-person. Fits long-time readers and Substack/FB community.
+    Header: email_header-1200.jpg (seascape + thread mark + title)
+    Body image: jonathan-portrait.jpg (no book cover / lifestyle shots)
 
     Subject line options:
       1. Pre-orders are open for We the Unkept
@@ -16,19 +17,8 @@
     Preview text:
       A signed first edition, reserved before print. Paperback or hardback.
 
-    How to use in Kit:
-      1. Open this file in a browser to preview.
-      2. Preferred: set content/email_template/tnw_email.html as your HTML layout,
-         then create a Broadcast → paste everything inside
-        into the editor
-         (HTML / source mode).
-      3. Or: create a one-off custom HTML template and paste the full <style>+body
-         block from this file, keeping {{ unsubscribe_url }} and {{ address }}.
-
-    Images (hosted on the live site — do not use Vite-hashed /assets/ paths):
-      https://www.thenarrativewitness.com/images/email/witness-thread-drawing-light.png
-      https://www.thenarrativewitness.com/book-cover.png
-    Note: the light mark is white strokes on transparent — sit it on a dark strip.
+    Kit: paste between KIT PASTE markers into a broadcast using tnw_email.html layout
+    (omit the footer below if the layout already has one).
   -->
   <style>
     body { margin: 0; padding: 0; background: #eae7e2; }
@@ -42,30 +32,12 @@
       overflow: hidden;
     }
     .message-content img { max-width: 100%; height: auto; display: block; border: 0; }
-    .hero-mark {
-      background: #1a1a1a;
-      padding: 28px 24px 24px;
-      margin: 0 0 28px 0;
-    }
-    .body-pad {
-      padding: 0 28px;
-    }
+    .body-pad { padding: 0 28px; }
     h1, h2, h3 { color: #1a1a1a; font-weight: normal; line-height: 1.25em; margin: 0 0 0.55em 0; }
     h1 { font-size: 28px; letter-spacing: -0.01em; }
     p, li, div { font-size: 17px; line-height: 1.65em; color: #333333; font-family: Georgia, "Times New Roman", Times, serif; }
     p { margin: 0 0 1em 0; }
     a { color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #d1c9be; }
-    .label {
-      font-family: Helvetica, Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #a39e97;
-      margin: 0 0 14px 0;
-    }
-    .label-ink {
-      color: #6e6a64;
-    }
     .button {
       border: none !important;
       background: #1a1a1a;
@@ -110,6 +82,14 @@
       color: #6e6a64;
       line-height: 1.5em;
     }
+    .eyebrow {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #6e6a64;
+      margin: 0 0 14px 0;
+    }
     .footer {
       border-top: 1px solid #d1c9be;
       padding: 22px 28px 8px;
@@ -129,19 +109,18 @@
 
 <!-- KIT PASTE: START -->
 
-<div class="hero-mark" style="background:#1a1a1a;padding:28px 24px 24px;margin:0 0 28px 0;">
-  <p class="label" style="color:#a39e97;margin:0 0 16px 0;">The Narrative Witness · Pre-order open</p>
-  <a href="https://www.thenarrativewitness.com/book#preorder" style="border:0;display:block;margin:0;">
-    <img
-      src="https://www.thenarrativewitness.com/images/email/witness-thread-drawing-light.png"
-      width="544"
-      alt="Pen stroke opening into a line drawing of a writer at work"
-      style="width:100%;max-width:544px;height:auto;display:block;border:0;"
-    />
-  </a>
-</div>
+<a href="https://www.thenarrativewitness.com/book#preorder" style="border:0;display:block;margin:0 0 28px 0;line-height:0;font-size:0;">
+  <img
+    src="https://www.thenarrativewitness.com/images/email/email_header-1200.jpg"
+    width="600"
+    alt="The Narrative Witness"
+    style="width:100%;max-width:600px;height:auto;display:block;border:0;"
+  />
+</a>
 
 <div class="body-pad" style="padding:0 28px;">
+
+<p class="eyebrow">Pre-order open</p>
 
 <h1>The book is ready to be reserved.</h1>
 
@@ -188,16 +167,30 @@
 
 <hr class="rule" />
 
-<p>
-  If you have been reading along — thank you. Your attention is part of how this
-  book became possible. Reserving a copy is the next way to help it exist as an
-  object in the world, not only as a screen.
-</p>
-
-<p>
-  With gratitude,<br />
-  Jonathan Lyon
-</p>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;margin:0 0 20px 0;">
+  <tr>
+    <td width="96" valign="top" style="padding:0 18px 0 0;">
+      <img
+        src="https://www.thenarrativewitness.com/images/email/jonathan-portrait.jpg"
+        width="88"
+        height="117"
+        alt="Jonathan Lyon"
+        style="width:88px;height:auto;display:block;border:0;"
+      />
+    </td>
+    <td valign="top" style="padding:0;">
+      <p style="margin:0 0 0.6em 0;">
+        If you have been reading along — thank you. Your attention is part of how this
+        book became possible. Reserving a copy is the next way to help it exist as an
+        object in the world, not only as a screen.
+      </p>
+      <p style="margin:0;">
+        With gratitude,<br />
+        Jonathan Lyon
+      </p>
+    </td>
+  </tr>
+</table>
 
 <p class="meta" style="margin-top:1.5em;">
   <a href="https://www.thenarrativewitness.com/book" style="border-bottom:1px solid #d1c9be;">thenarrativewitness.com/book</a>
@@ -210,11 +203,6 @@
 
 <!-- KIT PASTE: END -->
 
-<!--
-  When using the branded layout shell (tnw_email.html), omit the footer below —
-  Kit injects it from the layout. Keep it only if this file is a standalone
-  custom HTML template.
--->
 <div class="footer">
   <a href="{{ unsubscribe_url }}">Unsubscribe</a>
   &nbsp;|&nbsp;
