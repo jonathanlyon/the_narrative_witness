@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+.cache/
+*.log
+
+# The future application is a separate repository and is strictly outside this pack.
+tnw_mvp_studio/
+

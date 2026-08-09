@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-08-09T23:09:03.537Z",
+  "documents": [
+    {
+      "file": "00-executive-brief.md",
+      "title": "Founder Executive Brief",
+      "hash": "36a27f52a8c53c7cdf45363df0cb7ce9df5b4646ee5eb9e4532bfa2a196bac4b"
+    },
+    {
+      "file": "01-repository-audit.md",
+      "title": "Repository audit",
+      "hash": "7c4793276fbd950ab5635a65442bf93bd97e217b8b1e2e4911dc73f38d45bfc8"
+    },
+    {
+      "file": "02-vision-and-principles.md",
+      "title": "Vision and Principles",
+      "hash": "3fadf46c26c0cd7bfc73f5bae199946549e5d1ae46aa56024397e6aaa9bcb102"
+    },
+    {
+      "file": "03-audience-hypotheses.md",
+      "title": "Audience hypotheses",
+      "hash": "35da9ed5f1ee5fa2e3163817a9648152bed50c91bfb53d79cd00270af3d87d84"
+    },
+    {
+      "file": "04-landscape-and-business-models.md",
+      "title": "Landscape and business models",
+      "hash": "a9fad836060cd6f8ea7516edb97f577f368a6f3a91f6eb6d0521e9b91a4fa317"
+    },
+    {
+      "file": "05-problem-and-proposition.md",
+      "title": "Problem and proposition",
+      "hash": "d0bd107a4a7f363661d38c7052906e122db96ced6be5ffda3a13fd3db2c057c4"
+    },
+    {
+      "file": "06-studio-mvp.md",
+      "title": "Studio MVP",
+      "hash": "14234622108ced4199789c1f5765fe82e7c983449e319dae62e8bb9bd5ebdd44"
+    },
+    {
+      "file": "07-im-sensing-contract.md",
+      "title": "“I’m Sensing” Product Contract",
+      "hash": "e4122a952c48be9abd87b132c197d4bab8b26a0170ab0454dea2cdb720378c89"
+    },
+    {
+      "file": "08-technical-strategy.md",
+      "title": "Technical strategy",
+      "hash": "0e915156ace79708b671ef7b74a124e4b50429f2591ac5e1cafa6203be0f5ddf"
+    },
+    {
+      "file": "09-staged-development-plan.md",
+      "title": "Staged Development Plan",
+      "hash": "89c0910a36a33b70321f0949c039312dc0e77adaf318e22380054ee1f1cac7c8"
+    },
+    {
+      "file": "10-task-map.md",
+      "title": "Task Map",
+      "hash": "a37924241d9e06ad1792f38a107d00af65927bbcf2b84d3cb3e57ce7aff2fae8"
+    },
+    {
+      "file": "11-question-and-decision-register.md",
+      "title": "Question and Decision Register",
+      "hash": "750c676163efa6d8b8e3c32c007e3fa13d20c0f69bdca77c0b0d972bd40b2e04"
+    },
+    {
+      "file": "12-cost-and-operations.md",
+      "title": "Cost and operations note",
+      "hash": "22395ffe77e96649d6d71f1fd93a83d4cda97b08e26ffd70abc64dcd14f5ca38"
+    },
+    {
+      "file": "13-agent-and-documentation-model.md",
+      "title": "Agent and Documentation Operating Model",
+      "hash": "5243dec204f4458f9a44609f7075dd40509c2cb414807087abe025ad42253ae5"
+    },
+    {
+      "file": "source-register.md",
+      "title": "Source Register",
+      "hash": "8bcb1157fe9f8c3c419b1c6e62c7eb08a8ad6e6f5cffde13788799588ff4c496"
+    }
+  ]
+}
