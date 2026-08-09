@@ -148,7 +148,7 @@
         <div class="hero-kicker">Evidence before implementation</div>
         <h1>A foundation for the story.</h1>
         <p class="hero-copy">A founder review of who The Narrative Witness is for, what the Studio must protect, what the existing prototype proves, and the smallest safe path to a twelve-writer cohort.</p>
-        <div class="hero-meta"><span>${documents.length} documents</span><span>Studio priority</span><span>Local and private</span><span>10 August 2026</span></div>
+        <div class="hero-meta"><span>${documents.length} documents</span><span>Studio priority</span><span>Evidence-led review</span><span>10 August 2026</span></div>
       </div>
       <div class="overview-body">
         <div class="section-heading"><h2>The promise, made operational</h2><span>Three spaces</span></div>
