@@ -1,0 +1,12 @@
+{
+  "name": "the-narrative-witness-founder-pack",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "verify": "node scripts/verify.mjs",
+    "serve": "node scripts/serve.mjs"
+  }
+}
+

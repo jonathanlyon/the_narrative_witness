@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Narrative Witness founder foundation pack: evidence, decisions, product scope, technical strategy, and cohort plan.">
+    <meta name="color-scheme" content="light">
+    <title>The Narrative Witness — Founder Foundation Pack</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to the foundation pack</a>
+    <div class="reading-progress" aria-hidden="true"><span id="reading-progress-bar"></span></div>
+
+    <header class="masthead">
+      <button class="menu-button" id="menu-button" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+      <a class="brand" href="#overview" aria-label="The Narrative Witness founder pack home">
+        <span class="brand-name">The Narrative Witness</span>
+        <span class="brand-section">Founder foundation pack</span>
+      </a>
+      <div class="masthead-status"><span class="status-dot"></span> Studio first</div>
+    </header>
+
+    <div class="shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-intro">
+          <p class="eyebrow">The promise</p>
+          <p class="promise">Somewhere to write.<br>Someone to hear.<br>Something to hold.</p>
+        </div>
+
+        <div class="search-wrap">
+          <label for="search">Search the pack</label>
+          <input id="search" type="search" placeholder="Try “privacy” or “Story Seed”" autocomplete="off">
+          <div id="search-status" class="search-status" aria-live="polite"></div>
+        </div>
+
+        <div class="evidence-filters" aria-label="Evidence shortcuts">
+          <button type="button" data-filter="Founder decision">Decisions</button>
+          <button type="button" data-filter="Hypothesis">Hypotheses</button>
+          <button type="button" data-filter="Risk">Risks</button>
+          <button type="button" data-filter="External evidence">Evidence</button>
+        </div>
+
+        <nav aria-label="Foundation documents">
+          <button class="nav-item nav-overview active" type="button" data-route="overview">
+            <span>00</span> Orientation
+          </button>
+          <div id="document-navigation"></div>
+        </nav>
+
+        <p class="sidebar-note">Founder review artifact. No analytics. No writer material.</p>
+      </aside>
+
+      <main id="main-content" tabindex="-1">
+        <section id="overview-view" class="view"></section>
+        <article id="document-view" class="view document-view" tabindex="-1" hidden></article>
+        <section id="search-view" class="view search-view" hidden></section>
+      </main>
+    </div>
+
+    <button class="to-top" id="to-top" type="button" aria-label="Return to top">↑</button>
+    <script src="content.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
