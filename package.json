@@ -14,7 +14,8 @@
     "recognition:import": "node scripts/import-facebook-comments.mjs",
     "recognition:collector": "node scripts/build-facebook-comment-collector.mjs",
     "recognition:test": "node scripts/test-recognition-workflow.mjs",
-    "excerpts:test": "node scripts/test-excerpts.mjs"
+    "excerpts:test": "node scripts/test-excerpts.mjs",
+    "working-record:test": "node scripts/test-working-record.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",
