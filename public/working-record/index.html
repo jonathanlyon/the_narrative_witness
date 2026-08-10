@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The Narrative Witness founder working record: priorities, cohort readiness, decisions, ideas, and daily plans.">
+    <meta name="color-scheme" content="light">
+    <title>The Narrative Witness — The Working Record</title>
+    <link rel="stylesheet" href="/working-record/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace-main">Skip to the working record</a>
+
+    <header class="masthead">
+      <button class="menu-button" id="menu-button" type="button" aria-controls="workspace-sidebar" aria-expanded="false">Menu</button>
+      <a class="brand" href="#overview" aria-label="The Narrative Witness working record home">
+        <span class="brand-name">The Narrative Witness</span>
+        <span class="brand-section">The Working Record</span>
+      </a>
+      <div class="masthead-status"><span class="status-dot"></span><span>Foundation complete</span></div>
+    </header>
+
+    <div class="workspace-shell">
+      <aside class="sidebar" id="workspace-sidebar">
+        <div class="sidebar-intro">
+          <p class="eyebrow">Founder workspace</p>
+          <p class="promise">See the work.<br>Hold the decisions.<br>Keep the purpose close.</p>
+        </div>
+
+        <div class="phase-marker">
+          <span class="phase-label">Now</span>
+          <strong>From foundation to cohort readiness</strong>
+          <span>Decision gate · no app build started</span>
+        </div>
+
+        <nav class="workspace-nav" aria-label="Working record sections">
+          <button class="nav-item active" type="button" data-view="overview"><span>00</span>Today</button>
+          <button class="nav-item" type="button" data-view="roadmap"><span>01</span>Roadmap</button>
+          <button class="nav-item" type="button" data-view="ideas"><span>02</span>Idea pad <b id="idea-count-badge">3</b></button>
+          <button class="nav-item" type="button" data-view="decisions"><span>03</span>Decisions <b id="decision-count-badge">3</b></button>
+          <button class="nav-item" type="button" data-view="daily"><span>04</span>Daily record</button>
+          <button class="nav-item" type="button" data-view="measures"><span>05</span>Measures</button>
+          <button class="nav-item" type="button" data-view="team"><span>06</span>Team & activity</button>
+        </nav>
+
+        <div class="sidebar-links">
+          <a href="/founder-pack/">Open the foundation pack</a>
+          <button type="button" id="export-record">Export this record</button>
+          <button type="button" id="reset-record">Restore morning review data</button>
+        </div>
+
+        <p class="sidebar-note">Review build · browser-local data · no analytics · no writer material. This unlisted route is not yet access-controlled.</p>
+      </aside>
+
+      <main id="workspace-main" tabindex="-1">
+        <section class="workspace-view active" id="view-overview" data-view-panel="overview" aria-labelledby="overview-title">
+          <div class="page-head page-head-large">
+            <div>
+              <p class="kicker">The work, translated</p>
+              <h1 id="overview-title">What matters now.</h1>
+              <p class="lede">A founder-readable view of the Studio: where we are, why the next work matters, what “done” means, and where your judgment is needed.</p>
+            </div>
+            <div class="date-card">
+              <span>Review prepared</span>
+              <strong id="today-date">11 August 2026</strong>
+              <small>Auckland</small>
+            </div>
+          </div>
+
+          <div class="notice" role="note">
+            <span>Current truth</span>
+            <p>The foundation pack is complete and deployed. The next application slice is proposed, not approved or started.</p>
+          </div>
+
+          <div class="current-focus">
+            <div class="focus-context">
+              <p class="section-label">Current proposed slice</p>
+              <span class="focus-phase">Studio · Cohort entry</span>
+              <h2>Make entry real, safe, and understandable.</h2>
+              <p>Before a cohort writer can sign up, invitation-only access must be enforced and the onboarding path must explain what the Studio is, what it will hold, and what the writer controls.</p>
+              <div class="focus-reason"><strong>Why now</strong><span>Unknown users can currently be created even though the prototype says access is by invitation.</span></div>
+            </div>
+            <div class="focus-contract">
+              <dl>
+                <div><dt>Focused work</dt><dd>Invitation enforcement + onboarding contract</dd></div>
+                <div><dt>Working estimate</dt><dd>1 focused build day after approval</dd></div>
+                <div><dt>Founder input</dt><dd>Approve entry language and cohort invitation policy</dd></div>
+                <div><dt>Ready means</dt><dd>Tests prove only invited writers enter; the complete signed-out journey works</dd></div>
+              </dl>
+              <button class="primary-button" type="button" data-open-view="decisions">Review the decisions</button>
+            </div>
+          </div>
+
+          <div class="summary-grid">
+            <article class="summary-card">
+              <span class="card-index">01 / DONE</span>
+              <h3>Foundation</h3>
+              <strong>15 documents</strong>
+              <p>Purpose, MVP, Sensing contract, technical path, cost model, and decision register are in one reviewable pack.</p>
+              <a href="/founder-pack/">Read the pack</a>
+            </article>
+            <article class="summary-card attention">
+              <span class="card-index">02 / NEEDS YOU</span>
+              <h3>Decision gate</h3>
+              <strong id="overview-decisions">3 open</strong>
+              <p>The next build should not begin by silently deciding access, approval rhythm, or what this workspace may expose.</p>
+              <button type="button" data-open-view="decisions">Open decisions</button>
+            </article>
+            <article class="summary-card">
+              <span class="card-index">03 / INBOX</span>
+              <h3>Idea pad</h3>
+              <strong id="overview-ideas">3 threads</strong>
+              <p>Ideas can be captured now, clarified through a thread, then routed to research, a decision, scope, or the parking place.</p>
+              <button type="button" data-open-view="ideas">Add an idea</button>
+            </article>
+            <article class="summary-card muted">
+              <span class="card-index">04 / HONEST GAP</span>
+              <h3>Live measures</h3>
+              <strong>Not connected</strong>
+              <p>Codex tokens, elapsed hours, and Studio AI costs need explicit ledgers. This review does not pretend those integrations exist.</p>
+              <button type="button" data-open-view="measures">See the plan</button>
+            </article>
+          </div>
+
+          <div class="two-column-section">
+            <section class="plain-section">
+              <div class="section-heading"><div><p class="section-label">Cohort readiness</p><h2>What must be true before writer one.</h2></div><button class="text-button" type="button" data-open-view="roadmap">Full roadmap</button></div>
+              <ol class="readiness-list">
+                <li class="complete"><span>Held</span><div><strong>Purpose and product boundary</strong><p>The Studio, Circle, Press, authorship boundary, and first cohort are documented.</p></div></li>
+                <li class="next"><span>Next</span><div><strong>Words cannot be lost</strong><p>Continuity, recovery, versioning, and restore proof must exist before real writing enters.</p></div></li>
+                <li><span>Then</span><div><strong>Only invited writers enter</strong><p>Invitation enforcement, safe redirects, consent, and onboarding must pass end-to-end tests.</p></div></li>
+                <li><span>Then</span><div><strong>Writer control is visible</strong><p>Privacy, export, deletion, vendor use, and AI boundaries become product behaviour.</p></div></li>
+                <li><span>Gate</span><div><strong>A representative journey passes</strong><p>A founder-approved writer fixture moves from Gather to Sense to Create without losing provenance.</p></div></li>
+              </ol>
+            </section>
+
+            <section class="plain-section daily-preview">
+              <div class="section-heading"><div><p class="section-label">End of day</p><h2>The short version.</h2></div><button class="text-button" type="button" data-open-view="daily">Open record</button></div>
+              <div class="record-block">
+                <strong>Completed</strong>
+                <p>The founder pack is live; its no-trailing-slash asset fault was repaired and verified in production.</p>
+              </div>
+              <div class="record-block">
+                <strong>Built for review</strong>
+                <p>The Working Record turns the foundation into a navigable plan, decision queue, and persistent idea pad.</p>
+              </div>
+              <div class="record-block tomorrow">
+                <strong>Tomorrow</strong>
+                <p>Review the workspace, decide whether it should remain browser-local or become authenticated, and approve the first Studio slice.</p>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="workspace-view" id="view-roadmap" data-view-panel="roadmap" aria-labelledby="roadmap-title" hidden>
+          <div class="page-head"><div><p class="kicker">From purpose to cohort</p><h1 id="roadmap-title">The Studio roadmap.</h1><p class="lede">Each phase is expressed as an outcome you can recognize, followed by the work, proof, and founder decision it requires.</p></div></div>
+          <div class="roadmap-legend"><span class="legend-done">Held</span><span class="legend-next">Proposed next</span><span>Later</span><span class="legend-gate">Founder gate</span></div>
+          <div id="roadmap-list" class="roadmap-list"></div>
+        </section>
+
+        <section class="workspace-view" id="view-ideas" data-view-panel="ideas" aria-labelledby="ideas-title" hidden>
+          <div class="page-head compact"><div><p class="kicker">A place for the unfinished</p><h1 id="ideas-title">The idea pad.</h1><p class="lede">Capture the thought first. Decide later whether it is a question, research, a scope change, or simply something worth holding.</p></div><button class="primary-button" type="button" id="new-idea-button">New idea</button></div>
+          <div class="idea-toolbar">
+            <label><span>Find an idea</span><input type="search" id="idea-search" placeholder="Search ideas and threads"></label>
+            <label><span>Show</span><select id="idea-filter"><option value="all">All stages</option><option value="Inbox">Inbox</option><option value="Clarifying">Clarifying</option><option value="Research">Research</option><option value="Decision">Decision</option><option value="Parked">Parked</option><option value="Resolved">Resolved</option></select></label>
+          </div>
+          <div class="idea-workspace">
+            <div class="idea-list" id="idea-list" aria-label="Idea threads"></div>
+            <article class="idea-detail" id="idea-detail" aria-live="polite"></article>
+          </div>
+        </section>
+
+        <section class="workspace-view" id="view-decisions" data-view-panel="decisions" aria-labelledby="decisions-title" hidden>
+          <div class="page-head"><div><p class="kicker">Judgment stays with the founder</p><h1 id="decisions-title">The decision table.</h1><p class="lede">Only decisions that materially change product purpose, writer trust, cost, or delivery should interrupt you.</p></div></div>
+          <div class="decision-summary" id="decision-summary"></div>
+          <div class="decision-list" id="decision-list"></div>
+        </section>
+
+        <section class="workspace-view" id="view-daily" data-view-panel="daily" aria-labelledby="daily-title" hidden>
+          <div class="page-head"><div><p class="kicker">Close the loop</p><h1 id="daily-title">Daily record.</h1><p class="lede">A readable account of progress, evidence, changes in truth, and the next day’s intended work.</p></div></div>
+          <div class="daily-grid">
+            <section class="daily-card"><span>01</span><h2>Completed today</h2><ul><li>Founder foundation pack deployed to the website.</li><li>Production asset-path defect diagnosed, repaired, tested, and merged.</li><li>Founder workflow translated into this review build.</li></ul></section>
+            <section class="daily-card"><span>02</span><h2>Evidence</h2><ul><li>Website production build passed.</li><li>Both founder-pack URL forms render all 15 documents.</li><li>Working Record interactions and persistence are included in the morning verification gate.</li></ul></section>
+            <section class="daily-card"><span>03</span><h2>Changed truth</h2><p>The foundation is no longer scattered research. It is now an explicit gate before implementation. The next step is not “build the app”; it is approve the first safe, testable slice.</p></section>
+            <section class="daily-card tomorrow"><span>04</span><h2>Tomorrow’s plan</h2><ol><li>Founder reviews this workspace and its name.</li><li>Decide the access and persistence model.</li><li>Approve or reshape the first Studio implementation slice.</li><li>Turn the approved slice into a bounded task contract with tests and a handoff time.</li></ol></section>
+          </div>
+          <section class="working-agreement">
+            <div><p class="section-label">Proposed operating rhythm</p><h2>How we work together.</h2></div>
+            <ol>
+              <li><strong>Orient</strong><span>Name the Studio phase, user outcome, and why it matters.</span></li>
+              <li><strong>Contract</strong><span>Define scope, estimate, founder input, tests, and the proof of done.</span></li>
+              <li><strong>Build</strong><span>Work autonomously inside the agreed boundary and report changes in truth.</span></li>
+              <li><strong>Prove</strong><span>Pass build, type, behavioural, browser, and risk-specific checks.</span></li>
+              <li><strong>Review</strong><span>Give you the outcome in plain language and isolate the decisions only you can make.</span></li>
+            </ol>
+          </section>
+        </section>
+
+        <section class="workspace-view" id="view-measures" data-view-panel="measures" aria-labelledby="measures-title" hidden>
+          <div class="page-head"><div><p class="kicker">Measure without pretending</p><h1 id="measures-title">Time, tokens, and cost.</h1><p class="lede">This first version separates known facts, manual records, and integrations we still need to build.</p></div></div>
+          <div class="measure-grid">
+            <article class="measure-card known"><span>Known now</span><strong>15</strong><h2>Foundation documents</h2><p>Built, verified, and available from this workspace.</p></article>
+            <article class="measure-card known"><span>Known now</span><strong>12</strong><h2>Target cohort</h2><p>A deliberately mixed learning cohort, not a representative market sample.</p></article>
+            <article class="measure-card gap"><span>Integration needed</span><strong>—</strong><h2>Codex token use</h2><p>This website cannot read Codex task usage. Add a deliberate daily snapshot or supported usage integration.</p></article>
+            <article class="measure-card gap"><span>Ledger not built</span><strong>US$0</strong><h2>Studio AI cohort cost</h2><p>No cohort AI calls exist yet. The application requires per-call tokens, model, cost, writer, and task purpose from its first run.</p></article>
+            <article class="measure-card manual"><span>Manual until connected</span><strong>—</strong><h2>Hours by phase</h2><p>Record focused time at task completion; do not infer hours from chat timestamps.</p></article>
+            <article class="measure-card known"><span>Current evidence</span><strong>2</strong><h2>Critical trust risks</h2><p>Writing continuity and unenforced cohort access remain the first technical gates.</p></article>
+          </div>
+          <section class="integration-plan">
+            <p class="section-label">Measure in the right order</p>
+            <h2>What becomes live, and when.</h2>
+            <div class="integration-row"><span>Now</span><strong>Manual task estimates and completion notes</strong><p>Enough for founder orientation without adding infrastructure.</p></div>
+            <div class="integration-row"><span>Before app AI</span><strong>AI usage ledger and cost ceiling</strong><p>Tokens, model, latency, estimated cost, purpose, outcome, retry, and alert thresholds.</p></div>
+            <div class="integration-row"><span>Before cohort</span><strong>Operational health</strong><p>Invitations, active writers, support load, backup and restore proof, incidents, and graceful limits.</p></div>
+            <div class="integration-row"><span>After consent</span><strong>Product learning</strong><p>Only privacy-reviewed events tied to cohort questions, never free text or sensitive writer material.</p></div>
+          </section>
+        </section>
+
+        <section class="workspace-view" id="view-team" data-view-panel="team" aria-labelledby="team-title" hidden>
+          <div class="page-head"><div><p class="kicker">Who is doing what</p><h1 id="team-title">Team & activity.</h1><p class="lede">A role-based view of the work. “Active” here is a documented snapshot, not a live connection to Codex tasks.</p></div></div>
+          <div class="team-grid">
+            <article class="team-card active"><span>Active now</span><h2>Technical product lead</h2><p>Translating founder intent into bounded product work, implementation, verification, and plain-language handoff.</p><dl><div><dt>Current</dt><dd>Working Record review build</dd></div><div><dt>Next</dt><dd>Await founder decision gate</dd></div></dl></article>
+            <article class="team-card complete"><span>Completed stream</span><h2>Product foundation</h2><p>Vision, principles, Studio MVP, Sensing contract, staged plan, task map, and decision register.</p><dl><div><dt>Output</dt><dd>6 foundation documents</dd></div><div><dt>Status</dt><dd>Ready for founder review</dd></div></dl></article>
+            <article class="team-card complete"><span>Completed stream</span><h2>Research foundation</h2><p>Audience hypotheses, alternatives landscape, business models, problem, proposition, and falsification tests.</p><dl><div><dt>Output</dt><dd>3 foundation documents</dd></div><div><dt>Status</dt><dd>Evidence separated from hypotheses</dd></div></dl></article>
+            <article class="team-card complete"><span>Completed stream</span><h2>Technical foundation</h2><p>Repository audit, conditional reuse strategy, cost scenarios, risks, and the trust-repair sequence.</p><dl><div><dt>Output</dt><dd>3 foundation documents</dd></div><div><dt>Status</dt><dd>Build gates identified</dd></div></dl></article>
+          </div>
+          <div class="activity-log">
+            <div class="section-heading"><div><p class="section-label">Recent record</p><h2>What changed.</h2></div></div>
+            <ol>
+              <li><time>10 Aug</time><div><strong>Foundation pack completed</strong><p>Fifteen documents consolidated purpose, evidence, product scope, technical strategy, and operating questions.</p></div></li>
+              <li><time>10 Aug</time><div><strong>Founder pack published</strong><p>Static founder artifact added to the public website repository and deployed through Vercel.</p></div></li>
+              <li><time>11 Aug</time><div><strong>Production route repaired</strong><p>Asset paths now work with and without the trailing slash; both forms were verified live.</p></div></li>
+              <li><time>11 Aug</time><div><strong>Working Record built for review</strong><p>Roadmap, decisions, ideas, daily record, measures, and activity moved into one founder-facing surface.</p></div></li>
+            </ol>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="idea-dialog" class="idea-dialog">
+      <form method="dialog" id="idea-form">
+        <div class="dialog-head"><div><p class="section-label">New thread</p><h2>Put the thought down.</h2></div><button type="button" id="close-idea-dialog" aria-label="Close idea form">Close</button></div>
+        <label><span>Idea or question</span><input id="idea-title" name="title" required maxlength="120" placeholder="What are you wondering about?"></label>
+        <label><span>Raw thought</span><textarea id="idea-body" name="body" required rows="6" placeholder="It does not need to be tidy yet."></textarea></label>
+        <div class="form-row">
+          <label><span>It might be</span><select id="idea-kind" name="kind"><option>Question</option><option>Research</option><option>Product idea</option><option>Feasibility</option><option>Scope change</option><option>Design reference</option></select></label>
+          <label><span>I think I need</span><select id="idea-output" name="output"><option>Help me clarify it</option><option>A short answer</option><option>A research note</option><option>A feasibility assessment</option><option>A product brief</option><option>A founder decision</option><option>Not sure yet</option></select></label>
+        </div>
+        <div class="dialog-actions"><button type="button" class="secondary-button" id="cancel-idea-dialog">Cancel</button><button type="submit" class="primary-button">Start the thread</button></div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/working-record/app.js"></script>
+  </body>
+</html>
